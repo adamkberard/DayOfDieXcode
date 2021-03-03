@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		5A62548C25EEF0C500340AE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A62548B25EEF0C500340AE0 /* AppDelegate.swift */; };
 		5A62548E25EEF0C500340AE0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A62548D25EEF0C500340AE0 /* SceneDelegate.swift */; };
-		5A62549025EEF0C500340AE0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A62548F25EEF0C500340AE0 /* ViewController.swift */; };
+		5A62549025EEF0C500340AE0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A62548F25EEF0C500340AE0 /* MainViewController.swift */; };
 		5A62549325EEF0C500340AE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A62549125EEF0C500340AE0 /* Main.storyboard */; };
 		5A62549525EEF0C600340AE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A62549425EEF0C600340AE0 /* Assets.xcassets */; };
 		5A62549825EEF0C600340AE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A62549625EEF0C600340AE0 /* LaunchScreen.storyboard */; };
 		5A6254A325EEF0C600340AE0 /* DayOfDieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6254A225EEF0C600340AE0 /* DayOfDieTests.swift */; };
 		5A6254AE25EEF0C600340AE0 /* DayOfDieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6254AD25EEF0C600340AE0 /* DayOfDieUITests.swift */; };
+		5AB27AB025EF862100888E49 /* SpecialPointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB27AAF25EF862100888E49 /* SpecialPointsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +39,7 @@
 		5A62548825EEF0C500340AE0 /* DayOfDie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DayOfDie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A62548B25EEF0C500340AE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A62548D25EEF0C500340AE0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5A62548F25EEF0C500340AE0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5A62548F25EEF0C500340AE0 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		5A62549225EEF0C500340AE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5A62549425EEF0C600340AE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5A62549725EEF0C600340AE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +50,7 @@
 		5A6254A925EEF0C600340AE0 /* DayOfDieUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DayOfDieUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A6254AD25EEF0C600340AE0 /* DayOfDieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayOfDieUITests.swift; sourceTree = "<group>"; };
 		5A6254AF25EEF0C600340AE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5AB27AAF25EF862100888E49 /* SpecialPointsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialPointsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +103,8 @@
 			children = (
 				5A62548B25EEF0C500340AE0 /* AppDelegate.swift */,
 				5A62548D25EEF0C500340AE0 /* SceneDelegate.swift */,
-				5A62548F25EEF0C500340AE0 /* ViewController.swift */,
+				5A62548F25EEF0C500340AE0 /* MainViewController.swift */,
+				5AB27AAF25EF862100888E49 /* SpecialPointsViewController.swift */,
 				5A62549125EEF0C500340AE0 /* Main.storyboard */,
 				5A62549425EEF0C600340AE0 /* Assets.xcassets */,
 				5A62549625EEF0C600340AE0 /* LaunchScreen.storyboard */,
@@ -258,9 +261,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5A62549025EEF0C500340AE0 /* ViewController.swift in Sources */,
+				5A62549025EEF0C500340AE0 /* MainViewController.swift in Sources */,
 				5A62548C25EEF0C500340AE0 /* AppDelegate.swift in Sources */,
 				5A62548E25EEF0C500340AE0 /* SceneDelegate.swift in Sources */,
+				5AB27AB025EF862100888E49 /* SpecialPointsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,7 +450,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = aberard.DayOfDie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -465,7 +469,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = aberard.DayOfDie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
