@@ -6,66 +6,7 @@
 //
 
 import UIKit
-
-struct PlayerLabels {
-    var tableLabel: UILabel
-    var pointsNameLabel: UILabel
-    var bigPointsLabel: UILabel
-    var pointsLabel: UILabel
-    var tinksLabel: UILabel
-    var sinksLabel: UILabel
-    var bounceSinksLabel: UILabel
-    var partnerSinksLabel: UILabel
-    var selfSinksLabel: UILabel
-}
-
-struct PlayerData {
-    var playerNumber = 0
-    var name : String = ""
-    var points : Int = 0
-    var tinks : [String] = []
-    var sinks : [String] = []
-    var bounceSinks : [String] = []
-    var partnerSinks : [String] = []
-    var selfSinks : Int = 0
-    var labels : PlayerLabels
-    
-    init(name: String, number: Int, tableLable: UILabel, pointsNameLabel: UILabel, bigPointsLabel: UILabel, pointsLabel: UILabel, tinksLabel: UILabel, sinksLabel: UILabel, bounceSinksLabel: UILabel, partnerSinksLabel: UILabel, selfSinksLabel: UILabel) {
-        self.playerNumber = number
-        self.name = name
-        self.points = 0
-        self.tinks = []
-        self.sinks = []
-        self.bounceSinks = []
-        self.partnerSinks = []
-        self.selfSinks = 0
-        self.labels = PlayerLabels(tableLabel: tableLable, pointsNameLabel: pointsNameLabel, bigPointsLabel: bigPointsLabel, pointsLabel: pointsLabel, tinksLabel: tinksLabel, sinksLabel: sinksLabel, bounceSinksLabel: bounceSinksLabel, partnerSinksLabel: partnerSinksLabel, selfSinksLabel: selfSinksLabel)
-    }
-    
-    func getTotalPoints() -> Int {
-        var totalPoints = 0
-        totalPoints += points
-        totalPoints += (tinks.count * 2)
-        totalPoints += (bounceSinks.count * 2)
-        totalPoints += (sinks.count * 3)
-        return totalPoints
-    }
-    
-    func updateNameLabels() {
-        self.labels.tableLabel.text = self.name
-        self.labels.pointsNameLabel.text = self.name
-    }
-    
-    func updatePointLabels() {
-        self.labels.bigPointsLabel.text = String(self.points)
-        self.labels.pointsLabel.text = String(self.points)
-        self.labels.tinksLabel.text = String(self.tinks.count)
-        self.labels.sinksLabel.text = String(self.sinks.count)
-        self.labels.bounceSinksLabel.text = String(self.bounceSinks.count)
-        self.labels.partnerSinksLabel.text = String(self.partnerSinks.count)
-        self.labels.selfSinksLabel.text = String(self.selfSinks)
-    }
-}
+import Alamofire
 
 class MainViewController: UIViewController {
     
@@ -145,239 +86,223 @@ class MainViewController: UIViewController {
     @IBOutlet weak var teamTwoScoreLabel: UILabel!
     
     // My variables
-    let playerNames : [String] = ["Adam", "Ben", "Jake", "Kyle", "Marcus"]
-    var players : [PlayerData] = []
-    var myChosenPlayer : Int = 0
+    // Eventually need to request these names
+    var game : Game = Game()
+    var activityIndicator : UIActivityIndicatorView = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.items?.last?.rightBarButtonItem?.isEnabled = false
         // Do any additional setup after loading the view.
-        // Setting up all the player data
-        let playerOne = PlayerData(name: playerNames[0], number: 1, tableLable: playerOneTableLabel, pointsNameLabel: playerOnePointsNameLabel, bigPointsLabel: playerOneBigPointsLabel, pointsLabel: playerOnePointsLabel, tinksLabel: playerOneTinksLabel, sinksLabel: playerOneSinksLabel, bounceSinksLabel: playerOneBounceSinksLabel, partnerSinksLabel: playerOnePartnerSinksLabel, selfSinksLabel: playerOneSelfSinksLabel)
-        let playerTwo = PlayerData(name: playerNames[1], number: 2, tableLable: playerTwoTableLabel, pointsNameLabel: playerTwoPointsNameLabel, bigPointsLabel: playerTwoBigPointsLabel, pointsLabel: playerTwoPointsLabel, tinksLabel: playerTwoTinksLabel, sinksLabel: playerTwoSinksLabel, bounceSinksLabel: playerTwoBounceSinksLabel, partnerSinksLabel: playerTwoPartnerSinksLabel, selfSinksLabel: playerTwoSelfSinksLabel)
-        let playerThree = PlayerData(name: playerNames[2], number: 3, tableLable: playerThreeTableLabel, pointsNameLabel: playerThreePointsNameLabel, bigPointsLabel: playerThreeBigPointsLabel, pointsLabel: playerThreePointsLabel, tinksLabel: playerThreeTinksLabel, sinksLabel: playerThreeSinksLabel, bounceSinksLabel: playerThreeBounceSinksLabel, partnerSinksLabel: playerThreePartnerSinksLabel, selfSinksLabel: playerThreeSelfSinksLabel)
-        let playerFour = PlayerData(name: playerNames[3], number: 4, tableLable: playerFourTableLabel, pointsNameLabel: playerFourPointsNameLabel, bigPointsLabel: playerFourBigPointsLabel, pointsLabel: playerFourPointsLabel, tinksLabel: playerFourTinksLabel, sinksLabel: playerFourSinksLabel, bounceSinksLabel: playerFourBounceSinksLabel, partnerSinksLabel: playerFourPartnerSinksLabel, selfSinksLabel: playerFourSelfSinksLabel)
-        players.append(playerOne)
-        players.append(playerTwo)
-        players.append(playerThree)
-        players.append(playerFour)
+        game.createPlayers()
+        game.saveButton = self.navigationController?.navigationBar.items?.last?.rightBarButtonItem!
+        setPlayerLabels(game: game)
+        
+        // Setup labels with PlayerLabels models
+        setPlayerLabels(game: game)
         
         // Setting player name labels
-        updatePlayers()
-        
-        // Setting player point labels
-        updatePoints()
+        setPlayerLabels(game: game)
+        for i in 0...3{
+            game.players[i].labels.updateNameLabels()
+            game.players[i].labels.updatePointLabels()
+        }
         
         // Setting team lock to OFF and points to uneditable
         teamLockSwitch.setOn(false, animated: true)
         enablePlayerNameButtons(inBool: true)
         enableLoggingButtons(inBool: false)
+        
+        // Activity Indicator stuff
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = UIActivityIndicatorView.Style.medium
+        view.addSubview(activityIndicator)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        game.getChosenPlayer().labels.updatePointLabels()
+        game.updateTeamScoreLabels()
     }
     
     // Player Switching
     @IBAction func playerOneSwitchLeft(_ sender: Any) {
-        players[0].name = getPrevPlayer(player: players[0].name)
-        updatePlayers()
+        game.getPlayerOne().setPrevName()
     }
     @IBAction func playerOneSwitchRight(_ sender: Any) {
-        players[0].name = getNextPlayer(player: players[0].name)
-        updatePlayers()
+        game.getPlayerOne().setNextName()
     }
     @IBAction func playerTwoSwitchLeft(_ sender: Any) {
-        players[1].name = getPrevPlayer(player: players[1].name)
-        updatePlayers()
+        game.getPlayerTwo().setPrevName()
     }
     @IBAction func playerTwoSwitchRight(_ sender: Any) {
-        players[1].name = getNextPlayer(player: players[1].name)
-        updatePlayers()
+        game.getPlayerTwo().setNextName()
     }
     @IBAction func playerThreeSwitchLeft(_ sender: Any) {
-        players[2].name = getPrevPlayer(player: players[2].name)
-        updatePlayers()
+        game.getPlayerThree().setPrevName()
     }
     @IBAction func playerThreeSwitchRight(_ sender: Any) {
-        players[2].name = getNextPlayer(player: players[2].name)
-        updatePlayers()
+        game.getPlayerThree().setNextName()
     }
     @IBAction func playerFourSwitchLeft(_ sender: Any) {
-        players[3].name = getPrevPlayer(player: players[3].name)
-        updatePlayers()
+        game.getPlayerFour().setPrevName()
     }
     @IBAction func playerFourSwitchRight(_ sender: Any) {
-        players[3].name = getNextPlayer(player: players[3].name)
-        updatePlayers()
+        game.getPlayerFour().setNextName()
     }
     
     // Point adding & subtracting
     @IBAction func playerOnePointsMinus(_ sender: Any) {
-        players[0].points = subtractOne(number: players[0].points)
-        updatePoints()
+        game.getPlayerOne().subtractPoint()
     }
     @IBAction func playerOnePointsPlus(_ sender: Any) {
-        players[0].points += 1
-        updatePoints()
+        game.getPlayerOne().addPoint()
     }
     @IBAction func playerTwoPointsMinus(_ sender: Any) {
-        players[1].points = subtractOne(number: players[1].points)
-        updatePoints()
+        game.getPlayerTwo().subtractPoint()
     }
     @IBAction func playerTwoPointsPlus(_ sender: Any) {
-        players[1].points += 1
-        updatePoints()
+        game.getPlayerTwo().addPoint()
     }
     @IBAction func playerThreePointsMinus(_ sender: Any) {
-        players[2].points = subtractOne(number: players[2].points)
-        updatePoints()
+        game.getPlayerThree().subtractPoint()
     }
     @IBAction func playerThreePointsPlus(_ sender: Any) {
-        players[2].points += 1
-        updatePoints()
+        game.getPlayerThree().addPoint()
     }
     @IBAction func playerFourPointsMinus(_ sender: Any) {
-        players[3].points = subtractOne(number: players[3].points)
-        updatePoints()
+        game.getPlayerFour().subtractPoint()
     }
     @IBAction func playerFourPointsPlus(_ sender: Any) {
-        players[3].points += 1
-        updatePoints()
+        game.getPlayerFour().addPoint()
     }
     
     // Special Points Buttons
     @IBAction func playerOneSpecialPointButtonPressed(_ sender: Any) {
-        myChosenPlayer = 0
+        game.chosenPlayer = 0
         self.performSegue(withIdentifier: "toSpecialPointsTable", sender: self)
     }
     @IBAction func playerTwoSpecialPointButtonPressed(_ sender: Any) {
-        myChosenPlayer = 1
+        game.chosenPlayer = 1
         self.performSegue(withIdentifier: "toSpecialPointsTable", sender: self)
     }
     @IBAction func playerThreeSpecialPointButtonPressed(_ sender: Any) {
-        myChosenPlayer = 2
+        game.chosenPlayer = 2
         self.performSegue(withIdentifier: "toSpecialPointsTable", sender: self)
     }
     @IBAction func playerFourSpecialPointButtonPressed(_ sender: Any) {
-        myChosenPlayer = 3
+        game.chosenPlayer = 3
         self.performSegue(withIdentifier: "toSpecialPointsTable", sender: self)
     }
     
     @IBAction func teamLockChanged(_ sender: UISwitch) {
         if(sender.isOn){
-            if(getMatchingNames().count != 0){
-                sender.setOn(false, animated: true)
-            }
-            else{
+            if(game.namesAreValid()){
                 enablePlayerNameButtons(inBool: false)
                 enableLoggingButtons(inBool: true)
             }
-        }
-        else{
-            enablePlayerNameButtons(inBool: true)
-            enableLoggingButtons(inBool: false)
-        }
-    }
-    
-    
-    // My functions
-    func updatePlayers(){
-        // Check if any of the names match each other. Those will be set to red
-        let matching = getMatchingNames()
-        for i in (0...3){
-            if(matching.contains(i)){
-                players[i].labels.pointsNameLabel.textColor = UIColor.red
-                players[i].labels.tableLabel.textColor = UIColor.red
-            }
             else{
-                players[i].labels.pointsNameLabel.textColor = UIColor.black
-                players[i].labels.tableLabel.textColor = UIColor.black
+                sender.setOn(false, animated: true)
             }
         }
-        
-        for i in (0...3){
-            players[i].updateNameLabels()
-        }
-    }
-    
-    func updatePoints(){
-        teamOneScoreLabel.text = String(getTeamPoints(team: 1))
-        teamTwoScoreLabel.text = String(getTeamPoints(team: 2))
+        else{
+            let refreshAlert = UIAlertController(title: "ARE YOU SURE?!", message: "Are you sure you want to change the teams?", preferredStyle: UIAlertController.Style.alert)
 
-        for i in (0...3){
-            players[i].updatePointLabels()
+            refreshAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
+                self.enablePlayerNameButtons(inBool: true)
+                self.enableLoggingButtons(inBool: false)
+            }))
+
+            refreshAlert.addAction(UIAlertAction(title: "No", style: .cancel))
+
+            present(refreshAlert, animated: true, completion: nil)
         }
+    }
+    
+    @IBAction func saveGameButtonPressed(_ sender: Any) {
+        // Now it sends the data to me
+        // Prepare json data
+        let gameDict : [String: Any] = game.toDict()
         
-        // Check if the game can be over
-        self.navigationController?.navigationBar.items?.last?.rightBarButtonItem?.isEnabled = checkGameOver()
-    }
-    
-    func getNextPlayer(player: String) -> String {
-        let inIndex = playerNames.firstIndex(of: player) ?? 0
-        if inIndex == (playerNames.count - 1){
-            return playerNames[0]
-        }
-        else{
-            return playerNames[inIndex + 1]
-        }
-    }
-    
-    func getPrevPlayer(player: String) -> String {
-        let inIndex = playerNames.firstIndex(of: player) ?? 0
-        if inIndex == 0{
-            return playerNames[playerNames.count - 1]
-        }
-        else{
-            return playerNames[inIndex - 1]
-        }
-    }
-    
-    func subtractOne(number: Int) -> Int{
-        if(number > 0){
-            return number - 1
-        }
-        else{
-            return 0
-        }
-    }
-    
-    func getTeamPoints(team: Int) -> Int {
-        switch team {
-        case 1:
-            let totalPoints = players[0].getTotalPoints()
-            return totalPoints + players[1].getTotalPoints()
-        case 2:
-            let totalPoints = players[2].getTotalPoints()
-            return totalPoints + players[3].getTotalPoints()
-        default:
-            return 0
-        }
-    }
-    
-    func getMatchingNames() -> [Int] {
-        var matching : [Int] = []
-        for i in (0...3){
-            for j in (0...3){
-                if(players[i].name == players[j].name && i != j){
-                    matching.append(i)
-                    matching.append(j)
+        let parameters : [String: Any] = [
+            "game": gameDict
+        ]
+        
+        AF.request("http://127.0.0.1:8000/game/", method: .post, parameters: parameters, encoding:JSONEncoding.default).responseJSON { response in
+            // Turn off activity indicator
+            self.activityIndicator.stopAnimating()
+            self.view.isUserInteractionEnabled = true
+            
+            if let statusCode = response.response?.statusCode {
+                self.activityIndicator.stopAnimating()
+                self.view.isUserInteractionEnabled = true
+                if((200...299).contains(statusCode)){
+                    // Eventually I will need to wipe the screen clear to let them know it's been saved
+                    // Maybe even send them to the games screen. Will do that rn
+                }
+                else{
+                    print("IDK WHAT HAPPENED \(response.response!.statusCode)")
+                    debugPrint(response)
                 }
             }
+            else{
+                print("no connection")
+            }
         }
-        return Array(Set(matching))
+        
+        activityIndicator.startAnimating()
+        view.isUserInteractionEnabled = false
     }
     
-    func checkGameOver() -> Bool{
-        // If neither team has at least 11 the game cannot be saved
-        if([getTeamPoints(team: 1), getTeamPoints(team: 2)].max() ?? 0 < 11){
-            return false
-        }
-        // If the winning team isn't up by at least 2 then it cannot be saved
-        else if(abs(getTeamPoints(team: 1) - getTeamPoints(team: 2)) < 2){
-            return false
-        }
-        else{
-            return true
-        }
+    func setPlayerLabels(game: Game) {
+        // Player name labels
+        game.getPlayerOne().labels.tableLabel = playerOneTableLabel
+        game.getPlayerOne().labels.pointsNameLabel = playerOnePointsNameLabel
+        game.getPlayerTwo().labels.tableLabel = playerTwoTableLabel
+        game.getPlayerTwo().labels.pointsNameLabel = playerTwoPointsNameLabel
+        game.getPlayerThree().labels.tableLabel = playerThreeTableLabel
+        game.getPlayerThree().labels.pointsNameLabel = playerThreePointsNameLabel
+        game.getPlayerFour().labels.tableLabel = playerFourTableLabel
+        game.getPlayerFour().labels.pointsNameLabel = playerFourPointsNameLabel
+        
+        // Points Labels
+        game.getPlayerOne().labels.bigPointsLabel = playerOneBigPointsLabel
+        game.getPlayerOne().labels.pointsLabel = playerOnePointsLabel
+        game.getPlayerOne().labels.tinksLabel = playerOneTinksLabel
+        game.getPlayerOne().labels.sinksLabel = playerOneSinksLabel
+        game.getPlayerOne().labels.bounceSinksLabel = playerOneBounceSinksLabel
+        game.getPlayerOne().labels.partnerSinksLabel = playerOnePartnerSinksLabel
+        game.getPlayerOne().labels.selfSinksLabel = playerOneSelfSinksLabel
+
+        game.getPlayerTwo().labels.bigPointsLabel = playerTwoBigPointsLabel
+        game.getPlayerTwo().labels.pointsLabel = playerTwoPointsLabel
+        game.getPlayerTwo().labels.tinksLabel = playerTwoTinksLabel
+        game.getPlayerTwo().labels.sinksLabel = playerTwoSinksLabel
+        game.getPlayerTwo().labels.bounceSinksLabel = playerTwoBounceSinksLabel
+        game.getPlayerTwo().labels.partnerSinksLabel = playerTwoPartnerSinksLabel
+        game.getPlayerTwo().labels.selfSinksLabel = playerTwoSelfSinksLabel
+        
+        game.getPlayerThree().labels.bigPointsLabel = playerThreeBigPointsLabel
+        game.getPlayerThree().labels.pointsLabel = playerThreePointsLabel
+        game.getPlayerThree().labels.tinksLabel = playerThreeTinksLabel
+        game.getPlayerThree().labels.sinksLabel = playerThreeSinksLabel
+        game.getPlayerThree().labels.bounceSinksLabel = playerThreeBounceSinksLabel
+        game.getPlayerThree().labels.partnerSinksLabel = playerThreePartnerSinksLabel
+        game.getPlayerThree().labels.selfSinksLabel = playerThreeSelfSinksLabel
+        
+        game.getPlayerFour().labels.bigPointsLabel = playerFourBigPointsLabel
+        game.getPlayerFour().labels.pointsLabel = playerFourPointsLabel
+        game.getPlayerFour().labels.tinksLabel = playerFourTinksLabel
+        game.getPlayerFour().labels.sinksLabel = playerFourSinksLabel
+        game.getPlayerFour().labels.bounceSinksLabel = playerFourBounceSinksLabel
+        game.getPlayerFour().labels.partnerSinksLabel = playerFourPartnerSinksLabel
+        game.getPlayerFour().labels.selfSinksLabel = playerFourSelfSinksLabel
+        
+        // Score Labels
+        game.teamScoreLabels = []
+        game.teamScoreLabels.append(teamOneScoreLabel)
+        game.teamScoreLabels.append(teamTwoScoreLabel)
     }
     
     func enablePlayerNameButtons(inBool: Bool) {
@@ -392,7 +317,6 @@ class MainViewController: UIViewController {
     }
     
     func enableLoggingButtons(inBool: Bool) {
-        self.navigationController?.navigationBar.items?.last?.rightBarButtonItem?.isEnabled = (inBool && checkGameOver())
         playerOneMinusButton.isEnabled = inBool
         playerOnePlusButton.isEnabled = inBool
         playerTwoMinusButton.isEnabled = inBool
@@ -417,8 +341,9 @@ class MainViewController: UIViewController {
             if identifier == "toSpecialPointsTable" {
                 guard let viewController = segue.destination as? SpecialPointsViewController else {
                  fatalError("Unexpected destination: \(segue.destination)")}
-                viewController.players = players
-                viewController.chosenPlayer = myChosenPlayer
+                viewController.PrevViewController = self
+                viewController.chosenPlayerNumber = game.chosenPlayer
+                viewController.player = game.getChosenPlayer()
             }
         }
     }

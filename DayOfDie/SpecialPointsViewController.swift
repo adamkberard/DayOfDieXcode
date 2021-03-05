@@ -31,50 +31,122 @@ class SpecialPointsViewController: UIViewController {
     
     @IBOutlet weak var playerTitleLabel: UILabel!
     
-    var players : [PlayerData] = []
-    var chosenPlayer = 0
+    // My Vars
+
+    var tinksOnOptionOne : Int = 0
+    var tinksOnOptionTwo : Int = 0
+    var sinksOnOptionOne : Int = 0
+    var sinksOnOptionTwo : Int = 0
+    var bounceSinksOnOptionOne : Int = 0
+    var bounceSinksOnOptionTwo : Int = 0
+    var partnerSinks : Int = 0
+    var selfSinks : Int = 0
+    var optionOneName : String = ""
+    var optionTwoName : String = ""
+    var partnerName : String = ""
+    
+    var PrevViewController : MainViewController? = nil
+    var chosenPlayerNumber = 0
+    
+    var player : Player? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        let oponents : [String] = player!.getPlayerOponents()
+        optionOneName = oponents[0]
+        optionTwoName = oponents[1]
+        
+        tinkOptionOne.text = optionOneName
+        tinkOptionTwo.text = optionTwoName
+        sinkOptionOne.text = optionOneName
+        sinkOptionTwo.text = optionTwoName
+        bounceSinkOptionOne.text = optionOneName
+        bounceSinkOptionTwo.text = optionTwoName
+        partnerSinkOption.text = partnerName
+        selfSinkOption.text = player!.name
+        
+        tinksOnOptionOne = player!.tinks.filter({$0 == optionOneName}).count
+        tinksOnOptionTwo = player!.tinks.filter({$0 == optionTwoName}).count
+        print("HERE")
+        print(player!.tinks)
+        sinksOnOptionOne = player!.sinks.filter({$0 == optionOneName}).count
+        sinksOnOptionTwo = player!.sinks.filter({$0 == optionTwoName}).count
+        bounceSinksOnOptionOne = player!.bounceSinks.filter({$0 == optionOneName}).count
+        bounceSinksOnOptionTwo = player!.bounceSinks.filter({$0 == optionTwoName}).count
+        partnerSinks = player!.partnerSinks.count
+        selfSinks = player!.selfSinks
+        
+        updateAllValues()
+        
         // Do any additional setup after loading the view.
-        playerTitleLabel.text = "Special Points for \(players[chosenPlayer].name)"
-        
-        
+        playerTitleLabel.text = "Special Points for \(PrevViewController!.game.getChosenPlayer().name)"
     }
     
+    // Value control buttons
     @IBAction func tinkOptionOneMinusPressed(_ sender: Any) {
+        tinksOnOptionOne = subtractOne(number: tinksOnOptionOne)
+        updateAllValues()
+    }
+    @IBAction func tinkOptionOnePlusPressed(_ sender: Any) {
+        tinksOnOptionOne += 1
+        updateAllValues()
     }
     @IBAction func tinkOptionTwoMinusPressed(_ sender: Any) {
-    }
-    @IBAction func sinkOptionOneMinusPressed(_ sender: Any) {
-    }
-    @IBAction func sinkOptionTwoMinusPressed(_ sender: Any) {
-    }
-    @IBAction func bounceSinkOptionOneMinusPressed(_ sender: Any) {
-    }
-    @IBAction func bounceSinkOptionTwoMinusPressed(_ sender: Any) {
-    }
-    @IBAction func partnerMinusPressed(_ sender: Any) {
-    }
-    @IBAction func selfSinkMinusPressed(_ sender: Any) {
-    }
-    
-    @IBAction func tinkOptionOnePlusPressed(_ sender: Any) {
+        tinksOnOptionTwo = subtractOne(number: tinksOnOptionTwo)
+        updateAllValues()
     }
     @IBAction func tinkOptionTwoPlusPressed(_ sender: Any) {
+        tinksOnOptionTwo += 1
+        updateAllValues()
+    }
+    @IBAction func sinkOptionOneMinusPressed(_ sender: Any) {
+        sinksOnOptionOne = subtractOne(number: sinksOnOptionOne)
+        updateAllValues()
     }
     @IBAction func sinkOptionOnePlusPressed(_ sender: Any) {
+        sinksOnOptionOne += 1
+        updateAllValues()
+    }
+    @IBAction func sinkOptionTwoMinusPressed(_ sender: Any) {
+        sinksOnOptionTwo = subtractOne(number: sinksOnOptionTwo)
+        updateAllValues()
     }
     @IBAction func sinkOptionTwoPlusPressed(_ sender: Any) {
+        sinksOnOptionTwo += 1
+        updateAllValues()
+    }
+    @IBAction func bounceSinkOptionOneMinusPressed(_ sender: Any) {
+        bounceSinksOnOptionOne = subtractOne(number: bounceSinksOnOptionOne)
+        updateAllValues()
     }
     @IBAction func bounceSinkOptionOnePlusPressed(_ sender: Any) {
+        bounceSinksOnOptionOne += 1
+        updateAllValues()
+    }
+    @IBAction func bounceSinkOptionTwoMinusPressed(_ sender: Any) {
+        bounceSinksOnOptionTwo = subtractOne(number: bounceSinksOnOptionTwo)
+        updateAllValues()
     }
     @IBAction func bounceSinkOptionTwoPlusPressed(_ sender: Any) {
+        bounceSinksOnOptionTwo += 1
+        updateAllValues()
+    }
+    @IBAction func partnerMinusPressed(_ sender: Any) {
+        partnerSinks = subtractOne(number: partnerSinks)
+        updateAllValues()
     }
     @IBAction func partnerPlusPressed(_ sender: Any) {
+        partnerSinks += 1
+        updateAllValues()
+    }
+    @IBAction func selfSinkMinusPressed(_ sender: Any) {
+        selfSinks = subtractOne(number: selfSinks)
+        updateAllValues()
     }
     @IBAction func selfSinkPlusPressed(_ sender: Any) {
+        selfSinks += 1
+        updateAllValues()
     }
     
     func subtractOne(number: Int) -> Int{
@@ -85,15 +157,38 @@ class SpecialPointsViewController: UIViewController {
             return 0
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func updateAllValues() {
+        tinkOptionOnePointsLabel.text = String(tinksOnOptionOne)
+        tinkOptionTwoPointsLabel.text = String(tinksOnOptionTwo)
+        sinkOptionOnePointsLabel.text = String(sinksOnOptionOne)
+        sinkOptionTwoPointsLabel.text = String(sinksOnOptionTwo)
+        bounceSinkOptionOnePointsLabel.text = String(bounceSinksOnOptionOne)
+        bounceSinkOptionTwoPointsLabel.text = String(bounceSinksOnOptionTwo)
+        partnerSinkPointsLabel.text = String(partnerSinks)
+        selfSinkPointsLabel.text = String(selfSinks)
+        
+        PrevViewController!.game.getChosenPlayer().tinks = []
+        PrevViewController!.game.getChosenPlayer().sinks = []
+        PrevViewController!.game.getChosenPlayer().bounceSinks = []
+        PrevViewController!.game.getChosenPlayer().partnerSinks = []
+        PrevViewController!.game.getChosenPlayer().selfSinks = 0
+        
+        // Update return values as well
+        for _ in 0..<tinksOnOptionOne {
+            PrevViewController!.game.getChosenPlayer().tinks.append(optionOneName)}
+        for _ in 0..<tinksOnOptionTwo {
+            PrevViewController!.game.getChosenPlayer().tinks.append(optionTwoName)}
+        for _ in 0..<sinksOnOptionOne {
+            PrevViewController!.game.getChosenPlayer().sinks.append(optionOneName)}
+        for _ in 0..<sinksOnOptionTwo {
+            PrevViewController!.game.getChosenPlayer().sinks.append(optionTwoName)}
+        for _ in 0..<bounceSinksOnOptionOne {
+            PrevViewController!.game.getChosenPlayer().bounceSinks.append(optionOneName)}
+        for _ in 0..<bounceSinksOnOptionTwo{
+            PrevViewController!.game.getChosenPlayer().bounceSinks.append(optionTwoName)}
+        for _ in 0..<partnerSinks {
+            PrevViewController!.game.getChosenPlayer().partnerSinks.append(partnerName)}
+        PrevViewController!.game.getChosenPlayer().selfSinks = selfSinks
     }
-    */
-
 }

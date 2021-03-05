@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A23AE4D25F16816005C2310 /* GameClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23AE4C25F16816005C2310 /* GameClasses.swift */; };
 		5A62548C25EEF0C500340AE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A62548B25EEF0C500340AE0 /* AppDelegate.swift */; };
 		5A62548E25EEF0C500340AE0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A62548D25EEF0C500340AE0 /* SceneDelegate.swift */; };
 		5A62549025EEF0C500340AE0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A62548F25EEF0C500340AE0 /* MainViewController.swift */; };
@@ -16,6 +17,7 @@
 		5A6254A325EEF0C600340AE0 /* DayOfDieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6254A225EEF0C600340AE0 /* DayOfDieTests.swift */; };
 		5A6254AE25EEF0C600340AE0 /* DayOfDieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6254AD25EEF0C600340AE0 /* DayOfDieUITests.swift */; };
 		5AB27AB025EF862100888E49 /* SpecialPointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB27AAF25EF862100888E49 /* SpecialPointsViewController.swift */; };
+		7532A687BC80B823DC73E17C /* Pods_DayOfDie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7BA17B4CCE1A66794031A9B /* Pods_DayOfDie.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2254E54943498E87AB5440BE /* Pods-DayOfDie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DayOfDie.debug.xcconfig"; path = "Target Support Files/Pods-DayOfDie/Pods-DayOfDie.debug.xcconfig"; sourceTree = "<group>"; };
+		5A23AE4C25F16816005C2310 /* GameClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameClasses.swift; sourceTree = "<group>"; };
 		5A62548825EEF0C500340AE0 /* DayOfDie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DayOfDie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A62548B25EEF0C500340AE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A62548D25EEF0C500340AE0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +55,8 @@
 		5A6254AD25EEF0C600340AE0 /* DayOfDieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayOfDieUITests.swift; sourceTree = "<group>"; };
 		5A6254AF25EEF0C600340AE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5AB27AAF25EF862100888E49 /* SpecialPointsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialPointsViewController.swift; sourceTree = "<group>"; };
+		95F22CEC3258E2AFC763950E /* Pods-DayOfDie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DayOfDie.release.xcconfig"; path = "Target Support Files/Pods-DayOfDie/Pods-DayOfDie.release.xcconfig"; sourceTree = "<group>"; };
+		E7BA17B4CCE1A66794031A9B /* Pods_DayOfDie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DayOfDie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7532A687BC80B823DC73E17C /* Pods_DayOfDie.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +85,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		25E23BF109AFFE9F840B1907 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E7BA17B4CCE1A66794031A9B /* Pods_DayOfDie.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5A62547F25EEF0C500340AE0 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +100,8 @@
 				5A6254A125EEF0C600340AE0 /* DayOfDieTests */,
 				5A6254AC25EEF0C600340AE0 /* DayOfDieUITests */,
 				5A62548925EEF0C500340AE0 /* Products */,
+				840CEA80FD86099EC91BDCE8 /* Pods */,
+				25E23BF109AFFE9F840B1907 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,6 +121,7 @@
 				5A62548B25EEF0C500340AE0 /* AppDelegate.swift */,
 				5A62548D25EEF0C500340AE0 /* SceneDelegate.swift */,
 				5A62548F25EEF0C500340AE0 /* MainViewController.swift */,
+				5A23AE4C25F16816005C2310 /* GameClasses.swift */,
 				5AB27AAF25EF862100888E49 /* SpecialPointsViewController.swift */,
 				5A62549125EEF0C500340AE0 /* Main.storyboard */,
 				5A62549425EEF0C600340AE0 /* Assets.xcassets */,
@@ -131,6 +149,15 @@
 			path = DayOfDieUITests;
 			sourceTree = "<group>";
 		};
+		840CEA80FD86099EC91BDCE8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2254E54943498E87AB5440BE /* Pods-DayOfDie.debug.xcconfig */,
+				95F22CEC3258E2AFC763950E /* Pods-DayOfDie.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -138,9 +165,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5A6254B225EEF0C600340AE0 /* Build configuration list for PBXNativeTarget "DayOfDie" */;
 			buildPhases = (
+				FE373F5697EB68644CDA2DD2 /* [CP] Check Pods Manifest.lock */,
 				5A62548425EEF0C500340AE0 /* Sources */,
 				5A62548525EEF0C500340AE0 /* Frameworks */,
 				5A62548625EEF0C500340AE0 /* Resources */,
+				3F37812D63CF0FAE487293E3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -256,6 +285,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3F37812D63CF0FAE487293E3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DayOfDie/Pods-DayOfDie-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DayOfDie/Pods-DayOfDie-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DayOfDie/Pods-DayOfDie-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FE373F5697EB68644CDA2DD2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DayOfDie-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5A62548425EEF0C500340AE0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -263,6 +334,7 @@
 			files = (
 				5A62549025EEF0C500340AE0 /* MainViewController.swift in Sources */,
 				5A62548C25EEF0C500340AE0 /* AppDelegate.swift in Sources */,
+				5A23AE4D25F16816005C2310 /* GameClasses.swift in Sources */,
 				5A62548E25EEF0C500340AE0 /* SceneDelegate.swift in Sources */,
 				5AB27AB025EF862100888E49 /* SpecialPointsViewController.swift in Sources */,
 			);
@@ -437,6 +509,7 @@
 		};
 		5A6254B325EEF0C600340AE0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2254E54943498E87AB5440BE /* Pods-DayOfDie.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -456,6 +529,7 @@
 		};
 		5A6254B425EEF0C600340AE0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 95F22CEC3258E2AFC763950E /* Pods-DayOfDie.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
