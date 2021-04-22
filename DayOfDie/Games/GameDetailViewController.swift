@@ -7,13 +7,13 @@
 
 import UIKit
 
-class GameDetailViewController: UIViewController {
-    
+class GameDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var dateTimeLabel: UILabel!
     @IBOutlet var playerLabels: [UILabel]!
     @IBOutlet var scoreLabels: [UILabel]!
-    var game : Game?
+    @IBOutlet weak var pointsTableView: UITableView!
     
+    var game : Game?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +26,29 @@ class GameDetailViewController: UIViewController {
         playerLabels[3].text = game!.teamTwo.teammate.username
         scoreLabels[0].text = String(game!.teamOneScore)
         scoreLabels[1].text = String(game!.teamTwoScore)
+        
+        pointsTableView.delegate = self
+        pointsTableView.dataSource = self
     }
     
+    // MARK: Table View Functions
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cellIdentifier = "PlayerPointsCell"
+            
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? PlayerPointsTableViewCell  else {
+            fatalError("The dequeued cell is not an instance of PlayerPointsCell.")
+        }
+        
+        // Fetches the appropriate game for the data source layout.
+        let point = game!.points![indexPath.row]
+        cell.pointLabel.text = point.getString()
+        
+        return cell
+    }
 
     /*
     // MARK: - Navigation

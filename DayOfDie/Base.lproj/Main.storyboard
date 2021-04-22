@@ -223,20 +223,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="osQ-Nl-GHe">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="osQ-Nl-GHe">
                                 <rect key="frame" x="10" y="98" width="394" height="705"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="VF5-H3-2FS" userLabel="Team Scores">
-                                        <rect key="frame" x="0.0" y="0.0" width="394" height="24.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="20"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="teamOne: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBc-Yy-8mN">
-                                                <rect key="frame" x="0.0" y="0.0" width="198.5" height="24.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="198.5" height="20"/>
                                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="teamTwo: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFG-SM-EgD">
-                                                <rect key="frame" x="198.5" y="0.0" width="195.5" height="24.5"/>
+                                                <rect key="frame" x="198.5" y="0.0" width="195.5" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="PoE-0X-3b2"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -244,33 +247,34 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WUc-qi-FTJ" customClass="PlayersTableScoreView" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28.5" width="394" height="179"/>
+                                        <rect key="frame" x="0.0" y="45" width="394" height="150"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="150" id="n11-w6-ryV"/>
+                                            <constraint firstAttribute="height" priority="999" constant="150" id="n11-w6-ryV"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mhA-zv-DCT" customClass="PlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="211.5" width="394" height="119.5"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oR3-Ie-v9T" customClass="PlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="335" width="394" height="119.5"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RbQ-sK-VBf" customClass="PlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="458.5" width="394" height="119"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SQ7-nH-K66" customClass="PlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="581.5" width="394" height="123.5"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="kXk-o2-6pr">
+                                        <rect key="frame" x="0.0" y="220" width="394" height="485"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mhA-zv-DCT" customClass="PlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="394" height="100"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oR3-Ie-v9T" customClass="PlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="125" width="394" height="100"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RbQ-sK-VBf" customClass="PlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="250" width="394" height="100"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SQ7-nH-K66" customClass="PlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="375" width="394" height="110"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="mhA-zv-DCT" firstAttribute="leading" secondItem="osQ-Nl-GHe" secondAttribute="leading" id="Gaq-qL-kov"/>
-                                    <constraint firstAttribute="trailing" secondItem="mhA-zv-DCT" secondAttribute="trailing" id="eOi-kn-fID"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -583,16 +587,49 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GST-uy-3Xn">
+                                <rect key="frame" x="0.0" y="327" width="414" height="486"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlayerPointsCell" id="KgX-8L-Nc8" customClass="PlayerPointsTableViewCell" customModule="DayOfDie" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KgX-8L-Nc8" id="QHt-6r-YaG">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PlayerOne scored on PlayerTwo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1X-U9-o2W">
+                                                    <rect key="frame" x="87.5" y="11.5" width="239.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="e1X-U9-o2W" firstAttribute="centerX" secondItem="QHt-6r-YaG" secondAttribute="centerX" id="oT7-ut-NMu"/>
+                                                <constraint firstItem="e1X-U9-o2W" firstAttribute="centerY" secondItem="QHt-6r-YaG" secondAttribute="centerY" id="uH3-yX-9O7"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="pointLabel" destination="e1X-U9-o2W" id="ust-FQ-fem"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="cdO-ZD-sBZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="cdO-ZD-sBZ" firstAttribute="trailing" secondItem="mtJ-ey-1uy" secondAttribute="trailing" id="0It-7d-meA"/>
+                            <constraint firstItem="GST-uy-3Xn" firstAttribute="leading" secondItem="cdO-ZD-sBZ" secondAttribute="leading" id="5BK-JQ-Sen"/>
                             <constraint firstItem="ci6-sT-rob" firstAttribute="leading" secondItem="cdO-ZD-sBZ" secondAttribute="leading" constant="20" id="J86-ae-y1f"/>
                             <constraint firstItem="mtJ-ey-1uy" firstAttribute="top" secondItem="ci6-sT-rob" secondAttribute="bottom" constant="15" id="LYe-7g-jGP"/>
                             <constraint firstItem="cdO-ZD-sBZ" firstAttribute="trailing" secondItem="ci6-sT-rob" secondAttribute="trailing" constant="20" id="Qp6-wQ-Ipd"/>
+                            <constraint firstItem="cdO-ZD-sBZ" firstAttribute="bottom" secondItem="GST-uy-3Xn" secondAttribute="bottom" id="Xhs-ND-I8J"/>
+                            <constraint firstItem="cdO-ZD-sBZ" firstAttribute="trailing" secondItem="GST-uy-3Xn" secondAttribute="trailing" id="YdW-hf-fB5"/>
                             <constraint firstItem="szU-7E-AfS" firstAttribute="centerX" secondItem="pjg-Tq-ps3" secondAttribute="centerX" id="ZOv-JJ-srt"/>
                             <constraint firstItem="mtJ-ey-1uy" firstAttribute="leading" secondItem="cdO-ZD-sBZ" secondAttribute="leading" id="fur-hC-HfQ"/>
+                            <constraint firstItem="GST-uy-3Xn" firstAttribute="top" secondItem="mtJ-ey-1uy" secondAttribute="bottom" constant="20" id="hKZ-xw-8Fl"/>
                             <constraint firstItem="szU-7E-AfS" firstAttribute="top" secondItem="cdO-ZD-sBZ" secondAttribute="top" constant="15" id="wRb-b8-7Tl"/>
                             <constraint firstItem="ci6-sT-rob" firstAttribute="top" secondItem="szU-7E-AfS" secondAttribute="bottom" constant="15" id="xu3-ij-Yut"/>
                         </constraints>
@@ -600,6 +637,7 @@
                     <navigationItem key="navigationItem" title="Game" id="TP6-7F-Pcg"/>
                     <connections>
                         <outlet property="dateTimeLabel" destination="szU-7E-AfS" id="DSm-hR-JPA"/>
+                        <outlet property="pointsTableView" destination="GST-uy-3Xn" id="7Jt-gp-JD8"/>
                         <outletCollection property="playerLabels" destination="FS4-MU-EC4" collectionClass="NSMutableArray" id="PgF-9M-OCV"/>
                         <outletCollection property="playerLabels" destination="FsG-lE-Vxb" collectionClass="NSMutableArray" id="8lP-Au-ZJ6"/>
                         <outletCollection property="playerLabels" destination="cwc-Pp-Dhg" collectionClass="NSMutableArray" id="xVX-T7-55A"/>
