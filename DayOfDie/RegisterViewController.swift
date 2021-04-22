@@ -19,6 +19,7 @@ class RegisterViewController:
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.hideKeyboardWhenTappedAround() 
     }
     
     override func viewDidLoad() {
@@ -27,6 +28,11 @@ class RegisterViewController:
         //passwordTextBox.delegate = self
         //secondPasswordTextBox.delegate = self
         // Do any additional setup after loading the view.
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     @IBAction func registerButtonPressed(_ sender: Any) {
@@ -59,7 +65,6 @@ class RegisterViewController:
         ]
         
         let url = "\(URLInfo.baseUrl)/auth/register/"
-        print(url)
         AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
             if let statusCode = response.response?.statusCode {
                 if((200...299).contains(statusCode)){
@@ -71,9 +76,12 @@ class RegisterViewController:
                         self.statusLabel.text = "Cannot find a response token in dictionary."
                         return
                     }
-                    print("Token \(token)")
-                    currentUser.token = token
-                    currentUser.email = email
+                    guard let username = JSON["username"] as? String else {
+                        self.statusLabel.text = "Cannot find a username in dictionary."
+                        return
+                    }
+                    CurrentUser.token = token
+                    CurrentUser.username = username
                     
                     self.performSegue(withIdentifier: "registerSegue", sender: self)
                 }
@@ -95,4 +103,16 @@ class RegisterViewController:
     }
     
     
+}
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }

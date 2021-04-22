@@ -8,6 +8,8 @@
 import UIKit
 
 var currentUser = AuthUser()
+var userGames : [Game] = []
+var userFriends : [Friend] = []
 
 class StartViewController:
     UIViewController, UITextFieldDelegate {
@@ -20,5 +22,8 @@ class StartViewController:
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        // Check if token exists
+        //if CurrentUser.token != ""  
     }
 }

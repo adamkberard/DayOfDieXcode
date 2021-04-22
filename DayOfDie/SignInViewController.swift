@@ -18,6 +18,7 @@ class SignInViewController:
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.hideKeyboardWhenTappedAround() 
     }
     
     override func viewDidLoad() {
@@ -25,6 +26,11 @@ class SignInViewController:
         emailTextField.delegate = self
         passwordTextField.delegate = self
         // Do any additional setup after loading the view.
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     @IBAction func SignInButtonPressed(_ sender: Any) {
@@ -56,6 +62,19 @@ class SignInViewController:
             "password": password
         ]
         
+        AF.request("\(URLInfo.baseUrl)/auth/login/", method: .post, parameters: parameters).responseDecodable(of: LoginPack.self) { response in
+            switch response.result {
+                case .success:
+                    currentUser = response.value!.user
+                    userGames = response.value!.games
+                    userFriends = response.value!.friends
+                    self.performSegue(withIdentifier: "signInSegue", sender: self)
+                case let .failure(error):
+                    print(error)
+            }
+        }
+        
+        /*
         let url = "\(URLInfo.baseUrl)/auth/login/"
         AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
             if let statusCode = response.response?.statusCode {
@@ -68,10 +87,21 @@ class SignInViewController:
                         self.statusLabel.text = "Cannot find a response token in dictionary."
                         return
                     }
-                    print("Token \(token)")
+                    guard let username = JSON["username"] as? String else {
+                        self.statusLabel.text = "Cannot find a username in dictionary."
+                        return
+                    }
+                    CurrentUser.token = token
+                    CurrentUser.username = username
                     
-                    currentUser.email = email
-                    currentUser.token = token
+                    // Save the token to keychain
+                    let key = token
+                    let tag = "com.dayofdie.keys.mytoken".data(using: .utf8)!
+                    let addquery: [String: Any] = [kSecClass as String: kSecClassKey,
+                                                   kSecAttrApplicationTag as String: tag,
+                                                   kSecValueRef as String: key]
+                    
+                    SecItemAdd(addquery as CFDictionary, nil)
                     
                     self.performSegue(withIdentifier: "signInSegue", sender: self)
                 }
@@ -89,7 +119,7 @@ class SignInViewController:
                 self.statusLabel.text = "No connection."
             }
         }
-        statusLabel.text = "Loading..."
+        statusLabel.text = "Loading..." */
     }
     
     /*

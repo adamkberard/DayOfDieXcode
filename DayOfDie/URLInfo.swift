@@ -16,6 +16,5 @@ struct URLInfo{
 
 struct CurrentUser{
     static var token = ""
-    static var email = ""
     static var username = ""
 }

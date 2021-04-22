@@ -1,5 +1,5 @@
 //
-//  TableViewCell.swift
+//  GameTableViewCell.swift
 //  DayOfDie
 //
 //  Created by Adam Berard on 3/25/21.
