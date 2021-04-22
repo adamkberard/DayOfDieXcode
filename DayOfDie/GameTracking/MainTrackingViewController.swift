@@ -112,6 +112,7 @@ class MainTrackingViewController: UIViewController {
                 guard let viewController = segue.destination as? PlayerPointsTableViewController else {
                  fatalError("Unexpected destination: \(segue.destination)")}
                 viewController.points = (playerScoreTrackers!)[currentlyPickedPoints].points
+                viewController.mainTrackingViewController = self
             }
         }
     }
