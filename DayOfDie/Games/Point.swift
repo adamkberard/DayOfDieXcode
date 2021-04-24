@@ -8,7 +8,7 @@
 import UIKit
 
 enum PointTypes : String, Codable {
-    case REGULAR = "ru"
+    case REGULAR = "sg"
     case TINK = "tk"
     case SINK = "sk"
     case BOUNCE_SINK = "bs"

@@ -133,53 +133,57 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dQQ-u4-33f">
-                                <rect key="frame" x="168" y="773" width="78" height="15"/>
+                                <rect key="frame" x="168" y="629" width="78" height="159"/>
                                 <state key="normal" title="Start Game"/>
                                 <connections>
                                     <action selector="startGameButtonPressed:" destination="RpZ-UR-33W" eventType="touchUpInside" id="ude-gJ-spI"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="caT-ai-1cv">
-                                <rect key="frame" x="0.0" y="113" width="414" height="635"/>
+                                <rect key="frame" x="0.0" y="113" width="414" height="491"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ozs-9l-l1o" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ozs-9l-l1o" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="31"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Qa-if-v0d" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="65" width="414" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Qa-if-v0d" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="46" width="414" height="31"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mo0-L3-eWo" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="130" width="414" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mo0-L3-eWo" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="414" height="31"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ILF-6V-OXX" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="195" width="414" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ILF-6V-OXX" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="138" width="414" height="31"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Er0-Hw-i3g" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="260" width="414" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Er0-Hw-i3g" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="184" width="414" height="31"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kx5-sV-bNi" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="325" width="414" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kx5-sV-bNi" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="230" width="414" height="31"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YNQ-7B-dfI" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="390" width="414" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YNQ-7B-dfI" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="276" width="414" height="31"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cAU-k6-jak" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="455" width="414" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cAU-k6-jak" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="322" width="414" height="31"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GDN-2B-ZhL" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="520" width="414" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GDN-2B-ZhL" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="368" width="414" height="31"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uEO-GM-Jmb" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="585" width="414" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uEO-GM-Jmb" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="414" width="414" height="31"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SZa-YE-cVt" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="460" width="414" height="31"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
@@ -208,6 +212,7 @@
                         <outletCollection property="ruleViews" destination="cAU-k6-jak" collectionClass="NSMutableArray" id="2gW-JM-sMf"/>
                         <outletCollection property="ruleViews" destination="GDN-2B-ZhL" collectionClass="NSMutableArray" id="ZXq-ki-V0Y"/>
                         <outletCollection property="ruleViews" destination="uEO-GM-Jmb" collectionClass="NSMutableArray" id="Q2z-sX-don"/>
+                        <outletCollection property="ruleViews" destination="SZa-YE-cVt" collectionClass="NSMutableArray" id="wvj-ux-9YZ"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="toMainTracking" id="HGO-UX-uvv"/>
                     </connections>
                 </viewController>
@@ -300,6 +305,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="playerScoreTable" destination="WUc-qi-FTJ" id="HIZ-Gr-l2w"/>
+                        <outlet property="teamOneScoreLabel" destination="mBc-Yy-8mN" id="fLB-wQ-OEa"/>
+                        <outlet property="teamTwoScoreLabel" destination="jFG-SM-EgD" id="TP7-45-pcG"/>
                         <outletCollection property="playerScoreTrackers" destination="mhA-zv-DCT" collectionClass="NSMutableArray" id="gKZ-gX-unA"/>
                         <outletCollection property="playerScoreTrackers" destination="oR3-Ie-v9T" collectionClass="NSMutableArray" id="czE-dw-0ON"/>
                         <outletCollection property="playerScoreTrackers" destination="RbQ-sK-VBf" collectionClass="NSMutableArray" id="tBv-6w-gHl"/>
@@ -315,7 +322,7 @@
         <scene sceneID="6XG-Lt-AnK">
             <objects>
                 <tableViewController id="1SY-qV-JVk" customClass="PlayerPointsTableViewController" customModule="DayOfDie" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="kG7-gB-GOe">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="kG7-gB-GOe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1138,7 +1145,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
                     <connections>
-                        <segue destination="V6v-O4-2JI" kind="show" id="tu6-j2-JJe"/>
+                        <segue destination="V6v-O4-2JI" kind="show" identifier="toFriendDetailView" id="tu6-j2-JJe"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rJl-Zg-m2m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1148,14 +1155,101 @@
         <!--Friend-->
         <scene sceneID="3cN-XK-Rdx">
             <objects>
-                <viewController id="V6v-O4-2JI" sceneMemberID="viewController">
+                <viewController id="V6v-O4-2JI" customClass="FriendDetailViewController" customModule="DayOfDie" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Oug-JJ-zzb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="h6G-Cc-fHH">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="88" translatesAutoresizingMaskIntoConstraints="NO" id="qG2-3v-OlG">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="20.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Friend:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lO1-bl-fJ0">
+                                                <rect key="frame" x="0.0" y="0.0" width="236.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="friendName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oNb-I4-ZXA">
+                                                <rect key="frame" x="324.5" y="0.0" width="89.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="88" translatesAutoresizingMaskIntoConstraints="NO" id="kIz-5A-N3t">
+                                        <rect key="frame" x="0.0" y="235" width="414" height="20.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Team Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U2X-EF-w7b">
+                                                <rect key="frame" x="0.0" y="0.0" width="243" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="teamName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOW-lh-dx1">
+                                                <rect key="frame" x="331" y="0.0" width="83" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="88" translatesAutoresizingMaskIntoConstraints="NO" id="XWJ-4Z-7dR">
+                                        <rect key="frame" x="0.0" y="469.5" width="414" height="20.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Wins:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JNc-eq-cgY">
+                                                <rect key="frame" x="0.0" y="0.0" width="42.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zf-yx-8C8">
+                                                <rect key="frame" x="130.5" y="0.0" width="283.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="88" translatesAutoresizingMaskIntoConstraints="NO" id="27Z-pF-Dsn">
+                                        <rect key="frame" x="0.0" y="704.5" width="414" height="20.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Losses:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fRX-g5-6Iz">
+                                                <rect key="frame" x="0.0" y="0.0" width="58" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUc-RI-edW">
+                                                <rect key="frame" x="146" y="0.0" width="268" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="1oV-GT-v1t"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="h6G-Cc-fHH" firstAttribute="top" secondItem="1oV-GT-v1t" secondAttribute="top" id="7lE-ma-YOL"/>
+                            <constraint firstItem="h6G-Cc-fHH" firstAttribute="leading" secondItem="1oV-GT-v1t" secondAttribute="leading" id="AQa-nu-pIK"/>
+                            <constraint firstItem="1oV-GT-v1t" firstAttribute="bottom" secondItem="h6G-Cc-fHH" secondAttribute="bottom" id="QjJ-Ay-suv"/>
+                            <constraint firstItem="1oV-GT-v1t" firstAttribute="trailing" secondItem="h6G-Cc-fHH" secondAttribute="trailing" id="ubp-8t-eFr"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Friend" id="2mV-x7-pdR"/>
+                    <connections>
+                        <outlet property="friendNameLabel" destination="oNb-I4-ZXA" id="pDV-Zq-ZJd"/>
+                        <outlet property="lossesLabel" destination="dUc-RI-edW" id="GFx-qo-Ldr"/>
+                        <outlet property="teamNameLabel" destination="mOW-lh-dx1" id="0m4-my-8qW"/>
+                        <outlet property="winsLabel" destination="2zf-yx-8C8" id="aw4-65-Ide"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aqX-k8-VtR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

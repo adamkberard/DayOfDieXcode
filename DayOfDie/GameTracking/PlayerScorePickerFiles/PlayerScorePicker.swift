@@ -45,18 +45,7 @@ class PlayerScorePicker: UIView {
     var numPoints : Int = 0 {
         didSet {
             pointsLabel.text = String(numPoints)
-            switch playerNumber {
-            case 1:
-                mainTrackingViewController!.playerScoreTable!.playerOnePoints = numPoints
-            case 2:
-                mainTrackingViewController!.playerScoreTable!.playerTwoPoints = numPoints
-            case 3:
-                mainTrackingViewController!.playerScoreTable!.playerThreePoints = numPoints
-            case 4:
-                mainTrackingViewController!.playerScoreTable!.playerFourPoints = numPoints
-            default:
-                mainTrackingViewController!.playerScoreTable!.playerOnePoints = numPoints
-            }
+            mainTrackingViewController!.pointsDidChange()
         }
     }
     var currentlySelectedPoint : PointTypes?

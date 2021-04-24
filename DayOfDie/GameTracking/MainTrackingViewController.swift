@@ -12,10 +12,14 @@ class MainTrackingViewController: UIViewController {
     
     @IBOutlet var playerScoreTrackers : [PlayerScorePicker]?
     @IBOutlet weak var playerScoreTable: PlayersTableScoreView!
+    @IBOutlet weak var teamOneScoreLabel: UILabel!
+    @IBOutlet weak var teamTwoScoreLabel: UILabel!
     
     var game : Game?
     var playerNames : [String] = []
     var currentlyPickedPoints : Int = 0
+    var rules : [RuleRow] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,9 +31,7 @@ class MainTrackingViewController: UIViewController {
         let playerTwo = BasicUser.getBasicUser(username: playerNames[1])
         let playerThree = BasicUser.getBasicUser(username: playerNames[2])
         let playerFour = BasicUser.getBasicUser(username: playerNames[3])
-        let teamOne = Friend(teamCaptain: playerOne, teammate: playerTwo)
-        let teamTwo = Friend(teamCaptain: playerThree, teammate: playerFour)
-        game = Game(teamOne: teamOne, teamTwo: teamTwo)
+        game = Game(playerOne: playerOne, playerTwo: playerTwo, playerThree: playerThree, playerFour: playerFour, points: [])
         
         for playerScoreTracker in playerScoreTrackers! {
             playerScoreTracker.mainTrackingViewController = self
@@ -60,6 +62,65 @@ class MainTrackingViewController: UIViewController {
         (playerScoreTrackers!)[3].playerNumber = 4
         
         playerScoreTable.setPlayers(playerOne: playerOne, playerTwo: playerTwo, playerThree: playerThree, playerFour: playerFour)
+        
+        for rule in rules {
+            if !rule.ruleSwitch.isOn {
+                switch rule.ruleType {
+                case .regular:
+                    for playerScoreTracker in playerScoreTrackers!{
+                        playerScoreTracker.regularPointButton.isHidden = true
+                    }
+                case .tink:
+                    for playerScoreTracker in playerScoreTrackers!{
+                        playerScoreTracker.tinkButton.isHidden = true
+                    }
+                case .sink:
+                    for playerScoreTracker in playerScoreTrackers!{
+                        playerScoreTracker.sinkButton.isHidden = true
+                    }
+                case .bounceSink:
+                    for playerScoreTracker in playerScoreTrackers!{
+                        playerScoreTracker.bounceSinkButton.isHidden = true
+                    }
+                case .partnerSink:
+                    for playerScoreTracker in playerScoreTrackers!{
+                        playerScoreTracker.partnerSinkButton.isHidden = true
+                    }
+                case .selfSink:
+                    for playerScoreTracker in playerScoreTrackers!{
+                        playerScoreTracker.selfSinkButton.isHidden = true
+                    }
+                case .fifa:
+                    for playerScoreTracker in playerScoreTrackers!{
+                        playerScoreTracker.fifaButton.isHidden = true
+                    }
+                case .fieldGoal:
+                    for playerScoreTracker in playerScoreTrackers!{
+                        playerScoreTracker.fieldGoalButton.isHidden = true
+                    }
+                case .five:
+                    for playerScoreTracker in playerScoreTrackers!{
+                        playerScoreTracker.fiveButton.isHidden = true
+                    }
+                default:
+                    print("Pass")
+                }
+            }
+        }
+    }
+    
+    // This is the function that everything calls when they update points
+    func pointsDidChange() {
+        // Just gotta update the player score labels and the team score labels
+        playerScoreTable.playerOnePoints = playerScoreTrackers![0].numPoints
+        playerScoreTable.playerTwoPoints = playerScoreTrackers![1].numPoints
+        playerScoreTable.playerThreePoints = playerScoreTrackers![2].numPoints
+        playerScoreTable.playerFourPoints = playerScoreTrackers![3].numPoints
+
+        let teamOneScore = playerScoreTrackers![0].numPoints + playerScoreTrackers![1].numPoints
+        let teamTwoScore = playerScoreTrackers![2].numPoints + playerScoreTrackers![3].numPoints
+        teamOneScoreLabel.text = "Team One: \(teamOneScore)"
+        teamTwoScoreLabel.text = "Team Two: \(teamTwoScore)"
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -22,8 +22,9 @@ class ChooseRulesViewController: UIViewController, UITextFieldDelegate {
         ruleViews[5].mySetup(type: .selfSink)
         ruleViews[6].mySetup(type: .fifa)
         ruleViews[7].mySetup(type: .fieldGoal)
-        ruleViews[8].mySetup(type: .winBy)
-        ruleViews[9].mySetup(type: .playTo)
+        ruleViews[8].mySetup(type: .five)
+        ruleViews[9].mySetup(type: .winBy)
+        ruleViews[10].mySetup(type: .playTo)
     }
     
     @IBAction func startGameButtonPressed(_ sender: Any) {
@@ -41,6 +42,7 @@ class ChooseRulesViewController: UIViewController, UITextFieldDelegate {
                 guard let viewController = segue.destination as? MainTrackingViewController else {
                  fatalError("Unexpected destination: \(segue.destination)")}
                 viewController.playerNames = playerNames
+                viewController.rules = ruleViews
             }
         }
     }

@@ -57,6 +57,7 @@ class PlayerPointsTableViewController: UITableViewController {
             let playerNumber = mainTrackingViewController!.currentlyPickedPoints
             mainTrackingViewController!.playerScoreTrackers![playerNumber].points = points
             tableView.deleteRows(at: [indexPath], with: .fade)
+            mainTrackingViewController?.pointsDidChange()
         }
     }
     

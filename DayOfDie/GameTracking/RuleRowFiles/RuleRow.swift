@@ -18,6 +18,7 @@ enum RuleTypes : String {
     case fieldGoal = "Field Goal"
     case winBy = "Win By"
     case playTo = "Play To"
+    case five = "Five"
 }
 
 @IBDesignable
@@ -30,6 +31,8 @@ class RuleRow: UIView {
     @IBOutlet weak var pointsLabel: UILabel!
     @IBOutlet weak var minusButton: UIButton!
     @IBOutlet weak var plusButton: UIButton!
+    
+    var ruleType : RuleTypes = .regular
     
     
     override init(frame: CGRect) {
@@ -68,6 +71,7 @@ class RuleRow: UIView {
     }
     
     func mySetup(type: RuleTypes) {
+        ruleType = type
         ruleLabel.text = type.rawValue
         switch type {
         case .regular:
@@ -97,7 +101,10 @@ class RuleRow: UIView {
             points = 2
         case .playTo:
             points = 11
+        case .five:
+            points = 0
         }
+        
         pointsLabel.text = String(points)
     }
     
@@ -112,4 +119,17 @@ class RuleRow: UIView {
         points += 1
         pointsLabel.text = String(points)
     }
+    
+    @IBAction func ruleSwitchChanged(_ sender: Any) {
+        let ruleSwitch = sender as! UISwitch
+        if ruleSwitch.isOn {
+            minusButton.isEnabled = true
+            plusButton.isEnabled = true
+        }
+        else{
+            minusButton.isEnabled = false
+            plusButton.isEnabled = false
+        }
+    }
+    
 }

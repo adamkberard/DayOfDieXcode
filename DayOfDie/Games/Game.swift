@@ -27,15 +27,26 @@ class Game : Codable {
     var teamTwoScore : Int
     var confirmed : Bool
     
-    var points : [Point]?
+    var points : [Point]
     
-    init(teamOne: Friend, teamTwo: Friend) {
+    init(teamOne: Friend, teamTwo: Friend, points: [Point]) {
         self.type = GameTypes.PICKUP
         self.teamOne = teamOne
         self.teamTwo = teamTwo
         self.teamOneScore = 0
         self.teamTwoScore = 0
         self.confirmed = false
+        self.points = points
+    }
+    
+    init(playerOne: BasicUser, playerTwo: BasicUser, playerThree: BasicUser, playerFour: BasicUser, points: [Point]){
+        self.type = GameTypes.PICKUP
+        self.teamOne = Friend(teamCaptain: playerOne, teammate: playerTwo)
+        self.teamTwo = Friend(teamCaptain: playerThree, teammate: playerFour)
+        self.teamOneScore = 0
+        self.teamTwoScore = 0
+        self.confirmed = false
+        self.points = points
     }
     
     enum CodingKeys : String, CodingKey {
@@ -49,5 +60,6 @@ class Game : Codable {
         case teamOneScore = "team_one_score"
         case teamTwoScore = "team_two_score"
         case confirmed
+        case points
     }
 }

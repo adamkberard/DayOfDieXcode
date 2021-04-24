@@ -33,7 +33,7 @@ class GameDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     // MARK: Table View Functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return game!.points.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -42,10 +42,7 @@ class GameDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? PlayerPointsTableViewCell  else {
             fatalError("The dequeued cell is not an instance of PlayerPointsCell.")
         }
-        
-        // Fetches the appropriate game for the data source layout.
-        let point = game!.points![indexPath.row]
-        cell.pointLabel.text = point.getString()
+        cell.pointLabel.text = game!.points[indexPath.row].getString()
         
         return cell
     }
