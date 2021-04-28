@@ -75,7 +75,7 @@ class FriendTableViewController: UITableViewController {
     
     func loadGames() {
         let headers: HTTPHeaders = [
-            "Authorization": "Token \(CurrentUser.token)",
+            "Authorization": "Token \(currentUser.token)",
         ]
         
         AF.request("\(URLInfo.baseUrl)/friends/", method: .get, headers: headers).responseDecodable(of: [Friend].self) { response in

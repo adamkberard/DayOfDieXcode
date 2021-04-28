@@ -15,6 +15,8 @@ class MainTrackingViewController: UIViewController {
     @IBOutlet weak var teamOneScoreLabel: UILabel!
     @IBOutlet weak var teamTwoScoreLabel: UILabel!
     
+    var activityIndicator : UIActivityIndicatorView = UIActivityIndicatorView()
+    
     var game : Game?
     var playerNames : [String] = []
     var currentlyPickedPoints : Int = 0
@@ -32,6 +34,7 @@ class MainTrackingViewController: UIViewController {
         let playerThree = BasicUser.getBasicUser(username: playerNames[2])
         let playerFour = BasicUser.getBasicUser(username: playerNames[3])
         game = Game(playerOne: playerOne, playerTwo: playerTwo, playerThree: playerThree, playerFour: playerFour, points: [])
+        game!.setStartTimeNow()
         
         for playerScoreTracker in playerScoreTrackers! {
             playerScoreTracker.mainTrackingViewController = self
@@ -117,10 +120,16 @@ class MainTrackingViewController: UIViewController {
         playerScoreTable.playerThreePoints = playerScoreTrackers![2].numPoints
         playerScoreTable.playerFourPoints = playerScoreTrackers![3].numPoints
 
-        let teamOneScore = playerScoreTrackers![0].numPoints + playerScoreTrackers![1].numPoints
-        let teamTwoScore = playerScoreTrackers![2].numPoints + playerScoreTrackers![3].numPoints
-        teamOneScoreLabel.text = "Team One: \(teamOneScore)"
-        teamTwoScoreLabel.text = "Team Two: \(teamTwoScore)"
+        game!.teamOneScore = playerScoreTrackers![0].numPoints + playerScoreTrackers![1].numPoints
+        game!.teamTwoScore = playerScoreTrackers![2].numPoints + playerScoreTrackers![3].numPoints
+        teamOneScoreLabel.text = "Team One: \(game!.teamOneScore)"
+        teamTwoScoreLabel.text = "Team Two: \(game!.teamTwoScore)"
+        
+        // Adds the points. Need to do this in order someday
+        game!.points = []
+        for i in 0...3{
+            game!.points.append(contentsOf: playerScoreTrackers![i].points)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -130,36 +139,30 @@ class MainTrackingViewController: UIViewController {
     @IBAction func saveGameButtonPressed(_ sender: Any) {
         // Now it sends the data to me
         // Prepare json data
-        /*let gameDict : [String: Any] = game.toDict()
-        
-        let parameters : [String: Any] = [
-            "game": gameDict
+        let headers: HTTPHeaders = [
+            "Authorization": "Token \(currentUser.token)",
         ]
-        let url = "\(URLInfo.baseUrl)/game/"
-        AF.request(url, method: .post, parameters: parameters, encoding:JSONEncoding.default).responseJSON { response in
+        print("TOKEN \(currentUser.token)")
+        try! print(String(bytes: JSONEncoder().encode(game!), encoding: .utf8)!)
+        game!.setEndTimeNow()
+        
+        AF.request("\(URLInfo.baseUrl)/games/", method: .post, parameters: game, encoder: JSONParameterEncoder(encoder: JSONEncoder()), headers: headers).responseDecodable(of: Game.self) { response in
             // Turn off activity indicator
             self.activityIndicator.stopAnimating()
             self.view.isUserInteractionEnabled = true
             
-            if let statusCode = response.response?.statusCode {
-                self.activityIndicator.stopAnimating()
-                self.view.isUserInteractionEnabled = true
-                if((200...299).contains(statusCode)){
-                    // Eventually I will need to wipe the screen clear to let them know it's been saved
-                    // Maybe even send them to the games screen. Will do that rn
-                }
-                else{
-                    print("IDK WHAT HAPPENED \(response.response!.statusCode)")
-                    debugPrint(response)
-                }
-            }
-            else{
-                print("no connection")
+            switch response.result {
+                case .success:
+                    self.game = response.value!
+                    userGames.append(self.game!)
+                    self.performSegue(withIdentifier: "toGameAfterSave", sender: self)
+                case .failure:
+                    print("Error: \(String(decoding: response.data!, as: UTF8.self))")
             }
         }
         
         activityIndicator.startAnimating()
-        view.isUserInteractionEnabled = false*/
+        view.isUserInteractionEnabled = false
     }
     
     //MARK: Segue Function
@@ -174,6 +177,10 @@ class MainTrackingViewController: UIViewController {
                  fatalError("Unexpected destination: \(segue.destination)")}
                 viewController.points = (playerScoreTrackers!)[currentlyPickedPoints].points
                 viewController.mainTrackingViewController = self
+            }
+            else if identifier == "toGameAfterSave" {
+                guard let viewController = segue.destination as? UINavigationController else {
+                 fatalError("Unexpected destination: \(segue.destination)")}
             }
         }
     }

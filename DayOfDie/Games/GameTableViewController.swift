@@ -61,7 +61,7 @@ class GameTableViewController: UITableViewController {
     
     func loadGames() {
         let headers: HTTPHeaders = [
-            "Authorization": "Token \(CurrentUser.token)",
+            "Authorization": "Token \(currentUser.token)",
         ]
         
         AF.request("\(URLInfo.baseUrl)/games/", method: .get, headers: headers).responseDecodable(of: [Game].self) { response in

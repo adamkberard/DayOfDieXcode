@@ -252,29 +252,29 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WUc-qi-FTJ" customClass="PlayersTableScoreView" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="45" width="394" height="150"/>
+                                        <rect key="frame" x="0.0" y="45" width="394" height="160"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" priority="999" constant="150" id="n11-w6-ryV"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="kXk-o2-6pr">
-                                        <rect key="frame" x="0.0" y="220" width="394" height="485"/>
+                                        <rect key="frame" x="0.0" y="230" width="394" height="475"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mhA-zv-DCT" customClass="PlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mhA-zv-DCT" customClass="PlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="394" height="100"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oR3-Ie-v9T" customClass="PlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oR3-Ie-v9T" customClass="PlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="125" width="394" height="100"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RbQ-sK-VBf" customClass="PlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RbQ-sK-VBf" customClass="PlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="250" width="394" height="100"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SQ7-nH-K66" customClass="PlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="375" width="394" height="110"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SQ7-nH-K66" customClass="PlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="375" width="394" height="100"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                         </subviews>
@@ -662,6 +662,7 @@
             <objects>
                 <navigationController id="4Zo-G9-hk4" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Games" id="yvd-hy-5o4"/>
+                    <navigationItem key="navigationItem" id="RBt-GB-RMI"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="q0Q-f2-PM4">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -742,7 +743,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="FcZ-dC-db5">
-                                <rect key="frame" x="60" y="712" width="294" height="70"/>
+                                <rect key="frame" x="60" y="767" width="294" height="70"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lIS-KS-byf">
                                         <rect key="frame" x="0.0" y="0.0" width="294" height="30"/>
@@ -772,7 +773,7 @@
                         <constraints>
                             <constraint firstItem="ohz-TM-KjN" firstAttribute="trailing" secondItem="FcZ-dC-db5" secondAttribute="trailing" constant="60" id="PGI-CX-Biv"/>
                             <constraint firstItem="PzZ-lE-Sah" firstAttribute="leading" secondItem="ohz-TM-KjN" secondAttribute="leading" constant="20" id="Qi3-LW-bYH"/>
-                            <constraint firstItem="ohz-TM-KjN" firstAttribute="bottom" secondItem="FcZ-dC-db5" secondAttribute="bottom" constant="80" id="WRi-ry-rS7"/>
+                            <constraint firstItem="ohz-TM-KjN" firstAttribute="bottom" secondItem="FcZ-dC-db5" secondAttribute="bottom" constant="25" id="WRi-ry-rS7"/>
                             <constraint firstItem="FcZ-dC-db5" firstAttribute="centerX" secondItem="gdr-zw-F8f" secondAttribute="centerX" id="smo-jF-u3s"/>
                             <constraint firstItem="PzZ-lE-Sah" firstAttribute="top" secondItem="ohz-TM-KjN" secondAttribute="top" constant="40" id="yVE-h3-8bz"/>
                             <constraint firstItem="ohz-TM-KjN" firstAttribute="trailing" secondItem="PzZ-lE-Sah" secondAttribute="trailing" constant="20" id="ykI-JT-MNc"/>
@@ -824,9 +825,6 @@
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="adamkberard@gmail.com" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S7O-BC-BT1">
                                                 <rect key="frame" x="55" y="0.0" width="319" height="34"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="319" id="Q8Z-ql-4Aa"/>
-                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -1274,7 +1272,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="550-hd-Snw"/>
+        <segue reference="fFG-r4-qpl"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Six Dice" width="860" height="643"/>

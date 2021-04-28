@@ -80,8 +80,8 @@ class RegisterViewController:
                         self.statusLabel.text = "Cannot find a username in dictionary."
                         return
                     }
-                    CurrentUser.token = token
-                    CurrentUser.username = username
+                    currentUser.token = token
+                    currentUser.username = username
                     
                     self.performSegue(withIdentifier: "registerSegue", sender: self)
                 }
