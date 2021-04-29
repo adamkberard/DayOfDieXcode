@@ -26,6 +26,16 @@ class PlayerScorePicker: UIView {
     @IBOutlet weak var secondSecondButton: UIButton!
     @IBOutlet weak var thirdSecondButton: UIButton!
     
+    var regularPoints : Int = 1
+    var tinkPoints : Int = 2
+    var sinkPoints : Int = 3
+    var bounceSinkPoints : Int = 2
+    var partnerSinkPoints : Int = 0
+    var selfSinkPoints : Int = 0
+    var fifaPoints : Int = 0
+    var fieldGoalPoints : Int = 0
+    var fivePoints : Int = 0
+    
     // Mark: My Vars
     var primaryButtons : [UIButton] = []
     var secondaryButtons : [UIButton] = []
@@ -40,7 +50,7 @@ class PlayerScorePicker: UIView {
         didSet { secondSecondButton.setTitle(opponentTwo!.username, for: .normal) }
     }
     var points : [Point] = [] {
-        didSet { numPoints = Point.getScore(points: points) }
+        didSet { numPoints = Point.getScore(points: points, rules: rules) }
     }
     var numPoints : Int = 0 {
         didSet {
@@ -51,6 +61,12 @@ class PlayerScorePicker: UIView {
     var currentlySelectedPoint : PointTypes?
     var mainTrackingViewController : MainTrackingViewController?
     var playerNumber : Int = 0
+    
+    var rules : Dictionary<RuleTypes, RuleRow> = [:] {
+        didSet {
+            updateButtonsFromRules()
+        }
+    }
     
     
     // Mark: View Setup
@@ -76,21 +92,83 @@ class PlayerScorePicker: UIView {
         addSubview(view)
         
         // Groups the buttons for later
-        primaryButtons.append(regularPointButton)
-        primaryButtons.append(tinkButton)
-        primaryButtons.append(sinkButton)
-        primaryButtons.append(bounceSinkButton)
-        primaryButtons.append(partnerSinkButton)
-        primaryButtons.append(selfSinkButton)
-        primaryButtons.append(fifaButton)
-        primaryButtons.append(fieldGoalButton)
-        primaryButtons.append(fiveButton)
-        
         secondaryButtons.append(firstSecondButton)
         secondaryButtons.append(secondSecondButton)
         secondaryButtons.append(thirdSecondButton)
         
         playerLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2 * 3)
+    }
+    
+    private func updateButtonsFromRules() {
+        for rule in rules {
+            switch rule.value.ruleType {
+            case .regular:
+                if rule.value.ruleSwitch.isOn {
+                    primaryButtons.append(regularPointButton)
+                }
+                else{
+                    regularPointButton.isHidden = true
+                }
+            case .tink:
+                if rule.value.ruleSwitch.isOn {
+                    primaryButtons.append(tinkButton)
+                }
+                else{
+                    tinkButton.isHidden = true
+                }
+            case .sink:
+                if rule.value.ruleSwitch.isOn{
+                    primaryButtons.append(sinkButton)
+                }
+                else {
+                    sinkButton.isHidden = true
+                }
+            case .bounceSink:
+                if rule.value.ruleSwitch.isOn{
+                    primaryButtons.append(bounceSinkButton)
+                }
+                else{
+                    bounceSinkButton.isHidden = true
+                }
+            case .partnerSink:
+                if rule.value.ruleSwitch.isOn{
+                    primaryButtons.append(partnerSinkButton)
+                }
+                else{
+                    partnerSinkButton.isHidden = true
+                }
+            case .selfSink:
+                if rule.value.ruleSwitch.isOn{
+                    primaryButtons.append(selfSinkButton)
+                }
+                else{
+                    selfSinkButton.isHidden = true
+                }
+            case .fifa:
+                if rule.value.ruleSwitch.isOn{
+                    primaryButtons.append(fifaButton)
+                }
+                else{
+                    fifaButton.isHidden = true
+                }
+            case .fieldGoal:
+                if rule.value.ruleSwitch.isOn{
+                    primaryButtons.append(fieldGoalButton)
+                }
+                else{
+                    fieldGoalButton.isHidden = true
+                }
+            case .five:
+                if rule.value.ruleSwitch.isOn{
+                    primaryButtons.append(fiveButton)
+                }
+                else{
+                    fiveButton.isHidden = true
+                }
+            default:
+                print("Pass")
+            }
+        }
     }
     
     // Loads a XIB file into a view and returns this view.

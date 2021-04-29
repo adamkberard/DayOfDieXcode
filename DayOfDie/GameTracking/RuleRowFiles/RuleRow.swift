@@ -24,7 +24,11 @@ enum RuleTypes : String {
 @IBDesignable
 class RuleRow: UIView {
     
-    var points : Int = 0
+    var points : Int = 0 {
+        didSet {
+            pointsLabel.text = String(points)
+        }
+    }
     
     @IBOutlet weak var ruleSwitch: UISwitch!
     @IBOutlet weak var ruleLabel: UILabel!
@@ -104,20 +108,16 @@ class RuleRow: UIView {
         case .five:
             points = 0
         }
-        
-        pointsLabel.text = String(points)
     }
     
     @IBAction func minusButtonPressed(_ sender: Any) {
         if points == 0 { return }
         else { points -= 1 }
-        pointsLabel.text = String(points)
     }
     
     
     @IBAction func plusButtonPressed(sender: UIButton!) {
         points += 1
-        pointsLabel.text = String(points)
     }
     
     @IBAction func ruleSwitchChanged(_ sender: Any) {

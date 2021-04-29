@@ -11,30 +11,52 @@ import Alamofire
 class MainTrackingViewController: UIViewController {
     
     @IBOutlet var playerScoreTrackers : [PlayerScorePicker]?
-    @IBOutlet weak var playerScoreTable: PlayersTableScoreView!
-    @IBOutlet weak var teamOneScoreLabel: UILabel!
-    @IBOutlet weak var teamTwoScoreLabel: UILabel!
+    @IBOutlet weak var scoreboard: PlayersTableScoreView!
+    @IBOutlet weak var saveButton: UIButton!
     
     var activityIndicator : UIActivityIndicatorView = UIActivityIndicatorView()
     
-    var game : Game?
     var playerNames : [String] = []
     var currentlyPickedPoints : Int = 0
-    var rules : [RuleRow] = []
+    var rules : Dictionary<RuleTypes, RuleRow> = [:]
     
+    var playerOneScore : Int = 0 {
+        didSet {
+            scoreboard.playerOnePoints = playerOneScore
+            checkGameOver()
+        }
+    }
+    var playerTwoScore : Int = 0 {
+        didSet {
+            scoreboard.playerTwoPoints = playerTwoScore
+            checkGameOver()
+        }
+    }
+    var playerThreeScore : Int = 0 {
+        didSet {
+            scoreboard.playerThreePoints = playerThreeScore
+            checkGameOver()
+        }
+    }
+    var playerFourScore : Int = 0 {
+        didSet {
+            scoreboard.playerFourPoints = playerFourScore
+            checkGameOver()
+        }
+    }
+    
+    var timeStarted : Date = Date()
+    var returnedGame : Game?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationController?.navigationBar.items?.last?.rightBarButtonItem?.isEnabled = false
+        saveButton.isEnabled = false
         
         // Create the game
         let playerOne = BasicUser.getBasicUser(username: playerNames[0])
         let playerTwo = BasicUser.getBasicUser(username: playerNames[1])
         let playerThree = BasicUser.getBasicUser(username: playerNames[2])
         let playerFour = BasicUser.getBasicUser(username: playerNames[3])
-        game = Game(playerOne: playerOne, playerTwo: playerTwo, playerThree: playerThree, playerFour: playerFour, points: [])
-        game!.setStartTimeNow()
         
         for playerScoreTracker in playerScoreTrackers! {
             playerScoreTracker.mainTrackingViewController = self
@@ -45,95 +67,58 @@ class MainTrackingViewController: UIViewController {
         (playerScoreTrackers!)[0].opponentOne = playerThree
         (playerScoreTrackers!)[0].opponentTwo = playerFour
         (playerScoreTrackers!)[0].playerNumber = 1
+        (playerScoreTrackers!)[0].rules = rules
         
         (playerScoreTrackers!)[1].player = playerTwo
         (playerScoreTrackers!)[1].teammate = playerOne
         (playerScoreTrackers!)[1].opponentOne = playerThree
         (playerScoreTrackers!)[1].opponentTwo = playerFour
         (playerScoreTrackers!)[1].playerNumber = 2
+        (playerScoreTrackers!)[1].rules = rules
         
         (playerScoreTrackers!)[2].player = playerThree
         (playerScoreTrackers!)[2].teammate = playerFour
         (playerScoreTrackers!)[2].opponentOne = playerOne
         (playerScoreTrackers!)[2].opponentTwo = playerTwo
         (playerScoreTrackers!)[2].playerNumber = 3
+        (playerScoreTrackers!)[2].rules = rules
         
         (playerScoreTrackers!)[3].player = playerFour
         (playerScoreTrackers!)[3].teammate = playerThree
         (playerScoreTrackers!)[3].opponentOne = playerOne
         (playerScoreTrackers!)[3].opponentTwo = playerTwo
         (playerScoreTrackers!)[3].playerNumber = 4
+        (playerScoreTrackers!)[3].rules = rules
         
-        playerScoreTable.setPlayers(playerOne: playerOne, playerTwo: playerTwo, playerThree: playerThree, playerFour: playerFour)
-        
-        for rule in rules {
-            if !rule.ruleSwitch.isOn {
-                switch rule.ruleType {
-                case .regular:
-                    for playerScoreTracker in playerScoreTrackers!{
-                        playerScoreTracker.regularPointButton.isHidden = true
-                    }
-                case .tink:
-                    for playerScoreTracker in playerScoreTrackers!{
-                        playerScoreTracker.tinkButton.isHidden = true
-                    }
-                case .sink:
-                    for playerScoreTracker in playerScoreTrackers!{
-                        playerScoreTracker.sinkButton.isHidden = true
-                    }
-                case .bounceSink:
-                    for playerScoreTracker in playerScoreTrackers!{
-                        playerScoreTracker.bounceSinkButton.isHidden = true
-                    }
-                case .partnerSink:
-                    for playerScoreTracker in playerScoreTrackers!{
-                        playerScoreTracker.partnerSinkButton.isHidden = true
-                    }
-                case .selfSink:
-                    for playerScoreTracker in playerScoreTrackers!{
-                        playerScoreTracker.selfSinkButton.isHidden = true
-                    }
-                case .fifa:
-                    for playerScoreTracker in playerScoreTrackers!{
-                        playerScoreTracker.fifaButton.isHidden = true
-                    }
-                case .fieldGoal:
-                    for playerScoreTracker in playerScoreTrackers!{
-                        playerScoreTracker.fieldGoalButton.isHidden = true
-                    }
-                case .five:
-                    for playerScoreTracker in playerScoreTrackers!{
-                        playerScoreTracker.fiveButton.isHidden = true
-                    }
-                default:
-                    print("Pass")
-                }
-            }
-        }
+        scoreboard.setPlayers(playerOne: playerOne, playerTwo: playerTwo, playerThree: playerThree, playerFour: playerFour)
     }
     
     // This is the function that everything calls when they update points
     func pointsDidChange() {
         // Just gotta update the player score labels and the team score labels
-        playerScoreTable.playerOnePoints = playerScoreTrackers![0].numPoints
-        playerScoreTable.playerTwoPoints = playerScoreTrackers![1].numPoints
-        playerScoreTable.playerThreePoints = playerScoreTrackers![2].numPoints
-        playerScoreTable.playerFourPoints = playerScoreTrackers![3].numPoints
-
-        game!.teamOneScore = playerScoreTrackers![0].numPoints + playerScoreTrackers![1].numPoints
-        game!.teamTwoScore = playerScoreTrackers![2].numPoints + playerScoreTrackers![3].numPoints
-        teamOneScoreLabel.text = "Team One: \(game!.teamOneScore)"
-        teamTwoScoreLabel.text = "Team Two: \(game!.teamTwoScore)"
-        
-        // Adds the points. Need to do this in order someday
-        game!.points = []
-        for i in 0...3{
-            game!.points.append(contentsOf: playerScoreTrackers![i].points)
-        }
+        playerOneScore = playerScoreTrackers![0].numPoints
+        playerTwoScore = playerScoreTrackers![1].numPoints
+        playerThreeScore = playerScoreTrackers![2].numPoints
+        playerFourScore = playerScoreTrackers![3].numPoints
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        checkGameOver()
+    }
+    
+    private func checkGameOver(){
+        let playToScore : Int = rules[.playTo]!.points
+        let winBy : Int = rules[.winBy]!.points
         
+        if abs(scoreboard.teamOneScore - scoreboard.teamTwoScore) < winBy {
+            saveButton.isEnabled = false
+        }
+        else if max(scoreboard.teamOneScore, scoreboard.teamTwoScore) < playToScore {
+            saveButton.isEnabled = false
+        }
+        else{
+            saveButton.isEnabled = true
+        }
     }
     
     @IBAction func saveGameButtonPressed(_ sender: Any) {
@@ -142,19 +127,36 @@ class MainTrackingViewController: UIViewController {
         let headers: HTTPHeaders = [
             "Authorization": "Token \(currentUser.token)",
         ]
-        print("TOKEN \(currentUser.token)")
-        try! print(String(bytes: JSONEncoder().encode(game!), encoding: .utf8)!)
-        game!.setEndTimeNow()
         
-        AF.request("\(URLInfo.baseUrl)/games/", method: .post, parameters: game, encoder: JSONParameterEncoder(encoder: JSONEncoder()), headers: headers).responseDecodable(of: Game.self) { response in
+        var parameters : Dictionary<String, Any> = [
+            "playerOne": scoreboard.playerOne!.uuid,
+            "playerTwo": scoreboard.playerTwo!.uuid,
+            "playerThree": scoreboard.playerThree!.uuid,
+            "playerFour": scoreboard.playerFour!.uuid,
+            "team_one_score": scoreboard.teamOneScore,
+            "team_two_score": scoreboard.teamTwoScore,
+            "confirmed": false,
+            "type": "pu",
+            "points": []
+        ]
+        
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        parameters["time_started"] = df.string(from: timeStarted)
+        parameters["time_ended"] = df.string(from: Date())
+        
+        /* "time_started": "2021-04-28 19:49:02",
+            "time_ended": "2021-04-28 19:49:03", */
+        
+        AF.request("\(URLInfo.baseUrl)/games/", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseDecodable(of: Game.self) {response in
             // Turn off activity indicator
             self.activityIndicator.stopAnimating()
             self.view.isUserInteractionEnabled = true
             
             switch response.result {
                 case .success:
-                    self.game = response.value!
-                    userGames.append(self.game!)
+                    self.returnedGame = response.value!
+                    userGames.append(self.returnedGame!)
                     self.performSegue(withIdentifier: "toGameAfterSave", sender: self)
                 case .failure:
                     print("Error: \(String(decoding: response.data!, as: UTF8.self))")
@@ -179,8 +181,9 @@ class MainTrackingViewController: UIViewController {
                 viewController.mainTrackingViewController = self
             }
             else if identifier == "toGameAfterSave" {
-                guard let viewController = segue.destination as? UINavigationController else {
+                guard let viewController = segue.destination as? GameTableViewController else {
                  fatalError("Unexpected destination: \(segue.destination)")}
+                viewController.needToGoToLastGame = true
             }
         }
     }

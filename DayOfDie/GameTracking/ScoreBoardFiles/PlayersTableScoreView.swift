@@ -20,46 +20,61 @@ class PlayersTableScoreView: UIView {
     @IBOutlet weak var playerThreeScoreLabel: UILabel!
     @IBOutlet weak var playerFourScoreLabel: UILabel!
     
+    @IBOutlet weak var teamOneLabel: UILabel!
+    @IBOutlet weak var teamTwoLabel: UILabel!
+    
+    @IBOutlet weak var teamOneScoreLabel: UILabel!
+    @IBOutlet weak var teamTwoScoreLabel: UILabel!
+    
     var playerOne : BasicUser? {
-        didSet {
-            playerOneLabel.text = playerOne!.username
-        }
+        didSet {playerOneLabel.text = playerOne!.username}
     }
     var playerTwo : BasicUser? {
-        didSet {
-            playerTwoLabel.text = playerTwo!.username
-        }
+        didSet {playerTwoLabel.text = playerTwo!.username}
     }
     var playerThree : BasicUser? {
-        didSet {
-            playerThreeLabel.text = playerThree!.username
-        }
+        didSet {playerThreeLabel.text = playerThree!.username}
     }
     var playerFour : BasicUser? {
-        didSet {
-            playerFourLabel.text = playerFour!.username
-        }
+        didSet {playerFourLabel.text = playerFour!.username}
     }
     
     var playerOnePoints : Int = 0 {
         didSet {
             playerOneScoreLabel.text = "Score: \(playerOnePoints)"
+            teamOneScore = playerOnePoints + playerTwoPoints
         }
     }
     var playerTwoPoints : Int = 0 {
         didSet {
             playerTwoScoreLabel.text = "Score: \(playerTwoPoints)"
+            teamOneScore = playerOnePoints + playerTwoPoints
         }
     }
     var playerThreePoints : Int = 0 {
         didSet {
             playerThreeScoreLabel.text = "Score: \(playerThreePoints)"
+            teamTwoScore = playerThreePoints + playerFourPoints
         }
     }
     var playerFourPoints : Int = 0 {
         didSet {
             playerFourScoreLabel.text = "Score: \(playerFourPoints)"
+            teamTwoScore = playerThreePoints + playerFourPoints
         }
+    }
+    
+    var teamOne : Friend? {
+        didSet {teamOneLabel.text = "\(teamOne!.teamname ?? "Team One"):"}
+    }
+    var teamTwo : Friend? {
+        didSet {teamTwoLabel.text = "\(teamTwo!.teamname ?? "Team Two"):"}
+    }
+    var teamOneScore : Int = 0 {
+        didSet {teamOneScoreLabel.text = String(teamOneScore)}
+    }
+    var teamTwoScore : Int = 0 {
+        didSet {teamTwoScoreLabel.text = String(teamTwoScore)}
     }
 
     override init(frame: CGRect) {

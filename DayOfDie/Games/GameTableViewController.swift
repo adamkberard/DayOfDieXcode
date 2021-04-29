@@ -11,6 +11,8 @@ import Alamofire
 class GameTableViewController: UITableViewController {
     
     var selectedGame : Game?
+    
+    var needToGoToLastGame : Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +27,17 @@ class GameTableViewController: UITableViewController {
         self.refreshControl?.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
         
         // Loads the games
-        loadGames()
+        loadGames()        
     }
+    override func viewDidAppear(_ animated: Bool) {
+        if needToGoToLastGame {
+            tableView.selectRow(at: IndexPath(row: userGames.count - 1, section: 0), animated: true, scrollPosition: .bottom)
+            selectedGame = userGames.last
+            self.performSegue(withIdentifier: "toGameDetail", sender: self)
+            needToGoToLastGame = false
+        }
+    }
+    
 
     // MARK: - Table view data source
 

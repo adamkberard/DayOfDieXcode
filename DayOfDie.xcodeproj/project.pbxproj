@@ -246,7 +246,7 @@
 				5A582AFD263149EE0004E7F0 /* PlayerPointsTableViewCell.swift */,
 				5AECABA1263124E200C4AD7B /* RuleRowFiles */,
 				5AECABA2263124EF00C4AD7B /* PlayerScorePickerFiles */,
-				5AECABA32631251700C4AD7B /* TablePlayers Files */,
+				5AECABA32631251700C4AD7B /* ScoreBoardFiles */,
 			);
 			path = GameTracking;
 			sourceTree = "<group>";
@@ -269,13 +269,13 @@
 			path = PlayerScorePickerFiles;
 			sourceTree = "<group>";
 		};
-		5AECABA32631251700C4AD7B /* TablePlayers Files */ = {
+		5AECABA32631251700C4AD7B /* ScoreBoardFiles */ = {
 			isa = PBXGroup;
 			children = (
 				5AC3B75826312D630079C9FB /* PlayersTableScoreView.swift */,
 				5AC3B75326312D3C0079C9FB /* PlayersTableScoreView.xib */,
 			);
-			path = "TablePlayers Files";
+			path = ScoreBoardFiles;
 			sourceTree = "<group>";
 		};
 		840CEA80FD86099EC91BDCE8 /* Pods */ = {
