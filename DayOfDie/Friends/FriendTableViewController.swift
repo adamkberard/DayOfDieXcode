@@ -11,6 +11,9 @@ import Alamofire
 class FriendTableViewController: UITableViewController {
     
     var selectedFriend : Friend?
+    var acceptedFriends : [Friend] = []
+    var pendingFriends : [Friend] = []
+    var nothingFriends : [Friend] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +29,7 @@ class FriendTableViewController: UITableViewController {
         
         // Loads the games
         loadGames()
+        parseFriends()
     }
 
     // MARK: - Table view data source
@@ -37,7 +41,7 @@ class FriendTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return userFriends.count
+        return acceptedFriends.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -48,8 +52,7 @@ class FriendTableViewController: UITableViewController {
         }
         
         // Fetches the appropriate friend for the data source layout.
-        let friend = userFriends[indexPath.row]
-        print("FRIEND: \(friend.teamCaptain.username) ME: \(CurrentUser.username)")
+        let friend = acceptedFriends[indexPath.row]
         if friend.teamCaptain.username == currentUser.username{
             cell.friendUsernameLabel.text = friend.teammate.username
         }
@@ -69,8 +72,25 @@ class FriendTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedFriend = userFriends[indexPath.row]
+        selectedFriend = acceptedFriends[indexPath.row]
         self.performSegue(withIdentifier: "toFriendDetailView", sender: self)
+    }
+    
+    func parseFriends() {
+        acceptedFriends = []
+        pendingFriends = []
+        nothingFriends = []
+        for friend in userFriends{
+            if friend.status == .ACCEPTED {
+                acceptedFriends.append(friend)
+            }
+            else if friend.status == .PENDING {
+                pendingFriends.append(friend)
+            }
+            else if friend.status == .NOTHING {
+                nothingFriends.append(friend)
+            }
+        }
     }
     
     func loadGames() {
@@ -82,6 +102,7 @@ class FriendTableViewController: UITableViewController {
             switch response.result {
                 case .success:
                     userFriends = response.value!
+                    self.parseFriends()
                 case let .failure(error):
                     print(error)
             }
@@ -89,6 +110,15 @@ class FriendTableViewController: UITableViewController {
             self.refreshControl?.endRefreshing()
         }
     }
+    
+    @IBAction func requestsButtonPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "toFriendRequests", sender: self)
+    }
+    
+    @IBAction func addFriendFriendButtonPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "toAddingFriend", sender: self)
+    }
+    
 
     // MARK: - Navigation
 
@@ -99,9 +129,15 @@ class FriendTableViewController: UITableViewController {
                 guard let viewController = segue.destination as? FriendDetailViewController else {
                     fatalError("Unexpected destination: \(segue.destination)")}
                 viewController.friend = selectedFriend
-         }
-     }
- }
+            }
+            if identifier == "toFriendRequests" {
+                guard let viewController = segue.destination as? FriendRequestTableViewController else {
+                    fatalError("Unexpected destination: \(segue.destination)")}
+                print("HELLOW \(pendingFriends.count)")
+                viewController.pendingFriends = pendingFriends
+            }
+        }
+    }
     
     //MARK: Private Methods
 

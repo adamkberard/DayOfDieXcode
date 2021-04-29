@@ -69,6 +69,7 @@ class SignInViewController:
                     userGames = response.value!.games
                     print(userGames)
                     userFriends = response.value!.friends
+                    allUsers = response.value!.all_usernames
                     self.performSegue(withIdentifier: "signInSegue", sender: self)
                 case let .failure(error):
                     print(error)

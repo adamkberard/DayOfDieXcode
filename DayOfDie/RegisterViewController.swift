@@ -64,42 +64,19 @@ class RegisterViewController:
             "password": password
         ]
         
-        let url = "\(URLInfo.baseUrl)/auth/register/"
-        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
-            if let statusCode = response.response?.statusCode {
-                if((200...299).contains(statusCode)){
-                    guard let JSON = response.value as? NSDictionary else {
-                        self.statusLabel.text = "Cannot convert JSON to dictionary."
-                        return
-                    }
-                    guard let token = JSON["token"] as? String else {
-                        self.statusLabel.text = "Cannot find a response token in dictionary."
-                        return
-                    }
-                    guard let username = JSON["username"] as? String else {
-                        self.statusLabel.text = "Cannot find a username in dictionary."
-                        return
-                    }
-                    currentUser.token = token
-                    currentUser.username = username
-                    
+        AF.request("\(URLInfo.baseUrl)/auth/register/", method: .post, parameters: parameters).responseDecodable(of: LoginPack.self) { response in
+            switch response.result {
+                case .success:
+                    currentUser = response.value!.user
+                    userGames = response.value!.games
+                    print(userGames)
+                    userFriends = response.value!.friends
+                    allUsers = response.value!.all_usernames
                     self.performSegue(withIdentifier: "registerSegue", sender: self)
-                }
-                else{
-                    if(response.response!.statusCode == 401){
-                        self.statusLabel.text = "Incorrect email or password."
-                    }
-                    else{
-                        self.statusLabel.text = "Http Status Code: \(response.response!.statusCode)"
-                    }
-                    debugPrint(response)
-                }
-            }
-            else{
-                self.statusLabel.text = "No connection."
+                case let .failure(error):
+                    print(error)
             }
         }
-        statusLabel.text = "Loading..."
     }
     
     

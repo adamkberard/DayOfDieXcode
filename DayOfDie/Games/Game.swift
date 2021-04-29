@@ -49,18 +49,6 @@ class Game : Codable {
         self.points = points
     }
     
-    func setStartTimeNow() {
-        let df = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd hh:mm:ss"
-        self.timeStarted = df.string(from: Date())
-    }
-    
-    func setEndTimeNow() {
-        let df = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd hh:mm:ss"
-        self.timeEnded = df.string(from: Date())
-    }
-    
     enum CodingKeys : String, CodingKey {
         case timeStarted = "time_started"
         case timeEnded = "time_ended"

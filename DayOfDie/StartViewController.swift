@@ -10,6 +10,7 @@ import UIKit
 var currentUser = AuthUser()
 var userGames : [Game] = []
 var userFriends : [Friend] = []
+var allUsers : [String] = []
 
 class StartViewController:
     UIViewController, UITextFieldDelegate {

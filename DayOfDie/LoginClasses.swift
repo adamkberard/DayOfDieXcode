@@ -38,6 +38,7 @@ class LoginPack : Codable {
     var user : AuthUser
     var games : [Game]
     var friends : [Friend]
+    var all_usernames : [String]
 }
 
 enum KeychainError: Error {
