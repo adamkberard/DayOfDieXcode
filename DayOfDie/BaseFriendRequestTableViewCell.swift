@@ -1,18 +1,13 @@
 //
-//  FriendTableViewCell.swift
+//  BaseFriendRequestTableViewCell.swift
 //  DayOfDie
 //
-//  Created by Adam Berard on 3/25/21.
+//  Created by Adam Berard on 5/3/21.
 //
 
 import UIKit
 
-class FriendTableViewCell: UITableViewCell {
-    
-    @IBOutlet weak var friendUsernameLabel: UILabel!
-    @IBOutlet weak var teamNameLabel: UILabel!
-    @IBOutlet weak var winsLabel: UILabel!
-    @IBOutlet weak var lossesLabel: UILabel!
+class BaseFriendRequestTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()

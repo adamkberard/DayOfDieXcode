@@ -125,7 +125,7 @@ class MainTrackingViewController: UIViewController {
         // Now it sends the data to me
         // Prepare json data
         let headers: HTTPHeaders = [
-            "Authorization": "Token \(currentUser.token)",
+            "Authorization": "Token \(CurrentUser.token)",
         ]
         
         var parameters : Dictionary<String, Any> = [
@@ -156,7 +156,7 @@ class MainTrackingViewController: UIViewController {
             switch response.result {
                 case .success:
                     self.returnedGame = response.value!
-                    userGames.append(self.returnedGame!)
+                    CurrentUser.games.append(self.returnedGame!)
                     self.performSegue(withIdentifier: "toGameAfterSave", sender: self)
                 case .failure:
                     print("Error: \(String(decoding: response.data!, as: UTF8.self))")

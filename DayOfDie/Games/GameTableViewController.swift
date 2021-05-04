@@ -31,8 +31,8 @@ class GameTableViewController: UITableViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         if needToGoToLastGame {
-            tableView.selectRow(at: IndexPath(row: userGames.count - 1, section: 0), animated: true, scrollPosition: .bottom)
-            selectedGame = userGames.last
+            tableView.selectRow(at: IndexPath(row: CurrentUser.games.count - 1, section: 0), animated: true, scrollPosition: .bottom)
+            selectedGame = CurrentUser.games.last
             self.performSegue(withIdentifier: "toGameDetail", sender: self)
             needToGoToLastGame = false
         }
@@ -46,7 +46,7 @@ class GameTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userGames.count
+        return CurrentUser.games.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -57,7 +57,7 @@ class GameTableViewController: UITableViewController {
         }
         
         // Fetches the appropriate game for the data source layout.
-        let game = userGames[indexPath.row]
+        let game = CurrentUser.games[indexPath.row]
         
         cell.playerOneLabel.text = game.teamOne.teamCaptain.username
         cell.playerTwoLabel.text = game.teamOne.teammate.username
@@ -72,13 +72,13 @@ class GameTableViewController: UITableViewController {
     
     func loadGames() {
         let headers: HTTPHeaders = [
-            "Authorization": "Token \(currentUser.token)",
+            "Authorization": "Token \(CurrentUser.token)",
         ]
         
         AF.request("\(URLInfo.baseUrl)/games/", method: .get, headers: headers).responseDecodable(of: [Game].self) { response in
             switch response.result {
                 case .success:
-                    userGames = response.value!
+                    CurrentUser.games = response.value!
                 case let .failure(error):
                     print(error)
             }
@@ -88,7 +88,7 @@ class GameTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedGame = userGames[indexPath.row]
+        selectedGame = CurrentUser.games[indexPath.row]
         self.performSegue(withIdentifier: "toGameDetail", sender: self)
     }
 

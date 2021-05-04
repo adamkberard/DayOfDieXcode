@@ -11,25 +11,22 @@ import Alamofire
 class FriendTableViewController: UITableViewController {
     
     var selectedFriend : Friend?
-    var acceptedFriends : [Friend] = []
-    var pendingFriends : [Friend] = []
-    var nothingFriends : [Friend] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         // Refreshing stuff
         self.refreshControl?.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
         
         // Loads the games
         loadGames()
-        parseFriends()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -41,7 +38,7 @@ class FriendTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return acceptedFriends.count
+        return CurrentUser.approvedFriends.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -52,13 +49,9 @@ class FriendTableViewController: UITableViewController {
         }
         
         // Fetches the appropriate friend for the data source layout.
-        let friend = acceptedFriends[indexPath.row]
-        if friend.teamCaptain.username == currentUser.username{
-            cell.friendUsernameLabel.text = friend.teammate.username
-        }
-        else{
-            cell.friendUsernameLabel.text = friend.teamCaptain.username
-        }
+        let friend = CurrentUser.approvedFriends[indexPath.row]
+        cell.friendUsernameLabel.text = friend.getOtherUser().username
+
         if friend.teamname == nil {
             cell.teamNameLabel.text = " "
         }
@@ -72,37 +65,19 @@ class FriendTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedFriend = acceptedFriends[indexPath.row]
+        selectedFriend = CurrentUser.approvedFriends[indexPath.row]
         self.performSegue(withIdentifier: "toFriendDetailView", sender: self)
-    }
-    
-    func parseFriends() {
-        acceptedFriends = []
-        pendingFriends = []
-        nothingFriends = []
-        for friend in userFriends{
-            if friend.status == .ACCEPTED {
-                acceptedFriends.append(friend)
-            }
-            else if friend.status == .PENDING {
-                pendingFriends.append(friend)
-            }
-            else if friend.status == .NOTHING {
-                nothingFriends.append(friend)
-            }
-        }
     }
     
     func loadGames() {
         let headers: HTTPHeaders = [
-            "Authorization": "Token \(currentUser.token)",
+            "Authorization": "Token \(CurrentUser.token)",
         ]
         
         AF.request("\(URLInfo.baseUrl)/friends/", method: .get, headers: headers).responseDecodable(of: [Friend].self) { response in
             switch response.result {
                 case .success:
-                    userFriends = response.value!
-                    self.parseFriends()
+                    CurrentUser.friends = response.value!
                 case let .failure(error):
                     print(error)
             }
@@ -129,12 +104,6 @@ class FriendTableViewController: UITableViewController {
                 guard let viewController = segue.destination as? FriendDetailViewController else {
                     fatalError("Unexpected destination: \(segue.destination)")}
                 viewController.friend = selectedFriend
-            }
-            if identifier == "toFriendRequests" {
-                guard let viewController = segue.destination as? FriendRequestTableViewController else {
-                    fatalError("Unexpected destination: \(segue.destination)")}
-                print("HELLOW \(pendingFriends.count)")
-                viewController.pendingFriends = pendingFriends
             }
         }
     }

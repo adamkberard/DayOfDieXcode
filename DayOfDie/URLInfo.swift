@@ -13,8 +13,3 @@ struct URLInfo{
     //static var baseUrl = "http://localhost:8000"
     static var baseUrl = "http://127.0.0.1:8000"
 }
-
-struct CurrentUser{
-    static var token = ""
-    static var username = ""
-}

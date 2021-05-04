@@ -67,12 +67,12 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         // Gotta add one for me.
-        return userFriends.count + 1
+        return CurrentUser.friends.count + 1
     }
     
     // Telling the picker's what to display
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return currentUser.getListFriendBasicUsers()[row].username
+        return CurrentUser.getListFriendBasicUsers()[row].username
     }
     
     // When any of the pickers are selected
@@ -91,7 +91,7 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
                 guard let viewController = segue.destination as? ChooseRulesViewController else {
                  fatalError("Unexpected destination: \(segue.destination)")}
                 for i in (0...3){
-                    viewController.playerNames.append(currentUser.getListFriendBasicUsers()[playerPickers[i].selectedRow(inComponent: 0)].username) 
+                    viewController.playerNames.append(CurrentUser.getListFriendBasicUsers()[playerPickers[i].selectedRow(inComponent: 0)].username) 
                 }
             }
         }

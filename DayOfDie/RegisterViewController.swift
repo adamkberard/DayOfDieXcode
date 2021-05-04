@@ -1,6 +1,6 @@
 //
 //  RegisterViewController.swift
-//  cleanerLife
+//  DayOfDie
 //
 //  Created by Adam Berard on 2/3/21.
 //
@@ -24,10 +24,6 @@ class RegisterViewController:
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //emailTextBox.delegate = self
-        //passwordTextBox.delegate = self
-        //secondPasswordTextBox.delegate = self
-        // Do any additional setup after loading the view.
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -67,10 +63,14 @@ class RegisterViewController:
         AF.request("\(URLInfo.baseUrl)/auth/register/", method: .post, parameters: parameters).responseDecodable(of: LoginPack.self) { response in
             switch response.result {
                 case .success:
-                    currentUser = response.value!.user
-                    userGames = response.value!.games
-                    print(userGames)
-                    userFriends = response.value!.friends
+                    CurrentUser.username = response.value!.user.username
+                    CurrentUser.uuid = response.value!.user.uuid
+                    CurrentUser.email = response.value!.user.email
+                    CurrentUser.token = response.value!.user.token
+                    
+                    CurrentUser.games = response.value!.games
+                    CurrentUser.friends = response.value!.friends
+
                     allUsers = response.value!.all_usernames
                     self.performSegue(withIdentifier: "registerSegue", sender: self)
                 case let .failure(error):
@@ -78,15 +78,12 @@ class RegisterViewController:
             }
         }
     }
-    
-    
 }
 
 extension UIViewController {
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
-
     }
 
     @objc func dismissKeyboard() {
