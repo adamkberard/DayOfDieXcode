@@ -10,6 +10,8 @@ import UIKit
 class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     //Player Text Fields
     @IBOutlet var playerPickers: [UIPickerView]!
+    
+    var possiblePlayers : [BasicUser] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,8 +19,10 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
         for playerPicker in playerPickers{
             playerPicker.dataSource = self
             playerPicker.delegate = self
-            playerPicker.selectRow(playerPickers.firstIndex(of: playerPicker) ?? 0, inComponent: 0, animated: false)
         }
+        
+        possiblePlayers.append(contentsOf: CurrentUser.approvedFriends.map({$0.getOtherUser()}))
+        possiblePlayers.append(CurrentUser.basicUser)
 
         markBadPickers()
     }
@@ -67,15 +71,13 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         // Gotta add one for me.
-        return CurrentUser.approvedFriends.count + 1
+        return possiblePlayers.count
     }
     
     // Telling the picker's what to display
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         // We start with a list of our friends, but only allow ones that are verified? At least for now...
-        var tempFriends : [BasicUser] = CurrentUser.approvedFriends.map({$0.getOtherUser()})
-        tempFriends.append(CurrentUser.basicUser)
-        return tempFriends[row].username
+        return possiblePlayers[row].username
     }
     
     // When any of the pickers are selected
@@ -101,9 +103,10 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
             if identifier == "toScoreTracking" {
                 guard let viewController = segue.destination as? MainTrackingViewController else {
                  fatalError("Unexpected destination: \(segue.destination)")}
-                for i in (0...3){
-                    viewController.playerNames.append(CurrentUser.getListFriendBasicUsers()[playerPickers[i].selectedRow(inComponent: 0)].username)
-                }
+                viewController.playerOne = possiblePlayers[playerPickers[0].selectedRow(inComponent: 0)]
+                viewController.playerTwo = possiblePlayers[playerPickers[1].selectedRow(inComponent: 0)]
+                viewController.playerThree = possiblePlayers[playerPickers[2].selectedRow(inComponent: 0)]
+                viewController.playerFour = possiblePlayers[playerPickers[3].selectedRow(inComponent: 0)]
             }
         }
     }

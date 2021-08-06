@@ -41,7 +41,7 @@ class ChooseRulesViewController: UIViewController, UITextFieldDelegate {
             if identifier == "toMainTracking" {
                 guard let viewController = segue.destination as? MainTrackingViewController else {
                  fatalError("Unexpected destination: \(segue.destination)")}
-                viewController.playerNames = playerNames
+    
                 
                 var ruleDict : Dictionary<RuleTypes, RuleRow> = [:]
                 for rule in ruleViews{

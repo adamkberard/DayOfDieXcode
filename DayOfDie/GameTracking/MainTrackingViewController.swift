@@ -15,32 +15,23 @@ class MainTrackingViewController: UIViewController {
     @IBOutlet weak var saveButton: UIButton!
     
     var activityIndicator : UIActivityIndicatorView = UIActivityIndicatorView()
+    var playerOne : BasicUser = CurrentUser.basicUser
+    var playerTwo : BasicUser = CurrentUser.basicUser
+    var playerThree : BasicUser = CurrentUser.basicUser
+    var playerFour : BasicUser = CurrentUser.basicUser
     
-    var playerNames : [String] = []
     var currentlyPickedPoints : Int = 0
     var rules : Dictionary<RuleTypes, RuleRow> = [:]
     
-    var playerOneScore : Int = 0 {
+    var teamOneScore : Int = 0 {
         didSet {
-            scoreboard.teamOneScore = playerOneScore + playerTwoScore
+            scoreboard.teamOneScore = teamOneScore
             checkGameOver()
         }
     }
-    var playerTwoScore : Int = 0 {
+    var teamTwoScore : Int = 0 {
         didSet {
-            scoreboard.teamOneScore = playerOneScore + playerTwoScore
-            checkGameOver()
-        }
-    }
-    var playerThreeScore : Int = 0 {
-        didSet {
-            scoreboard.teamOneScore = playerThreeScore + playerFourScore
-            checkGameOver()
-        }
-    }
-    var playerFourScore : Int = 0 {
-        didSet {
-            scoreboard.teamOneScore = playerThreeScore + playerFourScore
+            scoreboard.teamTwoScore = teamTwoScore
             checkGameOver()
         }
     }
@@ -53,11 +44,6 @@ class MainTrackingViewController: UIViewController {
         saveButton.isEnabled = false
         
         // Create the game
-        let playerOne = BasicUser.getBasicUser(username: playerNames[0])
-        let playerTwo = BasicUser.getBasicUser(username: playerNames[1])
-        let playerThree = BasicUser.getBasicUser(username: playerNames[2])
-        let playerFour = BasicUser.getBasicUser(username: playerNames[3])
-        
         for playerScoreTracker in playerScoreTrackers! {
             playerScoreTracker.mainTrackingViewController = self
         }
@@ -78,10 +64,8 @@ class MainTrackingViewController: UIViewController {
     // This is the function that everything calls when they update points
     func pointsDidChange() {
         // Just gotta update the player score labels and the team score labels
-        playerOneScore = playerScoreTrackers![0].numPoints
-        playerTwoScore = playerScoreTrackers![1].numPoints
-        playerThreeScore = playerScoreTrackers![2].numPoints
-        playerFourScore = playerScoreTrackers![3].numPoints
+        teamOneScore = playerScoreTrackers![0].numPoints + playerScoreTrackers![1].numPoints
+        teamTwoScore = playerScoreTrackers![2].numPoints + playerScoreTrackers![3].numPoints
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -110,25 +94,30 @@ class MainTrackingViewController: UIViewController {
             "Authorization": "Token \(CurrentUser.token)",
         ]
         
+        var allPoints : [[String : String]] = []
+        for playerScoreTracker in playerScoreTrackers!{
+            for point in playerScoreTracker.points{
+                let tempDict : [String : String] = ["type": point.typeOfPoint.rawValue, "scorer" : point.scorer.uuid]
+                allPoints.append(tempDict)
+            }
+        }
+        
         var parameters : Dictionary<String, Any> = [
-            "playerOne": playerOneScore,
-            "playerTwo": playerTwoScore,
-            "playerThree": playerThreeScore,
-            "playerFour": playerFourScore,
+            "playerOne": playerOne.uuid,
+            "playerTwo": playerTwo.uuid,
+            "playerThree": playerThree.uuid,
+            "playerFour": playerFour.uuid,
             "team_one_score": scoreboard.teamOneScore,
             "team_two_score": scoreboard.teamTwoScore,
             "confirmed": false,
             "type": "pu",
-            "points": []
+            "points": allPoints
         ]
         
         let df = DateFormatter()
         df.dateFormat = "yyyy-MM-dd hh:mm:ss"
         parameters["time_started"] = df.string(from: timeStarted)
         parameters["time_ended"] = df.string(from: Date())
-        
-        /* "time_started": "2021-04-28 19:49:02",
-            "time_ended": "2021-04-28 19:49:03", */
         
         AF.request("\(URLInfo.baseUrl)/games/", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseDecodable(of: Game.self) {response in
             // Turn off activity indicator
