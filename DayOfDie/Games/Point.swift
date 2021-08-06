@@ -24,31 +24,35 @@ class Point : Codable {
     var uuid : UUID?
     var typeOfPoint : PointTypes
     var scorer : BasicUser
-    var scoredOn : BasicUser?
-    var scoredOnPosition : Int?
     var game : UUID?
     
-    init(typeOfPoint : PointTypes, scorer : BasicUser, scoredOn : BasicUser?, scoredOnPosition : Int?){
+    init(typeOfPoint : PointTypes, scorer : BasicUser){
         self.typeOfPoint = typeOfPoint
         self.scorer = scorer
-        self.scoredOn = scoredOn
-        self.scoredOnPosition = scoredOnPosition
     }
     
     static func getScore(points: [Point]) -> Int {
         var score : Int = 0
         for point in points{
-            if point.typeOfPoint == .REGULAR{
+            switch point.typeOfPoint {
+            case .REGULAR:
                 score += 1
-            }
-            else if point.typeOfPoint == .TINK{
+            case .TINK:
                 score += 2
-            }
-            else if point.typeOfPoint == .SINK{
+            case .SINK:
                 score += 3
-            }
-            else if point.typeOfPoint == .BOUNCE_SINK{
+            case .BOUNCE_SINK:
                 score += 2
+            case .PARTNER_SINK:
+                score += 0
+            case .SELF_SINK:
+                score -= 0
+            case .FIFA:
+                score += 1
+            case .FIELD_GOAL:
+                score += 1
+            case .FIVE:
+                score += 0
             }
         }
         return score
@@ -94,17 +98,17 @@ class Point : Codable {
         case .REGULAR:
             return "\(scorer.username) got a point."
         case .TINK:
-            return "\(scorer.username) tinked \(scoredOn?.username ?? "")."
+            return "\(scorer.username) got a tink."
         case .SINK:
-            return "\(scorer.username) sank \(scoredOn?.username ?? "")."
+            return "\(scorer.username) got a sink."
         case .BOUNCE_SINK:
-            return "\(scorer.username) bounce sank \(scoredOn?.username ?? "")."
+            return "\(scorer.username) got a bounce sink."
         case .PARTNER_SINK:
-            return "\(scorer.username) partner sank \(scoredOn?.username ?? "")."
+            return "\(scorer.username) got a partner sink."
         case .SELF_SINK:
             return "\(scorer.username) self sank."
         case .FIFA:
-            return "\(scorer.username) fifa'ed \(scoredOn?.username ?? "")."
+            return "\(scorer.username) got a fifa."
         case .FIELD_GOAL:
             return "\(scorer.username) got a field goal."
         case .FIVE:
@@ -116,8 +120,6 @@ class Point : Codable {
         case uuid
         case typeOfPoint = "type"
         case scorer
-        case scoredOn
-        case scoredOnPosition = "scored_on_position"
         case game
     }
 }

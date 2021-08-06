@@ -27,7 +27,7 @@ class GameTableViewController: UITableViewController {
         self.refreshControl?.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
         
         // Loads the games
-        loadGames()        
+        // loadGames()        
     }
     override func viewDidAppear(_ animated: Bool) {
         if needToGoToLastGame {

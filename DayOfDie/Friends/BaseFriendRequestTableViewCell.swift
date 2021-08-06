@@ -42,9 +42,10 @@ class BaseFriendRequestTableViewCell: UITableViewCell {
         let headers: HTTPHeaders = [
             "Authorization": "Token \(CurrentUser.token)",
         ]
-        
+        print("THIS RIGHT HERE IM SO CONFUSED")
         let parameters: [String: Any] = [
-            "teammate": friend!.getOtherUser().username
+            "teammate": friend!.getOtherUser().username,
+            "status": FriendStatuses.ACCEPTED.rawValue
         ]
         
         AF.request("\(URLInfo.baseUrl)/friends/", method: .post, parameters: parameters, headers: headers).responseDecodable(of: Friend.self) { response in
@@ -70,11 +71,13 @@ class BaseFriendRequestTableViewCell: UITableViewCell {
         
         let parameters: [String: Any] = [
             "teammate": friend!.getOtherUser().username,
-            "status": FriendStatuses.DENIED.rawValue
+            "status": FriendStatuses.NOTHING.rawValue
         ]
         
+        print("OKAY AGIN LOL")
+        print(parameters)
+        
         AF.request("\(URLInfo.baseUrl)/friends/", method: .post, parameters: parameters, headers: headers).responseDecodable(of: Friend.self) { response in
-            print()
             switch response.result {
                 case .success:
                     if let index = CurrentUser.friends.firstIndex(of: self.friend!) {
@@ -82,7 +85,7 @@ class BaseFriendRequestTableViewCell: UITableViewCell {
                     }
                     CurrentUser.friends.append(response.value!)
                     self.parentTableView?.reloadData()
-                case let .failure(error):
+                case let .failure(error):                    
                     print(error)
             }
         }
@@ -128,13 +131,10 @@ class FriendTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

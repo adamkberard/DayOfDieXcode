@@ -86,15 +86,11 @@ class CurrentUser : Codable{
     }
 }
 
-
-
-
-
 class LoginPack : Codable {
     var user : AuthUser
     var games : [Game]
     var friends : [Friend]
-    var all_usernames : [String]
+    var all_users : [BasicUser]
 }
 
 class AuthUser : Codable {
@@ -110,7 +106,7 @@ enum KeychainError: Error {
     case unhandledError(status: OSStatus)
 }
 
-var allUsers : [String] = []
+var allUsers : [BasicUser] = []
 
 class BasicUser : Codable, Equatable {
     var username : String = ""

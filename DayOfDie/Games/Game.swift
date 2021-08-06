@@ -7,19 +7,11 @@
 
 import UIKit
 
-
-enum GameTypes : String, Codable{
-    case PICKUP = "pu"
-    case MARATHON = "ma"
-    case TOURNAMENT = "tm"
-}
-
 class Game : Codable {
     var timeStarted : String?
     var timeEnded : String?
     
     var uuid : UUID?
-    var type : GameTypes
     var teamOne : Friend
     var teamTwo : Friend
     
@@ -30,7 +22,6 @@ class Game : Codable {
     var points : [Point]
     
     init(teamOne: Friend, teamTwo: Friend, points: [Point]) {
-        self.type = GameTypes.PICKUP
         self.teamOne = teamOne
         self.teamTwo = teamTwo
         self.teamOneScore = 0
@@ -40,7 +31,6 @@ class Game : Codable {
     }
     
     init(playerOne: BasicUser, playerTwo: BasicUser, playerThree: BasicUser, playerFour: BasicUser, points: [Point]){
-        self.type = GameTypes.PICKUP
         self.teamOne = Friend(teamCaptain: playerOne, teammate: playerTwo)
         self.teamTwo = Friend(teamCaptain: playerThree, teammate: playerFour)
         self.teamOneScore = 0
@@ -53,7 +43,6 @@ class Game : Codable {
         case timeStarted = "time_started"
         case timeEnded = "time_ended"
         case uuid
-        case type
         case teamOne = "team_one"
         case teamTwo = "team_two"
         

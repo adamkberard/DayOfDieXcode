@@ -22,25 +22,25 @@ class MainTrackingViewController: UIViewController {
     
     var playerOneScore : Int = 0 {
         didSet {
-            scoreboard.playerOnePoints = playerOneScore
+            scoreboard.teamOneScore = playerOneScore + playerTwoScore
             checkGameOver()
         }
     }
     var playerTwoScore : Int = 0 {
         didSet {
-            scoreboard.playerTwoPoints = playerTwoScore
+            scoreboard.teamOneScore = playerOneScore + playerTwoScore
             checkGameOver()
         }
     }
     var playerThreeScore : Int = 0 {
         didSet {
-            scoreboard.playerThreePoints = playerThreeScore
+            scoreboard.teamOneScore = playerThreeScore + playerFourScore
             checkGameOver()
         }
     }
     var playerFourScore : Int = 0 {
         didSet {
-            scoreboard.playerFourPoints = playerFourScore
+            scoreboard.teamOneScore = playerThreeScore + playerFourScore
             checkGameOver()
         }
     }
@@ -63,34 +63,16 @@ class MainTrackingViewController: UIViewController {
         }
         
         (playerScoreTrackers!)[0].player = playerOne
-        (playerScoreTrackers!)[0].teammate = playerTwo
-        (playerScoreTrackers!)[0].opponentOne = playerThree
-        (playerScoreTrackers!)[0].opponentTwo = playerFour
         (playerScoreTrackers!)[0].playerNumber = 1
-        (playerScoreTrackers!)[0].rules = rules
         
         (playerScoreTrackers!)[1].player = playerTwo
-        (playerScoreTrackers!)[1].teammate = playerOne
-        (playerScoreTrackers!)[1].opponentOne = playerThree
-        (playerScoreTrackers!)[1].opponentTwo = playerFour
         (playerScoreTrackers!)[1].playerNumber = 2
-        (playerScoreTrackers!)[1].rules = rules
         
         (playerScoreTrackers!)[2].player = playerThree
-        (playerScoreTrackers!)[2].teammate = playerFour
-        (playerScoreTrackers!)[2].opponentOne = playerOne
-        (playerScoreTrackers!)[2].opponentTwo = playerTwo
         (playerScoreTrackers!)[2].playerNumber = 3
-        (playerScoreTrackers!)[2].rules = rules
         
         (playerScoreTrackers!)[3].player = playerFour
-        (playerScoreTrackers!)[3].teammate = playerThree
-        (playerScoreTrackers!)[3].opponentOne = playerOne
-        (playerScoreTrackers!)[3].opponentTwo = playerTwo
         (playerScoreTrackers!)[3].playerNumber = 4
-        (playerScoreTrackers!)[3].rules = rules
-        
-        scoreboard.setPlayers(playerOne: playerOne, playerTwo: playerTwo, playerThree: playerThree, playerFour: playerFour)
     }
     
     // This is the function that everything calls when they update points
@@ -107,8 +89,8 @@ class MainTrackingViewController: UIViewController {
     }
     
     private func checkGameOver(){
-        let playToScore : Int = rules[.playTo]!.points
-        let winBy : Int = rules[.winBy]!.points
+        let playToScore : Int = 11
+        let winBy : Int = 2
         
         if abs(scoreboard.teamOneScore - scoreboard.teamTwoScore) < winBy {
             saveButton.isEnabled = false
@@ -129,10 +111,10 @@ class MainTrackingViewController: UIViewController {
         ]
         
         var parameters : Dictionary<String, Any> = [
-            "playerOne": scoreboard.playerOne!.uuid,
-            "playerTwo": scoreboard.playerTwo!.uuid,
-            "playerThree": scoreboard.playerThree!.uuid,
-            "playerFour": scoreboard.playerFour!.uuid,
+            "playerOne": playerOneScore,
+            "playerTwo": playerTwoScore,
+            "playerThree": playerThreeScore,
+            "playerFour": playerFourScore,
             "team_one_score": scoreboard.teamOneScore,
             "team_two_score": scoreboard.teamTwoScore,
             "confirmed": false,

@@ -40,9 +40,9 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
         // Gets uniques
         return Array(Set(sameSelected))
     }
-    @IBAction func chooseRulesButtonPressed(_ sender: Any) {
+    @IBAction func startGameTracking(_ sender: Any) {
         if getSamePickers().count == 0 {
-            self.performSegue(withIdentifier: "toRulePicking", sender: self)
+            self.performSegue(withIdentifier: "toScoreTracking", sender: self)
         }
         else{
             print("DIDNT WORK BECAUSE \(getSamePickers().count)")
@@ -67,12 +67,15 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         // Gotta add one for me.
-        return CurrentUser.friends.count + 1
+        return CurrentUser.approvedFriends.count + 1
     }
     
     // Telling the picker's what to display
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return CurrentUser.getListFriendBasicUsers()[row].username
+        // We start with a list of our friends, but only allow ones that are verified? At least for now...
+        var tempFriends : [BasicUser] = CurrentUser.approvedFriends.map({$0.getOtherUser()})
+        tempFriends.append(CurrentUser.basicUser)
+        return tempFriends[row].username
     }
     
     // When any of the pickers are selected
@@ -87,11 +90,19 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
         
         if let identifier = segue.identifier {
             print("The identifier is: \(identifier)")
+            /*
             if identifier == "toRulePicking" {
                 guard let viewController = segue.destination as? ChooseRulesViewController else {
                  fatalError("Unexpected destination: \(segue.destination)")}
                 for i in (0...3){
                     viewController.playerNames.append(CurrentUser.getListFriendBasicUsers()[playerPickers[i].selectedRow(inComponent: 0)].username) 
+                }
+            }*/
+            if identifier == "toScoreTracking" {
+                guard let viewController = segue.destination as? MainTrackingViewController else {
+                 fatalError("Unexpected destination: \(segue.destination)")}
+                for i in (0...3){
+                    viewController.playerNames.append(CurrentUser.getListFriendBasicUsers()[playerPickers[i].selectedRow(inComponent: 0)].username)
                 }
             }
         }

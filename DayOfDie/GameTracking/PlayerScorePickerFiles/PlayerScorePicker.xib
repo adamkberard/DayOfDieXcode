@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,16 +13,13 @@
                 <outlet property="bounceSinkButton" destination="bFl-4A-x4c" id="APC-H3-g0u"/>
                 <outlet property="fieldGoalButton" destination="YH4-Yk-Z1p" id="Hcw-q8-weR"/>
                 <outlet property="fifaButton" destination="hUa-am-m9F" id="6iB-Hv-uf9"/>
-                <outlet property="firstSecondButton" destination="GBq-80-iTm" id="Car-go-xvo"/>
                 <outlet property="fiveButton" destination="uVO-S7-Cfh" id="CqY-hJ-2fa"/>
                 <outlet property="partnerSinkButton" destination="Hx4-Oc-vry" id="2DF-bG-YtV"/>
                 <outlet property="playerLabel" destination="I6b-1d-0br" id="Nun-mV-Uqt"/>
                 <outlet property="pointsLabel" destination="PQq-Ab-ClV" id="zZk-wR-DYk"/>
                 <outlet property="regularPointButton" destination="PG7-4j-Kft" id="MmX-S4-i1N"/>
-                <outlet property="secondSecondButton" destination="SVH-wJ-pMw" id="bVU-73-8EA"/>
                 <outlet property="selfSinkButton" destination="ETJ-cX-Op6" id="02X-Xd-ffr"/>
                 <outlet property="sinkButton" destination="XWC-cQ-vhP" id="nKZ-Oi-9XN"/>
-                <outlet property="thirdSecondButton" destination="PAQ-jt-7Mb" id="Eea-1Y-Dfa"/>
                 <outlet property="tinkButton" destination="ZDH-Xu-29u" id="xia-Ay-zC8"/>
             </connections>
         </placeholder>
@@ -72,13 +69,6 @@
                                         <action selector="sinkButtonPressed:" destination="-1" eventType="touchUpInside" id="goo-Z1-uTF"/>
                                     </connections>
                                 </button>
-                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GBq-80-iTm" userLabel="First Second Button">
-                                    <rect key="frame" x="0.0" y="100" width="81" height="0.0"/>
-                                    <state key="normal" title="P1"/>
-                                    <connections>
-                                        <action selector="firstSecondButtonPressed:" destination="-1" eventType="touchUpInside" id="cbe-P5-qL8"/>
-                                    </connections>
-                                </button>
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Hg9-bH-V0s" userLabel="Second Points Stack View">
@@ -105,13 +95,6 @@
                                         <action selector="selfSinkButtonPressed:" destination="-1" eventType="touchUpInside" id="eUz-Lv-xBe"/>
                                     </connections>
                                 </button>
-                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SVH-wJ-pMw" userLabel="Second Second Button">
-                                    <rect key="frame" x="0.0" y="100" width="104.5" height="0.0"/>
-                                    <state key="normal" title="P2"/>
-                                    <connections>
-                                        <action selector="secondSecondButtonPressed:" destination="-1" eventType="touchUpInside" id="ffz-Ew-KLF"/>
-                                    </connections>
-                                </button>
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="KOB-uh-jub" userLabel="Third Points Stack View">
@@ -136,13 +119,6 @@
                                     <state key="normal" title="Five"/>
                                     <connections>
                                         <action selector="fiveButtonPressed:" destination="-1" eventType="touchUpInside" id="foC-WA-rRw"/>
-                                    </connections>
-                                </button>
-                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PAQ-jt-7Mb" userLabel="Third Second Button">
-                                    <rect key="frame" x="0.0" y="100" width="83.5" height="0.0"/>
-                                    <state key="normal" title="Back"/>
-                                    <connections>
-                                        <action selector="thirdSecondButtonPressed:" destination="-1" eventType="touchUpInside" id="V75-gY-ix6"/>
                                     </connections>
                                 </button>
                             </subviews>

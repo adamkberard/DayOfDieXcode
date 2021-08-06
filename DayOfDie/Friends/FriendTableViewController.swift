@@ -21,13 +21,15 @@ class FriendTableViewController: UITableViewController {
         // Refreshing stuff
         self.refreshControl?.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
         
-        // Loads the games
-        loadGames()
+        // Loads the friends and users
+        // loadFriendsAndUsers()
     }
     
+    /*
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
     }
+    */
 
     // MARK: - Table view data source
 
@@ -69,7 +71,7 @@ class FriendTableViewController: UITableViewController {
         self.performSegue(withIdentifier: "toFriendDetailView", sender: self)
     }
     
-    func loadGames() {
+    func loadFriendsAndUsers() {
         let headers: HTTPHeaders = [
             "Authorization": "Token \(CurrentUser.token)",
         ]
@@ -78,6 +80,17 @@ class FriendTableViewController: UITableViewController {
             switch response.result {
                 case .success:
                     CurrentUser.friends = response.value!
+                case let .failure(error):
+                    print(error)
+            }
+            self.tableView.reloadData()
+            self.refreshControl?.endRefreshing()
+        }
+        
+        AF.request("\(URLInfo.baseUrl)/friends/all_users", method: .get, headers: headers).responseDecodable(of: [BasicUser].self) { response in
+            switch response.result {
+                case .success:
+                    allUsers = response.value!
                 case let .failure(error):
                     print(error)
             }
@@ -112,7 +125,7 @@ class FriendTableViewController: UITableViewController {
 
     @objc func refresh(sender:AnyObject)
     {
-        loadGames()
+        loadFriendsAndUsers()
     }
 
 }

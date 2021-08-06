@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9GG-jh-bra">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9GG-jh-bra">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -95,10 +95,10 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ec2-aS-RH2">
-                                <rect key="frame" x="160" y="733" width="94" height="30"/>
-                                <state key="normal" title="Choose Rules"/>
+                                <rect key="frame" x="168" y="733" width="78" height="30"/>
+                                <state key="normal" title="Start Game"/>
                                 <connections>
-                                    <action selector="chooseRulesButtonPressed:" destination="7vL-VU-5aC" eventType="touchUpInside" id="7s5-bF-8Mj"/>
+                                    <action selector="startGameTracking:" destination="7vL-VU-5aC" eventType="touchUpInside" id="7s5-bF-8Mj"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -118,12 +118,12 @@
                         <outletCollection property="playerPickers" destination="itg-uy-Thx" collectionClass="NSMutableArray" id="vvy-Oc-fXI"/>
                         <outletCollection property="playerPickers" destination="141-zc-2en" collectionClass="NSMutableArray" id="hdK-wp-tMX"/>
                         <outletCollection property="playerPickers" destination="IeW-HF-1nu" collectionClass="NSMutableArray" id="t8q-R6-73m"/>
-                        <segue destination="RpZ-UR-33W" kind="show" identifier="toRulePicking" id="Qbd-B4-guL"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="toScoreTracking" id="vjT-jp-sVE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ji1-GE-CSq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1747.826086956522" y="75.669642857142847"/>
+            <point key="canvasLocation" x="1748" y="76"/>
         </scene>
         <!--Rules-->
         <scene sceneID="Kok-4q-d4m">
@@ -134,57 +134,57 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dQQ-u4-33f">
-                                <rect key="frame" x="168" y="788" width="78" height="0.0"/>
+                                <rect key="frame" x="168" y="585" width="78" height="252"/>
                                 <state key="normal" title="Start Game"/>
                                 <connections>
                                     <action selector="startGameButtonPressed:" destination="RpZ-UR-33W" eventType="touchUpInside" id="ude-gJ-spI"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="caT-ai-1cv">
-                                <rect key="frame" x="0.0" y="113" width="414" height="650"/>
+                                <rect key="frame" x="0.0" y="69" width="414" height="491"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ozs-9l-l1o" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ozs-9l-l1o" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="31"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Qa-if-v0d" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="65" width="414" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Qa-if-v0d" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="46" width="414" height="31"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mo0-L3-eWo" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="130" width="414" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mo0-L3-eWo" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="414" height="31"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ILF-6V-OXX" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="195" width="414" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ILF-6V-OXX" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="138" width="414" height="31"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Er0-Hw-i3g" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="260" width="414" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Er0-Hw-i3g" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="184" width="414" height="31"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kx5-sV-bNi" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="325" width="414" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kx5-sV-bNi" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="230" width="414" height="31"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YNQ-7B-dfI" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="390" width="414" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YNQ-7B-dfI" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="276" width="414" height="31"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cAU-k6-jak" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="455" width="414" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cAU-k6-jak" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="322" width="414" height="31"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GDN-2B-ZhL" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="520" width="414" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GDN-2B-ZhL" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="368" width="414" height="31"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uEO-GM-Jmb" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="585" width="414" height="0.0"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uEO-GM-Jmb" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="414" width="414" height="31"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SZa-YE-cVt" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="600" width="414" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SZa-YE-cVt" customClass="RuleRow" customModule="DayOfDie" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="460" width="414" height="31"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
@@ -214,12 +214,11 @@
                         <outletCollection property="ruleViews" destination="GDN-2B-ZhL" collectionClass="NSMutableArray" id="ZXq-ki-V0Y"/>
                         <outletCollection property="ruleViews" destination="uEO-GM-Jmb" collectionClass="NSMutableArray" id="Q2z-sX-don"/>
                         <outletCollection property="ruleViews" destination="SZa-YE-cVt" collectionClass="NSMutableArray" id="wvj-ux-9YZ"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="toMainTracking" id="HGO-UX-uvv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RoP-Ne-vBk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2725" y="76"/>
+            <point key="canvasLocation" x="-2681" y="-1158"/>
         </scene>
         <!--Score Keeping-->
         <scene sceneID="tne-QT-ifu">
@@ -233,29 +232,29 @@
                                 <rect key="frame" x="10" y="98" width="394" height="705"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WUc-qi-FTJ" customClass="PlayersTableScoreView" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="394" height="205"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="202"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" priority="999" constant="200" id="n11-w6-ryV"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="kXk-o2-6pr">
-                                        <rect key="frame" x="0.0" y="230" width="394" height="475"/>
+                                        <rect key="frame" x="0.0" y="227" width="394" height="478"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mhA-zv-DCT" customClass="PlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="394" height="100"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="394" height="166"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oR3-Ie-v9T" customClass="PlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="125" width="394" height="100"/>
+                                                <rect key="frame" x="0.0" y="191" width="394" height="100"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RbQ-sK-VBf" customClass="PlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="250" width="394" height="100"/>
+                                                <rect key="frame" x="0.0" y="316" width="394" height="37"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SQ7-nH-K66" customClass="PlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="375" width="394" height="100"/>
+                                                <rect key="frame" x="0.0" y="378" width="394" height="100"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                         </subviews>
@@ -297,7 +296,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3652" y="76"/>
+            <point key="canvasLocation" x="2532" y="76"/>
         </scene>
         <!--Player Points-->
         <scene sceneID="6XG-Lt-AnK">
@@ -309,7 +308,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlayerPointsCell" id="Ks5-hH-5Sq" customClass="PlayerPointsTableViewCell" customModule="DayOfDie" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ks5-hH-5Sq" id="Tdy-2V-gc2">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -341,7 +340,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JeO-en-pqY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4488" y="76"/>
+            <point key="canvasLocation" x="3306" y="76"/>
         </scene>
         <!--Games-->
         <scene sceneID="UC6-Dg-P7h">
@@ -353,7 +352,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GameTableViewCell" id="xAe-ev-VFZ" customClass="GameTableViewCell" customModule="DayOfDie" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="61.5"/>
+                                <rect key="frame" x="0.0" y="24.5" width="414" height="61.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xAe-ev-VFZ" id="PWw-sH-Stz">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="61.5"/>
@@ -580,14 +579,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlayerPointsCell" id="KgX-8L-Nc8" customClass="PlayerPointsTableViewCell" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KgX-8L-Nc8" id="QHt-6r-YaG">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PlayerOne scored on PlayerTwo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1X-U9-o2W">
-                                                    <rect key="frame" x="87.5" y="11.5" width="239.5" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PlayerOne scored" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1X-U9-o2W">
+                                                    <rect key="frame" x="139.5" y="11.5" width="135" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -636,7 +635,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Bm-kd-BRn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2573.913043478261" y="825.66964285714278"/>
+            <point key="canvasLocation" x="2532" y="826"/>
         </scene>
         <!--Games-->
         <scene sceneID="O6y-Wc-uzQ">
@@ -654,7 +653,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kn4-3l-MLc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="955" y="826"/>
+            <point key="canvasLocation" x="980" y="826"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="E0d-Qi-yW8">
@@ -693,7 +692,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RXS-ug-yVH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="955.07246376811599" y="75.669642857142847"/>
+            <point key="canvasLocation" x="980" y="76"/>
         </scene>
         <!--Start View Controller-->
         <scene sceneID="3OG-5P-ez2">
@@ -793,7 +792,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="gRP-6d-6hy">
-                                <rect key="frame" x="20" y="366.5" width="374" height="163.5"/>
+                                <rect key="frame" x="20" y="384" width="374" height="128"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0mD-1j-f8v">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="34"/>
@@ -804,7 +803,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="adamkberard@gmail.com" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S7O-BC-BT1">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="adam@gmail.com" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S7O-BC-BT1">
                                                 <rect key="frame" x="55" y="0.0" width="319" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -820,7 +819,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="pass4adam" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pl9-wk-ITM">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Pass4adam" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pl9-wk-ITM">
                                                 <rect key="frame" x="88" y="0.0" width="286" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" textContentType="password"/>
@@ -837,8 +836,8 @@
                                             <action selector="SignInButtonPressed:" destination="jxb-yt-YV3" eventType="touchUpInside" id="uta-D8-cRe"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZA4-gp-O0T">
-                                        <rect key="frame" x="0.0" y="143" width="374" height="20.5"/>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZA4-gp-O0T">
+                                        <rect key="frame" x="0.0" y="128" width="374" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" systemColor="systemRedColor"/>
                                         <nil key="highlightedColor"/>
@@ -913,7 +912,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="aFc-mH-hkG">
-                                <rect key="frame" x="40" y="342" width="334" height="212.5"/>
+                                <rect key="frame" x="40" y="359.5" width="334" height="177"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4xc-ap-7ak">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="34"/>
@@ -973,8 +972,8 @@
                                             <action selector="registerButtonPressed:" destination="prM-EI-1nC" eventType="touchUpInside" id="v5J-hb-Qzc"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NFw-Q9-A9z">
-                                        <rect key="frame" x="0.0" y="192" width="334" height="20.5"/>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NFw-Q9-A9z">
+                                        <rect key="frame" x="0.0" y="177" width="334" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" systemColor="systemRedColor"/>
                                         <nil key="highlightedColor"/>
@@ -1016,7 +1015,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendTableViewCell" id="Uep-t1-HcJ" customClass="FriendTableViewCell" customModule="DayOfDie" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="41.5"/>
+                                <rect key="frame" x="0.0" y="24.5" width="414" height="41.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Uep-t1-HcJ" id="6jG-WR-zdj">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="41.5"/>
@@ -1263,7 +1262,7 @@
                         <color key="separatorColor" name="AccentColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="friendRequestCell" id="I5J-x7-Vau" customClass="PendingFriendRequestTableViewCell" customModule="DayOfDie" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="41"/>
+                                <rect key="frame" x="0.0" y="24.5" width="414" height="41"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="I5J-x7-Vau" id="JX5-Jq-hqD">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="41"/>
@@ -1353,7 +1352,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="waitingFriendRequestCell" id="RKc-b5-nr1" userLabel="waitingFriendRequestCell" customClass="WaitingFriendRequestTableViewCell" customModule="DayOfDie" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="69" width="414" height="41"/>
+                                <rect key="frame" x="0.0" y="65.5" width="414" height="41"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RKc-b5-nr1" id="zf3-ET-sax">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="41"/>
@@ -1493,15 +1492,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="p3I-Zy-wWn">
-                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="51"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mp7-8P-Pu2" customClass="AddUserTableView" customModule="DayOfDie" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="144" width="414" height="669"/>
+                                <rect key="frame" x="0.0" y="139" width="414" height="674"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addFriendTableCell" id="7di-Kn-4pQ" userLabel="addFriendRequestCell" customClass="AddFriendTableViewCell" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="41.5"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="41.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7di-Kn-4pQ" id="mhw-fQ-Prq">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="41.5"/>
@@ -1634,7 +1633,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="fFG-r4-qpl"/>
+        <segue reference="550-hd-Snw"/>
         <segue reference="eMV-Xh-ygs"/>
     </inferredMetricsTieBreakers>
     <resources>

@@ -23,36 +23,29 @@ class AddUserTableView: UITableView, UITableViewDelegate, UITableViewDataSource 
     }
     
     func loadData() {
-        var usernames = allUsers
+        var users = allUsers
         friends = []
         
-        // Filtering first
-        for i in (0...usernames.count-1).reversed() {
-            if !usernames[i].starts(with: parentView?.searchBar.text ?? ""){
-                usernames.remove(at: i)
-            }
-        }
-        
-        // Taking out my own name
-        for i in (0...usernames.count-1).reversed() {
-            if usernames[i] == CurrentUser.username{
-                usernames.remove(at: i)
-            }
-        }
-        
+        // Removing current user's username and also filtering search stuff
+        users.removeAll(where: {
+            !$0.username.starts(with: parentView?.searchBar.text ?? "") ||
+                $0.username == CurrentUser.username
+        })
+
         // Taking out people I have as active, pending, or waiting
-        for i in (0...usernames.count-1).reversed() {
+        
+        users.removeAll(where: {
             for friend in CurrentUser.friends{
-                if friend.status != .NOTHING && friend.getOtherUser().username == usernames[i]{
-                    usernames.remove(at: i)
-                    break
+                if friend.status != .NOTHING && $0.username == friend.getOtherUser().username{
+                    return true
                 }
             }
-        }
+            return false
+        })
         
         // Creating friends
-        for username in usernames{
-            friends.append(Friend.findOrCreateFriend(teamCaptain: CurrentUser.basicUser, teammate: BasicUser(username: username)))
+        for user in users{
+            friends.append(Friend.findOrCreateFriend(teamCaptain: CurrentUser.basicUser, teammate: user))
         }
     }
     
