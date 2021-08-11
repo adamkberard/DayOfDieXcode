@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Alamofire
 
 class CurrentUser : Codable{
     static var username : String = "" {
@@ -50,6 +51,13 @@ class CurrentUser : Codable{
             }
         }
         return possiblePlayers
+    }
+    
+    static func getHeaders()->HTTPHeaders {
+        let headers: HTTPHeaders = [
+            "Authorization": "Token \(CurrentUser.token)",
+        ]
+        return headers
     }
     
     static func parseFriends() {
@@ -97,7 +105,16 @@ class AuthUser : Codable {
     var email : String = ""
     var username : String = ""
     var uuid : String = ""
+    var wins : Int = 0
+    var losses : Int = 0
     var token : String = ""
+}
+
+class FullUser : Codable {
+    var username : String = ""
+    var uuid : String = ""
+    var wins : Int = 0
+    var losses : Int = 0
 }
 
 enum KeychainError: Error {

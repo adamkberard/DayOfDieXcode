@@ -21,7 +21,6 @@ class MainTrackingViewController: UIViewController {
     var playerFour : BasicUser = CurrentUser.basicUser
     
     var currentlyPickedPoints : Int = 0
-    var rules : Dictionary<RuleTypes, RuleRow> = [:]
     
     var teamOneScore : Int = 0 {
         didSet {
@@ -90,9 +89,6 @@ class MainTrackingViewController: UIViewController {
     @IBAction func saveGameButtonPressed(_ sender: Any) {
         // Now it sends the data to me
         // Prepare json data
-        let headers: HTTPHeaders = [
-            "Authorization": "Token \(CurrentUser.token)",
-        ]
         
         var allPoints : [[String : String]] = []
         for playerScoreTracker in playerScoreTrackers!{
@@ -113,13 +109,13 @@ class MainTrackingViewController: UIViewController {
             "type": "pu",
             "points": allPoints
         ]
-        
+
         let df = DateFormatter()
         df.dateFormat = "yyyy-MM-dd hh:mm:ss"
         parameters["time_started"] = df.string(from: timeStarted)
         parameters["time_ended"] = df.string(from: Date())
         
-        AF.request("\(URLInfo.baseUrl)/games/", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseDecodable(of: Game.self) {response in
+        AF.request("\(URLInfo.baseUrl)/games/", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: CurrentUser.getHeaders()).responseDecodable(of: Game.self) {response in
             // Turn off activity indicator
             self.activityIndicator.stopAnimating()
             self.view.isUserInteractionEnabled = true
@@ -128,6 +124,14 @@ class MainTrackingViewController: UIViewController {
                 case .success:
                     self.returnedGame = response.value!
                     CurrentUser.games.append(self.returnedGame!)
+                    if self.scoreboard.teamOneScore > self.scoreboard.teamTwoScore{
+                        Friend.findOrCreateFriend(teamCaptain: self.playerOne, teammate: self.playerTwo).wins += 1
+                        Friend.findOrCreateFriend(teamCaptain: self.playerThree, teammate: self.playerFour).losses += 1
+                    }
+                    else{
+                        Friend.findOrCreateFriend(teamCaptain: self.playerOne, teammate: self.playerTwo).losses += 1
+                        Friend.findOrCreateFriend(teamCaptain: self.playerThree, teammate: self.playerFour).wins += 1
+                    }
                     self.performSegue(withIdentifier: "toGameAfterSave", sender: self)
                 case .failure:
                     print("Error: \(String(decoding: response.data!, as: UTF8.self))")

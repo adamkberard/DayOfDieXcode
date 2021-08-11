@@ -16,12 +16,6 @@ class PlayersTableScoreView: UIView {
     @IBOutlet weak var teamOneScoreLabel: UILabel!
     @IBOutlet weak var teamTwoScoreLabel: UILabel!
     
-    var teamOne : Friend? {
-        didSet {teamOneLabel.text = "\(teamOne!.teamname ?? "Team One"):"}
-    }
-    var teamTwo : Friend? {
-        didSet {teamTwoLabel.text = "\(teamTwo!.teamname ?? "Team Two"):"}
-    }
     var teamOneScore : Int = 0 {
         didSet {teamOneScoreLabel.text = String(teamOneScore)}
     }

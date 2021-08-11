@@ -53,13 +53,6 @@ class FriendTableViewController: UITableViewController {
         // Fetches the appropriate friend for the data source layout.
         let friend = CurrentUser.approvedFriends[indexPath.row]
         cell.friendUsernameLabel.text = friend.getOtherUser().username
-
-        if friend.teamname == nil {
-            cell.teamNameLabel.text = " "
-        }
-        else{
-            cell.teamNameLabel.text = friend.teamname
-        }
         cell.winsLabel.text = String(friend.wins)
         cell.lossesLabel.text = String(friend.losses)
         
@@ -72,11 +65,7 @@ class FriendTableViewController: UITableViewController {
     }
     
     func loadFriendsAndUsers() {
-        let headers: HTTPHeaders = [
-            "Authorization": "Token \(CurrentUser.token)",
-        ]
-        
-        AF.request("\(URLInfo.baseUrl)/friends/", method: .get, headers: headers).responseDecodable(of: [Friend].self) { response in
+        AF.request("\(URLInfo.baseUrl)/friends/", method: .get, headers: CurrentUser.getHeaders()).responseDecodable(of: [Friend].self) { response in
             switch response.result {
                 case .success:
                     CurrentUser.friends = response.value!
@@ -87,7 +76,7 @@ class FriendTableViewController: UITableViewController {
             self.refreshControl?.endRefreshing()
         }
         
-        AF.request("\(URLInfo.baseUrl)/friends/all_users", method: .get, headers: headers).responseDecodable(of: [BasicUser].self) { response in
+        AF.request("\(URLInfo.baseUrl)/friends/all_users", method: .get, headers: CurrentUser.getHeaders()).responseDecodable(of: [BasicUser].self) { response in
             switch response.result {
                 case .success:
                     allUsers = response.value!

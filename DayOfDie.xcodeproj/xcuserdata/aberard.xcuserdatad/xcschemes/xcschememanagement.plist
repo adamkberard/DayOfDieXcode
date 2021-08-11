@@ -7,7 +7,25 @@
 		<key>DayOfDie.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>4</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>5A62548725EEF0C500340AE0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5A62549D25EEF0C600340AE0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5A6254A825EEF0C600340AE0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

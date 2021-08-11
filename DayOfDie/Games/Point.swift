@@ -58,41 +58,6 @@ class Point : Codable {
         return score
     }
     
-    static func getScore(points: [Point], rules: Dictionary<RuleTypes, RuleRow>) -> Int {
-        var score : Int = 0
-        var tempRuleType : RuleTypes = .regular
-        
-        for point in points {
-            switch point.typeOfPoint {
-            case .REGULAR:
-                tempRuleType = .regular
-            case .TINK:
-                tempRuleType = .tink
-            case .SINK:
-                tempRuleType = .sink
-            case .BOUNCE_SINK:
-                tempRuleType = .bounceSink
-            case .PARTNER_SINK:
-                tempRuleType = .partnerSink
-            case .SELF_SINK:
-                tempRuleType = .selfSink
-            case .FIFA:
-                tempRuleType = .fifa
-            case .FIELD_GOAL:
-                tempRuleType = .fieldGoal
-            case .FIVE:
-                tempRuleType = .five
-            }
-            
-            let tempRule : RuleRow? = rules[tempRuleType]
-            
-            if tempRule != nil {
-                score += tempRule!.points
-            }
-        }
-        return score
-    }
-    
     func getString() -> String {
         switch typeOfPoint {
         case .REGULAR:

@@ -71,15 +71,13 @@ class GameTableViewController: UITableViewController {
     }
     
     func loadGames() {
-        let headers: HTTPHeaders = [
-            "Authorization": "Token \(CurrentUser.token)",
-        ]
-        
-        AF.request("\(URLInfo.baseUrl)/games/", method: .get, headers: headers).responseDecodable(of: [Game].self) { response in
+        AF.request("\(URLInfo.baseUrl)/games/", method: .get, headers: CurrentUser.getHeaders()).responseDecodable(of: [Game].self) { response in
             switch response.result {
                 case .success:
                     CurrentUser.games = response.value!
+                    print("HERE 5")
                 case let .failure(error):
+                    print("HERE 6")
                     print(error)
             }
             self.tableView.reloadData()
