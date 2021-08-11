@@ -46,10 +46,10 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="rO1-ia-Sqo">
                                                 <rect key="frame" x="30" y="0.0" width="177" height="432"/>
                                                 <subviews>
-                                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UWV-Is-cjV" userLabel="P1 Picker View">
+                                                    <pickerView tag="-2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UWV-Is-cjV" userLabel="P1 Picker View">
                                                         <rect key="frame" x="0.0" y="0.0" width="177" height="216"/>
                                                     </pickerView>
-                                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="itg-uy-Thx" userLabel="P2 Picker View">
+                                                    <pickerView tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="itg-uy-Thx" userLabel="P2 Picker View">
                                                         <rect key="frame" x="0.0" y="216" width="177" height="216"/>
                                                     </pickerView>
                                                 </subviews>
@@ -82,10 +82,10 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ELT-6I-Wv5">
                                                 <rect key="frame" x="30" y="0.0" width="177" height="432"/>
                                                 <subviews>
-                                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="141-zc-2en" userLabel="P3 Picker View">
+                                                    <pickerView tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="141-zc-2en" userLabel="P3 Picker View">
                                                         <rect key="frame" x="0.0" y="0.0" width="177" height="216"/>
                                                     </pickerView>
-                                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IeW-HF-1nu" userLabel="P4 Picker View">
+                                                    <pickerView tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IeW-HF-1nu" userLabel="P4 Picker View">
                                                         <rect key="frame" x="0.0" y="216" width="177" height="216"/>
                                                     </pickerView>
                                                 </subviews>
@@ -101,15 +101,24 @@
                                     <action selector="startGameTracking:" destination="7vL-VU-5aC" eventType="touchUpInside" id="7s5-bF-8Mj"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Must have at least three friends to start a game." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vrk-GK-iPt">
+                                <rect key="frame" x="0.0" y="545" width="414" height="21.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="oMU-HO-JJZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="OvG-CI-CPt" firstAttribute="leading" secondItem="oMU-HO-JJZ" secondAttribute="leading" id="7lM-pW-ZJ6"/>
+                            <constraint firstItem="oMU-HO-JJZ" firstAttribute="trailing" secondItem="Vrk-GK-iPt" secondAttribute="trailing" id="A3H-hx-U0a"/>
                             <constraint firstItem="oMU-HO-JJZ" firstAttribute="bottom" secondItem="Ec2-aS-RH2" secondAttribute="bottom" constant="50" id="Gbo-vf-Fkb"/>
+                            <constraint firstItem="Vrk-GK-iPt" firstAttribute="leading" secondItem="oMU-HO-JJZ" secondAttribute="leading" id="JAK-Hg-8G0"/>
                             <constraint firstAttribute="trailing" secondItem="OvG-CI-CPt" secondAttribute="trailing" id="Mqb-bD-iSh"/>
                             <constraint firstItem="OvG-CI-CPt" firstAttribute="top" secondItem="oMU-HO-JJZ" secondAttribute="top" id="QZ0-4G-pGb"/>
                             <constraint firstItem="Ec2-aS-RH2" firstAttribute="centerX" secondItem="Wus-nk-FaK" secondAttribute="centerX" id="WKE-ft-F06"/>
+                            <constraint firstItem="Vrk-GK-iPt" firstAttribute="top" secondItem="OvG-CI-CPt" secondAttribute="bottom" constant="25" id="tPu-n7-qfu"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Players" id="7Le-ek-B8p"/>
@@ -224,7 +233,7 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MainTrackingViewController" customModule="DayOfDie" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -232,29 +241,29 @@
                                 <rect key="frame" x="10" y="98" width="394" height="705"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WUc-qi-FTJ" customClass="PlayersTableScoreView" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="394" height="202"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="205"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" priority="999" constant="200" id="n11-w6-ryV"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="kXk-o2-6pr">
-                                        <rect key="frame" x="0.0" y="227" width="394" height="478"/>
+                                        <rect key="frame" x="0.0" y="230" width="394" height="475"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mhA-zv-DCT" customClass="PlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="394" height="166"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mhA-zv-DCT" customClass="PlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="394" height="100"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oR3-Ie-v9T" customClass="PlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="191" width="394" height="100"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oR3-Ie-v9T" customClass="PlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="125" width="394" height="100"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RbQ-sK-VBf" customClass="PlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="316" width="394" height="37"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RbQ-sK-VBf" customClass="PlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="250" width="394" height="100"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SQ7-nH-K66" customClass="PlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="378" width="394" height="100"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SQ7-nH-K66" customClass="PlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="375" width="394" height="100"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                         </subviews>
