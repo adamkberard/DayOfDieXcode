@@ -72,11 +72,7 @@ class FriendTableViewController: UITableViewController {
     }
     
     func loadFriendsAndUsers() {
-        let headers: HTTPHeaders = [
-            "Authorization": "Token \(CurrentUser.token)",
-        ]
-        
-        AF.request("\(URLInfo.baseUrl)/friends/", method: .get, headers: headers).responseDecodable(of: [Friend].self) { response in
+        AF.request("\(URLInfo.baseUrl)/friends/", method: .get, headers: CurrentUser.getHeaders()).responseDecodable(of: [Friend].self) { response in
             switch response.result {
                 case .success:
                     CurrentUser.friends = response.value!
@@ -87,7 +83,7 @@ class FriendTableViewController: UITableViewController {
             self.refreshControl?.endRefreshing()
         }
         
-        AF.request("\(URLInfo.baseUrl)/friends/all_users", method: .get, headers: headers).responseDecodable(of: [BasicUser].self) { response in
+        AF.request("\(URLInfo.baseUrl)/friends/all_users", method: .get, headers: CurrentUser.getHeaders()).responseDecodable(of: [BasicUser].self) { response in
             switch response.result {
                 case .success:
                     allUsers = response.value!

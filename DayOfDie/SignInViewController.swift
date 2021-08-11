@@ -15,12 +15,10 @@ class SignInViewController:
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var statusLabel: UILabel!
     
-    var activityIndicator : UIActivityIndicatorView = UIActivityIndicatorView()
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-        self.hideKeyboardWhenTappedAround() 
+        self.hideKeyboardWhenTappedAround()
     }
     
     override func viewDidLoad() {
@@ -38,8 +36,6 @@ class SignInViewController:
     @IBAction func SignInButtonPressed(_ sender: Any) {
         // Now it sends the data to me
         // Prepare json data
-        activityIndicator.startAnimating()
-        view.isUserInteractionEnabled = false
         
         let email : String = emailTextField.text ?? ""
         let password : String = passwordTextField.text ?? ""
@@ -50,7 +46,6 @@ class SignInViewController:
             "email": email,
             "password": password
         ]
-        print(parameters)
         
         AF.request("\(URLInfo.baseUrl)/auth/login/", method: .post, parameters: parameters).responseDecodable(of: LoginPack.self) { response in
             switch response.result {
@@ -80,6 +75,5 @@ class SignInViewController:
                     }
             }
         }
-        view.isUserInteractionEnabled = true
     }
 }

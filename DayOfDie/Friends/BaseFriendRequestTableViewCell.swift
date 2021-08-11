@@ -39,16 +39,12 @@ class BaseFriendRequestTableViewCell: UITableViewCell {
     }
     
     @IBAction func firstButtonPressed(_ sender: Any) {
-        let headers: HTTPHeaders = [
-            "Authorization": "Token \(CurrentUser.token)",
-        ]
-        print("THIS RIGHT HERE IM SO CONFUSED")
         let parameters: [String: Any] = [
             "teammate": friend!.getOtherUser().username,
             "status": FriendStatuses.ACCEPTED.rawValue
         ]
         
-        AF.request("\(URLInfo.baseUrl)/friends/", method: .post, parameters: parameters, headers: headers).responseDecodable(of: Friend.self) { response in
+        AF.request("\(URLInfo.baseUrl)/friends/", method: .post, parameters: parameters, headers: CurrentUser.getHeaders()).responseDecodable(of: Friend.self) { response in
             print()
             switch response.result {
                 case .success:
@@ -65,9 +61,6 @@ class BaseFriendRequestTableViewCell: UITableViewCell {
     }
     
     @IBAction func secondButtonPressed(_ sender: Any) {
-        let headers: HTTPHeaders = [
-            "Authorization": "Token \(CurrentUser.token)",
-        ]
         
         let parameters: [String: Any] = [
             "teammate": friend!.getOtherUser().username,
@@ -77,7 +70,7 @@ class BaseFriendRequestTableViewCell: UITableViewCell {
         print("OKAY AGIN LOL")
         print(parameters)
         
-        AF.request("\(URLInfo.baseUrl)/friends/", method: .post, parameters: parameters, headers: headers).responseDecodable(of: Friend.self) { response in
+        AF.request("\(URLInfo.baseUrl)/friends/", method: .post, parameters: parameters, headers: CurrentUser.getHeaders()).responseDecodable(of: Friend.self) { response in
             switch response.result {
                 case .success:
                     if let index = CurrentUser.friends.firstIndex(of: self.friend!) {
