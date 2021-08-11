@@ -50,7 +50,6 @@ class SignInViewController:
             "email": email,
             "password": password
         ]
-        print(parameters)
         
         AF.request("\(URLInfo.baseUrl)/auth/login/", method: .post, parameters: parameters).responseDecodable(of: LoginPack.self) { response in
             switch response.result {
