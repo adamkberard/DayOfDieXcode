@@ -109,6 +109,7 @@
 		5A9813F62617F62800C37E2C /* FriendTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewController.swift; sourceTree = "<group>"; };
 		5AC3B75326312D3C0079C9FB /* PlayersTableScoreView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayersTableScoreView.xib; sourceTree = "<group>"; };
 		5AC3B75826312D630079C9FB /* PlayersTableScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersTableScoreView.swift; sourceTree = "<group>"; };
+		5AD7FD9826C3958F001FB735 /* Manual Testing */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Manual Testing"; sourceTree = "<group>"; };
 		5AD81E812634BC2A00FBAB73 /* FriendDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDetailViewController.swift; sourceTree = "<group>"; };
 		5AE28EC9263A8C5C00105666 /* FriendRequestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestTableViewController.swift; sourceTree = "<group>"; };
 		5AE28ED1263A913500105666 /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
@@ -204,6 +205,7 @@
 				5A62549625EEF0C600340AE0 /* LaunchScreen.storyboard */,
 				5A62549925EEF0C600340AE0 /* Info.plist */,
 				5A840A6525F5B3560039492D /* URLInfo.swift */,
+				5AD7FD9826C3958F001FB735 /* Manual Testing */,
 			);
 			path = DayOfDie;
 			sourceTree = "<group>";

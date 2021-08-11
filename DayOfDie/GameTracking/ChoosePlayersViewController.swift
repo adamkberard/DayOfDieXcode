@@ -12,6 +12,10 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
     @IBOutlet var playerPickers: [UIPickerView]!
     
     var possiblePlayers : [BasicUser] = []
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setupPickers()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,10 +25,18 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
             playerPicker.delegate = self
         }
         
+        setupPickers()
+    }
+    
+    func setupPickers() {
         possiblePlayers.append(contentsOf: CurrentUser.approvedFriends.map({$0.getOtherUser()}))
         possiblePlayers.append(CurrentUser.basicUser)
-
-        markBadPickers()
+        
+        if(possiblePlayers.count < 4){
+            for playerPicker in playerPickers{
+                playerPicker.isUserInteractionEnabled = false
+            }
+        }
     }
     
     func getSamePickers() -> [UIPickerView] {
@@ -44,6 +56,7 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
         // Gets uniques
         return Array(Set(sameSelected))
     }
+    
     @IBAction func startGameTracking(_ sender: Any) {
         if getSamePickers().count == 0 {
             self.performSegue(withIdentifier: "toScoreTracking", sender: self)
@@ -71,12 +84,14 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         // Gotta add one for me.
+        print("Picker tag: \(pickerView.tag)")
         return possiblePlayers.count
     }
     
     // Telling the picker's what to display
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         // We start with a list of our friends, but only allow ones that are verified? At least for now...
+        
         return possiblePlayers[row].username
     }
     
