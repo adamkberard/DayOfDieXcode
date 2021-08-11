@@ -1,0 +1,6 @@
+framework module Pods_DayOfDieTests {
+  umbrella header "Pods-DayOfDieTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

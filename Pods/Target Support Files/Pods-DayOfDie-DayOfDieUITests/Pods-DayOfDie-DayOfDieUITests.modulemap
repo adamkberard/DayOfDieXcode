@@ -1,0 +1,6 @@
+framework module Pods_DayOfDie_DayOfDieUITests {
+  umbrella header "Pods-DayOfDie-DayOfDieUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
