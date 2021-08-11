@@ -20,7 +20,6 @@ class FriendDetailViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         friendNameLabel.text = friend!.getOtherUser().username
-        teamNameLabel.text = friend!.teamname
         winsLabel.text = String(friend!.wins)
         lossesLabel.text = String(friend!.losses)
     }
