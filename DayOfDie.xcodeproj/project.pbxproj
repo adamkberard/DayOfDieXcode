@@ -193,8 +193,8 @@
 		5A62548A25EEF0C500340AE0 /* DayOfDie */ = {
 			isa = PBXGroup;
 			children = (
+				5AE7DF2326C3C10B00282BC3 /* Auth */,
 				5A30E3F126BDC89E0043A91C /* User */,
-				5A741B41260D7429004651E7 /* Auth */,
 				5A741B50260D7B85004651E7 /* GameTracking */,
 				5A741B4A260D7B3A004651E7 /* Games */,
 				5A741B4B260D7B4B004651E7 /* Friends */,
@@ -226,18 +226,6 @@
 				5A6254AF25EEF0C600340AE0 /* Info.plist */,
 			);
 			path = DayOfDieUITests;
-			sourceTree = "<group>";
-		};
-		5A741B41260D7429004651E7 /* Auth */ = {
-			isa = PBXGroup;
-			children = (
-				5A840A5625F5B22D0039492D /* StartViewController.swift */,
-				5A840A5A25F5B22E0039492D /* LoginClasses.swift */,
-				5A840A5725F5B22E0039492D /* AuthValidators.swift */,
-				5A840A5825F5B22E0039492D /* RegisterViewController.swift */,
-				5A840A5925F5B22E0039492D /* SignInViewController.swift */,
-			);
-			path = Auth;
 			sourceTree = "<group>";
 		};
 		5A741B4A260D7B3A004651E7 /* Games */ = {
@@ -277,6 +265,18 @@
 				5AECABA32631251700C4AD7B /* ScoreBoardFiles */,
 			);
 			path = GameTracking;
+			sourceTree = "<group>";
+		};
+		5AE7DF2326C3C10B00282BC3 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				5A840A5625F5B22D0039492D /* StartViewController.swift */,
+				5A840A5A25F5B22E0039492D /* LoginClasses.swift */,
+				5A840A5725F5B22E0039492D /* AuthValidators.swift */,
+				5A840A5825F5B22E0039492D /* RegisterViewController.swift */,
+				5A840A5925F5B22E0039492D /* SignInViewController.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		5AECABA2263124EF00C4AD7B /* PlayerScorePickerFiles */ = {
