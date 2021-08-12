@@ -15,21 +15,13 @@ class FriendTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
         // Refreshing stuff
         self.refreshControl?.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
-        
-        // Loads the friends and users
-        // loadFriendsAndUsers()
     }
     
-    /*
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
     }
-    */
 
     // MARK: - Table view data source
 

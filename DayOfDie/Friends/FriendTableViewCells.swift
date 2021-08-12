@@ -67,9 +67,6 @@ class BaseFriendRequestTableViewCell: UITableViewCell {
             "status": FriendStatuses.NOTHING.rawValue
         ]
         
-        print("OKAY AGIN LOL")
-        print(parameters)
-        
         AF.request("\(URLInfo.baseUrl)/friends/", method: .post, parameters: parameters, headers: CurrentUser.getHeaders()).responseDecodable(of: Friend.self) { response in
             switch response.result {
                 case .success:
@@ -88,15 +85,6 @@ class BaseFriendRequestTableViewCell: UITableViewCell {
 class PendingFriendRequestTableViewCell: BaseFriendRequestTableViewCell {
 }
 
-class HistoryFriendTableViewCell: BaseFriendRequestTableViewCell{
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-        firstButton.setTitle("Send Request", for: .normal)
-        secondButton.isHidden = true
-    }
-}
-
 class WaitingFriendRequestTableViewCell: BaseFriendRequestTableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -113,6 +101,7 @@ class AddFriendTableViewCell: BaseFriendRequestTableViewCell{
         firstButton.setTitle("Send Request", for: .normal)
         secondButton.isHidden = true
     }
+    
 }
 
 class FriendTableViewCell: UITableViewCell {

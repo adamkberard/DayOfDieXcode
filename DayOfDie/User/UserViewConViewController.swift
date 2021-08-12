@@ -15,7 +15,7 @@ class UserViewConViewController: UIViewController {
     @IBOutlet weak var totalGamesLabel: UILabel!
     @IBOutlet weak var totalWinsLabel: UILabel!
     @IBOutlet weak var totalLossesLabel: UILabel!
-    @IBOutlet weak var newUsernameLabel: UITextField!
+    @IBOutlet weak var newUsernameTextField: UITextField!
     @IBOutlet weak var statusLabel: UILabel!
     
     var totalGames = 0 {
@@ -60,22 +60,24 @@ class UserViewConViewController: UIViewController {
     }
     
     @IBAction func changeUsernameButton(_ sender: Any) {
-        if newUsernameLabel.isHidden{
-            newUsernameLabel.isHidden = false
+        if newUsernameTextField.isHidden{
+            newUsernameTextField.isHidden = false
         }
         else{
             // Make sure the username isn't empty
             
             let parameters: [String: Any] = [
-                "username": newUsernameLabel!.text!,
+                "username": newUsernameTextField!.text!,
             ]
             
             AF.request("\(URLInfo.baseUrl)/users/\(CurrentUser.username)/", method: .patch, parameters: parameters, headers: CurrentUser.getHeaders()).responseDecodable(of: FullUser.self) { response in
                 switch response.result {
                     case .success:
+                        self.newUsernameTextField.isHidden = true
+                        self.changeUsernameInFriends(pasteName: response.value!.username)
+                        self.changeUsernameInAllUsers(pasteName: response.value!.username)
                         CurrentUser.username = response.value!.username
                         self.usernameLabel.text = CurrentUser.username
-                        self.newUsernameLabel.isHidden = true
                     case .failure:
                         self.statusLabel.isHidden = false
                         if (response.response != nil){
@@ -94,6 +96,27 @@ class UserViewConViewController: UIViewController {
         }
     }
     @IBAction func changePasswordButton(_ sender: Any) {
+    }
+    
+    // When I change the username I gotta go through and change the user's username in all their friends
+    func changeUsernameInFriends(pasteName: String){
+        for friend in CurrentUser.friends{
+            if friend.teamCaptain.username == CurrentUser.username{
+                friend.teamCaptain.username = pasteName
+            }
+            else if friend.teammate.username == CurrentUser.username{
+                friend.teammate.username = pasteName
+            }
+        }
+    }
+    
+    // Also I gotta change it in the list sent to us
+    func changeUsernameInAllUsers(pasteName: String){
+        for user in allUsers{
+            if user.username == CurrentUser.username{
+                user.username = pasteName
+            }
+        }
     }
     
     /*

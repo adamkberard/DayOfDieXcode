@@ -15,17 +15,19 @@ class FriendRequestTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
     }
-    // MARK: - Table view data source
-
+    
+    // MARK: - Table view data sourcew
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0{
+            print("Pending Friends: \(CurrentUser.pendingFriends.count)")
             return CurrentUser.pendingFriends.count
         }
         else {
+            print("Waiting Friends: \(CurrentUser.waitingFriends.count)")
             return CurrentUser.waitingFriends.count
         }
     }

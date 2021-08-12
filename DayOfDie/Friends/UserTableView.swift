@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddUserTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
+class UserTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     
     var friends : [Friend] = []
     var parentView : AddFriendViewController?

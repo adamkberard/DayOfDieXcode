@@ -10,6 +10,8 @@ import UIKit
 class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     //Player Text Fields
     @IBOutlet var playerPickers: [UIPickerView]!
+    @IBOutlet weak var startGameButton: UIButton!
+    @IBOutlet weak var statusLabel: UILabel!
     
     var possiblePlayers : [BasicUser] = []
     
@@ -29,51 +31,43 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
     }
     
     func setupPickers() {
+        possiblePlayers = []
         possiblePlayers.append(contentsOf: CurrentUser.approvedFriends.map({$0.getOtherUser()}))
         possiblePlayers.append(CurrentUser.basicUser)
+        print("Current possible players: \(possiblePlayers.count)")
         
         if(possiblePlayers.count < 4){
             for playerPicker in playerPickers{
                 playerPicker.isUserInteractionEnabled = false
             }
+            startGameButton.isEnabled = false
+            statusLabel.isHidden = false
+            statusLabel.text = "Must have at least three friends to start a game."
+        }
+        else {
+            startGameButton.isEnabled = pickerSelectionsAreGood()
+            statusLabel.isHidden = true
         }
     }
     
-    func getSamePickers() -> [UIPickerView] {
-        // List of the picker views with the same thing selected
-        var sameSelected : [UIPickerView] = []
-        
+    func pickerSelectionsAreGood() -> Bool {
         // We go through each one
         for playerPickerOne in playerPickers {
             for playerPickerTwo in playerPickers {
                 if playerPickerOne != playerPickerTwo {
                     if playerPickerOne.selectedRow(inComponent: 0) == playerPickerTwo.selectedRow(inComponent: 0) {
-                        sameSelected.append(contentsOf: [playerPickerOne, playerPickerTwo])
+                        return false
                     }
                 }
             }
         }
-        // Gets uniques
-        return Array(Set(sameSelected))
+        return true
     }
     
     @IBAction func startGameTracking(_ sender: Any) {
-        if getSamePickers().count == 0 {
+        // First I will make sure none of the people are duplicates
+        if pickerSelectionsAreGood() {
             self.performSegue(withIdentifier: "toScoreTracking", sender: self)
-        }
-        else{
-            print("DIDNT WORK BECAUSE \(getSamePickers().count)")
-        }
-    }
-    
-    func markBadPickers() {
-        let samePickers = getSamePickers()
-        let okayPickers = Array(Set(playerPickers).subtracting(samePickers))
-        for picker in samePickers{
-            picker.backgroundColor = UIColor.red
-        }
-        for picker in okayPickers{
-            picker.backgroundColor = UIColor.white
         }
     }
     
@@ -83,21 +77,34 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        // Gotta add one for me.
-        print("Picker tag: \(pickerView.tag)")
+        // Taking away three from the other three pickers
+        if possiblePlayers.count < 4 {
+            return 1
+        }
         return possiblePlayers.count
     }
     
     // Telling the picker's what to display
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         // We start with a list of our friends, but only allow ones that are verified? At least for now...
+        if possiblePlayers.count < 4 {
+            return ""
+        }
         
         return possiblePlayers[row].username
     }
     
     // When any of the pickers are selected
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
-        markBadPickers()
+        if pickerSelectionsAreGood(){
+            startGameButton.isEnabled = true
+            statusLabel.isHidden = true
+        }
+        else{
+            startGameButton.isEnabled = false
+            statusLabel.isHidden = false
+            statusLabel.text = "Must have four unique players."
+        }
     }
 
     //MARK: Segue Function
@@ -107,14 +114,6 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
         
         if let identifier = segue.identifier {
             print("The identifier is: \(identifier)")
-            /*
-            if identifier == "toRulePicking" {
-                guard let viewController = segue.destination as? ChooseRulesViewController else {
-                 fatalError("Unexpected destination: \(segue.destination)")}
-                for i in (0...3){
-                    viewController.playerNames.append(CurrentUser.getListFriendBasicUsers()[playerPickers[i].selectedRow(inComponent: 0)].username) 
-                }
-            }*/
             if identifier == "toScoreTracking" {
                 guard let viewController = segue.destination as? MainTrackingViewController else {
                  fatalError("Unexpected destination: \(segue.destination)")}
