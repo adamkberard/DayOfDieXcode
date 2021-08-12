@@ -124,6 +124,7 @@
                     <navigationItem key="navigationItem" title="Players" id="7Le-ek-B8p"/>
                     <connections>
                         <outlet property="startGameButton" destination="Ec2-aS-RH2" id="tqj-Vo-oGF"/>
+                        <outlet property="statusLabel" destination="Vrk-GK-iPt" id="xju-Dp-j9N"/>
                         <outletCollection property="playerPickers" destination="UWV-Is-cjV" collectionClass="NSMutableArray" id="OoP-1O-vkO"/>
                         <outletCollection property="playerPickers" destination="itg-uy-Thx" collectionClass="NSMutableArray" id="vvy-Oc-fXI"/>
                         <outletCollection property="playerPickers" destination="141-zc-2en" collectionClass="NSMutableArray" id="hdK-wp-tMX"/>

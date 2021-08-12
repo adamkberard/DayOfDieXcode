@@ -16,7 +16,7 @@ class FriendRequestTableViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
-    // MARK: - Table view data source
+    // MARK: - Table view data sourcew
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
