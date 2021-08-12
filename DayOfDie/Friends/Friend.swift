@@ -58,4 +58,12 @@ class Friend : Codable, Equatable {
         }
         return lhs.teamCaptain == rhs.teammate && lhs.teammate == rhs.teamCaptain
     }
+    
+    enum CodingKeys : String, CodingKey {
+        case teamCaptain = "team_captain"
+        case teammate
+        case uuid
+        case wins
+        case losses
+    }
 }

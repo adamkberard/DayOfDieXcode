@@ -46,7 +46,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="rO1-ia-Sqo">
                                                 <rect key="frame" x="30" y="0.0" width="177" height="432"/>
                                                 <subviews>
-                                                    <pickerView tag="-2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UWV-Is-cjV" userLabel="P1 Picker View">
+                                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UWV-Is-cjV" userLabel="P1 Picker View">
                                                         <rect key="frame" x="0.0" y="0.0" width="177" height="216"/>
                                                     </pickerView>
                                                     <pickerView tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="itg-uy-Thx" userLabel="P2 Picker View">
@@ -138,7 +138,7 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MainTrackingViewController" customModule="DayOfDie" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1571,7 +1571,7 @@
                     <navigationItem key="navigationItem" id="J0i-N8-cTj"/>
                     <connections>
                         <outlet property="emailLabel" destination="RC8-AQ-8fj" id="NNn-aW-sBx"/>
-                        <outlet property="newUsernameLabel" destination="1I8-hZ-yMu" id="SjB-DU-hul"/>
+                        <outlet property="newUsernameTextField" destination="1I8-hZ-yMu" id="SjB-DU-hul"/>
                         <outlet property="statusLabel" destination="Rra-42-n5k" id="1JI-Iy-UeV"/>
                         <outlet property="totalGamesLabel" destination="RPf-AZ-IW5" id="WNV-ll-aaN"/>
                         <outlet property="totalLossesLabel" destination="x1s-cK-o75" id="Jje-gO-6If"/>
@@ -1706,7 +1706,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Add Friend" id="rVd-Ti-SsZ"/>
                     <connections>
-                        <outlet property="allUsersTable" destination="Mp7-8P-Pu2" id="loo-Bh-qed"/>
+                        <outlet property="addUsersTable" destination="Mp7-8P-Pu2" id="loo-Bh-qed"/>
                         <outlet property="searchBar" destination="p3I-Zy-wWn" id="Aw3-pG-vXP"/>
                     </connections>
                 </viewController>

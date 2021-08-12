@@ -29,6 +29,7 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
     }
     
     func setupPickers() {
+        possiblePlayers = []
         possiblePlayers.append(contentsOf: CurrentUser.approvedFriends.map({$0.getOtherUser()}))
         possiblePlayers.append(CurrentUser.basicUser)
         
@@ -83,14 +84,19 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        // Gotta add one for me.
-        print("Picker tag: \(pickerView.tag)")
-        return possiblePlayers.count
+        // Taking away three from the other three pickers
+        if possiblePlayers.count < 4 {
+            return 1
+        }
+        return possiblePlayers.count - 3
     }
     
     // Telling the picker's what to display
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         // We start with a list of our friends, but only allow ones that are verified? At least for now...
+        if possiblePlayers.count < 4 {
+            return ""
+        }
         
         return possiblePlayers[row].username
     }
