@@ -88,7 +88,7 @@ class CurrentUser : Codable{
                 nothingFriends.append(friend)
                 nothingFriendsAsBasicUsers.append(friend.getOtherUser())
             default:
-                print("Someday I'll deal with this.")
+                print("Friend has invalid status.")
             }
         }
     }

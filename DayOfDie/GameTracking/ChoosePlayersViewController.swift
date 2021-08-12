@@ -10,6 +10,7 @@ import UIKit
 class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     //Player Text Fields
     @IBOutlet var playerPickers: [UIPickerView]!
+    @IBOutlet weak var startGameButton: UIButton!
     
     var possiblePlayers : [BasicUser] = []
     
@@ -37,6 +38,7 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
             for playerPicker in playerPickers{
                 playerPicker.isUserInteractionEnabled = false
             }
+            startGameButton.isEnabled = false
         }
     }
     
@@ -59,6 +61,7 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
     }
     
     @IBAction func startGameTracking(_ sender: Any) {
+        // First I will make sure none of the people are duplicates
         if getSamePickers().count == 0 {
             self.performSegue(withIdentifier: "toScoreTracking", sender: self)
         }
@@ -113,14 +116,6 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
         
         if let identifier = segue.identifier {
             print("The identifier is: \(identifier)")
-            /*
-            if identifier == "toRulePicking" {
-                guard let viewController = segue.destination as? ChooseRulesViewController else {
-                 fatalError("Unexpected destination: \(segue.destination)")}
-                for i in (0...3){
-                    viewController.playerNames.append(CurrentUser.getListFriendBasicUsers()[playerPickers[i].selectedRow(inComponent: 0)].username) 
-                }
-            }*/
             if identifier == "toScoreTracking" {
                 guard let viewController = segue.destination as? MainTrackingViewController else {
                  fatalError("Unexpected destination: \(segue.destination)")}

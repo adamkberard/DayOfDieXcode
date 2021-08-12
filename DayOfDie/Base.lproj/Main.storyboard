@@ -123,6 +123,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Players" id="7Le-ek-B8p"/>
                     <connections>
+                        <outlet property="startGameButton" destination="Ec2-aS-RH2" id="tqj-Vo-oGF"/>
                         <outletCollection property="playerPickers" destination="UWV-Is-cjV" collectionClass="NSMutableArray" id="OoP-1O-vkO"/>
                         <outletCollection property="playerPickers" destination="itg-uy-Thx" collectionClass="NSMutableArray" id="vvy-Oc-fXI"/>
                         <outletCollection property="playerPickers" destination="141-zc-2en" collectionClass="NSMutableArray" id="hdK-wp-tMX"/>
@@ -1370,7 +1371,7 @@
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b8X-da-e7X">
                                                     <rect key="frame" x="276" y="0.0" width="138" height="41"/>
-                                                    <state key="normal" title="Deny">
+                                                    <state key="normal" title="Cancel">
                                                         <color key="titleColor" systemColor="systemRedColor"/>
                                                     </state>
                                                     <connections>
@@ -1595,7 +1596,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="51"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mp7-8P-Pu2" customClass="AddUserTableView" customModule="DayOfDie" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mp7-8P-Pu2" customClass="UserTableView" customModule="DayOfDie" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="139" width="414" height="674"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>

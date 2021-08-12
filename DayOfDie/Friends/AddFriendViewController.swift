@@ -9,7 +9,7 @@ import UIKit
 
 class AddFriendViewController: UIViewController, UISearchBarDelegate {
 
-    @IBOutlet weak var addUsersTable: AddUserTableView!
+    @IBOutlet weak var addUsersTable: UserTableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {

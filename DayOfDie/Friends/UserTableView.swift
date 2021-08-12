@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddUserTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
+class UserTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     
     var friends : [Friend] = []
     var parentView : AddFriendViewController?
@@ -26,8 +26,6 @@ class AddUserTableView: UITableView, UITableViewDelegate, UITableViewDataSource 
         var users = allUsers
         friends = []
         
-        print("LOADING DATA")
-        print(CurrentUser.username)
         // Removing current user's username and also filtering search stuff
         users.removeAll(where: {
             !$0.username.starts(with: parentView?.searchBar.text ?? "") ||

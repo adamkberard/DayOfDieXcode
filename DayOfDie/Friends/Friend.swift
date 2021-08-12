@@ -65,5 +65,6 @@ class Friend : Codable, Equatable {
         case uuid
         case wins
         case losses
+        case status
     }
 }
