@@ -42,10 +42,15 @@ class MainTrackingViewController: UIViewController {
         super.viewDidLoad()
         saveButton.isEnabled = false
         
+        
         // Create the game
         for playerScoreTracker in playerScoreTrackers! {
             playerScoreTracker.mainTrackingViewController = self
         }
+        scoreboard.playerOne = playerOne
+        scoreboard.playerTwo = playerTwo
+        scoreboard.playerThree = playerThree
+        scoreboard.playerFour = playerFour
         
         (playerScoreTrackers!)[0].player = playerOne
         (playerScoreTrackers!)[0].playerNumber = 1

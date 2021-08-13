@@ -10,17 +10,38 @@ import UIKit
 @IBDesignable
 class PlayersTableScoreView: UIView {
     
-    @IBOutlet weak var teamOneLabel: UILabel!
-    @IBOutlet weak var teamTwoLabel: UILabel!
-    
     @IBOutlet weak var teamOneScoreLabel: UILabel!
     @IBOutlet weak var teamTwoScoreLabel: UILabel!
+    @IBOutlet weak var playerOneLabel: UILabel!
+    @IBOutlet weak var playerTwoLabel: UILabel!
+    @IBOutlet weak var playerThreeLabel: UILabel!
+    @IBOutlet weak var playerFourLabel: UILabel!
     
     var teamOneScore : Int = 0 {
-        didSet {teamOneScoreLabel.text = String(teamOneScore)}
+        didSet {teamOneScoreLabel.text = "Team One: \(teamOneScore)"}
     }
     var teamTwoScore : Int = 0 {
-        didSet {teamTwoScoreLabel.text = String(teamTwoScore)}
+        didSet {teamTwoScoreLabel.text = "Team Two: \(teamTwoScore)"}
+    }
+    var playerOne : BasicUser = BasicUser(username: "playerOne") {
+        didSet{
+            playerOneLabel.text = playerOne.username
+        }
+    }
+    var playerTwo : BasicUser = BasicUser(username: "playerTwo"){
+        didSet{
+            playerTwoLabel.text = playerTwo.username
+        }
+    }
+    var playerThree : BasicUser = BasicUser(username: "playerThree"){
+        didSet{
+            playerThreeLabel.text = playerThree.username
+        }
+    }
+    var playerFour : BasicUser = BasicUser(username: "playerFour"){
+        didSet{
+            playerFourLabel.text = playerFour.username
+        }
     }
 
     override init(frame: CGRect) {

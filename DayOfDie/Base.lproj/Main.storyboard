@@ -145,17 +145,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="osQ-Nl-GHe">
-                                <rect key="frame" x="10" y="98" width="394" height="705"/>
+                                <rect key="frame" x="10" y="98" width="394" height="575"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WUc-qi-FTJ" customClass="PlayersTableScoreView" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="394" height="205"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="75"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" priority="999" constant="200" id="n11-w6-ryV"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="kXk-o2-6pr">
-                                        <rect key="frame" x="0.0" y="230" width="394" height="475"/>
+                                        <rect key="frame" x="0.0" y="100" width="394" height="475"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mhA-zv-DCT" customClass="PlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="394" height="100"/>
