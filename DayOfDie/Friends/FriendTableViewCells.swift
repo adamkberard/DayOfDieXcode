@@ -43,21 +43,21 @@ class BaseFriendRequestTableViewCell: UITableViewCell {
             "teammate": friend!.getOtherUser().username,
             "status": FriendStatuses.ACCEPTED.rawValue
         ]
-        
-        AF.request("\(URLInfo.baseUrl)/friends/", method: .post, parameters: parameters, headers: CurrentUser.getHeaders()).responseDecodable(of: Friend.self) { response in
+        /*
+        AF.request("\(URLInfo.baseUrl)/friends/", method: .post, parameters: parameters, headers: LoggedInUser.getHeaders()).responseDecodable(of: Friend.self) { response in
             print()
             switch response.result {
                 case .success:
-                    if let index = CurrentUser.friends.firstIndex(of: self.friend!){
-                        CurrentUser.friends.remove(at: index)
+                    if let index = LoggedInUser.friends.firstIndex(of: self.friend!){
+                        LoggedInUser.friends.remove(at: index)
                     }
                     
-                    CurrentUser.friends.append(response.value!)
+                    LoggedInUser.friends.append(response.value!)
                     self.parentTableView?.reloadData()
                 case let .failure(error):
                     print(error)
             }
-        }
+        }*/
     }
     
     @IBAction func secondButtonPressed(_ sender: Any) {
@@ -66,19 +66,19 @@ class BaseFriendRequestTableViewCell: UITableViewCell {
             "teammate": friend!.getOtherUser().username,
             "status": FriendStatuses.NOTHING.rawValue
         ]
-        
-        AF.request("\(URLInfo.baseUrl)/friends/", method: .post, parameters: parameters, headers: CurrentUser.getHeaders()).responseDecodable(of: Friend.self) { response in
+        /*
+        AF.request("\(URLInfo.baseUrl)/friends/", method: .post, parameters: parameters, headers: LoggedInUser.getHeaders()).responseDecodable(of: Friend.self) { response in
             switch response.result {
                 case .success:
-                    if let index = CurrentUser.friends.firstIndex(of: self.friend!) {
-                        CurrentUser.friends.remove(at: index)
+                    if let index = LoggedInUser.friends.firstIndex(of: self.friend!) {
+                        LoggedInUser.friends.remove(at: index)
                     }
-                    CurrentUser.friends.append(response.value!)
+                    LoggedInUser.friends.append(response.value!)
                     self.parentTableView?.reloadData()
                 case let .failure(error):                    
                     print(error)
             }
-        }
+        }*/
     }
 }
 

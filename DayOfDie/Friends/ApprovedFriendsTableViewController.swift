@@ -32,7 +32,7 @@ class FriendTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return CurrentUser.approvedFriends.count
+        return Friend.approvedFriends.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -43,7 +43,7 @@ class FriendTableViewController: UITableViewController {
         }
         
         // Fetches the appropriate friend for the data source layout.
-        let friend = CurrentUser.approvedFriends[indexPath.row]
+        let friend = Friend.approvedFriends[indexPath.row]
         cell.friendUsernameLabel.text = friend.getOtherUser().username
         cell.winsLabel.text = String(friend.wins)
         cell.lossesLabel.text = String(friend.losses)
@@ -52,15 +52,16 @@ class FriendTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedFriend = CurrentUser.approvedFriends[indexPath.row]
+        selectedFriend = Friend.approvedFriends[indexPath.row]
         self.performSegue(withIdentifier: "toFriendDetailView", sender: self)
     }
     
     func loadFriendsAndUsers() {
-        AF.request("\(URLInfo.baseUrl)/friends/", method: .get, headers: CurrentUser.getHeaders()).responseDecodable(of: [Friend].self) { response in
+        /*
+        AF.request("\(URLInfo.baseUrl)/friends/", method: .get, headers: LoggedInUser.getHeaders()).responseDecodable(of: [Friend].self) { response in
             switch response.result {
                 case .success:
-                    CurrentUser.friends = response.value!
+                    LoggedInUser.friends = response.value!
                 case let .failure(error):
                     print(error)
             }
@@ -68,7 +69,7 @@ class FriendTableViewController: UITableViewController {
             self.refreshControl?.endRefreshing()
         }
         
-        AF.request("\(URLInfo.baseUrl)/friends/all_users", method: .get, headers: CurrentUser.getHeaders()).responseDecodable(of: [BasicUser].self) { response in
+        AF.request("\(URLInfo.baseUrl)/users/", method: .get, headers: LoggedInUser.getHeaders()).responseDecodable(of: [BasicUser].self) { response in
             switch response.result {
                 case .success:
                     allUsers = response.value!
@@ -78,6 +79,7 @@ class FriendTableViewController: UITableViewController {
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
         }
+ */
     }
     
     @IBAction func requestsButtonPressed(_ sender: Any) {

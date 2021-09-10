@@ -59,41 +59,25 @@ class RegisterViewController:
         activityIndicator.startAnimating()
         view.isUserInteractionEnabled = false
 
-        let parameters: [String: Any] = [
-            "email": email,
-            "password": password
-        ]
-        
-        AF.request("\(URLInfo.baseUrl)/auth/register/", method: .post, parameters: parameters).responseDecodable(of: LoginPack.self) { response in
-            switch response.result {
-                case .success:
-                    CurrentUser.username = response.value!.user.username
-                    CurrentUser.uuid = response.value!.user.uuid
-                    CurrentUser.email = response.value!.user.email
-                    CurrentUser.token = response.value!.user.token
-                    
-                    CurrentUser.games = response.value!.games
-                    CurrentUser.friends = response.value!.friends
-
-                    allUsers = response.value!.all_users
-                    self.performSegue(withIdentifier: "registerSegue", sender: self)
-                case .failure:
-                    self.statusLabel.isHidden = false
-                    if (response.response != nil){
-                        switch response.response!.statusCode{
-                        case 400:
-                            self.statusLabel.text = "Email or password invalid."
-                        case 500:
-                            self.statusLabel.text = "Email already used."
-                        default:
-                            self.statusLabel.text = "HTTP Error: \(response.response!.statusCode)"
-                        }
-                    }
-                    else{
-                        self.statusLabel.text = "No response."
-                    }
+        APICalls.register(email: email, password: password) {status, returnDict in
+            if status{
+                LoggedInUser.token = returnDict["token"] as! String
+                LoggedInUser.user.username = returnDict["username"] as! String
+                LoggedInUser.email = email
+                self.performSegue(withIdentifier: "registerSegue", sender: self)
+            }
+            else{
+                self.statusLabel.textColor = UIColor.red
+                self.statusLabel.isHidden = false
+                let errors : [String] = returnDict["errors"] as! [String]
+                var errorString : String = ""
+                for error in errors{
+                    errorString.append("\(error)\n")
+                }
+                self.statusLabel.text = errorString
             }
         }
+        
         view.isUserInteractionEnabled = true
     }
 }

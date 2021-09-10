@@ -8,30 +8,23 @@
 import UIKit
 
 @IBDesignable
-class PlayerScorePicker: UIView {
+class PlayerPointsPlayerScorePicker: UIView {
 
     // Mark: UI Vars
     @IBOutlet weak var playerLabel: UILabel!
     @IBOutlet weak var pointsLabel: UILabel!
+    
+    var points : Int = 0 {
+        didSet{
+            pointsLabel.text = String(points)
+        }
+    }
     
     var mainTrackingViewController : MainTrackingViewController?
     var playerNumber : Int = 0
     
     var player : User? {
         didSet { playerLabel.text = player!.username }
-    }
-    
-    var numPoints : Int = 0 {
-        didSet {
-            pointsLabel.text = String(numPoints)
-            mainTrackingViewController!.pointsDidChange()
-        }
-    }
-    
-    var points : [Point] = [] {
-        didSet{
-            numPoints = Point.getScore(points: points)
-        }
     }
     
     // Mark: View Setup
@@ -67,4 +60,5 @@ class PlayerScorePicker: UIView {
 
         return view
     }
+    
 }

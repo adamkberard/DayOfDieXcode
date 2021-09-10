@@ -7,9 +7,10 @@
 
 import UIKit
 
-class Game : Codable {
-    var timeStarted : String?
-    var timeEnded : String?
+class Game : Decodable, Encodable, Equatable {
+    static var allGames : [Game] = []
+    var timeStarted : Date?
+    var timeEnded : Date?
     
     var uuid : UUID?
     var teamOne : Friend
@@ -30,13 +31,35 @@ class Game : Codable {
         self.points = points
     }
     
-    init(playerOne: BasicUser, playerTwo: BasicUser, playerThree: BasicUser, playerFour: BasicUser, points: [Point]){
+    init(playerOne: User, playerTwo: User, playerThree: User, playerFour: User, points: [Point]){
         self.teamOne = Friend(teamCaptain: playerOne, teammate: playerTwo)
         self.teamTwo = Friend(teamCaptain: playerThree, teammate: playerFour)
         self.teamOneScore = 0
         self.teamTwoScore = 0
         self.confirmed = false
         self.points = points
+    }
+    
+    required init(from decoder: Decoder) throws {
+
+      // Get our container for this subclass' coding keys
+              let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        let timeStartedString = try container.decode(String.self, forKey: .timeStarted)
+        let timeEndedString = try container.decode(String.self, forKey: .timeStarted)
+        print("timeStartedString \(timeStartedString)")
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        self.timeStarted = dateFormatter.date(from: timeStartedString)
+        self.timeEnded = dateFormatter.date(from: timeEndedString)
+        
+        self.uuid = try container.decode(UUID.self, forKey: .uuid)
+        self.teamOne = try container.decode(Friend.self, forKey: .teamOne)
+        self.teamTwo = try container.decode(Friend.self, forKey: .teamTwo)
+        self.teamOneScore = try container.decode(Int.self, forKey: .teamOneScore)
+        self.teamTwoScore = try container.decode(Int.self, forKey: .teamTwoScore)
+        self.confirmed = try container.decode(Bool.self, forKey: .confirmed)
+        self.points = try container.decode([Point].self, forKey: .points)
     }
     
     enum CodingKeys : String, CodingKey {
@@ -50,5 +73,9 @@ class Game : Codable {
         case teamTwoScore = "team_two_score"
         case confirmed
         case points
+    }
+    
+    static func == (lhs: Game, rhs: Game) -> Bool {
+        return lhs.uuid == rhs.uuid
     }
 }

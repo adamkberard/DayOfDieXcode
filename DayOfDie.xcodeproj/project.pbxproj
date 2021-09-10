@@ -9,12 +9,18 @@
 /* Begin PBXBuildFile section */
 		17072CBC79790F7C220F16AB /* Pods_DayOfDieTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE7D6D7994CB3F84710781E1 /* Pods_DayOfDieTests.framework */; };
 		30CC533BCB0BB66E622973D0 /* Pods_DayOfDie_DayOfDieUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5B5E6DA33B8DA4B869B3A8 /* Pods_DayOfDie_DayOfDieUITests.framework */; };
+		5A09493026C5FEAB00C66877 /* StatsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A09492F26C5FEAB00C66877 /* StatsTableViewController.swift */; };
+		5A09493226C5FF2600C66877 /* Stat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A09493126C5FF2600C66877 /* Stat.swift */; };
+		5A09493426C6039000C66877 /* StatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A09493326C6039000C66877 /* StatTableViewCell.swift */; };
 		5A1A9B7E26C3B10E00B903DB /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1A9B7D26C3B10000B903DB /* Friend.swift */; };
+		5A20EF1B26DB17C5009CC606 /* PlayerPointsPlayerScorePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A20EF1A26DB17C5009CC606 /* PlayerPointsPlayerScorePicker.swift */; };
+		5A20EF1D26DB1801009CC606 /* PlayerScorePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A20EF1C26DB1801009CC606 /* PlayerScorePicker.swift */; };
+		5A20EF2126DB18C3009CC606 /* PlayerPointsPlayerScorePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A20EF2026DB18C3009CC606 /* PlayerPointsPlayerScorePicker.xib */; };
 		5A23AE4D25F16816005C2310 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23AE4C25F16816005C2310 /* Game.swift */; };
 		5A30E3F326BDC8C40043A91C /* UserViewConViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A30E3F226BDC8C40043A91C /* UserViewConViewController.swift */; };
 		5A582AF62631497E0004E7F0 /* PlayerPointsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A582AF52631497E0004E7F0 /* PlayerPointsTableViewController.swift */; };
 		5A582AFF263149EE0004E7F0 /* PlayerPointsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A582AFD263149EE0004E7F0 /* PlayerPointsTableViewCell.swift */; };
-		5A582B0E26314AE20004E7F0 /* PlayerScorePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A582B0D26314AE20004E7F0 /* PlayerScorePicker.xib */; };
+		5A582B0E26314AE20004E7F0 /* FullStatsPlayerScorePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A582B0D26314AE20004E7F0 /* FullStatsPlayerScorePicker.xib */; };
 		5A62548C25EEF0C500340AE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A62548B25EEF0C500340AE0 /* AppDelegate.swift */; };
 		5A62548E25EEF0C500340AE0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A62548D25EEF0C500340AE0 /* SceneDelegate.swift */; };
 		5A62549025EEF0C500340AE0 /* MainTrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A62548F25EEF0C500340AE0 /* MainTrackingViewController.swift */; };
@@ -34,21 +40,22 @@
 		5A83FACA260FB24B00831C68 /* ChoosePlayersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A741B5F260D99B3004651E7 /* ChoosePlayersViewController.swift */; };
 		5A83FAD12610F78400831C68 /* MainTrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A62548F25EEF0C500340AE0 /* MainTrackingViewController.swift */; };
 		5A83FAD52610F78400831C68 /* MainTrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A62548F25EEF0C500340AE0 /* MainTrackingViewController.swift */; };
-		5A840A5B25F5B22E0039492D /* LoginClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A840A5A25F5B22E0039492D /* LoginClasses.swift */; };
 		5A840A5C25F5B22E0039492D /* AuthValidators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A840A5725F5B22E0039492D /* AuthValidators.swift */; };
 		5A840A5D25F5B22E0039492D /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A840A5625F5B22D0039492D /* StartViewController.swift */; };
 		5A840A5E25F5B22E0039492D /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A840A5825F5B22E0039492D /* RegisterViewController.swift */; };
 		5A840A5F25F5B22E0039492D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A840A5925F5B22E0039492D /* SignInViewController.swift */; };
 		5A840A6625F5B3560039492D /* URLInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A840A6525F5B3560039492D /* URLInfo.swift */; };
+		5A8DDBFE26DF4213000EFE9F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8DDBFD26DF4213000EFE9F /* User.swift */; };
 		5A8DE2DB26410AAA00AE353B /* FriendTableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8DE2D026410A9A00AE353B /* FriendTableViewCells.swift */; };
 		5A976A782620A04000E5B7F6 /* GameDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A976A772620A04000E5B7F6 /* GameDetailViewController.swift */; };
 		5A9813F72617F62800C37E2C /* ApprovedFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9813F62617F62800C37E2C /* ApprovedFriendsTableViewController.swift */; };
 		5AC3B75426312D3C0079C9FB /* PlayersTableScoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AC3B75326312D3C0079C9FB /* PlayersTableScoreView.xib */; };
 		5AC3B766263132790079C9FB /* PlayersTableScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC3B75826312D630079C9FB /* PlayersTableScoreView.swift */; };
+		5AC7321526DD79C2008A3DFC /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC7321426DD79C2008A3DFC /* LoadingViewController.swift */; };
 		5AD81E822634BC2A00FBAB73 /* FriendDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD81E812634BC2A00FBAB73 /* FriendDetailViewController.swift */; };
 		5AE28ECA263A8C5C00105666 /* PendingFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE28EC9263A8C5C00105666 /* PendingFriendsTableViewController.swift */; };
 		5AE28ED2263A913500105666 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE28ED1263A913500105666 /* AddFriendViewController.swift */; };
-		5AECAB9A2630E29800C4AD7B /* PlayerScorePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AECAB992630E29800C4AD7B /* PlayerScorePicker.swift */; };
+		5AECAB9A2630E29800C4AD7B /* FullStatsPlayerScorePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AECAB992630E29800C4AD7B /* FullStatsPlayerScorePicker.swift */; };
 		7532A687BC80B823DC73E17C /* Pods_DayOfDie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7BA17B4CCE1A66794031A9B /* Pods_DayOfDie.framework */; };
 /* End PBXBuildFile section */
 
@@ -73,12 +80,18 @@
 		2254E54943498E87AB5440BE /* Pods-DayOfDie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DayOfDie.debug.xcconfig"; path = "Target Support Files/Pods-DayOfDie/Pods-DayOfDie.debug.xcconfig"; sourceTree = "<group>"; };
 		2C5B5E6DA33B8DA4B869B3A8 /* Pods_DayOfDie_DayOfDieUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DayOfDie_DayOfDieUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		37F14D330D1BC50004B5EE5F /* Pods-DayOfDie-DayOfDieUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DayOfDie-DayOfDieUITests.debug.xcconfig"; path = "Target Support Files/Pods-DayOfDie-DayOfDieUITests/Pods-DayOfDie-DayOfDieUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		5A09492F26C5FEAB00C66877 /* StatsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTableViewController.swift; sourceTree = "<group>"; };
+		5A09493126C5FF2600C66877 /* Stat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stat.swift; sourceTree = "<group>"; };
+		5A09493326C6039000C66877 /* StatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatTableViewCell.swift; sourceTree = "<group>"; };
 		5A1A9B7D26C3B10000B903DB /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		5A20EF1A26DB17C5009CC606 /* PlayerPointsPlayerScorePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPointsPlayerScorePicker.swift; sourceTree = "<group>"; };
+		5A20EF1C26DB1801009CC606 /* PlayerScorePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScorePicker.swift; sourceTree = "<group>"; };
+		5A20EF2026DB18C3009CC606 /* PlayerPointsPlayerScorePicker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerPointsPlayerScorePicker.xib; sourceTree = "<group>"; };
 		5A23AE4C25F16816005C2310 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		5A30E3F226BDC8C40043A91C /* UserViewConViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewConViewController.swift; sourceTree = "<group>"; };
 		5A582AF52631497E0004E7F0 /* PlayerPointsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPointsTableViewController.swift; sourceTree = "<group>"; };
 		5A582AFD263149EE0004E7F0 /* PlayerPointsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPointsTableViewCell.swift; sourceTree = "<group>"; };
-		5A582B0D26314AE20004E7F0 /* PlayerScorePicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerScorePicker.xib; sourceTree = "<group>"; };
+		5A582B0D26314AE20004E7F0 /* FullStatsPlayerScorePicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FullStatsPlayerScorePicker.xib; sourceTree = "<group>"; };
 		5A62548825EEF0C500340AE0 /* DayOfDie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DayOfDie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A62548B25EEF0C500340AE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A62548D25EEF0C500340AE0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,18 +115,19 @@
 		5A840A5725F5B22E0039492D /* AuthValidators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthValidators.swift; path = /Users/aberard/Programming/DayOfDie/DayOfDie/DayOfDie/AuthValidators.swift; sourceTree = "<absolute>"; };
 		5A840A5825F5B22E0039492D /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegisterViewController.swift; path = /Users/aberard/Programming/DayOfDie/DayOfDie/DayOfDie/RegisterViewController.swift; sourceTree = "<absolute>"; };
 		5A840A5925F5B22E0039492D /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignInViewController.swift; path = /Users/aberard/Programming/DayOfDie/DayOfDie/DayOfDie/SignInViewController.swift; sourceTree = "<absolute>"; };
-		5A840A5A25F5B22E0039492D /* LoginClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginClasses.swift; path = /Users/aberard/Programming/DayOfDie/DayOfDie/DayOfDie/LoginClasses.swift; sourceTree = "<absolute>"; };
 		5A840A6525F5B3560039492D /* URLInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLInfo.swift; sourceTree = "<group>"; };
+		5A8DDBFD26DF4213000EFE9F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = ../../../../../Documents/User.swift; sourceTree = "<group>"; };
 		5A8DE2D026410A9A00AE353B /* FriendTableViewCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCells.swift; sourceTree = "<group>"; };
 		5A976A772620A04000E5B7F6 /* GameDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailViewController.swift; sourceTree = "<group>"; };
 		5A9813F62617F62800C37E2C /* ApprovedFriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovedFriendsTableViewController.swift; sourceTree = "<group>"; };
 		5AC3B75326312D3C0079C9FB /* PlayersTableScoreView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayersTableScoreView.xib; sourceTree = "<group>"; };
 		5AC3B75826312D630079C9FB /* PlayersTableScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersTableScoreView.swift; sourceTree = "<group>"; };
+		5AC7321426DD79C2008A3DFC /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoadingViewController.swift; path = DayOfDie/LoadingViewController.swift; sourceTree = SOURCE_ROOT; };
 		5AD7FD9826C3958F001FB735 /* Manual Testing */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Manual Testing"; sourceTree = "<group>"; };
 		5AD81E812634BC2A00FBAB73 /* FriendDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDetailViewController.swift; sourceTree = "<group>"; };
 		5AE28EC9263A8C5C00105666 /* PendingFriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingFriendsTableViewController.swift; sourceTree = "<group>"; };
 		5AE28ED1263A913500105666 /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
-		5AECAB992630E29800C4AD7B /* PlayerScorePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerScorePicker.swift; sourceTree = "<group>"; };
+		5AECAB992630E29800C4AD7B /* FullStatsPlayerScorePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullStatsPlayerScorePicker.swift; sourceTree = "<group>"; };
 		95F22CEC3258E2AFC763950E /* Pods-DayOfDie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DayOfDie.release.xcconfig"; path = "Target Support Files/Pods-DayOfDie/Pods-DayOfDie.release.xcconfig"; sourceTree = "<group>"; };
 		9C8037FB6D92798CB0952A04 /* Pods-DayOfDieTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DayOfDieTests.release.xcconfig"; path = "Target Support Files/Pods-DayOfDieTests/Pods-DayOfDieTests.release.xcconfig"; sourceTree = "<group>"; };
 		DE7D6D7994CB3F84710781E1 /* Pods_DayOfDieTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DayOfDieTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,10 +174,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5A09492E26C5FE8D00C66877 /* Stats */ = {
+			isa = PBXGroup;
+			children = (
+				5A09493126C5FF2600C66877 /* Stat.swift */,
+				5A09492F26C5FEAB00C66877 /* StatsTableViewController.swift */,
+				5A09493326C6039000C66877 /* StatTableViewCell.swift */,
+			);
+			path = Stats;
+			sourceTree = "<group>";
+		};
 		5A30E3F126BDC89E0043A91C /* User */ = {
 			isa = PBXGroup;
 			children = (
 				5A30E3F226BDC8C40043A91C /* UserViewConViewController.swift */,
+				5A8DDBFD26DF4213000EFE9F /* User.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -198,6 +223,7 @@
 				5A741B50260D7B85004651E7 /* GameTracking */,
 				5A741B4A260D7B3A004651E7 /* Games */,
 				5A741B4B260D7B4B004651E7 /* Friends */,
+				5A09492E26C5FE8D00C66877 /* Stats */,
 				5A62548B25EEF0C500340AE0 /* AppDelegate.swift */,
 				5A62548D25EEF0C500340AE0 /* SceneDelegate.swift */,
 				5A62549125EEF0C500340AE0 /* Main.storyboard */,
@@ -270,11 +296,11 @@
 		5AE7DF2326C3C10B00282BC3 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				5A840A5625F5B22D0039492D /* StartViewController.swift */,
-				5A840A5A25F5B22E0039492D /* LoginClasses.swift */,
 				5A840A5725F5B22E0039492D /* AuthValidators.swift */,
+				5A840A5625F5B22D0039492D /* StartViewController.swift */,
 				5A840A5825F5B22E0039492D /* RegisterViewController.swift */,
 				5A840A5925F5B22E0039492D /* SignInViewController.swift */,
+				5AC7321426DD79C2008A3DFC /* LoadingViewController.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -282,8 +308,11 @@
 		5AECABA2263124EF00C4AD7B /* PlayerScorePickerFiles */ = {
 			isa = PBXGroup;
 			children = (
-				5AECAB992630E29800C4AD7B /* PlayerScorePicker.swift */,
-				5A582B0D26314AE20004E7F0 /* PlayerScorePicker.xib */,
+				5A20EF1C26DB1801009CC606 /* PlayerScorePicker.swift */,
+				5AECAB992630E29800C4AD7B /* FullStatsPlayerScorePicker.swift */,
+				5A582B0D26314AE20004E7F0 /* FullStatsPlayerScorePicker.xib */,
+				5A20EF1A26DB17C5009CC606 /* PlayerPointsPlayerScorePicker.swift */,
+				5A20EF2026DB18C3009CC606 /* PlayerPointsPlayerScorePicker.xib */,
 			);
 			path = PlayerScorePickerFiles;
 			sourceTree = "<group>";
@@ -421,8 +450,9 @@
 				5A62549825EEF0C600340AE0 /* LaunchScreen.storyboard in Resources */,
 				5A62549525EEF0C600340AE0 /* Assets.xcassets in Resources */,
 				5A62549325EEF0C500340AE0 /* Main.storyboard in Resources */,
-				5A582B0E26314AE20004E7F0 /* PlayerScorePicker.xib in Resources */,
+				5A582B0E26314AE20004E7F0 /* FullStatsPlayerScorePicker.xib in Resources */,
 				5AC3B75426312D3C0079C9FB /* PlayersTableScoreView.xib in Resources */,
+				5A20EF2126DB18C3009CC606 /* PlayerPointsPlayerScorePicker.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,8 +585,11 @@
 				5A9813F72617F62800C37E2C /* ApprovedFriendsTableViewController.swift in Sources */,
 				5A840A5C25F5B22E0039492D /* AuthValidators.swift in Sources */,
 				5A840A6625F5B3560039492D /* URLInfo.swift in Sources */,
-				5AECAB9A2630E29800C4AD7B /* PlayerScorePicker.swift in Sources */,
+				5AECAB9A2630E29800C4AD7B /* FullStatsPlayerScorePicker.swift in Sources */,
+				5A09493226C5FF2600C66877 /* Stat.swift in Sources */,
 				5A741B60260D99B3004651E7 /* ChoosePlayersViewController.swift in Sources */,
+				5AC7321526DD79C2008A3DFC /* LoadingViewController.swift in Sources */,
+				5A20EF1B26DB17C5009CC606 /* PlayerPointsPlayerScorePicker.swift in Sources */,
 				5AE28ED2263A913500105666 /* AddFriendViewController.swift in Sources */,
 				5A582AFF263149EE0004E7F0 /* PlayerPointsTableViewCell.swift in Sources */,
 				5A582AF62631497E0004E7F0 /* PlayerPointsTableViewController.swift in Sources */,
@@ -564,15 +597,18 @@
 				5A840A5D25F5B22E0039492D /* StartViewController.swift in Sources */,
 				5A62549025EEF0C500340AE0 /* MainTrackingViewController.swift in Sources */,
 				5A62548C25EEF0C500340AE0 /* AppDelegate.swift in Sources */,
+				5A09493426C6039000C66877 /* StatTableViewCell.swift in Sources */,
 				5A23AE4D25F16816005C2310 /* Game.swift in Sources */,
 				5A1A9B7E26C3B10E00B903DB /* Friend.swift in Sources */,
 				5A62548E25EEF0C500340AE0 /* SceneDelegate.swift in Sources */,
 				5AE28ECA263A8C5C00105666 /* PendingFriendsTableViewController.swift in Sources */,
 				5A30E3F326BDC8C40043A91C /* UserViewConViewController.swift in Sources */,
-				5A840A5B25F5B22E0039492D /* LoginClasses.swift in Sources */,
+				5A8DDBFE26DF4213000EFE9F /* User.swift in Sources */,
 				5A83FAAE260EF19E00831C68 /* Point.swift in Sources */,
 				5A741B46260D7AC2004651E7 /* GameTableViewController.swift in Sources */,
+				5A20EF1D26DB1801009CC606 /* PlayerScorePicker.swift in Sources */,
 				5A976A782620A04000E5B7F6 /* GameDetailViewController.swift in Sources */,
+				5A09493026C5FEAB00C66877 /* StatsTableViewController.swift in Sources */,
 				5AC3B766263132790079C9FB /* PlayersTableScoreView.swift in Sources */,
 				5A840A5F25F5B22E0039492D /* SignInViewController.swift in Sources */,
 				5AD81E822634BC2A00FBAB73 /* FriendDetailViewController.swift in Sources */,

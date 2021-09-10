@@ -19,7 +19,10 @@ class GameDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        dateTimeLabel.text = game!.timeEnded
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .long
+        dateFormatter.timeStyle = .short
+        dateTimeLabel.text = dateFormatter.string(from: game!.timeEnded!)
         playerLabels[0].text = game!.teamOne.teamCaptain.username
         playerLabels[1].text = game!.teamOne.teammate.username
         playerLabels[2].text = game!.teamTwo.teamCaptain.username

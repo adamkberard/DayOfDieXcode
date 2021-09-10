@@ -23,22 +23,22 @@ class PlayersTableScoreView: UIView {
     var teamTwoScore : Int = 0 {
         didSet {teamTwoScoreLabel.text = "Team Two: \(teamTwoScore)"}
     }
-    var playerOne : BasicUser = BasicUser(username: "playerOne") {
+    var playerOne : User = User(username: "playerOne") {
         didSet{
             playerOneLabel.text = playerOne.username
         }
     }
-    var playerTwo : BasicUser = BasicUser(username: "playerTwo"){
+    var playerTwo : User = User(username: "playerTwo"){
         didSet{
             playerTwoLabel.text = playerTwo.username
         }
     }
-    var playerThree : BasicUser = BasicUser(username: "playerThree"){
+    var playerThree : User = User(username: "playerThree"){
         didSet{
             playerThreeLabel.text = playerThree.username
         }
     }
-    var playerFour : BasicUser = BasicUser(username: "playerFour"){
+    var playerFour : User = User(username: "playerFour"){
         didSet{
             playerFourLabel.text = playerFour.username
         }

@@ -40,8 +40,8 @@ class UserViewConViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        usernameLabel.text = CurrentUser.username
-        emailLabel.text = CurrentUser.email
+        usernameLabel.text = LoggedInUser.user.username
+        emailLabel.text = LoggedInUser.email
         
         updateWinsData()
     }
@@ -53,7 +53,7 @@ class UserViewConViewController: UIViewController {
     func updateWinsData(){
         totalWins = 0
         totalLosses = 0
-        for friend in CurrentUser.approvedFriends{
+        for friend in Friend.approvedFriends{
             totalWins += friend.wins
             totalLosses += friend.losses
         }
@@ -69,15 +69,15 @@ class UserViewConViewController: UIViewController {
             let parameters: [String: Any] = [
                 "username": newUsernameTextField!.text!,
             ]
-            
-            AF.request("\(URLInfo.baseUrl)/users/\(CurrentUser.username)/", method: .patch, parameters: parameters, headers: CurrentUser.getHeaders()).responseDecodable(of: FullUser.self) { response in
+            /*
+            AF.request("\(URLInfo.baseUrl)/users/\(LoggedInUser.username)/", method: .patch, parameters: parameters, headers: LoggedInUser.getHeaders()).responseDecodable(of: User.self) { response in
                 switch response.result {
                     case .success:
                         self.newUsernameTextField.isHidden = true
                         self.changeUsernameInFriends(pasteName: response.value!.username)
                         self.changeUsernameInAllUsers(pasteName: response.value!.username)
-                        CurrentUser.username = response.value!.username
-                        self.usernameLabel.text = CurrentUser.username
+                        LoggedInUser.username = response.value!.username
+                        self.usernameLabel.text = LoggedInUser.username
                     case .failure:
                         self.statusLabel.isHidden = false
                         if (response.response != nil){
@@ -92,7 +92,7 @@ class UserViewConViewController: UIViewController {
                             self.statusLabel.text = "No response."
                         }
                 }
-            }
+            }*/
         }
     }
     @IBAction func changePasswordButton(_ sender: Any) {
@@ -100,24 +100,24 @@ class UserViewConViewController: UIViewController {
     
     // When I change the username I gotta go through and change the user's username in all their friends
     func changeUsernameInFriends(pasteName: String){
-        for friend in CurrentUser.friends{
-            if friend.teamCaptain.username == CurrentUser.username{
+        for friend in Friend.allFriends{
+            if friend.teamCaptain.username == LoggedInUser.user.username{
                 friend.teamCaptain.username = pasteName
             }
-            else if friend.teammate.username == CurrentUser.username{
+            else if friend.teammate.username == LoggedInUser.user.username{
                 friend.teammate.username = pasteName
             }
         }
     }
-    
+    /*
     // Also I gotta change it in the list sent to us
     func changeUsernameInAllUsers(pasteName: String){
         for user in allUsers{
-            if user.username == CurrentUser.username{
+            if user.username == LoggedInUser.username{
                 user.username = pasteName
             }
         }
-    }
+    }*/
     
     /*
     // MARK: - Navigation

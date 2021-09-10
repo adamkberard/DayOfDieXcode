@@ -23,12 +23,10 @@ class FriendRequestTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0{
-            print("Pending Friends: \(CurrentUser.pendingFriends.count)")
-            return CurrentUser.pendingFriends.count
+            return Friend.pendingFriends.count
         }
         else {
-            print("Waiting Friends: \(CurrentUser.waitingFriends.count)")
-            return CurrentUser.waitingFriends.count
+            return Friend.waitingFriends.count
         }
     }
 
@@ -38,7 +36,7 @@ class FriendRequestTableViewController: UITableViewController {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendRequestCell", for: indexPath) as? PendingFriendRequestTableViewCell  else {
                 fatalError("The dequeued cell is not an instance of FriendRequestTableViewCell.")
             }
-            cell.friend = CurrentUser.pendingFriends[indexPath.row]
+            cell.friend = Friend.pendingFriends[indexPath.row]
             cell.parentTableView = self.tableView
             
             return cell
@@ -46,7 +44,7 @@ class FriendRequestTableViewController: UITableViewController {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "waitingFriendRequestCell", for: indexPath) as? WaitingFriendRequestTableViewCell  else {
                 fatalError("The dequeued cell is not an instance of WaitingFriendRequestTableViewCell.")
             }
-            cell.friend = CurrentUser.waitingFriends[indexPath.row]
+            cell.friend = Friend.waitingFriends[indexPath.row]
             cell.parentTableView = self.tableView
             
             return cell
