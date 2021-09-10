@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		17072CBC79790F7C220F16AB /* Pods_DayOfDieTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE7D6D7994CB3F84710781E1 /* Pods_DayOfDieTests.framework */; };
 		30CC533BCB0BB66E622973D0 /* Pods_DayOfDie_DayOfDieUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5B5E6DA33B8DA4B869B3A8 /* Pods_DayOfDie_DayOfDieUITests.framework */; };
+		4BAF524926EB3B8B00595302 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAF524826EB3B8B00595302 /* StartViewController.swift */; };
+		4BAF524B26EB3BBE00595302 /* LoginClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAF524A26EB3BBE00595302 /* LoginClasses.swift */; };
+		4BAF524D26EB3BEC00595302 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAF524C26EB3BEC00595302 /* RegisterViewController.swift */; };
+		4BAF524F26EB3C1300595302 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAF524E26EB3C1300595302 /* SignInViewController.swift */; };
+		4BAF525126EB3C3000595302 /* AuthValidators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAF525026EB3C3000595302 /* AuthValidators.swift */; };
 		5A1A9B7E26C3B10E00B903DB /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1A9B7D26C3B10000B903DB /* Friend.swift */; };
 		5A23AE4D25F16816005C2310 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23AE4C25F16816005C2310 /* Game.swift */; };
 		5A30E3F326BDC8C40043A91C /* UserViewConViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A30E3F226BDC8C40043A91C /* UserViewConViewController.swift */; };
@@ -34,11 +39,6 @@
 		5A83FACA260FB24B00831C68 /* ChoosePlayersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A741B5F260D99B3004651E7 /* ChoosePlayersViewController.swift */; };
 		5A83FAD12610F78400831C68 /* MainTrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A62548F25EEF0C500340AE0 /* MainTrackingViewController.swift */; };
 		5A83FAD52610F78400831C68 /* MainTrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A62548F25EEF0C500340AE0 /* MainTrackingViewController.swift */; };
-		5A840A5B25F5B22E0039492D /* LoginClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A840A5A25F5B22E0039492D /* LoginClasses.swift */; };
-		5A840A5C25F5B22E0039492D /* AuthValidators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A840A5725F5B22E0039492D /* AuthValidators.swift */; };
-		5A840A5D25F5B22E0039492D /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A840A5625F5B22D0039492D /* StartViewController.swift */; };
-		5A840A5E25F5B22E0039492D /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A840A5825F5B22E0039492D /* RegisterViewController.swift */; };
-		5A840A5F25F5B22E0039492D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A840A5925F5B22E0039492D /* SignInViewController.swift */; };
 		5A840A6625F5B3560039492D /* URLInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A840A6525F5B3560039492D /* URLInfo.swift */; };
 		5A8DE2DB26410AAA00AE353B /* FriendTableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8DE2D026410A9A00AE353B /* FriendTableViewCells.swift */; };
 		5A976A782620A04000E5B7F6 /* GameDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A976A772620A04000E5B7F6 /* GameDetailViewController.swift */; };
@@ -73,6 +73,11 @@
 		2254E54943498E87AB5440BE /* Pods-DayOfDie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DayOfDie.debug.xcconfig"; path = "Target Support Files/Pods-DayOfDie/Pods-DayOfDie.debug.xcconfig"; sourceTree = "<group>"; };
 		2C5B5E6DA33B8DA4B869B3A8 /* Pods_DayOfDie_DayOfDieUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DayOfDie_DayOfDieUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		37F14D330D1BC50004B5EE5F /* Pods-DayOfDie-DayOfDieUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DayOfDie-DayOfDieUITests.debug.xcconfig"; path = "Target Support Files/Pods-DayOfDie-DayOfDieUITests/Pods-DayOfDie-DayOfDieUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		4BAF524826EB3B8B00595302 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		4BAF524A26EB3BBE00595302 /* LoginClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginClasses.swift; sourceTree = "<group>"; };
+		4BAF524C26EB3BEC00595302 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		4BAF524E26EB3C1300595302 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		4BAF525026EB3C3000595302 /* AuthValidators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthValidators.swift; sourceTree = "<group>"; };
 		5A1A9B7D26C3B10000B903DB /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		5A23AE4C25F16816005C2310 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		5A30E3F226BDC8C40043A91C /* UserViewConViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewConViewController.swift; sourceTree = "<group>"; };
@@ -98,11 +103,6 @@
 		5A741B54260D813A004651E7 /* GameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTableViewCell.swift; sourceTree = "<group>"; };
 		5A741B5F260D99B3004651E7 /* ChoosePlayersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosePlayersViewController.swift; sourceTree = "<group>"; };
 		5A83FAAD260EF19E00831C68 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
-		5A840A5625F5B22D0039492D /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StartViewController.swift; path = /Users/aberard/Programming/DayOfDie/DayOfDie/DayOfDie/StartViewController.swift; sourceTree = "<absolute>"; };
-		5A840A5725F5B22E0039492D /* AuthValidators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthValidators.swift; path = /Users/aberard/Programming/DayOfDie/DayOfDie/DayOfDie/AuthValidators.swift; sourceTree = "<absolute>"; };
-		5A840A5825F5B22E0039492D /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegisterViewController.swift; path = /Users/aberard/Programming/DayOfDie/DayOfDie/DayOfDie/RegisterViewController.swift; sourceTree = "<absolute>"; };
-		5A840A5925F5B22E0039492D /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignInViewController.swift; path = /Users/aberard/Programming/DayOfDie/DayOfDie/DayOfDie/SignInViewController.swift; sourceTree = "<absolute>"; };
-		5A840A5A25F5B22E0039492D /* LoginClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginClasses.swift; path = /Users/aberard/Programming/DayOfDie/DayOfDie/DayOfDie/LoginClasses.swift; sourceTree = "<absolute>"; };
 		5A840A6525F5B3560039492D /* URLInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLInfo.swift; sourceTree = "<group>"; };
 		5A8DE2D026410A9A00AE353B /* FriendTableViewCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCells.swift; sourceTree = "<group>"; };
 		5A976A772620A04000E5B7F6 /* GameDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +160,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4BAF524226EB3AF000595302 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				4BAF524826EB3B8B00595302 /* StartViewController.swift */,
+				4BAF524A26EB3BBE00595302 /* LoginClasses.swift */,
+				4BAF524C26EB3BEC00595302 /* RegisterViewController.swift */,
+				4BAF524E26EB3C1300595302 /* SignInViewController.swift */,
+				4BAF525026EB3C3000595302 /* AuthValidators.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		5A30E3F126BDC89E0043A91C /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,8 +205,8 @@
 		5A62548A25EEF0C500340AE0 /* DayOfDie */ = {
 			isa = PBXGroup;
 			children = (
+				4BAF524226EB3AF000595302 /* Auth */,
 				5A30E3F126BDC89E0043A91C /* User */,
-				5AE7DF2326C3C10B00282BC3 /* Auth */,
 				5A741B50260D7B85004651E7 /* GameTracking */,
 				5A741B4A260D7B3A004651E7 /* Games */,
 				5A741B4B260D7B4B004651E7 /* Friends */,
@@ -265,18 +277,6 @@
 				5AECABA32631251700C4AD7B /* ScoreBoardFiles */,
 			);
 			path = GameTracking;
-			sourceTree = "<group>";
-		};
-		5AE7DF2326C3C10B00282BC3 /* Auth */ = {
-			isa = PBXGroup;
-			children = (
-				5A840A5625F5B22D0039492D /* StartViewController.swift */,
-				5A840A5A25F5B22E0039492D /* LoginClasses.swift */,
-				5A840A5725F5B22E0039492D /* AuthValidators.swift */,
-				5A840A5825F5B22E0039492D /* RegisterViewController.swift */,
-				5A840A5925F5B22E0039492D /* SignInViewController.swift */,
-			);
-			path = Auth;
 			sourceTree = "<group>";
 		};
 		5AECABA2263124EF00C4AD7B /* PlayerScorePickerFiles */ = {
@@ -550,18 +550,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BAF524F26EB3C1300595302 /* SignInViewController.swift in Sources */,
+				4BAF524D26EB3BEC00595302 /* RegisterViewController.swift in Sources */,
+				4BAF524B26EB3BBE00595302 /* LoginClasses.swift in Sources */,
 				5A741B55260D813A004651E7 /* GameTableViewCell.swift in Sources */,
-				5A840A5E25F5B22E0039492D /* RegisterViewController.swift in Sources */,
 				5A9813F72617F62800C37E2C /* ApprovedFriendsTableViewController.swift in Sources */,
-				5A840A5C25F5B22E0039492D /* AuthValidators.swift in Sources */,
 				5A840A6625F5B3560039492D /* URLInfo.swift in Sources */,
+				4BAF524926EB3B8B00595302 /* StartViewController.swift in Sources */,
 				5AECAB9A2630E29800C4AD7B /* PlayerScorePicker.swift in Sources */,
 				5A741B60260D99B3004651E7 /* ChoosePlayersViewController.swift in Sources */,
 				5AE28ED2263A913500105666 /* AddFriendViewController.swift in Sources */,
 				5A582AFF263149EE0004E7F0 /* PlayerPointsTableViewCell.swift in Sources */,
 				5A582AF62631497E0004E7F0 /* PlayerPointsTableViewController.swift in Sources */,
 				5A6ED7192641255B005552D7 /* UserTableView.swift in Sources */,
-				5A840A5D25F5B22E0039492D /* StartViewController.swift in Sources */,
+				4BAF525126EB3C3000595302 /* AuthValidators.swift in Sources */,
 				5A62549025EEF0C500340AE0 /* MainTrackingViewController.swift in Sources */,
 				5A62548C25EEF0C500340AE0 /* AppDelegate.swift in Sources */,
 				5A23AE4D25F16816005C2310 /* Game.swift in Sources */,
@@ -569,12 +571,10 @@
 				5A62548E25EEF0C500340AE0 /* SceneDelegate.swift in Sources */,
 				5AE28ECA263A8C5C00105666 /* PendingFriendsTableViewController.swift in Sources */,
 				5A30E3F326BDC8C40043A91C /* UserViewConViewController.swift in Sources */,
-				5A840A5B25F5B22E0039492D /* LoginClasses.swift in Sources */,
 				5A83FAAE260EF19E00831C68 /* Point.swift in Sources */,
 				5A741B46260D7AC2004651E7 /* GameTableViewController.swift in Sources */,
 				5A976A782620A04000E5B7F6 /* GameDetailViewController.swift in Sources */,
 				5AC3B766263132790079C9FB /* PlayersTableScoreView.swift in Sources */,
-				5A840A5F25F5B22E0039492D /* SignInViewController.swift in Sources */,
 				5AD81E822634BC2A00FBAB73 /* FriendDetailViewController.swift in Sources */,
 				5A8DE2DB26410AAA00AE353B /* FriendTableViewCells.swift in Sources */,
 			);
