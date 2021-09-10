@@ -46,34 +46,24 @@ class SignInViewController:
             "email": email,
             "password": password
         ]
-        
-        AF.request("\(URLInfo.baseUrl)/auth/login/", method: .post, parameters: parameters).responseDecodable(of: LoginPack.self) { response in
-            switch response.result {
-                case .success:
-                    CurrentUser.username = response.value!.user.username
-                    CurrentUser.uuid = response.value!.user.uuid
-                    CurrentUser.email = response.value!.user.email
-                    CurrentUser.token = response.value!.user.token
-                    
-                    CurrentUser.games = response.value!.games
-                    CurrentUser.friends = response.value!.friends
-
-                    allUsers = response.value!.all_users
-                    self.performSegue(withIdentifier: "signInSegue", sender: self)
-                case .failure:
-                    self.statusLabel.isHidden = false
-                    if (response.response != nil){
-                        switch response.response!.statusCode{
-                        case 400:
-                            self.statusLabel.text = "Incorrect credentials."
-                        default:
-                            self.statusLabel.text = "HTTP Error: \(response.response!.statusCode)"
-                        }
-                    }
-                    else{
-                        self.statusLabel.text = "No response."
-                    }
+        let url = "/auth/login/"
+        APICalls.post(url: url, parameters: parameters, returnType: LoginPack.self) { status, returnDict in
+            if status{
+                // Check if everything is done if so move on
+                let loginPack = returnDict["object"] as! LoginPack
+                ThisUser.user.username = loginPack.username
+                ThisUser.token = loginPack.token
+                ThisUser.email = email
+            }
+            else{
+                //Handle if things go wrong
+                print(returnDict["errors"]!)
             }
         }
     }
+}
+
+class LoginPack: Decodable {
+    var username : String = ""
+    var token : String = ""
 }

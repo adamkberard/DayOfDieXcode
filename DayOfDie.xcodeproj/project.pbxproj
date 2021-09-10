@@ -9,8 +9,9 @@
 /* Begin PBXBuildFile section */
 		17072CBC79790F7C220F16AB /* Pods_DayOfDieTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE7D6D7994CB3F84710781E1 /* Pods_DayOfDieTests.framework */; };
 		30CC533BCB0BB66E622973D0 /* Pods_DayOfDie_DayOfDieUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5B5E6DA33B8DA4B869B3A8 /* Pods_DayOfDie_DayOfDieUITests.framework */; };
+		4B27048A26EBFB4000AAD699 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B27048926EBFB4000AAD699 /* User.swift */; };
+		4B4D83F926EBD9DF00FEA2E6 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4D83F826EBD9DF00FEA2E6 /* LoadingViewController.swift */; };
 		4BAF524926EB3B8B00595302 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAF524826EB3B8B00595302 /* StartViewController.swift */; };
-		4BAF524B26EB3BBE00595302 /* LoginClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAF524A26EB3BBE00595302 /* LoginClasses.swift */; };
 		4BAF524D26EB3BEC00595302 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAF524C26EB3BEC00595302 /* RegisterViewController.swift */; };
 		4BAF524F26EB3C1300595302 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAF524E26EB3C1300595302 /* SignInViewController.swift */; };
 		4BAF525126EB3C3000595302 /* AuthValidators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAF525026EB3C3000595302 /* AuthValidators.swift */; };
@@ -73,8 +74,9 @@
 		2254E54943498E87AB5440BE /* Pods-DayOfDie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DayOfDie.debug.xcconfig"; path = "Target Support Files/Pods-DayOfDie/Pods-DayOfDie.debug.xcconfig"; sourceTree = "<group>"; };
 		2C5B5E6DA33B8DA4B869B3A8 /* Pods_DayOfDie_DayOfDieUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DayOfDie_DayOfDieUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		37F14D330D1BC50004B5EE5F /* Pods-DayOfDie-DayOfDieUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DayOfDie-DayOfDieUITests.debug.xcconfig"; path = "Target Support Files/Pods-DayOfDie-DayOfDieUITests/Pods-DayOfDie-DayOfDieUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		4B27048926EBFB4000AAD699 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		4B4D83F826EBD9DF00FEA2E6 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		4BAF524826EB3B8B00595302 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
-		4BAF524A26EB3BBE00595302 /* LoginClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginClasses.swift; sourceTree = "<group>"; };
 		4BAF524C26EB3BEC00595302 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		4BAF524E26EB3C1300595302 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		4BAF525026EB3C3000595302 /* AuthValidators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthValidators.swift; sourceTree = "<group>"; };
@@ -164,10 +166,10 @@
 			isa = PBXGroup;
 			children = (
 				4BAF524826EB3B8B00595302 /* StartViewController.swift */,
-				4BAF524A26EB3BBE00595302 /* LoginClasses.swift */,
 				4BAF524C26EB3BEC00595302 /* RegisterViewController.swift */,
 				4BAF524E26EB3C1300595302 /* SignInViewController.swift */,
 				4BAF525026EB3C3000595302 /* AuthValidators.swift */,
+				4B4D83F826EBD9DF00FEA2E6 /* LoadingViewController.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -176,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				5A30E3F226BDC8C40043A91C /* UserViewConViewController.swift */,
+				4B27048926EBFB4000AAD699 /* User.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -552,15 +555,14 @@
 			files = (
 				4BAF524F26EB3C1300595302 /* SignInViewController.swift in Sources */,
 				4BAF524D26EB3BEC00595302 /* RegisterViewController.swift in Sources */,
-				4BAF524B26EB3BBE00595302 /* LoginClasses.swift in Sources */,
 				5A741B55260D813A004651E7 /* GameTableViewCell.swift in Sources */,
 				5A9813F72617F62800C37E2C /* ApprovedFriendsTableViewController.swift in Sources */,
 				5A840A6625F5B3560039492D /* URLInfo.swift in Sources */,
 				4BAF524926EB3B8B00595302 /* StartViewController.swift in Sources */,
+				4B4D83F926EBD9DF00FEA2E6 /* LoadingViewController.swift in Sources */,
+				4B27048A26EBFB4000AAD699 /* User.swift in Sources */,
 				5AECAB9A2630E29800C4AD7B /* PlayerScorePicker.swift in Sources */,
 				5A741B60260D99B3004651E7 /* ChoosePlayersViewController.swift in Sources */,
-				5AC7321526DD79C2008A3DFC /* LoadingViewController.swift in Sources */,
-				5A20EF1B26DB17C5009CC606 /* PlayerPointsPlayerScorePicker.swift in Sources */,
 				5AE28ED2263A913500105666 /* AddFriendViewController.swift in Sources */,
 				5A582AFF263149EE0004E7F0 /* PlayerPointsTableViewCell.swift in Sources */,
 				5A582AF62631497E0004E7F0 /* PlayerPointsTableViewController.swift in Sources */,
@@ -568,18 +570,14 @@
 				4BAF525126EB3C3000595302 /* AuthValidators.swift in Sources */,
 				5A62549025EEF0C500340AE0 /* MainTrackingViewController.swift in Sources */,
 				5A62548C25EEF0C500340AE0 /* AppDelegate.swift in Sources */,
-				5A09493426C6039000C66877 /* StatTableViewCell.swift in Sources */,
 				5A23AE4D25F16816005C2310 /* Game.swift in Sources */,
 				5A1A9B7E26C3B10E00B903DB /* Friend.swift in Sources */,
 				5A62548E25EEF0C500340AE0 /* SceneDelegate.swift in Sources */,
 				5AE28ECA263A8C5C00105666 /* PendingFriendsTableViewController.swift in Sources */,
 				5A30E3F326BDC8C40043A91C /* UserViewConViewController.swift in Sources */,
-				5A8DDBFE26DF4213000EFE9F /* User.swift in Sources */,
 				5A83FAAE260EF19E00831C68 /* Point.swift in Sources */,
 				5A741B46260D7AC2004651E7 /* GameTableViewController.swift in Sources */,
-				5A20EF1D26DB1801009CC606 /* PlayerScorePicker.swift in Sources */,
 				5A976A782620A04000E5B7F6 /* GameDetailViewController.swift in Sources */,
-				5A09493026C5FEAB00C66877 /* StatsTableViewController.swift in Sources */,
 				5AC3B766263132790079C9FB /* PlayersTableScoreView.swift in Sources */,
 				5AD81E822634BC2A00FBAB73 /* FriendDetailViewController.swift in Sources */,
 				5A8DE2DB26410AAA00AE353B /* FriendTableViewCells.swift in Sources */,
