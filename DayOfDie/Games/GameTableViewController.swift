@@ -31,8 +31,8 @@ class GameTableViewController: UITableViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         if needToGoToLastGame {
-            tableView.selectRow(at: IndexPath(row: CurrentUser.games.count - 1, section: 0), animated: true, scrollPosition: .bottom)
-            selectedGame = CurrentUser.games.last
+            tableView.selectRow(at: IndexPath(row: Game.allGames.count - 1, section: 0), animated: true, scrollPosition: .bottom)
+            selectedGame = Game.allGames.last
             self.performSegue(withIdentifier: "toGameDetail", sender: self)
             needToGoToLastGame = false
         }
@@ -46,7 +46,7 @@ class GameTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return CurrentUser.games.count
+        return Game.allGames.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -57,7 +57,7 @@ class GameTableViewController: UITableViewController {
         }
         
         // Fetches the appropriate game for the data source layout.
-        let game = CurrentUser.games[indexPath.row]
+        let game = Game.allGames[indexPath.row]
         
         cell.playerOneLabel.text = game.teamOne.teamCaptain.username
         cell.playerTwoLabel.text = game.teamOne.teammate.username
@@ -65,16 +65,21 @@ class GameTableViewController: UITableViewController {
         cell.playerFourLabel.text = game.teamTwo.teammate.username
         cell.teamOneScore.text = String(game.teamOneScore)
         cell.teamTwoScore.text = String(game.teamTwoScore)
-        cell.dateAndTimeLabel.text = game.timeEnded
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .long
+        dateFormatter.timeStyle = .short
+        cell.dateAndTimeLabel.text = dateFormatter.string(from: game.timeEnded!)
         
         return cell
     }
     
     func loadGames() {
-        AF.request("\(URLInfo.baseUrl)/games/", method: .get, headers: CurrentUser.getHeaders()).responseDecodable(of: [Game].self) { response in
+        /*
+        AF.request("\(URLInfo.baseUrl)/games/", method: .get, headers: LoggedInUser.getHeaders()).responseDecodable(of: [Game].self) { response in
             switch response.result {
                 case .success:
-                    CurrentUser.games = response.value!
+                    LoggedInUser.games = response.value!
                     print("HERE 5")
                 case let .failure(error):
                     print("HERE 6")
@@ -83,10 +88,11 @@ class GameTableViewController: UITableViewController {
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
         }
+ */
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedGame = CurrentUser.games[indexPath.row]
+        selectedGame = Game.allGames[indexPath.row]
         self.performSegue(withIdentifier: "toGameDetail", sender: self)
     }
 

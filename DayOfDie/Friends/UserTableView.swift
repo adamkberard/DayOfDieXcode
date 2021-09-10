@@ -23,19 +23,31 @@ class UserTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     }
     
     func loadData() {
-        var users = allUsers
+        // Loading all users here
+        APICalls.getUsers {status, returnDict in
+            if status{
+                // Check if everything is done if so move on
+                User.allUsers = returnDict["object"] as! [User]
+            }
+            else{
+                //Handle if things go wrong
+                print(returnDict["errors"]!)
+            }
+        }
+        
+        var users = User.allUsers
         friends = []
         
         // Removing current user's username and also filtering search stuff
         users.removeAll(where: {
             !$0.username.starts(with: parentView?.searchBar.text ?? "") ||
-                $0.username == CurrentUser.username
+                $0.username == LoggedInUser.user.username
         })
 
         // Taking out people I have as active, pending, or waiting
         
         users.removeAll(where: {
-            for friend in CurrentUser.friends{
+            for friend in Friend.allFriends{
                 if friend.status != .NOTHING && $0.username == friend.getOtherUser().username{
                     return true
                 }
@@ -45,7 +57,7 @@ class UserTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         
         // Creating friends
         for user in users{
-            friends.append(Friend.findOrCreateFriend(teamCaptain: CurrentUser.basicUser, teammate: user))
+            friends.append(Friend.findOrCreateFriend(teamCaptain: LoggedInUser.user, teammate: user))
         }
     }
     

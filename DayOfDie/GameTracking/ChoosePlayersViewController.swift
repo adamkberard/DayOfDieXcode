@@ -13,7 +13,7 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var statusLabel: UILabel!
     
-    var possiblePlayers : [BasicUser] = []
+    var possiblePlayers : [User] = []
     
     override func viewWillAppear(_ animated: Bool) {
         setupPickers()
@@ -32,8 +32,8 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
     
     func setupPickers() {
         possiblePlayers = []
-        possiblePlayers.append(contentsOf: CurrentUser.approvedFriends.map({$0.getOtherUser()}))
-        possiblePlayers.append(CurrentUser.basicUser)
+        possiblePlayers.append(contentsOf: Friend.approvedFriends.map({$0.getOtherUser()}))
+        possiblePlayers.append(LoggedInUser.user)
         print("Current possible players: \(possiblePlayers.count)")
         
         if(possiblePlayers.count < 4){
@@ -125,6 +125,8 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
                 guard let viewController = segue.destination as? MainTrackingViewController else {
                  fatalError("Unexpected destination: \(segue.destination)")}
                 viewController.playerOne = possiblePlayers[playerPickers[0].selectedRow(inComponent: 0)]
+                print("HERE 1")
+                print(possiblePlayers[playerPickers[0].selectedRow(inComponent: 0)].username)
                 viewController.playerTwo = possiblePlayers[playerPickers[1].selectedRow(inComponent: 0)]
                 viewController.playerThree = possiblePlayers[playerPickers[2].selectedRow(inComponent: 0)]
                 viewController.playerFour = possiblePlayers[playerPickers[3].selectedRow(inComponent: 0)]

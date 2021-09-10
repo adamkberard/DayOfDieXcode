@@ -40,39 +40,17 @@ class SignInViewController:
         let email : String = emailTextField.text ?? ""
         let password : String = passwordTextField.text ?? ""
 
-        statusLabel.textColor = UIColor.red
-
-        let parameters: [String: Any] = [
-            "email": email,
-            "password": password
-        ]
-        
-        AF.request("\(URLInfo.baseUrl)/auth/login/", method: .post, parameters: parameters).responseDecodable(of: LoginPack.self) { response in
-            switch response.result {
-                case .success:
-                    CurrentUser.username = response.value!.user.username
-                    CurrentUser.uuid = response.value!.user.uuid
-                    CurrentUser.email = response.value!.user.email
-                    CurrentUser.token = response.value!.user.token
-                    
-                    CurrentUser.games = response.value!.games
-                    CurrentUser.friends = response.value!.friends
-
-                    allUsers = response.value!.all_users
-                    self.performSegue(withIdentifier: "signInSegue", sender: self)
-                case .failure:
-                    self.statusLabel.isHidden = false
-                    if (response.response != nil){
-                        switch response.response!.statusCode{
-                        case 400:
-                            self.statusLabel.text = "Incorrect credentials."
-                        default:
-                            self.statusLabel.text = "HTTP Error: \(response.response!.statusCode)"
-                        }
-                    }
-                    else{
-                        self.statusLabel.text = "No response."
-                    }
+        APICalls.login(email: email, password: password) {status, returnDict in
+            if status{
+                LoggedInUser.token = returnDict["token"] as! String
+                LoggedInUser.user.username = returnDict["username"] as! String
+                LoggedInUser.email = email
+                self.performSegue(withIdentifier: "signInSegue", sender: self)
+            }
+            else{
+                self.statusLabel.textColor = UIColor.red
+                self.statusLabel.isHidden = false
+                self.statusLabel.text = returnDict["error"] as? String
             }
         }
     }

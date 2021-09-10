@@ -23,10 +23,10 @@ enum PointTypes : String, Codable {
 class Point : Codable {
     var uuid : UUID?
     var typeOfPoint : PointTypes
-    var scorer : BasicUser
+    var scorer : User
     var game : UUID?
     
-    init(typeOfPoint : PointTypes, scorer : BasicUser){
+    init(typeOfPoint : PointTypes, scorer : User){
         self.typeOfPoint = typeOfPoint
         self.scorer = scorer
     }

@@ -140,41 +140,94 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MainTrackingViewController" customModule="DayOfDie" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="osQ-Nl-GHe">
-                                <rect key="frame" x="10" y="98" width="394" height="575"/>
+                                <rect key="frame" x="10" y="98" width="394" height="705"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WUc-qi-FTJ" customClass="PlayersTableScoreView" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="394" height="75"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="91"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" priority="999" constant="200" id="n11-w6-ryV"/>
                                         </constraints>
                                     </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="kXk-o2-6pr">
-                                        <rect key="frame" x="0.0" y="100" width="394" height="475"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="kXk-o2-6pr" userLabel="FullStats Stack View">
+                                        <rect key="frame" x="0.0" y="116" width="394" height="475"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mhA-zv-DCT" customClass="PlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mhA-zv-DCT" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="394" height="100"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oR3-Ie-v9T" customClass="PlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oR3-Ie-v9T" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="125" width="394" height="100"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RbQ-sK-VBf" customClass="PlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RbQ-sK-VBf" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="250" width="394" height="100"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SQ7-nH-K66" customClass="PlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SQ7-nH-K66" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="375" width="394" height="100"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                         </subviews>
                                     </stackView>
+                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Krw-mC-Br0" userLabel="PlayerPoints Stack View">
+                                        <rect key="frame" x="0.0" y="603.5" width="394" height="475"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XRO-yn-vWO" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="394" height="100"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GYd-Kl-he1" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="125" width="394" height="100"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cwd-jr-zSv" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="250" width="394" height="100"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2FJ-bS-zgh" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="375" width="394" height="100"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="NIu-c0-6sl" userLabel="TeamPoints Stack View">
+                                        <rect key="frame" x="0.0" y="603.5" width="394" height="475"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fTX-fg-aGl" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="394" height="100"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="quU-Ty-jPV" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="125" width="394" height="100"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i9E-9p-p1R" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="250" width="394" height="100"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0rT-j1-WQH" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="375" width="394" height="100"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wSr-Xa-WTc">
+                                        <rect key="frame" x="0.0" y="616" width="394" height="90"/>
+                                        <segments>
+                                            <segment title="Full Stats"/>
+                                            <segment title="Player Points"/>
+                                            <segment title="Team Points"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="statKeepingChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="VYd-q3-K5x"/>
+                                        </connections>
+                                    </segmentedControl>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -202,6 +255,7 @@
                     <connections>
                         <outlet property="saveButton" destination="Pfh-Fd-o5A" id="9ht-RI-qug"/>
                         <outlet property="scoreboard" destination="WUc-qi-FTJ" id="HIZ-Gr-l2w"/>
+                        <outlet property="statKeepingSelector" destination="wSr-Xa-WTc" id="85k-0V-tTc"/>
                         <outletCollection property="playerScoreTrackers" destination="mhA-zv-DCT" collectionClass="NSMutableArray" id="gKZ-gX-unA"/>
                         <outletCollection property="playerScoreTrackers" destination="oR3-Ie-v9T" collectionClass="NSMutableArray" id="czE-dw-0ON"/>
                         <outletCollection property="playerScoreTrackers" destination="RbQ-sK-VBf" collectionClass="NSMutableArray" id="tBv-6w-gHl"/>
@@ -396,7 +450,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5ai-4u-Dqd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1748" y="826"/>
+            <point key="canvasLocation" x="2657.971014492754" y="825.66964285714278"/>
         </scene>
         <!--Game-->
         <scene sceneID="11y-x1-4Pz">
@@ -551,7 +605,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Bm-kd-BRn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2532" y="826"/>
+            <point key="canvasLocation" x="3442.0289855072465" y="825.66964285714278"/>
         </scene>
         <!--Games-->
         <scene sceneID="O6y-Wc-uzQ">
@@ -569,7 +623,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kn4-3l-MLc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="980" y="826"/>
+            <point key="canvasLocation" x="1889.8550724637682" y="825.66964285714278"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="E0d-Qi-yW8">
@@ -586,6 +640,7 @@
                         <segue destination="4Zo-G9-hk4" kind="relationship" relationship="viewControllers" id="FNb-N9-WGD"/>
                         <segue destination="gVU-Ia-3So" kind="relationship" relationship="viewControllers" id="BbZ-tN-Xpi"/>
                         <segue destination="aMY-Aj-k0x" kind="relationship" relationship="viewControllers" id="OUC-AJ-GMn"/>
+                        <segue destination="sNf-Ww-NTm" kind="relationship" relationship="viewControllers" id="wQi-i5-5rB"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tn8-UN-hvB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -681,7 +736,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z7A-jw-PRx" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2268" y="-15"/>
+            <point key="canvasLocation" x="-3468" y="20"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="txy-j6-vfv">
@@ -782,12 +837,43 @@
                         <outlet property="emailTextField" destination="S7O-BC-BT1" id="iuT-1D-zOL"/>
                         <outlet property="passwordTextField" destination="Pl9-wk-ITM" id="cJt-Ce-vPX"/>
                         <outlet property="statusLabel" destination="ZA4-gp-O0T" id="dfL-hZ-cCD"/>
-                        <segue destination="ICf-p7-4gb" kind="presentation" identifier="signInSegue" modalPresentationStyle="fullScreen" id="550-hd-Snw"/>
+                        <segue destination="eje-EO-Cuq" kind="presentation" identifier="signInSegue" modalPresentationStyle="fullScreen" id="BkP-iE-Azt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aQL-rP-IwE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1210.144927536232" y="-284.59821428571428"/>
+            <point key="canvasLocation" x="-2410" y="-249"/>
+        </scene>
+        <!--Loading View Controller-->
+        <scene sceneID="umB-jL-Scc">
+            <objects>
+                <viewController id="eje-EO-Cuq" customClass="LoadingViewController" customModule="DayOfDie" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="e97-AJ-cXI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MFP-e7-o43">
+                                <rect key="frame" x="169.5" y="437.5" width="75" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="OZN-cD-Pxl"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="MFP-e7-o43" firstAttribute="centerY" secondItem="e97-AJ-cXI" secondAttribute="centerY" id="4ka-zh-Fas"/>
+                            <constraint firstItem="MFP-e7-o43" firstAttribute="centerX" secondItem="e97-AJ-cXI" secondAttribute="centerX" id="F3p-7S-Hst"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="N9m-ak-jNE"/>
+                    <connections>
+                        <segue destination="ICf-p7-4gb" kind="presentation" identifier="toMainApp" modalPresentationStyle="fullScreen" id="0bZ-AO-CaA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kEn-Ku-bmj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-933" y="76"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="omk-YT-zde">
@@ -805,7 +891,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TTN-J8-eui" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3180" y="-15"/>
+            <point key="canvasLocation" x="-4381" y="20"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="s9x-dP-iLT">
@@ -844,7 +930,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lFv-EA-iyw">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="test@gmail.com" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lFv-EA-iyw">
                                                 <rect key="frame" x="55" y="0.0" width="279" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -860,7 +946,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XD7-vY-383">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="pass4test" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XD7-vY-383">
                                                 <rect key="frame" x="88" y="0.0" width="246" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" textContentType="password"/>
@@ -876,7 +962,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pXI-od-62f">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="pass4test" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pXI-od-62f">
                                                 <rect key="frame" x="88" y="0.0" width="246" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" textContentType="password"/>
@@ -919,12 +1005,218 @@
                         <outlet property="passwordOneTextField" destination="XD7-vY-383" id="kH5-m7-Ib3"/>
                         <outlet property="passwordTwoTextField" destination="pXI-od-62f" id="D5c-ko-7DB"/>
                         <outlet property="statusLabel" destination="NFw-Q9-A9z" id="GP0-SP-xMM"/>
-                        <segue destination="ICf-p7-4gb" kind="presentation" identifier="registerSegue" modalPresentationStyle="fullScreen" id="fFG-r4-qpl"/>
+                        <segue destination="eje-EO-Cuq" kind="presentation" identifier="registerSegue" modalPresentationStyle="fullScreen" id="AhJ-2S-D07"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iuh-Z1-soG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1210" y="435"/>
+            <point key="canvasLocation" x="-2410" y="470"/>
+        </scene>
+        <!--Stats Table View Controller-->
+        <scene sceneID="UIM-LJ-wnE">
+            <objects>
+                <tableViewController id="3vN-mP-X2w" customClass="StatsTableViewController" customModule="DayOfDie" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="iHA-E3-wPz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="statCell" id="gq9-gb-Mw6" customClass="StatTableViewCell" customModule="DayOfDie" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="24.5" width="414" height="31"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gq9-gb-Mw6" id="wW4-Rs-c8e">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="31"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="273" translatesAutoresizingMaskIntoConstraints="NO" id="MLs-Zp-hPD">
+                                            <rect key="frame" x="10" y="5" width="394" height="21"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="StatName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zsi-MX-r1M">
+                                                    <rect key="frame" x="0.0" y="0.0" width="110.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Se2-1r-lhz">
+                                                    <rect key="frame" x="383.5" y="0.0" width="10.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Se2-1r-lhz" firstAttribute="leading" secondItem="zsi-MX-r1M" secondAttribute="trailing" id="YNr-gi-KsA"/>
+                                                <constraint firstItem="zsi-MX-r1M" firstAttribute="leading" secondItem="MLs-Zp-hPD" secondAttribute="leading" id="cjQ-tt-PgC"/>
+                                                <constraint firstItem="Se2-1r-lhz" firstAttribute="leading" secondItem="zsi-MX-r1M" secondAttribute="trailing" id="fxr-0t-74v"/>
+                                                <constraint firstAttribute="trailing" secondItem="Se2-1r-lhz" secondAttribute="trailing" id="xjq-sN-d4v"/>
+                                            </constraints>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="MLs-Zp-hPD" firstAttribute="leading" secondItem="wW4-Rs-c8e" secondAttribute="leadingMargin" constant="-10" id="7uk-B1-7cZ"/>
+                                        <constraint firstItem="MLs-Zp-hPD" firstAttribute="top" secondItem="wW4-Rs-c8e" secondAttribute="topMargin" constant="-6" id="JhG-S1-tUT"/>
+                                        <constraint firstItem="MLs-Zp-hPD" firstAttribute="centerY" secondItem="wW4-Rs-c8e" secondAttribute="centerY" id="htY-qn-uVN"/>
+                                        <constraint firstItem="MLs-Zp-hPD" firstAttribute="centerX" secondItem="wW4-Rs-c8e" secondAttribute="centerX" id="u7f-n4-YT6"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="statNameLabel" destination="zsi-MX-r1M" id="oN1-eX-hTs"/>
+                                    <outlet property="statNumberLabel" destination="Se2-1r-lhz" id="VjZ-Va-HaZ"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="3vN-mP-X2w" id="hbE-Ru-Bm9"/>
+                            <outlet property="delegate" destination="3vN-mP-X2w" id="sAk-5u-92o"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="rqW-e0-Kiu"/>
+                    <connections>
+                        <segue destination="ups-Mm-YnV" kind="show" id="AYF-lg-kJU"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pol-ai-9VM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1358" y="1445"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="UhF-vh-HhH">
+            <objects>
+                <viewController id="ups-Mm-YnV" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sOE-Mj-fhV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Point Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ofw-8J-0I3">
+                                <rect key="frame" x="135" y="108" width="144" height="427"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="f5c-1t-ESC">
+                                <rect key="frame" x="0.0" y="535" width="414" height="278"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="174" translatesAutoresizingMaskIntoConstraints="NO" id="qQK-gj-wyD">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="20.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Total Points" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A4v-mB-cBi">
+                                                <rect key="frame" x="0.0" y="0.0" width="229.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X4g-jn-osz">
+                                                <rect key="frame" x="403.5" y="0.0" width="10.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="174" translatesAutoresizingMaskIntoConstraints="NO" id="gii-yU-sDe">
+                                        <rect key="frame" x="0.0" y="51.5" width="414" height="20.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Average Points Per Game" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wpe-1q-OTZ">
+                                                <rect key="frame" x="0.0" y="0.0" width="229.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fek-mF-49w">
+                                                <rect key="frame" x="403.5" y="0.0" width="10.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="174" translatesAutoresizingMaskIntoConstraints="NO" id="9wR-hO-QvY">
+                                        <rect key="frame" x="0.0" y="103" width="414" height="20.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Most Points Per Game" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XzK-u3-WaD">
+                                                <rect key="frame" x="0.0" y="0.0" width="229.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GG1-5u-sJn">
+                                                <rect key="frame" x="403.5" y="0.0" width="10.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="174" translatesAutoresizingMaskIntoConstraints="NO" id="Nar-fW-Jvg">
+                                        <rect key="frame" x="0.0" y="154.5" width="414" height="20.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Median Points Per Game" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BBa-lQ-cs5">
+                                                <rect key="frame" x="0.0" y="0.0" width="229.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v8t-TB-yV1">
+                                                <rect key="frame" x="403.5" y="0.0" width="10.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="174" translatesAutoresizingMaskIntoConstraints="NO" id="q2J-Fk-04V">
+                                        <rect key="frame" x="0.0" y="206" width="414" height="20.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Average Points Per Win" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdZ-Vp-Lb0">
+                                                <rect key="frame" x="0.0" y="0.0" width="177" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajo-Lb-Z7A">
+                                                <rect key="frame" x="351" y="0.0" width="63" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="174" translatesAutoresizingMaskIntoConstraints="NO" id="Tat-o9-jif">
+                                        <rect key="frame" x="0.0" y="257.5" width="414" height="20.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Average Points Per Loss" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zvT-KK-tLF">
+                                                <rect key="frame" x="0.0" y="0.0" width="183" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kqm-ho-5W4">
+                                                <rect key="frame" x="357" y="0.0" width="57" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="jAe-d4-d6t"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="f5c-1t-ESC" firstAttribute="leading" secondItem="jAe-d4-d6t" secondAttribute="leading" id="4wR-ff-Peh"/>
+                            <constraint firstItem="f5c-1t-ESC" firstAttribute="top" secondItem="Ofw-8J-0I3" secondAttribute="bottom" id="DSm-Rx-YRN"/>
+                            <constraint firstItem="Ofw-8J-0I3" firstAttribute="centerX" secondItem="sOE-Mj-fhV" secondAttribute="centerX" id="N5y-y3-Kgg"/>
+                            <constraint firstItem="Ofw-8J-0I3" firstAttribute="top" secondItem="jAe-d4-d6t" secondAttribute="top" constant="20" id="hAv-T8-F3v"/>
+                            <constraint firstItem="jAe-d4-d6t" firstAttribute="bottom" secondItem="f5c-1t-ESC" secondAttribute="bottom" id="nRF-uw-uO5"/>
+                            <constraint firstAttribute="trailing" secondItem="f5c-1t-ESC" secondAttribute="trailing" id="xve-gh-KZ7"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Yrn-d6-eQ8"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jRA-uo-dKS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-407.24637681159425" y="1443.75"/>
         </scene>
         <!--Friends-->
         <scene sceneID="xw0-6M-mqa">
@@ -1091,7 +1383,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rJl-Zg-m2m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1748" y="1608"/>
+            <point key="canvasLocation" x="2657.971014492754" y="1607.8125"/>
         </scene>
         <!--Friend-->
         <scene sceneID="3cN-XK-Rdx">
@@ -1206,7 +1498,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aqX-k8-VtR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2574" y="1608"/>
+            <point key="canvasLocation" x="3484.057971014493" y="1607.8125"/>
         </scene>
         <!--Requests-->
         <scene sceneID="JuI-WU-SNG">
@@ -1731,11 +2023,30 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BP2-U2-cLN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="954" y="1608"/>
+            <point key="canvasLocation" x="1863.7681159420292" y="1607.8125"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="eHa-Su-89z">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sNf-Ww-NTm" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="CeV-1w-Qcw"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Lhb-Kk-AY0">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="3vN-mP-X2w" kind="relationship" relationship="rootViewController" id="Rsm-in-LUx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ib2-8I-3My" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2268" y="1445"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="550-hd-Snw"/>
+        <segue reference="AhJ-2S-D07"/>
         <segue reference="eMV-Xh-ygs"/>
     </inferredMetricsTieBreakers>
     <resources>
