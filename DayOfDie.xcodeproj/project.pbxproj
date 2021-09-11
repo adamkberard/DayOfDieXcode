@@ -13,6 +13,10 @@
 		4B27049226EC11F800AAD699 /* PointScoreTrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B27049026EC11F800AAD699 /* PointScoreTrackerViewController.swift */; };
 		4B27049926EC151B00AAD699 /* PointScoreTracker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B27049826EC151B00AAD699 /* PointScoreTracker.xib */; };
 		4B4D83F926EBD9DF00FEA2E6 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4D83F826EBD9DF00FEA2E6 /* LoadingViewController.swift */; };
+		4B75A89526ED4B9100FDDE04 /* PlayerScoreTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B75A89326ED4B9100FDDE04 /* PlayerScoreTracker.swift */; };
+		4B75A89626ED4B9100FDDE04 /* PlayerScoreTracker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B75A89426ED4B9100FDDE04 /* PlayerScoreTracker.xib */; };
+		4B75A89926ED4BA000FDDE04 /* GameScoreTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B75A89726ED4BA000FDDE04 /* GameScoreTracker.swift */; };
+		4B75A89A26ED4BA000FDDE04 /* GameScoreTracker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B75A89826ED4BA000FDDE04 /* GameScoreTracker.xib */; };
 		4BAF524926EB3B8B00595302 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAF524826EB3B8B00595302 /* StartViewController.swift */; };
 		4BAF524D26EB3BEC00595302 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAF524C26EB3BEC00595302 /* RegisterViewController.swift */; };
 		4BAF524F26EB3C1300595302 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAF524E26EB3C1300595302 /* SignInViewController.swift */; };
@@ -75,6 +79,10 @@
 		4B27049026EC11F800AAD699 /* PointScoreTrackerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointScoreTrackerViewController.swift; sourceTree = "<group>"; };
 		4B27049826EC151B00AAD699 /* PointScoreTracker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PointScoreTracker.xib; sourceTree = "<group>"; };
 		4B4D83F826EBD9DF00FEA2E6 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		4B75A89326ED4B9100FDDE04 /* PlayerScoreTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScoreTracker.swift; sourceTree = "<group>"; };
+		4B75A89426ED4B9100FDDE04 /* PlayerScoreTracker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerScoreTracker.xib; sourceTree = "<group>"; };
+		4B75A89726ED4BA000FDDE04 /* GameScoreTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScoreTracker.swift; sourceTree = "<group>"; };
+		4B75A89826ED4BA000FDDE04 /* GameScoreTracker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameScoreTracker.xib; sourceTree = "<group>"; };
 		4BAF524826EB3B8B00595302 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		4BAF524C26EB3BEC00595302 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		4BAF524E26EB3C1300595302 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -180,6 +188,8 @@
 		4B27048D26EC0FAE00AAD699 /* GameScore */ = {
 			isa = PBXGroup;
 			children = (
+				4B75A89726ED4BA000FDDE04 /* GameScoreTracker.swift */,
+				4B75A89826ED4BA000FDDE04 /* GameScoreTracker.xib */,
 			);
 			path = GameScore;
 			sourceTree = "<group>";
@@ -306,6 +316,8 @@
 		5AECABA2263124EF00C4AD7B /* PlayerScore */ = {
 			isa = PBXGroup;
 			children = (
+				4B75A89326ED4B9100FDDE04 /* PlayerScoreTracker.swift */,
+				4B75A89426ED4B9100FDDE04 /* PlayerScoreTracker.xib */,
 			);
 			path = PlayerScore;
 			sourceTree = "<group>";
@@ -440,7 +452,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B75A89626ED4B9100FDDE04 /* PlayerScoreTracker.xib in Resources */,
 				4B27049926EC151B00AAD699 /* PointScoreTracker.xib in Resources */,
+				4B75A89A26ED4BA000FDDE04 /* GameScoreTracker.xib in Resources */,
 				5A62549825EEF0C600340AE0 /* LaunchScreen.storyboard in Resources */,
 				5A62549525EEF0C600340AE0 /* Assets.xcassets in Resources */,
 				5A62549325EEF0C500340AE0 /* Main.storyboard in Resources */,
@@ -574,6 +588,7 @@
 			files = (
 				4BAF524F26EB3C1300595302 /* SignInViewController.swift in Sources */,
 				4BAF524D26EB3BEC00595302 /* RegisterViewController.swift in Sources */,
+				4B75A89926ED4BA000FDDE04 /* GameScoreTracker.swift in Sources */,
 				5A741B55260D813A004651E7 /* GameTableViewCell.swift in Sources */,
 				5A9813F72617F62800C37E2C /* ApprovedFriendsTableViewController.swift in Sources */,
 				4BAF524926EB3B8B00595302 /* StartViewController.swift in Sources */,
@@ -584,6 +599,7 @@
 				5A582AFF263149EE0004E7F0 /* PlayerPointsTableViewCell.swift in Sources */,
 				5A582AF62631497E0004E7F0 /* PlayerPointsTableViewController.swift in Sources */,
 				5A6ED7192641255B005552D7 /* UserTableView.swift in Sources */,
+				4B75A89526ED4B9100FDDE04 /* PlayerScoreTracker.swift in Sources */,
 				4BAF525126EB3C3000595302 /* AuthValidators.swift in Sources */,
 				5A62549025EEF0C500340AE0 /* MainTrackingViewController.swift in Sources */,
 				5A62548C25EEF0C500340AE0 /* AppDelegate.swift in Sources */,

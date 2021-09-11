@@ -157,19 +157,19 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="kXk-o2-6pr" userLabel="FullStats Stack View">
                                         <rect key="frame" x="0.0" y="129.5" width="394" height="519.5"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mhA-zv-DCT" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mhA-zv-DCT" customClass="PointScoreTracker" customModule="DayOfDie" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="394" height="111"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oR3-Ie-v9T" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oR3-Ie-v9T" customClass="PointScoreTracker" customModule="DayOfDie" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="136" width="394" height="111"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RbQ-sK-VBf" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RbQ-sK-VBf" customClass="PointScoreTracker" customModule="DayOfDie" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="272" width="394" height="111.5"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SQ7-nH-K66" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SQ7-nH-K66" customClass="PointScoreTracker" customModule="DayOfDie" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="408.5" width="394" height="111"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
@@ -178,19 +178,19 @@
                                     <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Krw-mC-Br0" userLabel="PlayerPoints Stack View">
                                         <rect key="frame" x="0.0" y="661.5" width="394" height="75"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XRO-yn-vWO" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XRO-yn-vWO" customClass="PointScoreTracker" customModule="DayOfDie" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="394" height="0.0"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GYd-Kl-he1" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GYd-Kl-he1" customClass="PointScoreTracker" customModule="DayOfDie" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="25" width="394" height="0.0"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cwd-jr-zSv" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cwd-jr-zSv" customClass="PointScoreTracker" customModule="DayOfDie" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="50" width="394" height="0.0"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2FJ-bS-zgh" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2FJ-bS-zgh" customClass="PointScoreTracker" customModule="DayOfDie" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="75" width="394" height="0.0"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
@@ -199,19 +199,19 @@
                                     <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="NIu-c0-6sl" userLabel="TeamPoints Stack View">
                                         <rect key="frame" x="0.0" y="661.5" width="394" height="75"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fTX-fg-aGl" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fTX-fg-aGl" customClass="PointScoreTracker" customModule="DayOfDie" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="394" height="0.0"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="quU-Ty-jPV" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="quU-Ty-jPV" customClass="PointScoreTracker" customModule="DayOfDie" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="25" width="394" height="0.0"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i9E-9p-p1R" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i9E-9p-p1R" customClass="PointScoreTracker" customModule="DayOfDie" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="50" width="394" height="0.0"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0rT-j1-WQH" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0rT-j1-WQH" customClass="PointScoreTracker" customModule="DayOfDie" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="75" width="394" height="0.0"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>

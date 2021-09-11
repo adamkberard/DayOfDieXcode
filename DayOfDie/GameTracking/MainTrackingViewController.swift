@@ -10,7 +10,7 @@ import Alamofire
 
 class MainTrackingViewController: UIViewController {
     
-    @IBOutlet var playerScoreTrackers : [FullStatsPlayerScorePicker]?
+    @IBOutlet var playerScoreTrackers : [PointScoreTracker]?
     @IBOutlet weak var scoreboard: PlayersTableScoreView!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var statKeepingSelector: UISegmentedControl!
@@ -109,8 +109,7 @@ class MainTrackingViewController: UIViewController {
     @IBAction func saveGameButtonPressed(_ sender: Any) {
         // Now it sends the data to me
         // Prepare json data
-        
-        var allPoints : [[String : String]] = []
+        var allPoints : Array<Dictionary<String, String>> = []
         for playerScoreTracker in playerScoreTrackers!{
             for point in playerScoreTracker.points{
                 let tempDict : [String : String] = ["type": point.typeOfPoint.rawValue, "scorer" : point.scorer.uuid]
@@ -126,7 +125,6 @@ class MainTrackingViewController: UIViewController {
             "team_one_score": scoreboard.teamOneScore,
             "team_two_score": scoreboard.teamTwoScore,
             "confirmed": false,
-            "type": "pu",
             "points": allPoints
         ]
 
@@ -149,7 +147,7 @@ class MainTrackingViewController: UIViewController {
                     Friend.findOrCreateFriend(teamCaptain: self.playerOne, teammate: self.playerTwo).losses += 1
                     Friend.findOrCreateFriend(teamCaptain: self.playerThree, teammate: self.playerFour).wins += 1
                 }
-                self.performSegue(withIdentifier: "signInSegue", sender: self)
+                self.performSegue(withIdentifier: "toGameAfterSave", sender: self)
             }
             else{
                 let errors : [String] = returnData as! [String]

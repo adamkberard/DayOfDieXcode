@@ -41,9 +41,8 @@ class Game : Decodable, Encodable, Equatable {
     }
     
     required init(from decoder: Decoder) throws {
-
-      // Get our container for this subclass' coding keys
-              let container = try decoder.container(keyedBy: CodingKeys.self)
+        // Get our container for this subclass' coding keys
+        let container = try decoder.container(keyedBy: DecodingKeys.self)
         
         let timeStartedString = try container.decode(String.self, forKey: .timeStarted)
         let timeEndedString = try container.decode(String.self, forKey: .timeStarted)
@@ -62,7 +61,24 @@ class Game : Decodable, Encodable, Equatable {
         self.points = try container.decode([Point].self, forKey: .points)
     }
     
-    enum CodingKeys : String, CodingKey {
+    static func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: EncodingKeys.self)
+    }
+    
+    enum DecodingKeys : String, CodingKey {
+        case timeStarted = "time_started"
+        case timeEnded = "time_ended"
+        case uuid
+        case teamOne = "team_one"
+        case teamTwo = "team_two"
+        
+        case teamOneScore = "team_one_score"
+        case teamTwoScore = "team_two_score"
+        case confirmed
+        case points
+    }
+    
+    enum EncodingKeys : String, CodingKey {
         case timeStarted = "time_started"
         case timeEnded = "time_ended"
         case uuid

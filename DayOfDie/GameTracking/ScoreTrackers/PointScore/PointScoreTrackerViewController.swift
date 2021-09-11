@@ -8,7 +8,7 @@
 import UIKit
 
 @IBDesignable
-class FullStatsPlayerScorePicker: UIView {
+class PointScoreTracker: UIView {
 
     // Mark: UI Vars
     @IBOutlet weak var playerLabel: UILabel!

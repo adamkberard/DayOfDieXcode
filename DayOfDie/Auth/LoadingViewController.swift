@@ -11,9 +11,8 @@ import Alamofire
 
 struct URLInfo{
     //static var baseUrl = "https://dayofdie-test.herokuapp.com"
-    //static var baseUrl = "https://dayofdie.herokuapp.com"
-    //static var baseUrl = "http://localhost:8000"
     static var baseUrl = "http://127.0.0.1:8000"
+    //static var baseUrl = "https://dayofdie.herokuapp.com"
 }
 
 
@@ -22,6 +21,7 @@ class LoadingViewController: UIViewController {
     var successUsersLoad : Bool = false
     var successGamesLoad : Bool = false
     var successFriendsLoad : Bool = false
+    var successUserLoad : Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +74,6 @@ class LoadingViewController: UIViewController {
                 let errors : [String] = returnData as! [String]
                 print(errors)
             }
-            
         }
     }
     
@@ -99,6 +98,12 @@ class APICalls {
         }
     }
     
+    static func getUser(username: String, completion: @escaping (Bool, Any) -> Void) {
+        get(url: "\(URLInfo.baseUrl)/users/\(username)/", returnType: User.self) {status, returnDict in
+            completion(status, returnDict)
+        }
+    }
+    
     static func getFriends(completion: @escaping (Bool, Any) -> Void) {
         get(url: "\(URLInfo.baseUrl)/friends/", returnType: [Friend].self) {status, returnDict in
             completion(status, returnDict)
@@ -118,14 +123,12 @@ class APICalls {
     }
     
     static func sendGame(parameters: [String: Any], completion: @escaping (Bool, Any) -> Void) {
-        print("params: \(parameters)")
         post(url: "\(URLInfo.baseUrl)/games/", parameters: parameters, returnType: Game.self) { status, returnData in
             completion(status, returnData)
         }
     }
     
     static func sendFriend(parameters: [String: Any], completion: @escaping (Bool, Any) -> Void) {
-        print("params: \(parameters)")
         post(url: "\(URLInfo.baseUrl)/friends/", parameters: parameters, returnType: Friend.self) { status, returnData in
             completion(status, returnData)
         }
@@ -159,8 +162,7 @@ class APICalls {
     }
     
     static func post<T: Decodable>(url: String, parameters: [String: Any], returnType: T.Type, completion: @escaping (Bool, Any) -> Void) {
-        
-        AF.request(url, method: .post, parameters: parameters, headers: getHeaders()).responseDecodable(of: returnType.self) { response in
+        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: getHeaders()).cURLDescription{print("HERE55: \($0)")}.responseDecodable(of: returnType.self) { response in
             guard let returnStatusCode = response.response?.statusCode else {
                 let returnData : [String] = ["No connection."]
                 completion(false, returnData)
@@ -198,8 +200,11 @@ class APICalls {
         }
         
         for key in errorsDict.keys{
-            errors.append(contentsOf: errorsDict[key]!)
+            for error in errorsDict[key]!{
+                errors.append("\(key) - \(error)")
+            }
         }
+        // If we don't get any param errors it's nice to return that. Saves me debug time
         if errors.isEmpty{
             errors.append("No param errors.")
         }

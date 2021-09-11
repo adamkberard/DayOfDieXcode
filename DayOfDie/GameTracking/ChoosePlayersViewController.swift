@@ -48,6 +48,10 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
             statusLabel.text = "Must have at least three friends to start a game."
         }
         else {
+            for i in 0...3{
+                playerPickers[i].isUserInteractionEnabled = true
+                playerPickers[i].selectRow(i, inComponent: 0, animated: false)
+            }
             if pickerSelectionsAreGood(){
                 startGameButton.isEnabled = true
                 statusLabel.isHidden = true
