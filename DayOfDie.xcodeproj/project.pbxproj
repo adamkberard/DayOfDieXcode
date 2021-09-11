@@ -39,7 +39,6 @@
 		5A83FACA260FB24B00831C68 /* ChoosePlayersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A741B5F260D99B3004651E7 /* ChoosePlayersViewController.swift */; };
 		5A83FAD12610F78400831C68 /* MainTrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A62548F25EEF0C500340AE0 /* MainTrackingViewController.swift */; };
 		5A83FAD52610F78400831C68 /* MainTrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A62548F25EEF0C500340AE0 /* MainTrackingViewController.swift */; };
-		5A840A6625F5B3560039492D /* URLInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A840A6525F5B3560039492D /* URLInfo.swift */; };
 		5A8DE2DB26410AAA00AE353B /* FriendTableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8DE2D026410A9A00AE353B /* FriendTableViewCells.swift */; };
 		5A976A782620A04000E5B7F6 /* GameDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A976A772620A04000E5B7F6 /* GameDetailViewController.swift */; };
 		5A9813F72617F62800C37E2C /* ApprovedFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9813F62617F62800C37E2C /* ApprovedFriendsTableViewController.swift */; };
@@ -104,7 +103,6 @@
 		5A741B54260D813A004651E7 /* GameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTableViewCell.swift; sourceTree = "<group>"; };
 		5A741B5F260D99B3004651E7 /* ChoosePlayersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosePlayersViewController.swift; sourceTree = "<group>"; };
 		5A83FAAD260EF19E00831C68 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
-		5A840A6525F5B3560039492D /* URLInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLInfo.swift; sourceTree = "<group>"; };
 		5A8DE2D026410A9A00AE353B /* FriendTableViewCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCells.swift; sourceTree = "<group>"; };
 		5A976A772620A04000E5B7F6 /* GameDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailViewController.swift; sourceTree = "<group>"; };
 		5A9813F62617F62800C37E2C /* ApprovedFriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovedFriendsTableViewController.swift; sourceTree = "<group>"; };
@@ -244,7 +242,6 @@
 				5A62549425EEF0C600340AE0 /* Assets.xcassets */,
 				5A62549625EEF0C600340AE0 /* LaunchScreen.storyboard */,
 				5A62549925EEF0C600340AE0 /* Info.plist */,
-				5A840A6525F5B3560039492D /* URLInfo.swift */,
 				5AD7FD9826C3958F001FB735 /* Manual Testing */,
 			);
 			path = DayOfDie;
@@ -579,7 +576,6 @@
 				4BAF524D26EB3BEC00595302 /* RegisterViewController.swift in Sources */,
 				5A741B55260D813A004651E7 /* GameTableViewCell.swift in Sources */,
 				5A9813F72617F62800C37E2C /* ApprovedFriendsTableViewController.swift in Sources */,
-				5A840A6625F5B3560039492D /* URLInfo.swift in Sources */,
 				4BAF524926EB3B8B00595302 /* StartViewController.swift in Sources */,
 				4B4D83F926EBD9DF00FEA2E6 /* LoadingViewController.swift in Sources */,
 				4B27048A26EBFB4000AAD699 /* User.swift in Sources */,
