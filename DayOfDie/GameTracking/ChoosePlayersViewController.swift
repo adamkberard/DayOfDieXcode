@@ -32,8 +32,11 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
     
     func setupPickers() {
         possiblePlayers = []
+        possiblePlayers.append(ThisUser.user)
         possiblePlayers.append(contentsOf: Friend.approvedFriends.map({$0.getOtherUser()}))
-        possiblePlayers.append(LoggedInUser.user)
+        for playerPicker in playerPickers {
+            playerPicker.reloadComponent(0)
+        }
         print("Current possible players: \(possiblePlayers.count)")
         
         if(possiblePlayers.count < 4){

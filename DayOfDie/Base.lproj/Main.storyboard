@@ -148,77 +148,77 @@
                                 <rect key="frame" x="10" y="98" width="394" height="705"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WUc-qi-FTJ" customClass="PlayersTableScoreView" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="394" height="91"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="104.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" priority="999" constant="200" id="n11-w6-ryV"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="kXk-o2-6pr" userLabel="FullStats Stack View">
-                                        <rect key="frame" x="0.0" y="116" width="394" height="475"/>
+                                        <rect key="frame" x="0.0" y="129.5" width="394" height="519.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mhA-zv-DCT" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="394" height="100"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="394" height="111"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oR3-Ie-v9T" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="125" width="394" height="100"/>
+                                                <rect key="frame" x="0.0" y="136" width="394" height="111"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RbQ-sK-VBf" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="250" width="394" height="100"/>
+                                                <rect key="frame" x="0.0" y="272" width="394" height="111.5"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SQ7-nH-K66" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="375" width="394" height="100"/>
+                                                <rect key="frame" x="0.0" y="408.5" width="394" height="111"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                         </subviews>
                                     </stackView>
                                     <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Krw-mC-Br0" userLabel="PlayerPoints Stack View">
-                                        <rect key="frame" x="0.0" y="603.5" width="394" height="475"/>
+                                        <rect key="frame" x="0.0" y="661.5" width="394" height="75"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XRO-yn-vWO" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="394" height="100"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="394" height="0.0"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GYd-Kl-he1" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="125" width="394" height="100"/>
+                                                <rect key="frame" x="0.0" y="25" width="394" height="0.0"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cwd-jr-zSv" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="250" width="394" height="100"/>
+                                                <rect key="frame" x="0.0" y="50" width="394" height="0.0"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2FJ-bS-zgh" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="375" width="394" height="100"/>
+                                                <rect key="frame" x="0.0" y="75" width="394" height="0.0"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                         </subviews>
                                     </stackView>
                                     <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="NIu-c0-6sl" userLabel="TeamPoints Stack View">
-                                        <rect key="frame" x="0.0" y="603.5" width="394" height="475"/>
+                                        <rect key="frame" x="0.0" y="661.5" width="394" height="75"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fTX-fg-aGl" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="394" height="100"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="394" height="0.0"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="quU-Ty-jPV" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="125" width="394" height="100"/>
+                                                <rect key="frame" x="0.0" y="25" width="394" height="0.0"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i9E-9p-p1R" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="250" width="394" height="100"/>
+                                                <rect key="frame" x="0.0" y="50" width="394" height="0.0"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0rT-j1-WQH" customClass="FullStatsPlayerScorePicker" customModule="DayOfDie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="375" width="394" height="100"/>
+                                                <rect key="frame" x="0.0" y="75" width="394" height="0.0"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                         </subviews>
                                     </stackView>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wSr-Xa-WTc">
-                                        <rect key="frame" x="0.0" y="616" width="394" height="90"/>
+                                        <rect key="frame" x="0.0" y="674" width="394" height="32"/>
                                         <segments>
                                             <segment title="Full Stats"/>
                                             <segment title="Player Points"/>
@@ -1005,7 +1005,7 @@
                         <outlet property="passwordOneTextField" destination="XD7-vY-383" id="kH5-m7-Ib3"/>
                         <outlet property="passwordTwoTextField" destination="pXI-od-62f" id="D5c-ko-7DB"/>
                         <outlet property="statusLabel" destination="NFw-Q9-A9z" id="GP0-SP-xMM"/>
-                        <segue destination="eje-EO-Cuq" kind="presentation" identifier="registerSegue" modalPresentationStyle="fullScreen" id="AhJ-2S-D07"/>
+                        <segue destination="eje-EO-Cuq" kind="presentation" identifier="registerSegue" modalPresentationStyle="fullScreen" id="9gJ-hn-MTh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iuh-Z1-soG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2046,7 +2046,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="AhJ-2S-D07"/>
+        <segue reference="9gJ-hn-MTh"/>
         <segue reference="eMV-Xh-ygs"/>
     </inferredMetricsTieBreakers>
     <resources>

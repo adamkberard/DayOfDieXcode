@@ -43,21 +43,24 @@ class BaseFriendRequestTableViewCell: UITableViewCell {
             "teammate": friend!.getOtherUser().username,
             "status": FriendStatuses.ACCEPTED.rawValue
         ]
-        /*
-        AF.request("\(URLInfo.baseUrl)/friends/", method: .post, parameters: parameters, headers: LoggedInUser.getHeaders()).responseDecodable(of: Friend.self) { response in
-            print()
-            switch response.result {
-                case .success:
-                    if let index = LoggedInUser.friends.firstIndex(of: self.friend!){
-                        LoggedInUser.friends.remove(at: index)
-                    }
-                    
-                    LoggedInUser.friends.append(response.value!)
-                    self.parentTableView?.reloadData()
-                case let .failure(error):
-                    print(error)
+        
+        APICalls.sendFriend(parameters: parameters) { status, returnData in
+            if status{
+                // Check if everything is done if so move on
+                self.friend = (returnData as! Friend)
+                if let index = Friend.allFriends.firstIndex(of: self.friend!){
+                    print("REplaceing friend")
+                    Friend.allFriends.remove(at: index)
+                }
+                Friend.allFriends.append(self.friend!)
+                self.parentTableView?.reloadData()
             }
-        }*/
+            else{
+                //Handle if things go wrong
+                let errors : [String] = returnData as! [String]
+                print(errors)
+            }
+        }
     }
     
     @IBAction func secondButtonPressed(_ sender: Any) {
@@ -66,23 +69,32 @@ class BaseFriendRequestTableViewCell: UITableViewCell {
             "teammate": friend!.getOtherUser().username,
             "status": FriendStatuses.NOTHING.rawValue
         ]
-        /*
-        AF.request("\(URLInfo.baseUrl)/friends/", method: .post, parameters: parameters, headers: LoggedInUser.getHeaders()).responseDecodable(of: Friend.self) { response in
-            switch response.result {
-                case .success:
-                    if let index = LoggedInUser.friends.firstIndex(of: self.friend!) {
-                        LoggedInUser.friends.remove(at: index)
-                    }
-                    LoggedInUser.friends.append(response.value!)
-                    self.parentTableView?.reloadData()
-                case let .failure(error):                    
-                    print(error)
+        APICalls.sendFriend(parameters: parameters) { status, returnData in
+            if status{
+                // Check if everything is done if so move on
+                self.friend = (returnData as! Friend)
+                if let index = Friend.allFriends.firstIndex(of: self.friend!){
+                    Friend.allFriends.remove(at: index)
+                }
+                Friend.allFriends.append(self.friend!)
+                self.parentTableView?.reloadData()
             }
-        }*/
+            else{
+                //Handle if things go wrong
+                let errors : [String] = returnData as! [String]
+                print(errors)
+            }
+        }
     }
 }
 
 class PendingFriendRequestTableViewCell: BaseFriendRequestTableViewCell {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+        firstButton.setTitle("Accept", for: .normal)
+        secondButton.isHidden = true
+    }
 }
 
 class WaitingFriendRequestTableViewCell: BaseFriendRequestTableViewCell {

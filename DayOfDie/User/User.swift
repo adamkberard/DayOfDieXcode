@@ -14,6 +14,8 @@ class ThisUser : Codable{
 }
 
 class User : Codable, Equatable {
+    static var allUsers : [User] = []
+    
     var username : String = ""
     var uuid : String = ""
     var wins : Int = 0

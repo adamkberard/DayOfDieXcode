@@ -19,9 +19,9 @@ class LoadingViewController: UIViewController {
         super.viewDidLoad()
         
         // Loading friends here
-        APICalls.getFriends {status, returnDict in
+        APICalls.getFriends {status, returnData in
             if status{
-                Friend.allFriends = returnDict["object"] as! [Friend]
+                Friend.allFriends = returnData as! [Friend]
                 self.successFriendsLoad = true
                 if self.isAllDataLoaded(){
                     self.performSegue(withIdentifier: "toMainApp", sender: self)
@@ -29,15 +29,16 @@ class LoadingViewController: UIViewController {
             }
             else{
                 //Handle if things go wrong
-                print(returnDict["errors"]!)
+                let errors : [String] = returnData as! [String]
+                print(errors)
             }
         }
         
         // Loading all users here
-        APICalls.getUsers {status, returnDict in
+        APICalls.getUsers {status, returnData in
             if status{
                 // Check if everything is done if so move on
-                User.allUsers = returnDict["object"] as! [User]
+                User.allUsers = returnData as! [User]
                 self.successUsersLoad = true
                 if self.isAllDataLoaded(){
                     self.performSegue(withIdentifier: "toMainApp", sender: self)
@@ -45,15 +46,16 @@ class LoadingViewController: UIViewController {
             }
             else{
                 //Handle if things go wrong
-                print(returnDict["errors"]!)
+                let errors : [String] = returnData as! [String]
+                print(errors)
             }
         }
         
         // Loading all games here
-        APICalls.getGames {status, returnDict in
+        APICalls.getGames {status, returnData in
             if status{
                 // Check if everything is done if so move on
-                Game.allGames = returnDict["object"] as! [Game]
+                Game.allGames = returnData as! [Game]
                 self.successGamesLoad = true
                 if self.isAllDataLoaded(){
                     self.performSegue(withIdentifier: "toMainApp", sender: self)
@@ -61,7 +63,8 @@ class LoadingViewController: UIViewController {
             }
             else{
                 //Handle if things go wrong
-                print(returnDict["errors"]!)
+                let errors : [String] = returnData as! [String]
+                print(errors)
             }
             
         }
@@ -74,105 +77,125 @@ class LoadingViewController: UIViewController {
 
 class APICalls {
     
-    static func login(parameters: [String: Any], completion: @escaping (Bool, [String: Any]) -> Void) {
+    static func login(parameters: [String: Any], completion: @escaping (Bool, Any) -> Void) {
         let url = "\(URLInfo.baseUrl)/auth/login/"
-        post(url: url, parameters: parameters, returnType: LoginPack.self) {status, returnDict in
-            completion(status, returnDict)
+        post(url: url, parameters: parameters, returnType: LoginPack.self) {status, returnData in
+            completion(status, returnData)
         }
     }
     
-    static func register(parameters: [String: Any], completion: @escaping (Bool, [String: Any]) -> Void) {
+    static func register(parameters: [String: Any], completion: @escaping (Bool, Any) -> Void) {
         let url = "\(URLInfo.baseUrl)/auth/register/"
-        post(url: url, parameters: parameters, returnType: LoginPack.self) {status, returnDict in
-            completion(status, returnDict)
+        post(url: url, parameters: parameters, returnType: LoginPack.self) {status, returnData in
+            completion(status, returnData)
         }
     }
     
-    static func getFriends(completion: @escaping (Bool, [String: Any]) -> Void) {
+    static func getFriends(completion: @escaping (Bool, Any) -> Void) {
         get(url: "\(URLInfo.baseUrl)/friends/", returnType: [Friend].self) {status, returnDict in
             completion(status, returnDict)
         }
     }
     
-    static func getUsers(completion: @escaping (Bool, [String: Any]) -> Void) {
+    static func getUsers(completion: @escaping (Bool, Any) -> Void) {
         get(url: "\(URLInfo.baseUrl)/users/", returnType: [User].self) {status, returnDict in
             completion(status, returnDict)
         }
     }
     
-    static func getGames(completion: @escaping (Bool, [String: Any]) -> Void) {
+    static func getGames(completion: @escaping (Bool, Any) -> Void) {
         get(url: "\(URLInfo.baseUrl)/games/", returnType: [Game].self) {status, returnDict in
             completion(status, returnDict)
         }
     }
     
-    static func sendGame(parameters: [String: Any], completion: @escaping (Bool, [String: Any]) -> Void) {
+    static func sendGame(parameters: [String: Any], completion: @escaping (Bool, Any) -> Void) {
         print("params: \(parameters)")
-        post(url: "\(URLInfo.baseUrl)/games/", parameters: parameters, returnType: Game.self) { status, returnDict in
-            completion(status, returnDict)
+        post(url: "\(URLInfo.baseUrl)/games/", parameters: parameters, returnType: Game.self) { status, returnData in
+            completion(status, returnData)
         }
     }
     
-    static func get<T: Decodable>(url: String, returnType: T.Type, completion: @escaping (Bool, [String: Any]) -> Void) {
+    static func sendFriend(parameters: [String: Any], completion: @escaping (Bool, Any) -> Void) {
+        print("params: \(parameters)")
+        post(url: "\(URLInfo.baseUrl)/friends/", parameters: parameters, returnType: Friend.self) { status, returnData in
+            completion(status, returnData)
+        }
+    }
+    
+    static func get<T: Decodable>(url: String, returnType: T.Type, completion: @escaping (Bool, Any) -> Void) {
         AF.request(url, method: .get, headers: getHeaders()).responseDecodable(of: returnType.self) { response in
-            var eDict : [String: [String]] = [:]
             guard let returnStatusCode = response.response?.statusCode else {
-                eDict["errors"] = ["No connection."]
-                completion(false, eDict)
+                let errors : [String] = ["No connection."]
+                completion(false, errors)
                 return
             }
             switch returnStatusCode {
             case 200, 201:
-                let returnDict : [String: Any] = ["object" : response.value!]
-                completion(true, returnDict)
+                let returnData = response.value!
+                completion(true, returnData)
             case 400:
-                let errorsDict : [String:[String]] = response.value as! [String : [String]]
-                eDict = getErrorsFromParams(params: [:], errorsDict: errorsDict)
-                completion(false, eDict)
+                var errorsDict : [String: [String]] = [:]
+                do {
+                    errorsDict = try JSONDecoder().decode(Dictionary<String, [String]>.self, from: response.data!)
+                } catch {
+                    errorsDict["my_side_errors"] = ["Couldn't decode json response."]
+                }
+                let errors : [String] = getErrorsFromParams(params: [:], errorsDict: errorsDict)
+                completion(false, errors)
             default:
-                eDict["errors"] = ["Error."]
-                completion(false, eDict)
+                let errors : [String] = ["Error."]
+                completion(false, errors)
             }
         }
     }
     
-    static func post<T: Decodable>(url: String, parameters: [String: Any], returnType: T.Type, completion: @escaping (Bool, [String: Any]) -> Void) {
+    static func post<T: Decodable>(url: String, parameters: [String: Any], returnType: T.Type, completion: @escaping (Bool, Any) -> Void) {
         
-        AF.request(url, method: .post, headers: getHeaders()).responseDecodable(of: returnType.self) { response in
-            var eDict : [String: [String]] = [:]
+        AF.request(url, method: .post, parameters: parameters, headers: getHeaders()).responseDecodable(of: returnType.self) { response in
             guard let returnStatusCode = response.response?.statusCode else {
-                eDict["errors"] = ["No connection."]
-                completion(false, eDict)
+                let returnData : [String] = ["No connection."]
+                completion(false, returnData)
                 return
             }
             switch returnStatusCode {
-            case 201:
-                let returnDict : [String: Any] = ["object" : response.value!]
-                completion(true, returnDict)
+            case 200, 201:
+                let returnData = response.value!
+                completion(true, returnData)
             case 400:
-                print("HERE3")
-                let errorsDict : [String:[String]] = [:]
-                eDict = getErrorsFromParams(params: parameters, errorsDict: errorsDict)
-                completion(false, eDict)
+                var errorsDict : [String: [String]] = [:]
+                do {
+                    errorsDict = try JSONDecoder().decode(Dictionary<String, [String]>.self, from: response.data!)
+                } catch {
+                    errorsDict["my_side_errors"] = ["Couldn't decode json response."]
+                }
+                let errors : [String] = getErrorsFromParams(params: parameters, errorsDict: errorsDict)
+                completion(false, errors)
             default:
-                eDict["errors"] = ["Error."]
-                completion(false, eDict)
+                let errors : [String] = ["Error."]
+                completion(false, errors)
             }
         }
     }
     
-    static func getErrorsFromParams(params: [String: Any], errorsDict: [String: [String]]) -> [String: [String]]{
-        var eDict : [String: [String]] = [:]
-        eDict["errors"] = []
+    static func getErrorsFromParams(params: [String: Any], errorsDict: [String: [String]]) -> [String]{
+        var errors : [String] = []
         
         if errorsDict.index(forKey: "non_field_errors") != nil {
-            eDict["errors"]!.append(contentsOf: errorsDict["non_field_errors"]!)
+            errors.append(contentsOf: errorsDict["non_field_errors"]!)
+        }
+        
+        if errorsDict.index(forKey: "my_side_errors") != nil {
+            errors.append(contentsOf: errorsDict["my_side_errors"]!)
         }
         
         for key in errorsDict.keys{
-            eDict["errors"]!.append(contentsOf: errorsDict[key]!)
+            errors.append(contentsOf: errorsDict[key]!)
         }
-        return eDict
+        if errors.isEmpty{
+            errors.append("No param errors.")
+        }
+        return errors
     }
     
     static func getHeaders()->HTTPHeaders {

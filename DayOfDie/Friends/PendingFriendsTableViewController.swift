@@ -21,8 +21,10 @@ class FriendRequestTableViewController: UITableViewController {
         return 2
     }
 
+    // The first section will be the waiting requests
+    // The second section will be the pending requests
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0{
+        if section == 0 {
             return Friend.pendingFriends.count
         }
         else {
@@ -31,37 +33,31 @@ class FriendRequestTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0:
+        if indexPath.section == 0{
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendRequestCell", for: indexPath) as? PendingFriendRequestTableViewCell  else {
-                fatalError("The dequeued cell is not an instance of FriendRequestTableViewCell.")
+                fatalError("The dequeued cell is not an instance of PendingFriendRequestCell.")
             }
             cell.friend = Friend.pendingFriends[indexPath.row]
             cell.parentTableView = self.tableView
-            
             return cell
-        default:
+        }
+        else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "waitingFriendRequestCell", for: indexPath) as? WaitingFriendRequestTableViewCell  else {
-                fatalError("The dequeued cell is not an instance of WaitingFriendRequestTableViewCell.")
+                fatalError("The dequeued cell is not an instance of WaitingFriendRequestCell.")
             }
             cell.friend = Friend.waitingFriends[indexPath.row]
             cell.parentTableView = self.tableView
-            
             return cell
         }
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0:
+        if section == 0 {
             return "Pending"
-        default:
+        }
+        else {
             return "Waiting"
         }
-    }
-    
-    @IBAction func historyButtonPressed(_ sender: Any) {
-        self.performSegue(withIdentifier: "toHistoryFriends", sender: self)
     }
     
     /*

@@ -40,8 +40,8 @@ class UserViewConViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        usernameLabel.text = LoggedInUser.user.username
-        emailLabel.text = LoggedInUser.email
+        usernameLabel.text = ThisUser.user.username
+        emailLabel.text = ThisUser.email
         
         updateWinsData()
     }
@@ -101,10 +101,10 @@ class UserViewConViewController: UIViewController {
     // When I change the username I gotta go through and change the user's username in all their friends
     func changeUsernameInFriends(pasteName: String){
         for friend in Friend.allFriends{
-            if friend.teamCaptain.username == LoggedInUser.user.username{
+            if friend.teamCaptain.username == ThisUser.user.username{
                 friend.teamCaptain.username = pasteName
             }
-            else if friend.teammate.username == LoggedInUser.user.username{
+            else if friend.teammate.username == ThisUser.user.username{
                 friend.teammate.username = pasteName
             }
         }

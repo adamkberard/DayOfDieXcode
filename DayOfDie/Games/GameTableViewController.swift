@@ -75,20 +75,19 @@ class GameTableViewController: UITableViewController {
     }
     
     func loadGames() {
-        /*
-        AF.request("\(URLInfo.baseUrl)/games/", method: .get, headers: LoggedInUser.getHeaders()).responseDecodable(of: [Game].self) { response in
-            switch response.result {
-                case .success:
-                    LoggedInUser.games = response.value!
-                    print("HERE 5")
-                case let .failure(error):
-                    print("HERE 6")
-                    print(error)
+        APICalls.getGames {status, returnData in
+            if status{
+                // Check if everything is done if so move on
+                Game.allGames = returnData as! [Game]
             }
-            self.tableView.reloadData()
-            self.refreshControl?.endRefreshing()
+            else{
+                //Handle if things go wrong
+                let errors : [String] = returnData as! [String]
+                print(errors)
+            }
         }
- */
+        self.tableView.reloadData()
+        self.refreshControl?.endRefreshing()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

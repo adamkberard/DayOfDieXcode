@@ -16,10 +16,10 @@ class MainTrackingViewController: UIViewController {
     @IBOutlet weak var statKeepingSelector: UISegmentedControl!
     
     var activityIndicator : UIActivityIndicatorView = UIActivityIndicatorView()
-    var playerOne : User = LoggedInUser.user
-    var playerTwo : User = LoggedInUser.user
-    var playerThree : User = LoggedInUser.user
-    var playerFour : User = LoggedInUser.user
+    var playerOne : User = ThisUser.user
+    var playerTwo : User = ThisUser.user
+    var playerThree : User = ThisUser.user
+    var playerFour : User = ThisUser.user
     
     var currentlyPickedPoints : Int = 0
     
@@ -136,9 +136,9 @@ class MainTrackingViewController: UIViewController {
         parameters["time_ended"] = df.string(from: Date())
         print("PRE SENDING \(parameters)")
         
-        APICalls.sendGame(parameters: parameters) { status, returnDict in
+        APICalls.sendGame(parameters: parameters) { status, returnData in
             if status{
-                self.returnedGame = returnDict["object"]! as? Game
+                self.returnedGame = returnData as? Game
                 Game.allGames.append(self.returnedGame!)
                 
                 if self.scoreboard.teamOneScore > self.scoreboard.teamTwoScore{
@@ -152,8 +152,8 @@ class MainTrackingViewController: UIViewController {
                 self.performSegue(withIdentifier: "signInSegue", sender: self)
             }
             else{
-                print("IT FAILED")
-                print(returnDict["errors"])
+                let errors : [String] = returnData as! [String]
+                print(errors)
                 // Handle errors here someday
             }
         }

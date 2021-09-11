@@ -21,6 +21,7 @@ class FriendTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
+        loadFriends()
     }
 
     // MARK: - Table view data source
@@ -56,30 +57,21 @@ class FriendTableViewController: UITableViewController {
         self.performSegue(withIdentifier: "toFriendDetailView", sender: self)
     }
     
-    func loadFriendsAndUsers() {
-        /*
-        AF.request("\(URLInfo.baseUrl)/friends/", method: .get, headers: LoggedInUser.getHeaders()).responseDecodable(of: [Friend].self) { response in
-            switch response.result {
-                case .success:
-                    LoggedInUser.friends = response.value!
-                case let .failure(error):
-                    print(error)
+    func loadFriends() {
+        APICalls.getFriends {status, returnData in
+            if status{
+                print(Friend.allFriends.count)
+                Friend.allFriends = returnData as! [Friend]
+                print(Friend.allFriends.count)
             }
-            self.tableView.reloadData()
-            self.refreshControl?.endRefreshing()
-        }
-        
-        AF.request("\(URLInfo.baseUrl)/users/", method: .get, headers: LoggedInUser.getHeaders()).responseDecodable(of: [BasicUser].self) { response in
-            switch response.result {
-                case .success:
-                    allUsers = response.value!
-                case let .failure(error):
-                    print(error)
+            else{
+                //Handle if things go wrong
+                let errors : [String] = returnData as! [String]
+                print(errors)
             }
-            self.tableView.reloadData()
-            self.refreshControl?.endRefreshing()
         }
- */
+        self.tableView.reloadData()
+        self.refreshControl?.endRefreshing()
     }
     
     @IBAction func requestsButtonPressed(_ sender: Any) {
@@ -108,7 +100,7 @@ class FriendTableViewController: UITableViewController {
 
     @objc func refresh(sender:AnyObject)
     {
-        loadFriendsAndUsers()
+        loadFriends()
     }
 
 }

@@ -24,14 +24,15 @@ class UserTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     
     func loadData() {
         // Loading all users here
-        APICalls.getUsers {status, returnDict in
+        APICalls.getUsers {status, returnData in
             if status{
                 // Check if everything is done if so move on
-                User.allUsers = returnDict["object"] as! [User]
+                User.allUsers = returnData as! [User]
             }
             else{
                 //Handle if things go wrong
-                print(returnDict["errors"]!)
+                let errors : [String] = returnData as! [String]
+                print(errors)
             }
         }
         
@@ -41,7 +42,7 @@ class UserTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         // Removing current user's username and also filtering search stuff
         users.removeAll(where: {
             !$0.username.starts(with: parentView?.searchBar.text ?? "") ||
-                $0.username == LoggedInUser.user.username
+                $0.username == ThisUser.user.username
         })
 
         // Taking out people I have as active, pending, or waiting
@@ -57,7 +58,7 @@ class UserTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         
         // Creating friends
         for user in users{
-            friends.append(Friend.findOrCreateFriend(teamCaptain: LoggedInUser.user, teammate: user))
+            friends.append(Friend.findOrCreateFriend(teamCaptain: ThisUser.user, teammate: user))
         }
     }
     

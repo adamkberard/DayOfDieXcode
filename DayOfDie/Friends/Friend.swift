@@ -44,7 +44,7 @@ class Friend : Codable, Equatable {
     }
     
     func getOtherUser() -> User {
-        if(LoggedInUser.user == teamCaptain){
+        if(ThisUser.user == teamCaptain){
             return teammate
         }
         else{
@@ -53,7 +53,7 @@ class Friend : Codable, Equatable {
     }
     
     func loggedInUserIsTeamCaptain() -> Bool {
-        return LoggedInUser.user == teamCaptain
+        return ThisUser.user == teamCaptain
     }
     
     static func findOrCreateFriend(teamCaptain: User, teammate: User) -> Friend {
@@ -77,6 +77,7 @@ class Friend : Codable, Equatable {
         self.pendingFriends = []
         self.waitingFriends = []
         self.nothingFriends = []
+        self.approvedFriends = []
         
         for friend in self.allFriends{
             switch friend.status {

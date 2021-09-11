@@ -46,18 +46,22 @@ class SignInViewController:
             "email": email,
             "password": password
         ]
-        let url = "/auth/login/"
-        APICalls.post(url: url, parameters: parameters, returnType: LoginPack.self) { status, returnDict in
+        
+        APICalls.login(parameters: parameters) { status, returnData in
             if status{
                 // Check if everything is done if so move on
-                let loginPack = returnDict["object"] as! LoginPack
+                let loginPack = returnData as! LoginPack
                 ThisUser.user.username = loginPack.username
                 ThisUser.token = loginPack.token
                 ThisUser.email = email
+                self.performSegue(withIdentifier: "signInSegue", sender: self)
             }
             else{
                 //Handle if things go wrong
-                print(returnDict["errors"]!)
+                let errors : [String] = returnData as! [String]
+                print(returnData)
+                self.statusLabel.text = errors[0]
+                self.statusLabel.isHidden = false
             }
         }
     }
