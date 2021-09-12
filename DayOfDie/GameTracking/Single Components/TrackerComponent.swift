@@ -15,7 +15,10 @@ class TrackerComponent: UIView {
     var playerNumber : Int = 0
     
     var player : User? {
-        didSet { playerLabel.text = player!.username }
+        didSet {
+            playerLabel.text = player!.username
+            print("PARENT SET")
+        }
     }
     
     var numPoints : Int = 0 {
@@ -52,8 +55,6 @@ class TrackerComponent: UIView {
         ]
         // Show the view.
         addSubview(view)
-        
-        playerLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2 * 3)
     }
     
     // Loads a XIB file into a view and returns this view.
@@ -66,7 +67,7 @@ class TrackerComponent: UIView {
     }
     
     @IBAction func pointsButtonPressed(_ sender: Any) {
-        mainTrackingViewController!.currentlyPickedPoints = playerNumber - 1
+        mainTrackingViewController!.currentlyPickedPoints = playerNumber
         mainTrackingViewController!.performSegue(withIdentifier: "toPlayerPoints", sender: self)
     }
 }

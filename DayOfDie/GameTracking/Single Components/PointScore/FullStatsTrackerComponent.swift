@@ -21,21 +21,15 @@ class FullStatsTrackerComponent: TrackerComponent {
     @IBOutlet weak var fieldGoalButton: UIButton!
     @IBOutlet weak var fiveButton: UIButton!
     
-    // Mark: View Setup
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override func commonSetup() {
+        super.commonSetup()
+        playerLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2 * 3)
     }
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
-    
-    // Loads a XIB file into a view and returns this view.
     private func viewFromNibForClass() -> UIView {
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: String(describing: type(of: self)), bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
-
         return view
     }
     

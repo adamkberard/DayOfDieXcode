@@ -40,6 +40,7 @@ class TrackingViewController: UIViewController {
         scoreboard.players = players
         
         for i in 0...3 {
+            print("HERE MORE")
             trackerComponents[i].mainTrackingViewController = self
             trackerComponents[i].player = players[i]
             trackerComponents[i].playerNumber = i

@@ -1,29 +1,25 @@
 //
-//  GameScoreTracker.swift
+//  JustScoreTrackerComponent.swift
 //  DayOfDie
 //
-//  Created by Adam Berard on 9/11/21.
+//  Created by Adam Berard on 9/12/21.
 //
 
 import UIKit
 
-class JustScoreTrackerComponent: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+class JustScoreTrackerComponent: SimpleStatsTrackingComponent {
+    // Mark: UI Vars
+    
+    override var player : User? {
+        didSet {
+            print("CHILD SET")
+            if playerNumber <= 1{
+                playerLabel.text = "Team One"
+            }
+            else {
+                playerLabel.text = "Team Two"
+            }
+        }
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

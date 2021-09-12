@@ -196,6 +196,12 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
                  fatalError("Unexpected destination: \(segue.destination)")}
                 viewController.players = players
             }
+            else if identifier == "toJustScoreTracking" {
+                guard let viewController = segue.destination as? JustScoreTrackingViewController else {
+                 fatalError("Unexpected destination: \(segue.destination)")}
+                print("HERE DUH")
+                viewController.players = players
+            }
         }
     }
 }

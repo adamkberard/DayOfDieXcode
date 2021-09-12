@@ -263,13 +263,14 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="saveButton" destination="Pfh-Fd-o5A" id="Fhn-VE-Fv1"/>
+                        <outlet property="saveButton" destination="Pfh-Fd-o5A" id="WYV-0w-mr0"/>
                         <outlet property="scoreboard" destination="WUc-qi-FTJ" id="SQT-L4-Gil"/>
                         <outletCollection property="trackerComponents" destination="mhA-zv-DCT" collectionClass="NSMutableArray" id="fdU-v5-rpQ"/>
                         <outletCollection property="trackerComponents" destination="oR3-Ie-v9T" collectionClass="NSMutableArray" id="Dce-AX-EjL"/>
                         <outletCollection property="trackerComponents" destination="RbQ-sK-VBf" collectionClass="NSMutableArray" id="9gI-Ao-JgB"/>
                         <outletCollection property="trackerComponents" destination="SQ7-nH-K66" collectionClass="NSMutableArray" id="6P9-dj-qUp"/>
                         <segue destination="1SY-qV-JVk" kind="show" identifier="toPlayerPoints" id="T4T-kE-m8g"/>
+                        <segue destination="D9d-xe-l0b" kind="show" identifier="toGameAfterSave" id="eMn-fK-ZEZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -340,13 +341,14 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="saveButton" destination="pdk-jh-A1m" id="Fh7-qN-Cfd"/>
+                        <outlet property="saveButton" destination="pdk-jh-A1m" id="YFT-2F-fyF"/>
                         <outlet property="scoreboard" destination="Kv7-RX-OUk" id="reY-00-Rh9"/>
                         <outletCollection property="trackerComponents" destination="zSd-fT-9BC" collectionClass="NSMutableArray" id="ChY-iC-oGM"/>
                         <outletCollection property="trackerComponents" destination="bV9-zL-e5P" collectionClass="NSMutableArray" id="uqO-nF-qpJ"/>
                         <outletCollection property="trackerComponents" destination="4OQ-FR-bGc" collectionClass="NSMutableArray" id="Vmt-6d-crn"/>
                         <outletCollection property="trackerComponents" destination="33g-YF-tdP" collectionClass="NSMutableArray" id="QXc-qu-mdi"/>
                         <segue destination="1SY-qV-JVk" kind="show" identifier="toPlayerPoints" id="VfP-ER-5Al"/>
+                        <segue destination="D9d-xe-l0b" kind="show" identifier="toGameAfterSave" id="vSU-o9-pSA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XZy-qI-Vdq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -692,24 +694,78 @@
             </objects>
             <point key="canvasLocation" x="2170" y="810"/>
         </scene>
-        <!--View Controller-->
+        <!--Just Score Tracking View Controller-->
         <scene sceneID="n8r-TR-Q4d">
             <objects>
-                <viewController id="VfH-S5-YtG" sceneMemberID="viewController">
+                <viewController id="VfH-S5-YtG" customClass="JustScoreTrackingViewController" customModule="DayOfDie" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tzj-ht-kFP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="wch-87-fuV">
+                                <rect key="frame" x="10" y="98" width="394" height="705"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EjM-pF-LGx" customClass="PlayersTableScoreView" customModule="DayOfDie" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="340"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" priority="999" constant="200" id="W5E-gn-jEl"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="tGj-qR-guh" userLabel="Point Score Tracker Stack">
+                                        <rect key="frame" x="0.0" y="365" width="394" height="340"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U3c-YJ-eSE" customClass="JustScoreTrackerComponent" customModule="DayOfDie" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="394" height="157.5"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cYU-sL-KGl" customClass="JustScoreTrackerComponent" customModule="DayOfDie" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="170" width="394" height="0.0"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mhj-qt-ZUC" customClass="JustScoreTrackerComponent" customModule="DayOfDie" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="182.5" width="394" height="157.5"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bHU-f0-TG7" customClass="JustScoreTrackerComponent" customModule="DayOfDie" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="340" width="394" height="0.0"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="8Rj-Xc-iCV"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="wch-87-fuV" firstAttribute="top" secondItem="8Rj-Xc-iCV" secondAttribute="top" constant="10" id="9mb-98-fsv"/>
+                            <constraint firstItem="8Rj-Xc-iCV" firstAttribute="bottom" secondItem="wch-87-fuV" secondAttribute="bottom" constant="10" id="A8A-cc-JvS"/>
+                            <constraint firstItem="8Rj-Xc-iCV" firstAttribute="trailing" secondItem="wch-87-fuV" secondAttribute="trailing" constant="10" id="VjE-FI-C4O"/>
+                            <constraint firstItem="wch-87-fuV" firstAttribute="leading" secondItem="8Rj-Xc-iCV" secondAttribute="leading" constant="10" id="vfz-Q6-xeC"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="aN4-Lq-vlO"/>
+                    <navigationItem key="navigationItem" id="aN4-Lq-vlO">
+                        <barButtonItem key="rightBarButtonItem" id="UZQ-qJ-3fL">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="5fB-xM-pR7">
+                                <rect key="frame" x="302" y="7" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Save Game"/>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <segue destination="1SY-qV-JVk" kind="show" identifier="toPlayerPoints" id="fZP-92-IRA"/>
+                        <outlet property="saveButton" destination="5fB-xM-pR7" id="g5k-Ub-dBW"/>
+                        <outlet property="scoreboard" destination="EjM-pF-LGx" id="UqW-eA-KTV"/>
+                        <outletCollection property="trackerComponents" destination="U3c-YJ-eSE" collectionClass="NSMutableArray" id="AQP-Q2-e30"/>
+                        <outletCollection property="trackerComponents" destination="cYU-sL-KGl" collectionClass="NSMutableArray" id="DD7-c9-e0F"/>
+                        <outletCollection property="trackerComponents" destination="Mhj-qt-ZUC" collectionClass="NSMutableArray" id="Gw7-Us-Sd5"/>
+                        <outletCollection property="trackerComponents" destination="bHU-f0-TG7" collectionClass="NSMutableArray" id="Hre-xa-Sds"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Avi-Y9-mNm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3233" y="722"/>
+            <point key="canvasLocation" x="3254" y="873"/>
         </scene>
         <!--Games-->
         <scene sceneID="O6y-Wc-uzQ">
@@ -2151,6 +2207,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="9gJ-hn-MTh"/>
+        <segue reference="vSU-o9-pSA"/>
         <segue reference="VfP-ER-5Al"/>
     </inferredMetricsTieBreakers>
     <resources>

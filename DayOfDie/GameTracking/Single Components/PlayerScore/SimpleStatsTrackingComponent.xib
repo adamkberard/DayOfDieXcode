@@ -22,52 +22,50 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="77S-nS-ylW">
-                    <rect key="frame" x="10" y="0.0" width="374" height="100"/>
+                    <rect key="frame" x="10" y="10" width="374" height="80"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pb5-ca-UIX">
-                            <rect key="frame" x="0.0" y="0.0" width="54" height="100"/>
+                            <rect key="frame" x="0.0" y="0.0" width="174" height="80"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CoC-d6-8Ym">
-                            <rect key="frame" x="80" y="0.0" width="54" height="100"/>
-                            <state key="normal" title="Button" image="minus.circle" catalog="system">
-                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
-                            </state>
-                            <connections>
-                                <action selector="minusPointButtonPressed:" destination="-1" eventType="touchUpInside" id="SJ8-xM-U1Y"/>
-                            </connections>
-                        </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFD-NY-01m">
-                            <rect key="frame" x="160" y="0.0" width="54" height="100"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yi5-Cf-Q2Y">
-                            <rect key="frame" x="240" y="0.0" width="54" height="100"/>
-                            <state key="normal" title="Button" image="plus.circle" catalog="system"/>
-                            <connections>
-                                <action selector="plusPointButtonPressed:" destination="-1" eventType="touchUpInside" id="5VV-ug-f0w"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DPa-5c-S89">
-                            <rect key="frame" x="320" y="0.0" width="54" height="100"/>
-                            <state key="normal" title="Points"/>
-                            <connections>
-                                <action selector="pointsButtonPressed:" destination="-1" eventType="touchUpInside" id="rS0-fR-d0W"/>
-                            </connections>
-                        </button>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="ulI-yg-tc3">
+                            <rect key="frame" x="200" y="0.0" width="174" height="80"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CoC-d6-8Ym">
+                                    <rect key="frame" x="0.0" y="0.0" width="40.5" height="80"/>
+                                    <state key="normal" title="Button" image="minus.circle" catalog="system">
+                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="minusPointButtonPressed:" destination="-1" eventType="touchUpInside" id="SJ8-xM-U1Y"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFD-NY-01m">
+                                    <rect key="frame" x="66.5" y="0.0" width="41" height="80"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yi5-Cf-Q2Y">
+                                    <rect key="frame" x="133.5" y="0.0" width="40.5" height="80"/>
+                                    <state key="normal" title="Button" image="plus.circle" catalog="system"/>
+                                    <connections>
+                                        <action selector="plusPointButtonPressed:" destination="-1" eventType="touchUpInside" id="5VV-ug-f0w"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
                     </subviews>
                 </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="77S-nS-ylW" secondAttribute="bottom" id="856-MA-moa"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="77S-nS-ylW" secondAttribute="bottom" constant="10" id="856-MA-moa"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="77S-nS-ylW" secondAttribute="trailing" constant="10" id="8Wi-fw-x0x"/>
-                <constraint firstItem="77S-nS-ylW" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ZbO-8I-xWq"/>
+                <constraint firstItem="77S-nS-ylW" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="ZbO-8I-xWq"/>
                 <constraint firstItem="77S-nS-ylW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="vBC-09-bP0"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
