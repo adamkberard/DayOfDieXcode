@@ -12,36 +12,21 @@ class PlayersTableScoreView: UIView {
     
     @IBOutlet weak var teamOneScoreLabel: UILabel!
     @IBOutlet weak var teamTwoScoreLabel: UILabel!
-    @IBOutlet weak var playerOneLabel: UILabel!
-    @IBOutlet weak var playerTwoLabel: UILabel!
-    @IBOutlet weak var playerThreeLabel: UILabel!
-    @IBOutlet weak var playerFourLabel: UILabel!
+    @IBOutlet var playerLabels: [UILabel]! = []
+    
+    var players : [User] = [] {
+        didSet{
+            for i in 0..<playerLabels.count{
+                playerLabels[i].text = players[i].username
+            }
+        }
+    }
     
     var teamOneScore : Int = 0 {
         didSet {teamOneScoreLabel.text = "Team One: \(teamOneScore)"}
     }
     var teamTwoScore : Int = 0 {
         didSet {teamTwoScoreLabel.text = "Team Two: \(teamTwoScore)"}
-    }
-    var playerOne : User = User(username: "playerOne") {
-        didSet{
-            playerOneLabel.text = playerOne.username
-        }
-    }
-    var playerTwo : User = User(username: "playerTwo"){
-        didSet{
-            playerTwoLabel.text = playerTwo.username
-        }
-    }
-    var playerThree : User = User(username: "playerThree"){
-        didSet{
-            playerThreeLabel.text = playerThree.username
-        }
-    }
-    var playerFour : User = User(username: "playerFour"){
-        didSet{
-            playerFourLabel.text = playerFour.username
-        }
     }
 
     override init(frame: CGRect) {
@@ -57,14 +42,10 @@ class PlayersTableScoreView: UIView {
     func commonSetup() {
         let view = viewFromNibForClass()
         view.frame = bounds
-
-        // Auto-layout stuff.
         view.autoresizingMask = [
             UIView.AutoresizingMask.flexibleWidth,
             UIView.AutoresizingMask.flexibleHeight
         ]
-
-        // Show the view.
         addSubview(view)
     }
     

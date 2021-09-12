@@ -10,12 +10,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlayersTableScoreView" customModule="DayOfDie" customModuleProvider="target">
             <connections>
-                <outlet property="playerFourLabel" destination="6BZ-uZ-1f1" id="4fa-2x-CKa"/>
-                <outlet property="playerOneLabel" destination="3VP-ln-XAV" id="ej1-9O-8fz"/>
-                <outlet property="playerThreeLabel" destination="4I6-JS-eOQ" id="iHR-Jd-kD8"/>
-                <outlet property="playerTwoLabel" destination="G9p-CO-ZsM" id="aQk-gT-V31"/>
                 <outlet property="teamOneScoreLabel" destination="OEC-pQ-s3d" id="tIh-u3-s9N"/>
                 <outlet property="teamTwoScoreLabel" destination="nXT-tK-go4" id="meL-lu-vM4"/>
+                <outletCollection property="playerLabels" destination="3VP-ln-XAV" collectionClass="NSMutableArray" id="X40-8n-6Jm"/>
+                <outletCollection property="playerLabels" destination="G9p-CO-ZsM" collectionClass="NSMutableArray" id="olK-Me-GyF"/>
+                <outletCollection property="playerLabels" destination="4I6-JS-eOQ" collectionClass="NSMutableArray" id="EL1-wc-xJs"/>
+                <outletCollection property="playerLabels" destination="6BZ-uZ-1f1" collectionClass="NSMutableArray" id="KyH-rr-1GR"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

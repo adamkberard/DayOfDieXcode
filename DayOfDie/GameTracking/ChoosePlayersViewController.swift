@@ -12,6 +12,11 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
     @IBOutlet var playerPickers: [UIPickerView]!
     @IBOutlet weak var startGameButton: UIButton!
     @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var fullStatsSwitch: UISwitch!
+    @IBOutlet weak var simpleStatsSwitch: UISwitch!
+    @IBOutlet weak var justScoreSwitch: UISwitch!
+    var players : [User] = []
+    
     
     var possiblePlayers : [User] = []
     
@@ -28,6 +33,7 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
         }
         
         setupPickers()
+        setPlayers()
     }
     
     func setupPickers() {
@@ -81,7 +87,16 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
     @IBAction func startGameTracking(_ sender: Any) {
         // First I will make sure none of the people are duplicates
         if pickerSelectionsAreGood() {
-            self.performSegue(withIdentifier: "toScoreTracking", sender: self)
+            if fullStatsSwitch.isOn {
+                print("HERE AS GOOD")
+                self.performSegue(withIdentifier: "toFullStatsTracking", sender: self)
+            }
+            if simpleStatsSwitch.isOn {
+                self.performSegue(withIdentifier: "toSimpleStatsTracking", sender: self)
+            }
+            if justScoreSwitch.isOn {
+                self.performSegue(withIdentifier: "toJustScoreTracking", sender: self)
+            }
         }
     }
     
@@ -119,8 +134,51 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
             statusLabel.isHidden = false
             statusLabel.text = "Must have four unique players."
         }
+        setPlayers()
+    }
+    
+    func setPlayers() -> Void {
+        players = []
+        for i in 0...3{
+            players.append(possiblePlayers[playerPickers[i].selectedRow(inComponent: 0)])
+        }
+    }
+    
+    @IBAction func fullStatsSwitchChanged(_ sender: Any) {
+        if fullStatsSwitch.isOn{
+            simpleStatsSwitch.isOn = false
+            justScoreSwitch.isOn = false
+        }
+        else {
+            if simpleStatsSwitch.isOn == false && justScoreSwitch.isOn == false {
+                fullStatsSwitch.isOn = true
+            }
+        }
     }
 
+    @IBAction func simpleStatsSwitchChanged(_ sender: Any) {
+        if simpleStatsSwitch.isOn {
+            fullStatsSwitch.isOn = false
+            justScoreSwitch.isOn = false
+        }
+        else {
+            if fullStatsSwitch.isOn == false && justScoreSwitch.isOn == false {
+                simpleStatsSwitch.isOn = true
+            }
+        }
+    }
+    
+    @IBAction func justScoreSwitchChanged(_ sender: Any) {
+        if justScoreSwitch.isOn {
+            fullStatsSwitch.isOn = false
+            simpleStatsSwitch.isOn = false
+        }
+        else {
+            if fullStatsSwitch.isOn == false && simpleStatsSwitch.isOn == false {
+                justScoreSwitch.isOn = true
+            }
+        }
+    }
     //MARK: Segue Function
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
@@ -128,15 +186,15 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
         
         if let identifier = segue.identifier {
             print("The identifier is: \(identifier)")
-            if identifier == "toScoreTracking" {
-                guard let viewController = segue.destination as? MainTrackingViewController else {
+            if identifier == "toFullStatsTracking" {
+                guard let viewController = segue.destination as? FullStatsTrackingViewController else {
                  fatalError("Unexpected destination: \(segue.destination)")}
-                viewController.playerOne = possiblePlayers[playerPickers[0].selectedRow(inComponent: 0)]
-                print("HERE 1")
-                print(possiblePlayers[playerPickers[0].selectedRow(inComponent: 0)].username)
-                viewController.playerTwo = possiblePlayers[playerPickers[1].selectedRow(inComponent: 0)]
-                viewController.playerThree = possiblePlayers[playerPickers[2].selectedRow(inComponent: 0)]
-                viewController.playerFour = possiblePlayers[playerPickers[3].selectedRow(inComponent: 0)]
+                viewController.players = players
+            }
+            else if identifier == "toSimpleStatsTracking" {
+                guard let viewController = segue.destination as? SimpleStatsTrackingViewController else {
+                 fatalError("Unexpected destination: \(segue.destination)")}
+                viewController.players = players
             }
         }
     }

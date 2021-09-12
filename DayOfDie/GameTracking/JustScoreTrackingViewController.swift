@@ -1,5 +1,5 @@
 //
-//  PlayerScoreTracker.swift
+//  JustScoreTrackingViewController.swift
 //  DayOfDie
 //
 //  Created by Adam Berard on 9/11/21.
@@ -7,14 +7,14 @@
 
 import UIKit
 
-class PlayerScoreTracker: UIViewController {
+class JustScoreTrackingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-
+    
 
     /*
     // MARK: - Navigation

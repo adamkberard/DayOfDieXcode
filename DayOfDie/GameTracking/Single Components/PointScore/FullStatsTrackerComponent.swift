@@ -8,10 +8,9 @@
 import UIKit
 
 @IBDesignable
-class PointScoreTracker: UIView {
+class FullStatsTrackerComponent: TrackerComponent {
 
     // Mark: UI Vars
-    @IBOutlet weak var playerLabel: UILabel!
     @IBOutlet weak var regularPointButton: UIButton!
     @IBOutlet weak var tinkButton: UIButton!
     @IBOutlet weak var sinkButton: UIButton!
@@ -21,53 +20,14 @@ class PointScoreTracker: UIView {
     @IBOutlet weak var fifaButton: UIButton!
     @IBOutlet weak var fieldGoalButton: UIButton!
     @IBOutlet weak var fiveButton: UIButton!
-    @IBOutlet weak var pointsLabel: UILabel!
-    
-    var mainTrackingViewController : MainTrackingViewController?
-    var playerNumber : Int = 0
-    
-    // Mark: My Vars
-    var primaryButtons : [UIButton] = []
-    var player : User? {
-        didSet { playerLabel.text = player!.username }
-    }
-    
-    var numPoints : Int = 0 {
-        didSet {
-            pointsLabel.text = String(numPoints)
-            mainTrackingViewController!.pointsDidChange()
-        }
-    }
-    
-    var points : [Point] = [] {
-        didSet{
-            numPoints = Point.getScore(points: points)
-        }
-    }
     
     // Mark: View Setup
     override init(frame: CGRect) {
         super.init(frame: frame)
-        commonSetup()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        commonSetup()
-    }
-    
-    func commonSetup() {
-        let view = viewFromNibForClass()
-        view.frame = bounds
-        // Auto-layout stuff.
-        view.autoresizingMask = [
-            UIView.AutoresizingMask.flexibleWidth,
-            UIView.AutoresizingMask.flexibleHeight
-        ]
-        // Show the view.
-        addSubview(view)
-        
-        playerLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2 * 3)
     }
     
     // Loads a XIB file into a view and returns this view.
@@ -106,10 +66,5 @@ class PointScoreTracker: UIView {
     }
     @IBAction func fiveButtonPressed(_ sender: Any) {
         points.append(Point(typeOfPoint: .FIVE, scorer: player!))
-    }
-    
-    @IBAction func pointsButtonPressed(_ sender: Any) {
-        mainTrackingViewController!.currentlyPickedPoints = playerNumber - 1
-        mainTrackingViewController!.performSegue(withIdentifier: "toPlayerPoints", sender: self)
     }
 }

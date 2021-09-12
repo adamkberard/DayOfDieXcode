@@ -66,9 +66,9 @@ class UserViewConViewController: UIViewController {
         else{
             // Make sure the username isn't empty
             
-            let parameters: [String: Any] = [
-                "username": newUsernameTextField!.text!,
-            ]
+            //let parameters: [String: Any] = [
+              //  "username": newUsernameTextField!.text!,
+            //]
             /*
             AF.request("\(URLInfo.baseUrl)/users/\(LoggedInUser.username)/", method: .patch, parameters: parameters, headers: LoggedInUser.getHeaders()).responseDecodable(of: User.self) { response in
                 switch response.result {

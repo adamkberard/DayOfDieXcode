@@ -9,14 +9,18 @@
 /* Begin PBXBuildFile section */
 		17072CBC79790F7C220F16AB /* Pods_DayOfDieTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE7D6D7994CB3F84710781E1 /* Pods_DayOfDieTests.framework */; };
 		30CC533BCB0BB66E622973D0 /* Pods_DayOfDie_DayOfDieUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5B5E6DA33B8DA4B869B3A8 /* Pods_DayOfDie_DayOfDieUITests.framework */; };
+		4B0E53D026EDB7D700F3F3E4 /* TrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0E53CF26EDB7D700F3F3E4 /* TrackingViewController.swift */; };
+		4B0E53D226EDB84E00F3F3E4 /* TrackerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0E53D126EDB84E00F3F3E4 /* TrackerComponent.swift */; };
 		4B27048A26EBFB4000AAD699 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B27048926EBFB4000AAD699 /* User.swift */; };
-		4B27049226EC11F800AAD699 /* PointScoreTrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B27049026EC11F800AAD699 /* PointScoreTrackerViewController.swift */; };
-		4B27049926EC151B00AAD699 /* PointScoreTracker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B27049826EC151B00AAD699 /* PointScoreTracker.xib */; };
+		4B27049226EC11F800AAD699 /* FullStatsTrackerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B27049026EC11F800AAD699 /* FullStatsTrackerComponent.swift */; };
+		4B27049926EC151B00AAD699 /* FullStatsTrackerComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B27049826EC151B00AAD699 /* FullStatsTrackerComponent.xib */; };
+		4B4A4D4726EDA00300EE3B3B /* SimpleStatsTrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A4D4626EDA00300EE3B3B /* SimpleStatsTrackingViewController.swift */; };
+		4B4A4D4926EDA09800EE3B3B /* JustScoreTrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A4D4826EDA09800EE3B3B /* JustScoreTrackingViewController.swift */; };
 		4B4D83F926EBD9DF00FEA2E6 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4D83F826EBD9DF00FEA2E6 /* LoadingViewController.swift */; };
-		4B75A89526ED4B9100FDDE04 /* PlayerScoreTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B75A89326ED4B9100FDDE04 /* PlayerScoreTracker.swift */; };
-		4B75A89626ED4B9100FDDE04 /* PlayerScoreTracker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B75A89426ED4B9100FDDE04 /* PlayerScoreTracker.xib */; };
-		4B75A89926ED4BA000FDDE04 /* GameScoreTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B75A89726ED4BA000FDDE04 /* GameScoreTracker.swift */; };
-		4B75A89A26ED4BA000FDDE04 /* GameScoreTracker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B75A89826ED4BA000FDDE04 /* GameScoreTracker.xib */; };
+		4B75A89526ED4B9100FDDE04 /* SimpleStatsTrackingComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B75A89326ED4B9100FDDE04 /* SimpleStatsTrackingComponent.swift */; };
+		4B75A89626ED4B9100FDDE04 /* SimpleStatsTrackingComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B75A89426ED4B9100FDDE04 /* SimpleStatsTrackingComponent.xib */; };
+		4B75A89926ED4BA000FDDE04 /* JustScoreTrackerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B75A89726ED4BA000FDDE04 /* JustScoreTrackerComponent.swift */; };
+		4B75A89A26ED4BA000FDDE04 /* JustScoreTrackerComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B75A89826ED4BA000FDDE04 /* JustScoreTrackerComponent.xib */; };
 		4BAF524926EB3B8B00595302 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAF524826EB3B8B00595302 /* StartViewController.swift */; };
 		4BAF524D26EB3BEC00595302 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAF524C26EB3BEC00595302 /* RegisterViewController.swift */; };
 		4BAF524F26EB3C1300595302 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAF524E26EB3C1300595302 /* SignInViewController.swift */; };
@@ -28,7 +32,7 @@
 		5A582AFF263149EE0004E7F0 /* PlayerPointsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A582AFD263149EE0004E7F0 /* PlayerPointsTableViewCell.swift */; };
 		5A62548C25EEF0C500340AE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A62548B25EEF0C500340AE0 /* AppDelegate.swift */; };
 		5A62548E25EEF0C500340AE0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A62548D25EEF0C500340AE0 /* SceneDelegate.swift */; };
-		5A62549025EEF0C500340AE0 /* MainTrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A62548F25EEF0C500340AE0 /* MainTrackingViewController.swift */; };
+		5A62549025EEF0C500340AE0 /* FullStatsTrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A62548F25EEF0C500340AE0 /* FullStatsTrackingViewController.swift */; };
 		5A62549325EEF0C500340AE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A62549125EEF0C500340AE0 /* Main.storyboard */; };
 		5A62549525EEF0C600340AE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A62549425EEF0C600340AE0 /* Assets.xcassets */; };
 		5A62549825EEF0C600340AE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A62549625EEF0C600340AE0 /* LaunchScreen.storyboard */; };
@@ -41,8 +45,8 @@
 		5A83FAAE260EF19E00831C68 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A83FAAD260EF19E00831C68 /* Point.swift */; };
 		5A83FAC6260FB24900831C68 /* ChoosePlayersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A741B5F260D99B3004651E7 /* ChoosePlayersViewController.swift */; };
 		5A83FACA260FB24B00831C68 /* ChoosePlayersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A741B5F260D99B3004651E7 /* ChoosePlayersViewController.swift */; };
-		5A83FAD12610F78400831C68 /* MainTrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A62548F25EEF0C500340AE0 /* MainTrackingViewController.swift */; };
-		5A83FAD52610F78400831C68 /* MainTrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A62548F25EEF0C500340AE0 /* MainTrackingViewController.swift */; };
+		5A83FAD12610F78400831C68 /* FullStatsTrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A62548F25EEF0C500340AE0 /* FullStatsTrackingViewController.swift */; };
+		5A83FAD52610F78400831C68 /* FullStatsTrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A62548F25EEF0C500340AE0 /* FullStatsTrackingViewController.swift */; };
 		5A8DE2DB26410AAA00AE353B /* FriendTableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8DE2D026410A9A00AE353B /* FriendTableViewCells.swift */; };
 		5A976A782620A04000E5B7F6 /* GameDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A976A772620A04000E5B7F6 /* GameDetailViewController.swift */; };
 		5A9813F72617F62800C37E2C /* ApprovedFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9813F62617F62800C37E2C /* ApprovedFriendsTableViewController.swift */; };
@@ -75,14 +79,18 @@
 		2254E54943498E87AB5440BE /* Pods-DayOfDie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DayOfDie.debug.xcconfig"; path = "Target Support Files/Pods-DayOfDie/Pods-DayOfDie.debug.xcconfig"; sourceTree = "<group>"; };
 		2C5B5E6DA33B8DA4B869B3A8 /* Pods_DayOfDie_DayOfDieUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DayOfDie_DayOfDieUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		37F14D330D1BC50004B5EE5F /* Pods-DayOfDie-DayOfDieUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DayOfDie-DayOfDieUITests.debug.xcconfig"; path = "Target Support Files/Pods-DayOfDie-DayOfDieUITests/Pods-DayOfDie-DayOfDieUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		4B0E53CF26EDB7D700F3F3E4 /* TrackingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingViewController.swift; sourceTree = "<group>"; };
+		4B0E53D126EDB84E00F3F3E4 /* TrackerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerComponent.swift; sourceTree = "<group>"; };
 		4B27048926EBFB4000AAD699 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		4B27049026EC11F800AAD699 /* PointScoreTrackerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointScoreTrackerViewController.swift; sourceTree = "<group>"; };
-		4B27049826EC151B00AAD699 /* PointScoreTracker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PointScoreTracker.xib; sourceTree = "<group>"; };
+		4B27049026EC11F800AAD699 /* FullStatsTrackerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullStatsTrackerComponent.swift; sourceTree = "<group>"; };
+		4B27049826EC151B00AAD699 /* FullStatsTrackerComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FullStatsTrackerComponent.xib; sourceTree = "<group>"; };
+		4B4A4D4626EDA00300EE3B3B /* SimpleStatsTrackingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleStatsTrackingViewController.swift; sourceTree = "<group>"; };
+		4B4A4D4826EDA09800EE3B3B /* JustScoreTrackingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JustScoreTrackingViewController.swift; sourceTree = "<group>"; };
 		4B4D83F826EBD9DF00FEA2E6 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
-		4B75A89326ED4B9100FDDE04 /* PlayerScoreTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScoreTracker.swift; sourceTree = "<group>"; };
-		4B75A89426ED4B9100FDDE04 /* PlayerScoreTracker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerScoreTracker.xib; sourceTree = "<group>"; };
-		4B75A89726ED4BA000FDDE04 /* GameScoreTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScoreTracker.swift; sourceTree = "<group>"; };
-		4B75A89826ED4BA000FDDE04 /* GameScoreTracker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameScoreTracker.xib; sourceTree = "<group>"; };
+		4B75A89326ED4B9100FDDE04 /* SimpleStatsTrackingComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleStatsTrackingComponent.swift; sourceTree = "<group>"; };
+		4B75A89426ED4B9100FDDE04 /* SimpleStatsTrackingComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimpleStatsTrackingComponent.xib; sourceTree = "<group>"; };
+		4B75A89726ED4BA000FDDE04 /* JustScoreTrackerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JustScoreTrackerComponent.swift; sourceTree = "<group>"; };
+		4B75A89826ED4BA000FDDE04 /* JustScoreTrackerComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JustScoreTrackerComponent.xib; sourceTree = "<group>"; };
 		4BAF524826EB3B8B00595302 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		4BAF524C26EB3BEC00595302 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		4BAF524E26EB3C1300595302 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -95,7 +103,7 @@
 		5A62548825EEF0C500340AE0 /* DayOfDie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DayOfDie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A62548B25EEF0C500340AE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A62548D25EEF0C500340AE0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5A62548F25EEF0C500340AE0 /* MainTrackingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTrackingViewController.swift; sourceTree = "<group>"; };
+		5A62548F25EEF0C500340AE0 /* FullStatsTrackingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullStatsTrackingViewController.swift; sourceTree = "<group>"; };
 		5A62549225EEF0C500340AE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5A62549425EEF0C600340AE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5A62549725EEF0C600340AE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -166,21 +174,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4B27048B26EC0F8200AAD699 /* ScoreTrackers */ = {
+		4B27048B26EC0F8200AAD699 /* Single Components */ = {
 			isa = PBXGroup;
 			children = (
+				4B0E53D126EDB84E00F3F3E4 /* TrackerComponent.swift */,
 				4B27048C26EC0FA700AAD699 /* PointScore */,
 				5AECABA2263124EF00C4AD7B /* PlayerScore */,
 				4B27048D26EC0FAE00AAD699 /* GameScore */,
 			);
-			path = ScoreTrackers;
+			path = "Single Components";
 			sourceTree = "<group>";
 		};
 		4B27048C26EC0FA700AAD699 /* PointScore */ = {
 			isa = PBXGroup;
 			children = (
-				4B27049026EC11F800AAD699 /* PointScoreTrackerViewController.swift */,
-				4B27049826EC151B00AAD699 /* PointScoreTracker.xib */,
+				4B27049026EC11F800AAD699 /* FullStatsTrackerComponent.swift */,
+				4B27049826EC151B00AAD699 /* FullStatsTrackerComponent.xib */,
 			);
 			path = PointScore;
 			sourceTree = "<group>";
@@ -188,8 +197,8 @@
 		4B27048D26EC0FAE00AAD699 /* GameScore */ = {
 			isa = PBXGroup;
 			children = (
-				4B75A89726ED4BA000FDDE04 /* GameScoreTracker.swift */,
-				4B75A89826ED4BA000FDDE04 /* GameScoreTracker.xib */,
+				4B75A89726ED4BA000FDDE04 /* JustScoreTrackerComponent.swift */,
+				4B75A89826ED4BA000FDDE04 /* JustScoreTrackerComponent.xib */,
 			);
 			path = GameScore;
 			sourceTree = "<group>";
@@ -304,10 +313,13 @@
 			isa = PBXGroup;
 			children = (
 				5A741B5F260D99B3004651E7 /* ChoosePlayersViewController.swift */,
-				5A62548F25EEF0C500340AE0 /* MainTrackingViewController.swift */,
+				4B0E53CF26EDB7D700F3F3E4 /* TrackingViewController.swift */,
+				5A62548F25EEF0C500340AE0 /* FullStatsTrackingViewController.swift */,
+				4B4A4D4626EDA00300EE3B3B /* SimpleStatsTrackingViewController.swift */,
+				4B4A4D4826EDA09800EE3B3B /* JustScoreTrackingViewController.swift */,
 				5A582AF52631497E0004E7F0 /* PlayerPointsTableViewController.swift */,
 				5A582AFD263149EE0004E7F0 /* PlayerPointsTableViewCell.swift */,
-				4B27048B26EC0F8200AAD699 /* ScoreTrackers */,
+				4B27048B26EC0F8200AAD699 /* Single Components */,
 				5AECABA32631251700C4AD7B /* ScoreBoardFiles */,
 			);
 			path = GameTracking;
@@ -316,8 +328,8 @@
 		5AECABA2263124EF00C4AD7B /* PlayerScore */ = {
 			isa = PBXGroup;
 			children = (
-				4B75A89326ED4B9100FDDE04 /* PlayerScoreTracker.swift */,
-				4B75A89426ED4B9100FDDE04 /* PlayerScoreTracker.xib */,
+				4B75A89326ED4B9100FDDE04 /* SimpleStatsTrackingComponent.swift */,
+				4B75A89426ED4B9100FDDE04 /* SimpleStatsTrackingComponent.xib */,
 			);
 			path = PlayerScore;
 			sourceTree = "<group>";
@@ -452,9 +464,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B75A89626ED4B9100FDDE04 /* PlayerScoreTracker.xib in Resources */,
-				4B27049926EC151B00AAD699 /* PointScoreTracker.xib in Resources */,
-				4B75A89A26ED4BA000FDDE04 /* GameScoreTracker.xib in Resources */,
+				4B75A89626ED4B9100FDDE04 /* SimpleStatsTrackingComponent.xib in Resources */,
+				4B27049926EC151B00AAD699 /* FullStatsTrackerComponent.xib in Resources */,
+				4B75A89A26ED4BA000FDDE04 /* JustScoreTrackerComponent.xib in Resources */,
 				5A62549825EEF0C600340AE0 /* LaunchScreen.storyboard in Resources */,
 				5A62549525EEF0C600340AE0 /* Assets.xcassets in Resources */,
 				5A62549325EEF0C500340AE0 /* Main.storyboard in Resources */,
@@ -586,31 +598,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B0E53D226EDB84E00F3F3E4 /* TrackerComponent.swift in Sources */,
 				4BAF524F26EB3C1300595302 /* SignInViewController.swift in Sources */,
 				4BAF524D26EB3BEC00595302 /* RegisterViewController.swift in Sources */,
-				4B75A89926ED4BA000FDDE04 /* GameScoreTracker.swift in Sources */,
+				4B75A89926ED4BA000FDDE04 /* JustScoreTrackerComponent.swift in Sources */,
 				5A741B55260D813A004651E7 /* GameTableViewCell.swift in Sources */,
 				5A9813F72617F62800C37E2C /* ApprovedFriendsTableViewController.swift in Sources */,
 				4BAF524926EB3B8B00595302 /* StartViewController.swift in Sources */,
 				4B4D83F926EBD9DF00FEA2E6 /* LoadingViewController.swift in Sources */,
 				4B27048A26EBFB4000AAD699 /* User.swift in Sources */,
+				4B4A4D4926EDA09800EE3B3B /* JustScoreTrackingViewController.swift in Sources */,
 				5A741B60260D99B3004651E7 /* ChoosePlayersViewController.swift in Sources */,
 				5AE28ED2263A913500105666 /* AddFriendViewController.swift in Sources */,
 				5A582AFF263149EE0004E7F0 /* PlayerPointsTableViewCell.swift in Sources */,
 				5A582AF62631497E0004E7F0 /* PlayerPointsTableViewController.swift in Sources */,
 				5A6ED7192641255B005552D7 /* UserTableView.swift in Sources */,
-				4B75A89526ED4B9100FDDE04 /* PlayerScoreTracker.swift in Sources */,
+				4B75A89526ED4B9100FDDE04 /* SimpleStatsTrackingComponent.swift in Sources */,
 				4BAF525126EB3C3000595302 /* AuthValidators.swift in Sources */,
-				5A62549025EEF0C500340AE0 /* MainTrackingViewController.swift in Sources */,
+				5A62549025EEF0C500340AE0 /* FullStatsTrackingViewController.swift in Sources */,
 				5A62548C25EEF0C500340AE0 /* AppDelegate.swift in Sources */,
+				4B4A4D4726EDA00300EE3B3B /* SimpleStatsTrackingViewController.swift in Sources */,
 				5A23AE4D25F16816005C2310 /* Game.swift in Sources */,
 				5A1A9B7E26C3B10E00B903DB /* Friend.swift in Sources */,
 				5A62548E25EEF0C500340AE0 /* SceneDelegate.swift in Sources */,
 				5AE28ECA263A8C5C00105666 /* PendingFriendsTableViewController.swift in Sources */,
 				5A30E3F326BDC8C40043A91C /* UserViewConViewController.swift in Sources */,
 				5A83FAAE260EF19E00831C68 /* Point.swift in Sources */,
-				4B27049226EC11F800AAD699 /* PointScoreTrackerViewController.swift in Sources */,
+				4B27049226EC11F800AAD699 /* FullStatsTrackerComponent.swift in Sources */,
 				5A741B46260D7AC2004651E7 /* GameTableViewController.swift in Sources */,
+				4B0E53D026EDB7D700F3F3E4 /* TrackingViewController.swift in Sources */,
 				5A976A782620A04000E5B7F6 /* GameDetailViewController.swift in Sources */,
 				5AC3B766263132790079C9FB /* PlayersTableScoreView.swift in Sources */,
 				5AD81E822634BC2A00FBAB73 /* FriendDetailViewController.swift in Sources */,
@@ -624,7 +640,7 @@
 			files = (
 				5A6254A325EEF0C600340AE0 /* DayOfDieTests.swift in Sources */,
 				5A83FAC6260FB24900831C68 /* ChoosePlayersViewController.swift in Sources */,
-				5A83FAD12610F78400831C68 /* MainTrackingViewController.swift in Sources */,
+				5A83FAD12610F78400831C68 /* FullStatsTrackingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,7 +650,7 @@
 			files = (
 				5A6254AE25EEF0C600340AE0 /* DayOfDieUITests.swift in Sources */,
 				5A83FACA260FB24B00831C68 /* ChoosePlayersViewController.swift in Sources */,
-				5A83FAD52610F78400831C68 /* MainTrackingViewController.swift in Sources */,
+				5A83FAD52610F78400831C68 /* FullStatsTrackingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

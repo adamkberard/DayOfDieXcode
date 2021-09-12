@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GameScoreTracker: UIViewController {
+class JustScoreTrackerComponent: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

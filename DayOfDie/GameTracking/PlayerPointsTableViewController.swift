@@ -10,7 +10,7 @@ import UIKit
 class PlayerPointsTableViewController: UITableViewController {
 
     var points : [Point] = []
-    var mainTrackingViewController : MainTrackingViewController?
+    var mainTrackingViewController : TrackingViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +55,7 @@ class PlayerPointsTableViewController: UITableViewController {
             // Delete the row from the data source
             points.remove(at: indexPath.row)
             let playerNumber = mainTrackingViewController!.currentlyPickedPoints
-            mainTrackingViewController!.playerScoreTrackers![playerNumber].points = points
+            mainTrackingViewController!.trackerComponents[playerNumber].points = points
             tableView.deleteRows(at: [indexPath], with: .fade)
             mainTrackingViewController?.pointsDidChange()
         }
@@ -69,7 +69,7 @@ class PlayerPointsTableViewController: UITableViewController {
         let temp = points.remove(at: sourceIndexPath.row)
         points.insert(temp, at: destinationIndexPath.row)
         let playerNumber = mainTrackingViewController!.currentlyPickedPoints
-        mainTrackingViewController!.playerScoreTrackers![playerNumber].points = points
+        mainTrackingViewController!.trackerComponents[playerNumber].points = points
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {

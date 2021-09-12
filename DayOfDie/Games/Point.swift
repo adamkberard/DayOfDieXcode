@@ -17,6 +17,7 @@ enum PointTypes : String, Codable {
     case FIFA = "ff"
     case FIELD_GOAL = "fg"
     case FIVE = "fv"
+    case UNTRACKED = "ut"
 }
 
 
@@ -53,6 +54,8 @@ class Point : Codable {
                 score += 1
             case .FIVE:
                 score += 0
+            case .UNTRACKED:
+                score += 1
             }
         }
         return score
@@ -78,6 +81,8 @@ class Point : Codable {
             return "\(scorer.username) got a field goal."
         case .FIVE:
             return "\(scorer.username) got a five."
+        case .UNTRACKED:
+            return "\(scorer.username) scored."
         }
     }
     

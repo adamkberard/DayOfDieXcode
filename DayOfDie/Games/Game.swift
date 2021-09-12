@@ -61,10 +61,6 @@ class Game : Decodable, Encodable, Equatable {
         self.points = try container.decode([Point].self, forKey: .points)
     }
     
-    static func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: EncodingKeys.self)
-    }
-    
     enum DecodingKeys : String, CodingKey {
         case timeStarted = "time_started"
         case timeEnded = "time_ended"
