@@ -8,7 +8,7 @@
 import UIKit
 import Alamofire
 
-class UserViewConViewController: UIViewController {
+class UserViewViewController: UIViewController {
     
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!

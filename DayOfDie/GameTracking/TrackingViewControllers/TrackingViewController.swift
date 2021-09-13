@@ -40,7 +40,6 @@ class TrackingViewController: UIViewController {
         scoreboard.players = players
         
         for i in 0...3 {
-            print("HERE MORE")
             trackerComponents[i].mainTrackingViewController = self
             trackerComponents[i].player = players[i]
             trackerComponents[i].playerNumber = i
@@ -74,18 +73,19 @@ class TrackingViewController: UIViewController {
         }
     }
     
-    @IBAction func saveGameButtonPressed(_ sender: Any) {
-        // Now it sends the data to me
-        // Prepare json data
-        var allPoints : Array<Dictionary<String, String>> = []
-        for playerScoreTracker in trackerComponents{
-            for point in playerScoreTracker.points{
+    func getPointsForParameters() -> [[String: String]] {
+        var points : Array<Dictionary<String, String>> = []
+        for trackerComponent in trackerComponents{
+            for point in trackerComponent.points{
                 let tempDict : [String : String] = ["type": point.typeOfPoint.rawValue, "scorer" : point.scorer.uuid]
-                allPoints.append(tempDict)
+                points.append(tempDict)
             }
         }
-        
-        var parameters : Dictionary<String, Any> = [
+        return points
+    }
+    
+    func getGameParameters() -> [String: Any] {
+        var parameters : [String: Any] = [
             "playerOne": players[0].uuid,
             "playerTwo": players[1].uuid,
             "playerThree": players[2].uuid,
@@ -93,13 +93,19 @@ class TrackingViewController: UIViewController {
             "team_one_score": scoreboard.teamOneScore,
             "team_two_score": scoreboard.teamTwoScore,
             "confirmed": false,
-            "points": allPoints
+            "points": getPointsForParameters()
         ]
-
+        
         let df = DateFormatter()
         df.dateFormat = "yyyy-MM-dd hh:mm:ss"
         parameters["time_started"] = df.string(from: timeStarted)
         parameters["time_ended"] = df.string(from: Date())
+        
+        return parameters
+    }
+    
+    @IBAction func saveGameButtonPressed(_ sender: Any) {
+        let parameters = getGameParameters()
         
         APICalls.sendGame(parameters: parameters) { status, returnData in
             if status{

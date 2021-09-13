@@ -162,7 +162,7 @@ class APICalls {
     }
     
     static func post<T: Decodable>(url: String, parameters: [String: Any], returnType: T.Type, completion: @escaping (Bool, Any) -> Void) {
-        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: getHeaders()).cURLDescription{print("HERE55: \($0)")}.responseDecodable(of: returnType.self) { response in
+        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: getHeaders()).responseDecodable(of: returnType.self) { response in
             guard let returnStatusCode = response.response?.statusCode else {
                 let returnData : [String] = ["No connection."]
                 completion(false, returnData)

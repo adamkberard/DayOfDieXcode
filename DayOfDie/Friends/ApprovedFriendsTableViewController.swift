@@ -60,9 +60,7 @@ class FriendTableViewController: UITableViewController {
     func loadFriends() {
         APICalls.getFriends {status, returnData in
             if status{
-                print(Friend.allFriends.count)
                 Friend.allFriends = returnData as! [Friend]
-                print(Friend.allFriends.count)
             }
             else{
                 //Handle if things go wrong
@@ -87,7 +85,6 @@ class FriendTableViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
-            print("The identifier is: \(identifier)")
             if identifier == "toFriendDetailView" {
                 guard let viewController = segue.destination as? FriendDetailViewController else {
                     fatalError("Unexpected destination: \(segue.destination)")}

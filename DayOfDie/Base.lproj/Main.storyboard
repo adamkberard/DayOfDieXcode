@@ -751,16 +751,20 @@
                                 <rect key="frame" x="302" y="7" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Save Game"/>
+                                <connections>
+                                    <action selector="saveGameButtonPressed:" destination="VfH-S5-YtG" eventType="touchUpInside" id="aFB-QX-N1N"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="saveButton" destination="5fB-xM-pR7" id="g5k-Ub-dBW"/>
+                        <outlet property="saveButton" destination="5fB-xM-pR7" id="8eT-VF-IEX"/>
                         <outlet property="scoreboard" destination="EjM-pF-LGx" id="UqW-eA-KTV"/>
                         <outletCollection property="trackerComponents" destination="U3c-YJ-eSE" collectionClass="NSMutableArray" id="AQP-Q2-e30"/>
                         <outletCollection property="trackerComponents" destination="cYU-sL-KGl" collectionClass="NSMutableArray" id="DD7-c9-e0F"/>
                         <outletCollection property="trackerComponents" destination="Mhj-qt-ZUC" collectionClass="NSMutableArray" id="Gw7-Us-Sd5"/>
                         <outletCollection property="trackerComponents" destination="bHU-f0-TG7" collectionClass="NSMutableArray" id="Hre-xa-Sds"/>
+                        <segue destination="D9d-xe-l0b" kind="show" identifier="toGameAfterSave" id="YoO-Sm-1oa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Avi-Y9-mNm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1865,7 +1869,7 @@
         <!--User-->
         <scene sceneID="ACX-tY-p8m">
             <objects>
-                <viewController title="User" id="aMY-Aj-k0x" customClass="UserViewConViewController" customModule="DayOfDie" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="User" id="aMY-Aj-k0x" customClass="UserViewViewController" customModule="DayOfDie" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="R8Q-Rf-LFL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2207,7 +2211,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="9gJ-hn-MTh"/>
-        <segue reference="vSU-o9-pSA"/>
+        <segue reference="YoO-Sm-1oa"/>
         <segue reference="VfP-ER-5Al"/>
     </inferredMetricsTieBreakers>
     <resources>
