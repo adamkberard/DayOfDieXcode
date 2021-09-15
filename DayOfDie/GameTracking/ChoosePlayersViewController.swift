@@ -15,10 +15,10 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
     @IBOutlet weak var fullStatsSwitch: UISwitch!
     @IBOutlet weak var simpleStatsSwitch: UISwitch!
     @IBOutlet weak var justScoreSwitch: UISwitch!
-    var players : [User] = []
+    var players : [Player] = []
     
     
-    var possiblePlayers : [User] = []
+    var possiblePlayers : [Player] = []
     
     override func viewWillAppear(_ animated: Bool) {
         setupPickers()
@@ -38,8 +38,8 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
     
     func setupPickers() {
         possiblePlayers = []
-        possiblePlayers.append(ThisUser.user)
-        possiblePlayers.append(contentsOf: Friend.approvedFriends.map({$0.getOtherUser()}))
+        possiblePlayers.append(User.player)
+        possiblePlayers.append(contentsOf: Team.approvedFriends.map({$0.getOtherUser()}))
         for playerPicker in playerPickers {
             playerPicker.reloadComponent(0)
         }

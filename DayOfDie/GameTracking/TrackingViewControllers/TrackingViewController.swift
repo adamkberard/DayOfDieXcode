@@ -14,7 +14,7 @@ class TrackingViewController: UIViewController {
     @IBOutlet weak var scoreboard: PlayersTableScoreView!
     @IBOutlet weak var saveButton: UIButton!
     
-    var players : [User] = []
+    var players : [Player] = []
     
     var currentlyPickedPoints : Int = 0
     
@@ -113,12 +113,12 @@ class TrackingViewController: UIViewController {
                 Game.allGames.append(self.returnedGame!)
                 
                 if self.scoreboard.teamOneScore > self.scoreboard.teamTwoScore{
-                    Friend.findOrCreateFriend(teamCaptain: self.players[0], teammate: self.players[1]).wins += 1
-                    Friend.findOrCreateFriend(teamCaptain: self.players[2], teammate: self.players[3]).losses += 1
+                    Team.findOrCreateFriend(teamCaptain: self.players[0], teammate: self.players[1]).wins += 1
+                    Team.findOrCreateFriend(teamCaptain: self.players[2], teammate: self.players[3]).losses += 1
                 }
                 else{
-                    Friend.findOrCreateFriend(teamCaptain: self.players[0], teammate: self.players[1]).losses += 1
-                    Friend.findOrCreateFriend(teamCaptain: self.players[2], teammate: self.players[3]).wins += 1
+                    Team.findOrCreateFriend(teamCaptain: self.players[0], teammate: self.players[1]).losses += 1
+                    Team.findOrCreateFriend(teamCaptain: self.players[2], teammate: self.players[3]).wins += 1
                 }
                 self.resetEverything()
                 self.performSegue(withIdentifier: "toGameAfterSave", sender: self)

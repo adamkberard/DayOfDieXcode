@@ -8,9 +8,9 @@
 import UIKit
 import Alamofire
 
-class FriendTableViewController: UITableViewController {
+class TeamTableViewController: UITableViewController {
     
-    var selectedFriend : Friend?
+    var selectedFriend : Team?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,34 +33,31 @@ class FriendTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return Friend.approvedFriends.count
+        return Team.approvedFriends.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "FriendTableViewCell"
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? FriendTableViewCell  else {
-            fatalError("The dequeued cell is not an instance of FriendTableViewCell.")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? TeamCell  else {
+            fatalError("The dequeued cell is not an instance of TeamCell.")
         }
         
         // Fetches the appropriate friend for the data source layout.
-        let friend = Friend.approvedFriends[indexPath.row]
-        cell.friendUsernameLabel.text = friend.getOtherUser().username
-        cell.winsLabel.text = String(friend.wins)
-        cell.lossesLabel.text = String(friend.losses)
-        
+        let team = Team.approvedFriends[indexPath.row]
+        cell.team = team
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedFriend = Friend.approvedFriends[indexPath.row]
+        selectedFriend = Team.approvedFriends[indexPath.row]
         self.performSegue(withIdentifier: "toFriendDetailView", sender: self)
     }
     
     func loadFriends() {
         APICalls.getFriends {status, returnData in
             if status{
-                Friend.allFriends = returnData as! [Friend]
+                Team.allFriends = returnData as! [Team]
             }
             else{
                 //Handle if things go wrong
@@ -86,9 +83,9 @@ class FriendTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
             if identifier == "toFriendDetailView" {
-                guard let viewController = segue.destination as? FriendDetailViewController else {
+                guard let viewController = segue.destination as? TeamDetailViewController else {
                     fatalError("Unexpected destination: \(segue.destination)")}
-                viewController.friend = selectedFriend
+                viewController.team = selectedFriend
             }
         }
     }

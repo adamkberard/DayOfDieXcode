@@ -29,7 +29,7 @@ class LoadingViewController: UIViewController {
         // Loading friends here
         APICalls.getFriends {status, returnData in
             if status{
-                Friend.allFriends = returnData as! [Friend]
+                Team.allFriends = returnData as! [Team]
                 self.successFriendsLoad = true
                 if self.isAllDataLoaded(){
                     self.performSegue(withIdentifier: "toMainApp", sender: self)
@@ -46,7 +46,7 @@ class LoadingViewController: UIViewController {
         APICalls.getUsers {status, returnData in
             if status{
                 // Check if everything is done if so move on
-                User.allUsers = returnData as! [User]
+                Player.allPlayers = returnData as! [Player]
                 self.successUsersLoad = true
                 if self.isAllDataLoaded(){
                     self.performSegue(withIdentifier: "toMainApp", sender: self)
@@ -99,19 +99,19 @@ class APICalls {
     }
     
     static func getUser(username: String, completion: @escaping (Bool, Any) -> Void) {
-        get(url: "\(URLInfo.baseUrl)/users/\(username)/", returnType: User.self) {status, returnDict in
+        get(url: "\(URLInfo.baseUrl)/users/\(username)/", returnType: Player.self) {status, returnDict in
             completion(status, returnDict)
         }
     }
     
     static func getFriends(completion: @escaping (Bool, Any) -> Void) {
-        get(url: "\(URLInfo.baseUrl)/friends/", returnType: [Friend].self) {status, returnDict in
+        get(url: "\(URLInfo.baseUrl)/friends/", returnType: [Team].self) {status, returnDict in
             completion(status, returnDict)
         }
     }
     
     static func getUsers(completion: @escaping (Bool, Any) -> Void) {
-        get(url: "\(URLInfo.baseUrl)/users/", returnType: [User].self) {status, returnDict in
+        get(url: "\(URLInfo.baseUrl)/users/", returnType: [Player].self) {status, returnDict in
             completion(status, returnDict)
         }
     }
@@ -129,7 +129,7 @@ class APICalls {
     }
     
     static func sendFriend(parameters: [String: Any], completion: @escaping (Bool, Any) -> Void) {
-        post(url: "\(URLInfo.baseUrl)/friends/", parameters: parameters, returnType: Friend.self) { status, returnData in
+        post(url: "\(URLInfo.baseUrl)/friends/", parameters: parameters, returnType: Team.self) { status, returnData in
             completion(status, returnData)
         }
     }
@@ -213,7 +213,7 @@ class APICalls {
     
     static func getHeaders()->HTTPHeaders {
         let headers: HTTPHeaders = [
-            "Authorization": "Token \(ThisUser.token)",
+            "Authorization": "Token \(User.token)",
         ]
         return headers
     }

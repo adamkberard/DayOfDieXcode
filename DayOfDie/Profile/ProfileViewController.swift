@@ -1,64 +1,30 @@
 //
-//  UserViewConViewController.swift
+//  ProfileViewController.swift
 //  DayOfDie
 //
-//  Created by Adam Berard on 8/6/21.
+//  Created by Adam Berard on 9/12/21.
 //
 
 import UIKit
-import Alamofire
 
-class UserViewViewController: UIViewController {
-    
-    @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var totalGamesLabel: UILabel!
-    @IBOutlet weak var totalWinsLabel: UILabel!
-    @IBOutlet weak var totalLossesLabel: UILabel!
-    @IBOutlet weak var newUsernameTextField: UITextField!
-    @IBOutlet weak var statusLabel: UILabel!
-    
-    var totalGames = 0 {
-        didSet{
-            totalGamesLabel.text = String(totalGames)
-        }
-    }
-    var totalWins = 0 {
-        didSet{
-            totalWinsLabel.text = String(totalWins)
-            totalGames = totalWins + totalLosses
-        }
-    }
-    var totalLosses = 0 {
-        didSet{
-            totalLossesLabel.text = String(totalLosses)
-            totalGames = totalWins + totalLosses
-        }
-    }
+class ProfileViewController: PlayerViewController {
 
     override func viewDidLoad() {
+        player = User.player
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        usernameLabel.text = ThisUser.user.username
-        emailLabel.text = ThisUser.email
-        
-        updateWinsData()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        updateWinsData()
-    }
-    
-    func updateWinsData(){
-        totalWins = 0
-        totalLosses = 0
-        for friend in Friend.approvedFriends{
-            totalWins += friend.wins
-            totalLosses += friend.losses
+    /*
+    // Also I gotta change it in the list sent to us
+    func changeUsernameInAllUsers(pasteName: String){
+        for user in allUsers{
+            if user.username == LoggedInUser.username{
+                user.username = pasteName
+            }
         }
-    }
+    }*/
     
+    /*
     @IBAction func changeUsernameButton(_ sender: Any) {
         if newUsernameTextField.isHidden{
             newUsernameTextField.isHidden = false
@@ -95,30 +61,25 @@ class UserViewViewController: UIViewController {
             }*/
         }
     }
-    @IBAction func changePasswordButton(_ sender: Any) {
-    }
+    */
     
-    // When I change the username I gotta go through and change the user's username in all their friends
-    func changeUsernameInFriends(pasteName: String){
-        for friend in Friend.allFriends{
-            if friend.teamCaptain.username == ThisUser.user.username{
-                friend.teamCaptain.username = pasteName
-            }
-            else if friend.teammate.username == ThisUser.user.username{
-                friend.teammate.username = pasteName
-            }
-        }
-    }
     /*
-    // Also I gotta change it in the list sent to us
-    func changeUsernameInAllUsers(pasteName: String){
-        for user in allUsers{
-            if user.username == LoggedInUser.username{
-                user.username = pasteName
-            }
-        }
-    }*/
-    
+     @IBAction func changePasswordButton(_ sender: Any) {
+     }
+     
+     // When I change the username I gotta go through and change the user's username in all their friends
+     func changeUsernameInFriends(pasteName: String){
+         for friend in Friend.allFriends{
+             if friend.teamCaptain.username == ThisUser.user.username{
+                 friend.teamCaptain.username = pasteName
+             }
+             else if friend.teammate.username == ThisUser.user.username{
+                 friend.teammate.username = pasteName
+             }
+         }
+     }
+     */
+
     /*
     // MARK: - Navigation
 

@@ -11,7 +11,7 @@ import UIKit
 class JustScoreTrackerComponent: SimpleStatsTrackingComponent {
     // Mark: UI Vars
     
-    override var player : User? {
+    override var player : Player? {
         didSet {
             print("CHILD SET")
             if playerNumber <= 1{

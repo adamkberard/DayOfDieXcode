@@ -14,7 +14,7 @@ class TrackerComponent: UIView {
     var mainTrackingViewController : TrackingViewController?
     var playerNumber : Int = 0
     
-    var player : User? {
+    var player : Player? {
         didSet {
             playerLabel.text = player!.username
             print("PARENT SET")

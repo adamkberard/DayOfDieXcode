@@ -7,20 +7,20 @@
 
 import UIKit
 
-class FriendDetailViewController: UIViewController {
+class TeamDetailViewController: UIViewController {
     
     @IBOutlet weak var friendNameLabel: UILabel!
     @IBOutlet weak var teamNameLabel: UILabel!
     @IBOutlet weak var winsLabel: UILabel!
     @IBOutlet weak var lossesLabel: UILabel!
     
-    var friend : Friend?
+    var team : Team?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        friendNameLabel.text = friend!.getOtherUser().username
-        winsLabel.text = String(friend!.wins)
-        lossesLabel.text = String(friend!.losses)
+        friendNameLabel.text = team!.getOtherUser().username
+        winsLabel.text = String(team!.wins)
+        lossesLabel.text = String(team!.losses)
     }
 }

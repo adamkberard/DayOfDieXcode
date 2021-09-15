@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FriendRequestTableViewController: UITableViewController {
+class TeamRequestTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -25,27 +25,29 @@ class FriendRequestTableViewController: UITableViewController {
     // The second section will be the pending requests
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return Friend.pendingFriends.count
+            return Team.pendingFriends.count
         }
         else {
-            return Friend.waitingFriends.count
+            return Team.waitingFriends.count
         }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0{
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendRequestCell", for: indexPath) as? PendingFriendRequestTableViewCell  else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendRequestCell", for: indexPath) as? PendingTeammateRequestTableViewCell  else {
                 fatalError("The dequeued cell is not an instance of PendingFriendRequestCell.")
             }
-            cell.friend = Friend.pendingFriends[indexPath.row]
+            let player = Team.pendingFriends[indexPath.row].getOtherUser()
+            cell.player = player
             cell.parentTableView = self.tableView
             return cell
         }
         else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "waitingFriendRequestCell", for: indexPath) as? WaitingFriendRequestTableViewCell  else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "waitingFriendRequestCell", for: indexPath) as? WaitingOnTeammateRequestTableViewCell else {
                 fatalError("The dequeued cell is not an instance of WaitingFriendRequestCell.")
             }
-            cell.friend = Friend.waitingFriends[indexPath.row]
+            let player = Team.pendingFriends[indexPath.row].getOtherUser()
+            cell.player = player
             cell.parentTableView = self.tableView
             return cell
         }

@@ -7,14 +7,14 @@
 
 import Foundation
 
-class ThisUser : Codable{
+class User : Codable{
     static var token : String = ""
     static var email : String = ""
-    static var user : User = User()
+    static var player : Player = Player()
 }
 
-class User : Codable, Equatable {
-    static var allUsers : [User] = [] {
+class Player : Codable, Equatable {
+    static var allPlayers : [Player] = [] {
         didSet {
             setSelf()
         }
@@ -31,15 +31,15 @@ class User : Codable, Equatable {
     }
     
     static func setSelf() -> Void {
-        for user in allUsers{
-            if user.username == ThisUser.user.username{
-                ThisUser.user = user
+        for player in allPlayers{
+            if player.username == User.player.username{
+                User.player = player
                 break
             }
         }
     }
     
-    static func == (lhs: User, rhs: User) -> Bool {
+    static func == (lhs: Player, rhs: Player) -> Bool {
         return lhs.username == rhs.username
     }
 }
