@@ -11,9 +11,8 @@ import UIKit
 class JustScoreTrackerComponent: SimpleStatsTrackingComponent {
     // Mark: UI Vars
     
-    override var player : Player? {
+    override var playerNumber: Int {
         didSet {
-            print("CHILD SET")
             if playerNumber <= 1{
                 playerLabel.text = "Team One"
             }

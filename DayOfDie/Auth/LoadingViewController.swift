@@ -18,19 +18,19 @@ struct URLInfo{
 
 class LoadingViewController: UIViewController {
     
-    var successUsersLoad : Bool = false
+    var successPlayersLoad : Bool = false
     var successGamesLoad : Bool = false
-    var successFriendsLoad : Bool = false
+    var successTeamsLoad : Bool = false
     var successUserLoad : Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Loading friends here
-        APICalls.getFriends {status, returnData in
+        APICalls.getTeams {status, returnData in
             if status{
-                Team.allFriends = returnData as! [Team]
-                self.successFriendsLoad = true
+                Team.allTeams = returnData as! [Team]
+                self.successTeamsLoad = true
                 if self.isAllDataLoaded(){
                     self.performSegue(withIdentifier: "toMainApp", sender: self)
                 }
@@ -47,7 +47,7 @@ class LoadingViewController: UIViewController {
             if status{
                 // Check if everything is done if so move on
                 Player.allPlayers = returnData as! [Player]
-                self.successUsersLoad = true
+                self.successPlayersLoad = true
                 if self.isAllDataLoaded(){
                     self.performSegue(withIdentifier: "toMainApp", sender: self)
                 }
@@ -78,7 +78,7 @@ class LoadingViewController: UIViewController {
     }
     
     func isAllDataLoaded() -> Bool {
-        return successUsersLoad && successGamesLoad && successFriendsLoad
+        return successPlayersLoad && successGamesLoad && successTeamsLoad
     }
 }
 
@@ -104,14 +104,14 @@ class APICalls {
         }
     }
     
-    static func getFriends(completion: @escaping (Bool, Any) -> Void) {
-        get(url: "\(URLInfo.baseUrl)/friends/", returnType: [Team].self) {status, returnDict in
+    static func getTeams(completion: @escaping (Bool, Any) -> Void) {
+        get(url: "\(URLInfo.baseUrl)/teams/", returnType: [Team].self) {status, returnDict in
             completion(status, returnDict)
         }
     }
     
     static func getUsers(completion: @escaping (Bool, Any) -> Void) {
-        get(url: "\(URLInfo.baseUrl)/users/", returnType: [Player].self) {status, returnDict in
+        get(url: "\(URLInfo.baseUrl)/players/", returnType: [Player].self) {status, returnDict in
             completion(status, returnDict)
         }
     }
@@ -129,7 +129,19 @@ class APICalls {
     }
     
     static func sendFriend(parameters: [String: Any], completion: @escaping (Bool, Any) -> Void) {
-        post(url: "\(URLInfo.baseUrl)/friends/", parameters: parameters, returnType: Team.self) { status, returnData in
+        post(url: "\(URLInfo.baseUrl)/teams/", parameters: parameters, returnType: Team.self) { status, returnData in
+            completion(status, returnData)
+        }
+    }
+    
+    static func getPlayerGames(player: Player, completion: @escaping (Bool, Any) -> Void) {
+        get(url: "\(URLInfo.baseUrl)/games/\(player.username)/", returnType: [Game].self) { status, returnData in
+            completion(status, returnData)
+        }
+    }
+    
+    static func getPlayerTeams(player: Player, completion: @escaping (Bool, Any) -> Void) {
+        get(url: "\(URLInfo.baseUrl)/teams/\(player.username)/", returnType: [Team].self) { status, returnData in
             completion(status, returnData)
         }
     }

@@ -25,10 +25,10 @@ class TeamRequestTableViewController: UITableViewController {
     // The second section will be the pending requests
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return Team.pendingFriends.count
+            return Team.pendingTeams.count
         }
         else {
-            return Team.waitingFriends.count
+            return Team.waitingTeams.count
         }
     }
 
@@ -37,18 +37,18 @@ class TeamRequestTableViewController: UITableViewController {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendRequestCell", for: indexPath) as? PendingTeammateRequestTableViewCell  else {
                 fatalError("The dequeued cell is not an instance of PendingFriendRequestCell.")
             }
-            let player = Team.pendingFriends[indexPath.row].getOtherUser()
+            let player = Team.pendingTeams[indexPath.row].getOtherUser()
             cell.player = player
-            cell.parentTableView = self.tableView
+            cell.parentTableView = self
             return cell
         }
         else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "waitingFriendRequestCell", for: indexPath) as? WaitingOnTeammateRequestTableViewCell else {
                 fatalError("The dequeued cell is not an instance of WaitingFriendRequestCell.")
             }
-            let player = Team.pendingFriends[indexPath.row].getOtherUser()
+            let player = Team.pendingTeams[indexPath.row].getOtherUser()
             cell.player = player
-            cell.parentTableView = self.tableView
+            cell.parentTableView = self
             return cell
         }
     }

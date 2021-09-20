@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum FriendStatuses : String, Codable{
+enum TeamStatuses : String, Codable{
     case BLOCKED = "bl"
     case PENDING = "pd"
     case ACCEPTED = "ac"
@@ -16,33 +16,33 @@ enum FriendStatuses : String, Codable{
 }
 
 class Team : Codable, Equatable {
-    static var allFriends : [Team] = [] {
+    static var allTeams : [Team] = [] {
         didSet{
-            self.parseFriends()
+            self.parseTeams()
         }
     }
-    static var approvedFriends : [Team] = []
-    static var approvedFriendsUsers : [Player] = []
-    static var pendingFriends : [Team] = []
-    static var pendingFriendsUsers : [Player] = []
-    static var waitingFriends : [Team] = []
-    static var waitingFriendsUsers : [Player] = []
-    static var nothingFriends : [Team] = []
-    static var nothingFriendsUsers : [Player] = []
-    static var blockedFriends : [Team] = []
-    static var blockedFriendsUsers : [Player] = []
+    static var approvedTeams : [Team] = []
+    static var approvedTeammates : [Player] = []
+    static var pendingTeams : [Team] = []
+    static var pendingTeammates : [Player] = []
+    static var waitingTeams : [Team] = []
+    static var waitingTeammates : [Player] = []
+    static var nothingTeams : [Team] = []
+    static var nothingTeammates : [Player] = []
+    static var blockedTeams : [Team] = []
+    static var blockedTeammates : [Player] = []
     
-    static func getFriendStatus(player: Player) -> FriendStatuses {
-        if approvedFriendsUsers.contains(player) {
+    static func getTeamStatus(player: Player) -> TeamStatuses {
+        if approvedTeammates.contains(player) {
             return .ACCEPTED
         }
-        else if pendingFriendsUsers.contains(player) {
+        else if pendingTeammates.contains(player) {
             return .PENDING
         }
-        else if waitingFriendsUsers.contains(player) {
+        else if waitingTeammates.contains(player) {
             return .WAITING
         }
-        else if blockedFriendsUsers.contains(player) {
+        else if blockedTeammates.contains(player) {
             return .BLOCKED
         }
         else {
@@ -53,7 +53,7 @@ class Team : Codable, Equatable {
     var teamCaptain : Player
     var teammate : Player
     var uuid : UUID?
-    var status : FriendStatuses?
+    var status : TeamStatuses?
     var wins : Int
     var losses : Int
     
@@ -72,10 +72,10 @@ class Team : Codable, Equatable {
     
     func getOtherUser() -> Player {
         if(User.player == teamCaptain){
-            return teammate
+            return Player.getPlayer(inPlayer: teammate)!
         }
         else{
-            return teamCaptain
+            return Player.getPlayer(inPlayer: teamCaptain)!
         }
     }
     
@@ -83,14 +83,14 @@ class Team : Codable, Equatable {
         return User.player == teamCaptain
     }
     
-    static func findOrCreateFriend(teamCaptain: Player, teammate: Player) -> Team {
-        let tempFriend = Team(teamCaptain: teamCaptain, teammate: teammate)
-        for friend in allFriends{
-            if friend == tempFriend{
-                return friend
+    static func findOrCreateTeam(teamCaptain: Player, teammate: Player) -> Team {
+        let tempTeam = Team(teamCaptain: teamCaptain, teammate: teammate)
+        for team in allTeams{
+            if team == tempTeam{
+                return team
             }
         }
-        return tempFriend
+        return tempTeam
     }
     
     static func == (lhs: Team, rhs: Team) -> Bool {
@@ -100,40 +100,40 @@ class Team : Codable, Equatable {
         return lhs.teamCaptain == rhs.teammate && lhs.teammate == rhs.teamCaptain
     }
     
-    static func parseFriends() {
-        self.pendingFriends = []
-        self.pendingFriendsUsers = []
-        self.waitingFriends = []
-        self.waitingFriendsUsers = []
-        self.nothingFriends = []
-        self.nothingFriendsUsers = []
-        self.approvedFriends = []
-        self.approvedFriendsUsers = []
-        self.blockedFriends = []
-        self.blockedFriendsUsers = []
+    static func parseTeams() {
+        self.pendingTeams = []
+        self.pendingTeammates = []
+        self.waitingTeams = []
+        self.waitingTeammates = []
+        self.nothingTeams = []
+        self.nothingTeammates = []
+        self.approvedTeams = []
+        self.approvedTeammates = []
+        self.blockedTeams = []
+        self.blockedTeammates = []
         
-        for friend in self.allFriends{
-            switch friend.status {
+        for team in self.allTeams{
+            switch team.status {
             case .ACCEPTED:
-                approvedFriends.append(friend)
-                approvedFriendsUsers.append(friend.getOtherUser())
+                approvedTeams.append(team)
+                approvedTeammates.append(team.getOtherUser())
             case .PENDING:
-                if friend.loggedInUserIsTeamCaptain(){
-                    waitingFriends.append(friend)
-                    waitingFriendsUsers.append(friend.getOtherUser())
+                if team.loggedInUserIsTeamCaptain(){
+                    waitingTeams.append(team)
+                    waitingTeammates.append(team.getOtherUser())
                 }
                 else{
-                    pendingFriends.append(friend)
-                    pendingFriendsUsers.append(friend.getOtherUser())
+                    pendingTeams.append(team)
+                    pendingTeammates.append(team.getOtherUser())
                 }
             case .NOTHING:
-                nothingFriends.append(friend)
-                nothingFriendsUsers.append(friend.getOtherUser())
+                nothingTeams.append(team)
+                nothingTeammates.append(team.getOtherUser())
             case .BLOCKED:
-                blockedFriends.append(friend)
-                blockedFriendsUsers.append(friend.getOtherUser())
+                blockedTeams.append(team)
+                blockedTeammates.append(team.getOtherUser())
             default:
-                print("Friend has invalid status.")
+                print("Team has invalid status.")
             }
         }
     }

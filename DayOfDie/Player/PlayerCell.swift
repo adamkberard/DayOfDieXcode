@@ -16,15 +16,7 @@ class PlayerCell: UITableViewCell {
     @IBOutlet weak var lossesLabel: UILabel!
     
     var player : Player?
-    var parentTableView : UITableView?
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
+    var parentTableView : UITableViewController?
     
     func setUpCell(player: Player) {
         self.player = player
@@ -33,7 +25,7 @@ class PlayerCell: UITableViewCell {
         lossesLabel.text = String(player.losses)
     }
     
-    func sendRequest(friendStatus: FriendStatuses) {
+    func sendRequest(friendStatus: TeamStatuses) {
         let parameters: [String: Any] = [
             "teammate": player!.username,
             "status": friendStatus.rawValue
@@ -42,11 +34,11 @@ class PlayerCell: UITableViewCell {
         APICalls.sendFriend(parameters: parameters) { status, returnData in
             if status{
                 let newTeam = (returnData as! Team)
-                if let index = Team.allFriends.firstIndex(of: newTeam){
-                    Team.allFriends.remove(at: index)
+                if let index = Team.allTeams.firstIndex(of: newTeam){
+                    Team.allTeams.remove(at: index)
                 }
-                Team.allFriends.append(newTeam)
-                self.parentTableView?.reloadData()
+                Team.allTeams.append(newTeam)
+                self.parentTableView?.tableView.reloadData()
             }
             else{
                 let errors : [String] = returnData as! [String]

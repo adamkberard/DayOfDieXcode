@@ -39,6 +39,15 @@ class Player : Codable, Equatable {
         }
     }
     
+    static func getPlayer(inPlayer : Player) -> Player? {
+        for player in self.allPlayers{
+            if player == inPlayer {
+                return player
+            }
+        }
+        return nil
+    }
+    
     static func == (lhs: Player, rhs: Player) -> Bool {
         return lhs.username == rhs.username
     }

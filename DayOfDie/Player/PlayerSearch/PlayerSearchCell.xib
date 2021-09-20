@@ -69,7 +69,7 @@
                                 <rect key="frame" x="276" y="0.0" width="138" height="41.5"/>
                                 <state key="normal" title="Add as Teammate"/>
                                 <connections>
-                                    <action selector="addAsTeammateButtonPressed:" destination="OAt-WS-Ixz" eventType="touchUpInside" id="ang-Sn-XRi"/>
+                                    <action selector="changeTeammateStatusPressed:" destination="OAt-WS-Ixz" eventType="touchUpInside" id="yuO-uB-Rbm"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -78,6 +78,7 @@
                 </subviews>
             </tableViewCellContentView>
             <connections>
+                <outlet property="changeTeamStatusButton" destination="Xnb-IX-vDr" id="aRL-hN-aia"/>
                 <outlet property="lossesLabel" destination="rvm-3m-XvM" id="fiK-ko-l86"/>
                 <outlet property="usernameLabel" destination="3YO-aN-TuC" id="MNg-Bt-yK9"/>
                 <outlet property="winsLabel" destination="KCh-d0-ukw" id="UdI-Ty-yPr"/>

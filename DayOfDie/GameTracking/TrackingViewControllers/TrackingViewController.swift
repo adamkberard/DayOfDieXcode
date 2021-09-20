@@ -43,6 +43,7 @@ class TrackingViewController: UIViewController {
             trackerComponents[i].mainTrackingViewController = self
             trackerComponents[i].player = players[i]
             trackerComponents[i].playerNumber = i
+            print("HEREE \(i)")
         }
     }
     
@@ -112,15 +113,9 @@ class TrackingViewController: UIViewController {
                 self.returnedGame = returnData as? Game
                 Game.allGames.append(self.returnedGame!)
                 
-                if self.scoreboard.teamOneScore > self.scoreboard.teamTwoScore{
-                    Team.findOrCreateFriend(teamCaptain: self.players[0], teammate: self.players[1]).wins += 1
-                    Team.findOrCreateFriend(teamCaptain: self.players[2], teammate: self.players[3]).losses += 1
-                }
-                else{
-                    Team.findOrCreateFriend(teamCaptain: self.players[0], teammate: self.players[1]).losses += 1
-                    Team.findOrCreateFriend(teamCaptain: self.players[2], teammate: self.players[3]).wins += 1
-                }
+                self.updatePlayerAndTeamStats()
                 self.resetEverything()
+                
                 self.performSegue(withIdentifier: "toGameAfterSave", sender: self)
             }
             else{
@@ -128,6 +123,25 @@ class TrackingViewController: UIViewController {
                 print(errors)
                 // Handle errors here someday
             }
+        }
+    }
+    
+    func updatePlayerAndTeamStats() {
+        if self.scoreboard.teamOneScore > self.scoreboard.teamTwoScore{
+            Team.findOrCreateTeam(teamCaptain: self.players[0], teammate: self.players[1]).wins += 1
+            Team.findOrCreateTeam(teamCaptain: self.players[2], teammate: self.players[3]).losses += 1
+            players[0].wins += 1
+            players[1].wins += 1
+            players[2].losses += 1
+            players[3].losses += 1
+        }
+        else{
+            Team.findOrCreateTeam(teamCaptain: self.players[0], teammate: self.players[1]).losses += 1
+            Team.findOrCreateTeam(teamCaptain: self.players[2], teammate: self.players[3]).wins += 1
+            players[0].losses += 1
+            players[1].losses += 1
+            players[1].wins += 1
+            players[1].wins += 1
         }
     }
     

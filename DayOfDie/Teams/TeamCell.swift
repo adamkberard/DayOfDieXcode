@@ -9,23 +9,20 @@ import UIKit
 
 class TeamCell: UITableViewCell {
     
-    @IBOutlet weak var teammateUsernameLabel: UILabel!
-    @IBOutlet weak var teamNameUsernameLabel: UILabel!
+    @IBOutlet weak var playerOneLabel: UILabel!
+    @IBOutlet weak var playerTwoLabel: UILabel!
+    @IBOutlet weak var teamNameLabel: UILabel!
     @IBOutlet weak var winsLabel: UILabel!
     @IBOutlet weak var lossesLabel: UILabel!
     
-    var team : Team? {
-        didSet {
-            teammateUsernameLabel.text = team!.teammate.username
-            teamNameUsernameLabel.text = team!.teamName
-        }
-    }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    var team : Team?
+    
+    func setupCell(team: Team) -> Void {
+        self.team = team
+        playerOneLabel.text = team.teamCaptain.username
+        playerTwoLabel.text = team.teammate.username
+        teamNameLabel.text = team.teamName
+        winsLabel.text = String(team.wins)
+        lossesLabel.text = String(team.losses)
     }
 }

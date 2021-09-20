@@ -31,8 +31,13 @@ class PlayerSearchViewController: UITableViewController, UISearchResultsUpdating
         searchController.searchBar.placeholder = "Search Players"
         navigationItem.searchController = searchController
         definesPresentationContext = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        playerList = Player.allPlayers.filter { (player: Player) -> Bool in
+            return player != User.player
+        }
         
-        playerList = Player.allPlayers
         tableView.reloadData()
     }
     
@@ -52,11 +57,9 @@ class PlayerSearchViewController: UITableViewController, UISearchResultsUpdating
         // Loading all users here
         APICalls.getUsers {status, returnData in
             if status{
-                // Check if everything is done if so move on
                 Player.allPlayers = returnData as! [Player]
             }
             else{
-                //Handle if things go wrong
                 let errors : [String] = returnData as! [String]
                 print(errors)
             }
@@ -74,10 +77,8 @@ class PlayerSearchViewController: UITableViewController, UISearchResultsUpdating
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering {
-            print("F \(filteredPlayerList.count)")
             return filteredPlayerList.count
         }
-        print("R: \(playerList.count)")
         return playerList.count
     }
 
@@ -94,7 +95,7 @@ class PlayerSearchViewController: UITableViewController, UISearchResultsUpdating
         else {
             cell.setUpCell(player: playerList[indexPath.row])
         }
-        
+        cell.parentTableView = self
         return cell
     }
     

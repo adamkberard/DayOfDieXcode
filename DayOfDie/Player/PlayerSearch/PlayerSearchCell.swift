@@ -7,8 +7,12 @@
 
 import UIKit
 
+@IBDesignable
 class PlayerSearchCell: PlayerCell {
 
+    @IBOutlet weak var changeTeamStatusButton: UIButton!
+    var changeTeamStatusOption : TeamStatuses?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -17,7 +21,34 @@ class PlayerSearchCell: PlayerCell {
         super.setSelected(selected, animated: animated)
     }
     
-    @IBAction func addAsTeammateButtonPressed(_ sender: Any) {
-        sendRequest(friendStatus: .ACCEPTED)
+    @IBAction func changeTeammateStatusPressed(_ sender: UIButton) {
+        sendRequest(friendStatus: changeTeamStatusOption!)
+    }
+    
+    override func setUpCell(player: Player) {
+        super.setUpCell(player: player)
+        
+        switch Team.getTeamStatus(player: player) {
+        case .ACCEPTED:
+            changeTeamStatusButton.setTitle("Disband Team", for: .normal)
+            changeTeamStatusOption = .NOTHING
+        case .WAITING:
+            changeTeamStatusButton.setTitle("Cancel Request", for: .normal)
+            changeTeamStatusOption = .NOTHING
+        case .PENDING:
+            changeTeamStatusButton.setTitle("Accept Request", for: .normal)
+            changeTeamStatusOption = .ACCEPTED
+        case .NOTHING:
+            if player == User.player {
+                changeTeamStatusButton.isEnabled = false
+                changeTeamStatusButton.setTitle("This is You", for: .disabled)
+            }
+            else{
+                changeTeamStatusButton.setTitle("Send Request", for: .normal)
+                changeTeamStatusOption = .ACCEPTED
+            }
+        default:
+            changeTeamStatusOption = .NOTHING
+        }
     }
 }

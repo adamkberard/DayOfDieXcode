@@ -18,7 +18,6 @@ class TeamDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         friendNameLabel.text = team!.getOtherUser().username
         winsLabel.text = String(team!.wins)
         lossesLabel.text = String(team!.losses)

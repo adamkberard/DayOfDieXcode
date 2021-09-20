@@ -12,12 +12,15 @@ class TrackerComponent: UIView {
     @IBOutlet weak var playerLabel: UILabel!
     @IBOutlet weak var pointsLabel: UILabel!
     var mainTrackingViewController : TrackingViewController?
-    var playerNumber : Int = 0
+    var playerNumber : Int = 0 {
+        didSet {
+            print("JUST SRERT AT \(playerNumber)")
+        }
+    }
     
     var player : Player? {
         didSet {
             playerLabel.text = player!.username
-            print("PARENT SET")
         }
     }
     
