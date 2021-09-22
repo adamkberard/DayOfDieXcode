@@ -14,6 +14,8 @@ class PlayerSearchViewController: UITableViewController, UISearchResultsUpdating
     let searchController = UISearchController(searchResultsController: nil)
     var selectedPlayer : Player?
     
+    private let myRefreshControl = UIRefreshControl()
+    
     var isFiltering: Bool {
       return searchController.isActive && !isSearchBarEmpty
     }
@@ -21,35 +23,41 @@ class PlayerSearchViewController: UITableViewController, UISearchResultsUpdating
       return searchController.searchBar.text?.isEmpty ?? true
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: "PlayerSearchCell", bundle: nil), forCellReuseIdentifier: "PlayerSearchCell")
+        tableView.register(UINib(nibName: "PlayerCell", bundle: nil), forCellReuseIdentifier: "PlayerCell")
         
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Players"
         navigationItem.searchController = searchController
         definesPresentationContext = true
+        
+        
+        tableView.refreshControl = myRefreshControl
+        myRefreshControl.addTarget(self, action: #selector(refreshUserList(_:)), for: .valueChanged)
+        myRefreshControl.attributedTitle = NSAttributedString(string: "Fetching Player Data...")
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        setPlayerList()
+        tableView.reloadData()
+    }
+    
+    func setPlayerList() -> Void {
         playerList = Player.allPlayers.filter { (player: Player) -> Bool in
             return player != User.player
         }
-        
-        tableView.reloadData()
     }
     
     func filterContentForSearchText(_ searchText: String) {
       filteredPlayerList = playerList.filter { (player: Player) -> Bool in
         return player.username.lowercased().contains(searchText.lowercased())
       }
-      
       tableView.reloadData()
     }
     
-    @objc func refreshUserData(_ sender: Any) {
+    @objc func refreshUserList(_ sender: Any) {
         fetchUserData()
     }
     
@@ -58,6 +66,9 @@ class PlayerSearchViewController: UITableViewController, UISearchResultsUpdating
         APICalls.getUsers {status, returnData in
             if status{
                 Player.allPlayers = returnData as! [Player]
+                self.setPlayerList()
+                self.tableView.reloadData()
+                self.myRefreshControl.endRefreshing()
             }
             else{
                 let errors : [String] = returnData as! [String]
@@ -83,19 +94,18 @@ class PlayerSearchViewController: UITableViewController, UISearchResultsUpdating
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "PlayerSearchCell"
+        let cellIdentifier = "PlayerCell"
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? PlayerSearchCell  else {
-            fatalError("The dequeued cell is not an instance of PlayerSearchCell.")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? PlayerCell  else {
+            fatalError("The dequeued cell is not an instance of PlayerCell.")
         }
         
         if isFiltering {
-            cell.setUpCell(player: filteredPlayerList[indexPath.row])
+            cell.setupCell(object: filteredPlayerList[indexPath.row])
         }
         else {
-            cell.setUpCell(player: playerList[indexPath.row])
+            cell.setupCell(object: playerList[indexPath.row])
         }
-        cell.parentTableView = self
         return cell
     }
     

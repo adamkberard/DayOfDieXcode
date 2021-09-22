@@ -46,7 +46,18 @@ class TeamTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedTeam = Team.approvedTeams[indexPath.row]
+        selectedTeam = teamList[indexPath.row]
         self.performSegue(withIdentifier: "toTeamDetailView", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier {
+            print("The identifier is: \(identifier)")
+            if identifier == "toTeamDetailView" {
+                guard let viewController = segue.destination as? TeamDetailViewController else {
+                    fatalError("Unexpected destination: \(segue.destination)")}
+                viewController.team = selectedTeam
+            }
+        }
     }
 }

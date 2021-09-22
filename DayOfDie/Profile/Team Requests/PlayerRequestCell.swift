@@ -1,28 +1,19 @@
 //
-//  BaseFriendRequestTableViewCell.swift
+//  PlayerRequestCell.swift
 //  DayOfDie
 //
-//  Created by Adam Berard on 5/3/21.
+//  Created by Adam Berard on 9/21/21.
 //
 
 import UIKit
-import Alamofire
 
-@IBDesignable
-class PlayerCell: UITableViewCell {
-
-    @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var winsLabel: UILabel!
-    @IBOutlet weak var lossesLabel: UILabel!
+class PlayerRequestCell: PlayerCell {
     
-    var player : Player?
     var parentTableView : UITableViewController?
     
-    func setUpCell(player: Player) {
-        self.player = player
-        usernameLabel.text = player.username
-        winsLabel.text = String(player.wins)
-        lossesLabel.text = String(player.losses)
+    func setupCell(player: Player, parentTableView: UITableViewController) {
+        super.setupCell(object: player)
+        self.parentTableView = parentTableView
     }
     
     func sendRequest(friendStatus: TeamStatuses) {

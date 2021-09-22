@@ -61,6 +61,31 @@ class Game : Decodable, Encodable, Equatable {
         self.points = try container.decode([Point].self, forKey: .points)
     }
     
+    static func getRecord(team: Team , games: [Game]) -> (Int, Int) {
+        var wins  = 0
+        var losses = 0
+        
+        for game in games {
+            if game.teamOne == team {
+                if game.teamOneScore > game.teamTwoScore {
+                    wins += 1
+                }
+                else {
+                    losses += 1
+                }
+            }
+            else if game.teamTwo == team {
+                if game.teamOneScore > game.teamTwoScore {
+                    losses += 1
+                }
+                else {
+                    wins += 1
+                }
+            }
+        }
+        return (wins, losses)
+    }
+    
     enum DecodingKeys : String, CodingKey {
         case timeStarted = "time_started"
         case timeEnded = "time_ended"

@@ -8,7 +8,7 @@
 import UIKit
 import Alamofire
 
-class PlayerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class PlayerViewController: BasePartialTableViewController<Game> {
     
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var teamStatusLabel: UILabel!
@@ -17,32 +17,23 @@ class PlayerViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var totalWinsLabel: UILabel!
     @IBOutlet weak var totalLossesLabel: UILabel!
     @IBOutlet weak var changeTeamStatusButton: UIButton!
-    @IBOutlet weak var playerGamesTable: UITableView!
     
-    var playerGames : [Game] = []
     var playerTeams : [Team] = []
-    var selectedGame : Game?
     
     var player : Player?
     var changeTeamStatusOption : TeamStatuses?
     
-    override func viewWillAppear(_ animated: Bool) {
-        setUpView()
-        fetchPlayerGameData()
-        fetchPlayerTeamData()
+    override func viewDidLoad() {
+        fetchURLPostfix = "/games/\(player!.username)/"
+        cellIdentifier = "GameCell"
+        tableSegueIdentifier = "toGameDetail"
+        super.viewDidLoad()
     }
     
-    func fetchPlayerGameData() {
-        APICalls.getPlayerGames(player: player!) {status, returnData in
-            if status{
-                self.playerGames = returnData as! [Game]
-                self.playerGamesTable.reloadData()
-            }
-            else{
-                let errors : [String] = returnData as! [String]
-                print(errors)
-            }
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(false)
+        setUpView()
+        fetchPlayerTeamData()
     }
     
     func fetchPlayerTeamData() {
@@ -62,17 +53,12 @@ class PlayerViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func setUpView() {
-        playerGamesTable.register(UINib(nibName: "GameTableViewCell", bundle: nil), forCellReuseIdentifier: "GameTableViewCell")
-        
         usernameLabel.text = player!.username
         totalWinsLabel.text = String(player!.wins)
         totalLossesLabel.text = String(player!.losses)
         totalGamesLabel.text = String(player!.wins + player!.losses)
         
         setTeamStatusLabelAndButton()
-        
-        playerGamesTable.delegate = self
-        playerGamesTable.dataSource = self
     }
     
     func setTeamStatusLabelAndButton() {
@@ -121,42 +107,6 @@ class PlayerViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    // MARK: Table View Functions
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(playerGames.count)
-        return playerGames.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "GameTableViewCell"
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? GameTableViewCell  else {
-            fatalError("The dequeued cell is not an instance of GameTableViewCell.")
-        }
-        
-        // Fetches the appropriate game for the data source layout.
-        let game = playerGames[indexPath.row]
-        
-        cell.playerOneLabel.text = game.teamOne.teamCaptain.username
-        cell.playerTwoLabel.text = game.teamOne.teammate.username
-        cell.playerThreeLabel.text = game.teamTwo.teamCaptain.username
-        cell.playerFourLabel.text = game.teamTwo.teammate.username
-        cell.teamOneScore.text = String(game.teamOneScore)
-        cell.teamTwoScore.text = String(game.teamTwoScore)
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .long
-        dateFormatter.timeStyle = .short
-        cell.dateAndTimeLabel.text = dateFormatter.string(from: game.timeEnded!)
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedGame = playerGames[indexPath.row]
-        self.performSegue(withIdentifier: "toGameDetail", sender: self)
-    }
-    
     @IBAction func seeTeamsButtonPressed(_ sender: Any) {
         self.performSegue(withIdentifier: "toTeamList", sender: self)
     }
@@ -166,7 +116,7 @@ class PlayerViewController: UIViewController, UITableViewDelegate, UITableViewDa
             if identifier == "toGameDetail" {
                 guard let viewController = segue.destination as? GameDetailViewController else {
                     fatalError("Unexpected destination: \(segue.destination)")}
-                viewController.game = selectedGame
+                viewController.game = selectedObject
             }
             else if identifier == "toTeamList" {
                 guard let viewController = segue.destination as? TeamTableViewController else {

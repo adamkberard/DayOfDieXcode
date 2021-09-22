@@ -16,7 +16,7 @@ class GameTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: "GameTableViewCell", bundle: nil), forCellReuseIdentifier: "GameTableViewCell")
+        tableView.register(UINib(nibName: "GameCell", bundle: nil), forCellReuseIdentifier: "GameCell")
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -51,27 +51,16 @@ class GameTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "GameTableViewCell"
+        let cellIdentifier = "GameCell"
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? GameTableViewCell  else {
-            fatalError("The dequeued cell is not an instance of GameTableViewCell.")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? GameCell  else {
+            fatalError("The dequeued cell is not an instance of GameCell.")
         }
         
         // Fetches the appropriate game for the data source layout.
         let game = Game.allGames[indexPath.row]
         
-        cell.playerOneLabel.text = game.teamOne.teamCaptain.username
-        cell.playerTwoLabel.text = game.teamOne.teammate.username
-        cell.playerThreeLabel.text = game.teamTwo.teamCaptain.username
-        cell.playerFourLabel.text = game.teamTwo.teammate.username
-        cell.teamOneScore.text = String(game.teamOneScore)
-        cell.teamTwoScore.text = String(game.teamTwoScore)
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .long
-        dateFormatter.timeStyle = .short
-        cell.dateAndTimeLabel.text = dateFormatter.string(from: game.timeEnded!)
-        
+        cell.setupCell(object: game)
         return cell
     }
     

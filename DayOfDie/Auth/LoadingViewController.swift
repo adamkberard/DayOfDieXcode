@@ -146,6 +146,12 @@ class APICalls {
         }
     }
     
+    static func getTeamGames(team: Team, completion: @escaping (Bool, Any) -> Void) {
+        get(url: "\(URLInfo.baseUrl)/games/\(team.teamCaptain.username)/\(team.teammate.username)/", returnType: [Game].self) { status, returnData in
+            completion(status, returnData)
+        }
+    }
+    
     static func get<T: Decodable>(url: String, returnType: T.Type, completion: @escaping (Bool, Any) -> Void) {
         AF.request(url, method: .get, headers: getHeaders()).responseDecodable(of: returnType.self) { response in
             guard let returnStatusCode = response.response?.statusCode else {

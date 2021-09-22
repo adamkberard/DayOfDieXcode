@@ -8,12 +8,15 @@
 import UIKit
 
 class TeamRequestTableViewController: UITableViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.register(UINib(nibName: "WaitingTeammateCell", bundle: nil), forCellReuseIdentifier: "WaitingTeammateCell")
+        tableView.register(UINib(nibName: "PendingTeammateCell", bundle: nil), forCellReuseIdentifier: "PendingTeammateCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
     
     // MARK: - Table view data sourcew
@@ -25,30 +28,28 @@ class TeamRequestTableViewController: UITableViewController {
     // The second section will be the pending requests
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return Team.pendingTeams.count
+            return Team.pendingTeammates.count
         }
         else {
-            return Team.waitingTeams.count
+            return Team.waitingTeammates.count
         }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0{
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendRequestCell", for: indexPath) as? PendingTeammateRequestTableViewCell  else {
-                fatalError("The dequeued cell is not an instance of PendingFriendRequestCell.")
+        if indexPath.section == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PendingTeammateCell", for: indexPath) as? PendingTeammateCell  else {
+                fatalError("The dequeued cell is not an instance of PendingPlayerCell.")
             }
-            let player = Team.pendingTeams[indexPath.row].getOtherUser()
-            cell.player = player
-            cell.parentTableView = self
+            let player = Team.pendingTeammates[indexPath.row]
+            cell.setupCell(player: player, parentTableView: self)
             return cell
         }
         else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "waitingFriendRequestCell", for: indexPath) as? WaitingOnTeammateRequestTableViewCell else {
-                fatalError("The dequeued cell is not an instance of WaitingFriendRequestCell.")
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "WaitingTeammateCell", for: indexPath) as? WaitingTeammateCell  else {
+                fatalError("The dequeued cell is not an instance of WaitingTeammateCell.")
             }
-            let player = Team.pendingTeams[indexPath.row].getOtherUser()
-            cell.player = player
-            cell.parentTableView = self
+            let player = Team.waitingTeammates[indexPath.row]
+            cell.setupCell(player: player, parentTableView: self)
             return cell
         }
     }
