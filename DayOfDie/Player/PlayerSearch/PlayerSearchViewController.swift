@@ -10,22 +10,23 @@ import UIKit
 class PlayerSearchViewController: SearchTableViewController<Player> {
     
     override func viewDidLoad() {
-        setObjectList()
+        setObjectList(inList: Player.allPlayers)
         cellIdentifier = "PlayerCell"
         tableSegueIdentifier = "toPlayerDetail"
         fetchURLPostfix = "/players/"
-        searchPlaceholderString = "Fetching Player Data..."
+        searchPlaceholderString = "Search Players..."
+        refreshTitleString = "Fetch Player Data..."
         super.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setObjectList()
+        setObjectList(inList: Player.allPlayers)
         tableView.reloadData()
     }
     
-    func setObjectList() -> Void {
-        objectList = Player.allPlayers.filter { (player: Player) -> Bool in
+    func setObjectList(inList: [Player]) -> Void {
+        objectList = inList.filter { (player: Player) -> Bool in
             return player != User.player
         }
     }

@@ -16,6 +16,7 @@ class TeamTableViewController: BaseTableViewController<Team> {
         cellIdentifier = "TeamCell"
         tableSegueIdentifier = "toTeamDetail"
         fetchURLPostfix = "/teams/\(player.username)/"
+        refreshTitleString = "Fetching Team Data..."
         super.viewDidLoad()
     }
     

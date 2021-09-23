@@ -24,10 +24,11 @@ class PlayerViewController: BasePartialTableViewController<Game> {
     var changeTeamStatusOption : TeamStatuses?
     
     override func viewDidLoad() {
-        fetchURLPostfix = "/games/\(player!.username)/"
         cellIdentifier = "GameCell"
         tableSegueIdentifier = "toGameDetail"
+        refreshTitleString = "Fetching Game Data..."
         super.viewDidLoad()
+        fetchURLPostfix = "/games/\(player!.username)/"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,10 +40,7 @@ class PlayerViewController: BasePartialTableViewController<Game> {
     func fetchPlayerTeamData() {
         APICalls.getPlayerTeams(player: player!) {status, returnData in
             if status{
-                let allTeams = returnData as! [Team]
-                self.playerTeams = allTeams.filter {(team: Team) -> Bool in
-                    return team.status == .ACCEPTED
-                }
+                self.playerTeams = returnData as! [Team]
                 self.numberTeamsLabel.text = "Num Teams: \(self.playerTeams.count)"
             }
             else{

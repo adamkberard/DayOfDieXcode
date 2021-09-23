@@ -26,11 +26,12 @@ class BaseTableViewController<T: Decodable>: UITableViewController {
         tableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
         tableView.refreshControl = myRefreshControl
         myRefreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
-        myRefreshControl.attributedTitle = NSAttributedString(string: "Fetching Data...")
+        myRefreshControl.attributedTitle = NSAttributedString(string: refreshTitleString)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        tableView.reloadData()
     }
     
     //MARK: Refresh Functions

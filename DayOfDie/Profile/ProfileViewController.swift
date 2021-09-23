@@ -14,6 +14,7 @@ class ProfileViewController: PlayerViewController {
         player = User.player
         tableObjectList = Game.allGames
         super.viewDidLoad()
+        fetchURLPostfix = "/games/"
     }
     
     override func setTeamStatusLabelAndButton() {

@@ -11,6 +11,7 @@ class BasePartialTableViewController<T: Decodable>: UIViewController, UITableVie
     @IBOutlet weak var tableView: UITableView!
     
     let myRefreshControl = UIRefreshControl()
+    var refreshTitleString = "Fetching Data..."
     
     var tableObjectList : [T] = []
     var selectedObject : T?
@@ -19,6 +20,7 @@ class BasePartialTableViewController<T: Decodable>: UIViewController, UITableVie
     var cellIdentifier : String!
     var tableSegueIdentifier : String!
     var fetchURLPostfix : String!
+    
     
     // MARK: View Functions
     
@@ -29,7 +31,7 @@ class BasePartialTableViewController<T: Decodable>: UIViewController, UITableVie
         tableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
         tableView.refreshControl = myRefreshControl
         myRefreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
-        myRefreshControl.attributedTitle = NSAttributedString(string: "Fetching Data...")
+        myRefreshControl.attributedTitle = NSAttributedString(string: refreshTitleString)
     }
     
     override func viewWillAppear(_ animated: Bool) {
