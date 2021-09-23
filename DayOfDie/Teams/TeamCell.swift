@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TeamCell: UITableViewCell {
+class TeamCell: BaseTableViewCell<Team> {
     
     @IBOutlet weak var playerOneLabel: UILabel!
     @IBOutlet weak var playerTwoLabel: UILabel!
@@ -15,10 +15,10 @@ class TeamCell: UITableViewCell {
     @IBOutlet weak var winsLabel: UILabel!
     @IBOutlet weak var lossesLabel: UILabel!
     
-    var team : Team?
+    var team: Team!
     
-    func setupCell(team: Team) -> Void {
-        self.team = team
+    override func setupCell(object: Team) -> Void {
+        self.team = object
         playerOneLabel.text = team.teamCaptain.username
         playerTwoLabel.text = team.teammate.username
         teamNameLabel.text = team.teamName

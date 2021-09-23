@@ -15,7 +15,7 @@ enum TeamStatuses : String, Codable{
     case WAITING = "wt"
 }
 
-class Team : Codable, Equatable {
+class Team : Codable, Equatable, Searchable {
     static var allTeams : [Team] = [] {
         didSet{
             self.parseTeams()
@@ -145,5 +145,9 @@ class Team : Codable, Equatable {
         case wins
         case losses
         case status
+    }
+    
+    func getSearchString() -> String {
+        return teamName
     }
 }

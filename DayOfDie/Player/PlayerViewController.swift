@@ -121,7 +121,8 @@ class PlayerViewController: BasePartialTableViewController<Game> {
             else if identifier == "toTeamList" {
                 guard let viewController = segue.destination as? TeamTableViewController else {
                     fatalError("Unexpected destination: \(segue.destination)")}
-                viewController.teamList = playerTeams
+                viewController.player = player
+                viewController.objectList = playerTeams
             }
         }
     }

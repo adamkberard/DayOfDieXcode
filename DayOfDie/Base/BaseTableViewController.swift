@@ -10,14 +10,15 @@ import UIKit
 class BaseTableViewController<T: Decodable>: UITableViewController {
     
     private let myRefreshControl = UIRefreshControl()
-    
-    var objectList : [T] = []
-    var selectedObject : T?
+    var refreshTitleString = "Fetching Data..."
     
     // Need to be set
+    var objectList : [T] = []
     var cellIdentifier : String!
     var tableSegueIdentifier : String!
     var fetchURLPostfix : String!
+    
+    var selectedObject : T?
     
     //MARK: View Functions
     override func viewDidLoad() {
@@ -26,6 +27,10 @@ class BaseTableViewController<T: Decodable>: UITableViewController {
         tableView.refreshControl = myRefreshControl
         myRefreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         myRefreshControl.attributedTitle = NSAttributedString(string: "Fetching Data...")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     //MARK: Refresh Functions
@@ -68,4 +73,10 @@ class BaseTableViewController<T: Decodable>: UITableViewController {
         cell.setupCell(object: cellObject)
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedObject = objectList[indexPath.row]
+        self.performSegue(withIdentifier: tableSegueIdentifier, sender: self)
+    }
+    
 }

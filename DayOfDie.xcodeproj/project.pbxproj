@@ -40,6 +40,8 @@
 		4BB0136026FC10040018C584 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB0135F26FC10040018C584 /* BaseTableViewController.swift */; };
 		4BB0136226FC13570018C584 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB0136126FC13570018C584 /* SearchTableViewController.swift */; };
 		4BB0136426FC14670018C584 /* Searchable Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB0136326FC14670018C584 /* Searchable Protocol.swift */; };
+		4BD0BC0826FC45C4007FC4AC /* PointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD0BC0626FC45C4007FC4AC /* PointCell.swift */; };
+		4BD0BC0926FC45C4007FC4AC /* PointCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BD0BC0726FC45C4007FC4AC /* PointCell.xib */; };
 		4BE81FD326F2A9C4004BA3F5 /* GameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BE81FD226F2A9C4004BA3F5 /* GameCell.xib */; };
 		5A1A9B7E26C3B10E00B903DB /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1A9B7D26C3B10000B903DB /* Team.swift */; };
 		5A23AE4D25F16816005C2310 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23AE4C25F16816005C2310 /* Game.swift */; };
@@ -125,6 +127,8 @@
 		4BB0135F26FC10040018C584 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		4BB0136126FC13570018C584 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		4BB0136326FC14670018C584 /* Searchable Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Searchable Protocol.swift"; sourceTree = "<group>"; };
+		4BD0BC0626FC45C4007FC4AC /* PointCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointCell.swift; sourceTree = "<group>"; };
+		4BD0BC0726FC45C4007FC4AC /* PointCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PointCell.xib; sourceTree = "<group>"; };
 		4BE81FD226F2A9C4004BA3F5 /* GameCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameCell.xib; sourceTree = "<group>"; };
 		5A1A9B7D26C3B10000B903DB /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		5A23AE4C25F16816005C2310 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -389,6 +393,8 @@
 				5A741B54260D813A004651E7 /* GameCell.swift */,
 				4BE81FD226F2A9C4004BA3F5 /* GameCell.xib */,
 				5A976A772620A04000E5B7F6 /* GameDetailViewController.swift */,
+				4BD0BC0626FC45C4007FC4AC /* PointCell.swift */,
+				4BD0BC0726FC45C4007FC4AC /* PointCell.xib */,
 			);
 			path = Games;
 			sourceTree = "<group>";
@@ -568,6 +574,7 @@
 				4B5B272526EFFB4E00CE0193 /* TeamCell.xib in Resources */,
 				5A62549325EEF0C500340AE0 /* Main.storyboard in Resources */,
 				5AC3B75426312D3C0079C9FB /* PlayersTableScoreView.xib in Resources */,
+				4BD0BC0926FC45C4007FC4AC /* PointCell.xib in Resources */,
 				4BE81FD326F2A9C4004BA3F5 /* GameCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -720,6 +727,7 @@
 				4B4A4D4726EDA00300EE3B3B /* SimpleStatsTrackingViewController.swift in Sources */,
 				4B8D914126EDDDDC00A2A83F /* JustScoreTrackerComponent.swift in Sources */,
 				5A23AE4D25F16816005C2310 /* Game.swift in Sources */,
+				4BD0BC0826FC45C4007FC4AC /* PointCell.swift in Sources */,
 				5A1A9B7E26C3B10E00B903DB /* Team.swift in Sources */,
 				4BB0136426FC14670018C584 /* Searchable Protocol.swift in Sources */,
 				5A62548E25EEF0C500340AE0 /* SceneDelegate.swift in Sources */,

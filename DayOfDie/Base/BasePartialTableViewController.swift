@@ -10,7 +10,7 @@ import UIKit
 class BasePartialTableViewController<T: Decodable>: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     
-    private let myRefreshControl = UIRefreshControl()
+    let myRefreshControl = UIRefreshControl()
     
     var tableObjectList : [T] = []
     var selectedObject : T?
@@ -33,7 +33,7 @@ class BasePartialTableViewController<T: Decodable>: UIViewController, UITableVie
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(false)
+        super.viewWillAppear(animated)
         fetchObjectData()
     }
     

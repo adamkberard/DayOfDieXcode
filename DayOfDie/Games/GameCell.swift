@@ -17,7 +17,7 @@ class GameCell: BaseTableViewCell<Game> {
     @IBOutlet weak var teamTwoScore: UILabel!
     @IBOutlet weak var dateAndTimeLabel: UILabel!
     
-    var game : Game?
+    var game : Game!
     
     override func setupCell(object: Game) {
         self.game = object

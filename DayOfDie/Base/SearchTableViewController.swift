@@ -11,6 +11,7 @@ class SearchTableViewController<T: Decodable & Searchable>: BaseTableViewControl
     
     let searchController = UISearchController(searchResultsController: nil)
     var filteredObjectList : [T] = []
+    var searchPlaceholderString = "Search..."
     
     var isFiltering: Bool {
       return searchController.isActive && !isSearchBarEmpty
@@ -24,7 +25,7 @@ class SearchTableViewController<T: Decodable & Searchable>: BaseTableViewControl
         super.viewDidLoad()
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Players"
+        searchController.searchBar.placeholder = searchPlaceholderString
     }
 
     // MARK: - Table view data source

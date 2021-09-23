@@ -15,7 +15,7 @@ class PlayerCell: BaseTableViewCell<Player> {
     @IBOutlet weak var winsLabel: UILabel!
     @IBOutlet weak var lossesLabel: UILabel!
     
-    var player : Player?
+    var player : Player!
     
     override func setupCell(object: Player) {
         self.player = object
