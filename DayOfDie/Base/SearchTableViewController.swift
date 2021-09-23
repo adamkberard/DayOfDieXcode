@@ -26,17 +26,46 @@ class SearchTableViewController<T: Decodable & Searchable>: BaseTableViewControl
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = searchPlaceholderString
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
     }
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        if isFiltering {
+            return filteredObjectList.count
+        }
+        return objectList.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? BaseTableViewCell<T>  else {
+            fatalError("The dequeued cell is not an instance of BaseTableViewCell.")
+        }
+        
+        if isFiltering {
+            cell.setupCell(object: filteredObjectList[indexPath.row])
+        }
+        else {
+            cell.setupCell(object: objectList[indexPath.row])
+        }
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if isFiltering {
+            selectedObject = filteredObjectList[indexPath.row]
+        }
+        else {
+            selectedObject = objectList[indexPath.row]
+        }
+        self.performSegue(withIdentifier: tableSegueIdentifier, sender: self)
     }
     
     //MARK: Search Functions
@@ -47,7 +76,7 @@ class SearchTableViewController<T: Decodable & Searchable>: BaseTableViewControl
     
     func filterContentForSearchText(_ searchText: String) {
       filteredObjectList = objectList.filter { (object: T) -> Bool in
-          return object.getSearchString().contains(searchText.lowercased())
+          return object.getSearchString().lowercased().contains(searchText.lowercased())
       }
       tableView.reloadData()
     }
