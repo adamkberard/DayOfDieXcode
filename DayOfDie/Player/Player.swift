@@ -13,7 +13,7 @@ class User : Codable{
     static var player : Player = Player()
 }
 
-class Player : Codable, Equatable {
+class Player : Codable, Equatable, Searchable {
     static var allPlayers : [Player] = [] {
         didSet {
             setSelf()
@@ -50,5 +50,9 @@ class Player : Codable, Equatable {
     
     static func == (lhs: Player, rhs: Player) -> Bool {
         return lhs.username == rhs.username
+    }
+    
+    func getSearchString() -> String {
+        return username
     }
 }

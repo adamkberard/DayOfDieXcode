@@ -37,6 +37,9 @@
 		4BAF524D26EB3BEC00595302 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAF524C26EB3BEC00595302 /* RegisterViewController.swift */; };
 		4BAF524F26EB3C1300595302 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAF524E26EB3C1300595302 /* SignInViewController.swift */; };
 		4BAF525126EB3C3000595302 /* AuthValidators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAF525026EB3C3000595302 /* AuthValidators.swift */; };
+		4BB0136026FC10040018C584 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB0135F26FC10040018C584 /* BaseTableViewController.swift */; };
+		4BB0136226FC13570018C584 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB0136126FC13570018C584 /* SearchTableViewController.swift */; };
+		4BB0136426FC14670018C584 /* Searchable Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB0136326FC14670018C584 /* Searchable Protocol.swift */; };
 		4BE81FD326F2A9C4004BA3F5 /* GameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BE81FD226F2A9C4004BA3F5 /* GameCell.xib */; };
 		5A1A9B7E26C3B10E00B903DB /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1A9B7D26C3B10000B903DB /* Team.swift */; };
 		5A23AE4D25F16816005C2310 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23AE4C25F16816005C2310 /* Game.swift */; };
@@ -119,6 +122,9 @@
 		4BAF524C26EB3BEC00595302 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		4BAF524E26EB3C1300595302 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		4BAF525026EB3C3000595302 /* AuthValidators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthValidators.swift; sourceTree = "<group>"; };
+		4BB0135F26FC10040018C584 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
+		4BB0136126FC13570018C584 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
+		4BB0136326FC14670018C584 /* Searchable Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Searchable Protocol.swift"; sourceTree = "<group>"; };
 		4BE81FD226F2A9C4004BA3F5 /* GameCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameCell.xib; sourceTree = "<group>"; };
 		5A1A9B7D26C3B10000B903DB /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		5A23AE4C25F16816005C2310 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -282,8 +288,11 @@
 		4B7576BC26FBCDCC00ADD68A /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				4BB0135F26FC10040018C584 /* BaseTableViewController.swift */,
+				4BB0136126FC13570018C584 /* SearchTableViewController.swift */,
 				4B7576BD26FBCDFA00ADD68A /* BasePartialTableViewController.swift */,
 				4B7576BF26FBD2B100ADD68A /* BaseTableViewCell.swift */,
+				4BB0136326FC14670018C584 /* Searchable Protocol.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -701,6 +710,7 @@
 				5A741B60260D99B3004651E7 /* ChoosePlayersViewController.swift in Sources */,
 				5AE28ED2263A913500105666 /* PlayerSearchViewController.swift in Sources */,
 				4B30DFA926EED64800FE88E3 /* PendingTeammateCell.swift in Sources */,
+				4BB0136026FC10040018C584 /* BaseTableViewController.swift in Sources */,
 				5A582AFF263149EE0004E7F0 /* PlayerPointsTableViewCell.swift in Sources */,
 				5A582AF62631497E0004E7F0 /* PlayerPointsTableViewController.swift in Sources */,
 				4B75A89526ED4B9100FDDE04 /* SimpleStatsTrackingComponent.swift in Sources */,
@@ -711,12 +721,14 @@
 				4B8D914126EDDDDC00A2A83F /* JustScoreTrackerComponent.swift in Sources */,
 				5A23AE4D25F16816005C2310 /* Game.swift in Sources */,
 				5A1A9B7E26C3B10E00B903DB /* Team.swift in Sources */,
+				4BB0136426FC14670018C584 /* Searchable Protocol.swift in Sources */,
 				5A62548E25EEF0C500340AE0 /* SceneDelegate.swift in Sources */,
 				5AE28ECA263A8C5C00105666 /* TeammateRequestTableViewController.swift in Sources */,
 				5A30E3F326BDC8C40043A91C /* PlayerViewController.swift in Sources */,
 				5A83FAAE260EF19E00831C68 /* Point.swift in Sources */,
 				4B27049226EC11F800AAD699 /* FullStatsTrackerComponent.swift in Sources */,
 				4B7576BE26FBCDFA00ADD68A /* BasePartialTableViewController.swift in Sources */,
+				4BB0136226FC13570018C584 /* SearchTableViewController.swift in Sources */,
 				4B30DFA226EE767A00FE88E3 /* ScoreNames.swift in Sources */,
 				5A741B46260D7AC2004651E7 /* GameTableViewController.swift in Sources */,
 				4B21D3E026FA8E8900DEF3E5 /* PlayerRequestCell.swift in Sources */,
