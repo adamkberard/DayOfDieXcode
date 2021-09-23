@@ -203,37 +203,37 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="FullStatsTrackingViewController" customModule="DayOfDie" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="osQ-Nl-GHe">
-                                <rect key="frame" x="10" y="98" width="394" height="207"/>
+                                <rect key="frame" x="10" y="98" width="394" height="705"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WUc-qi-FTJ" customClass="PlayersTableScoreView" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="394" height="91"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="340"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" priority="999" constant="200" id="n11-w6-ryV"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="kXk-o2-6pr" userLabel="Component Stack">
-                                        <rect key="frame" x="0.0" y="116" width="394" height="91"/>
+                                        <rect key="frame" x="0.0" y="365" width="394" height="340"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mhA-zv-DCT" customClass="FullStatsTrackerComponent" customModule="DayOfDie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="394" height="4"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="394" height="66.5"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oR3-Ie-v9T" customClass="FullStatsTrackerComponent" customModule="DayOfDie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="29" width="394" height="4"/>
+                                                <rect key="frame" x="0.0" y="91.5" width="394" height="66"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RbQ-sK-VBf" customClass="FullStatsTrackerComponent" customModule="DayOfDie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="58" width="394" height="4"/>
+                                                <rect key="frame" x="0.0" y="182.5" width="394" height="66.5"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SQ7-nH-K66" customClass="FullStatsTrackerComponent" customModule="DayOfDie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="87" width="394" height="4"/>
+                                                <rect key="frame" x="0.0" y="274" width="394" height="66"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                         </subviews>
@@ -584,37 +584,37 @@
         <scene sceneID="n8r-TR-Q4d">
             <objects>
                 <viewController id="VfH-S5-YtG" customClass="JustScoreTrackingViewController" customModule="DayOfDie" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="Tzj-ht-kFP">
+                    <view key="view" contentMode="scaleToFill" id="Tzj-ht-kFP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="wch-87-fuV">
-                                <rect key="frame" x="10" y="98" width="394" height="207"/>
+                                <rect key="frame" x="10" y="98" width="394" height="705"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EjM-pF-LGx" customClass="PlayersTableScoreView" customModule="DayOfDie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="394" height="91"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="340"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" priority="999" constant="200" id="W5E-gn-jEl"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="tGj-qR-guh" userLabel="Point Score Tracker Stack">
-                                        <rect key="frame" x="0.0" y="116" width="394" height="91"/>
+                                        <rect key="frame" x="0.0" y="365" width="394" height="340"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U3c-YJ-eSE" customClass="JustScoreTrackerComponent" customModule="DayOfDie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="394" height="33"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="394" height="157.5"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cYU-sL-KGl" customClass="JustScoreTrackerComponent" customModule="DayOfDie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="45.5" width="394" height="20"/>
+                                                <rect key="frame" x="0.0" y="170" width="394" height="0.0"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mhj-qt-ZUC" customClass="JustScoreTrackerComponent" customModule="DayOfDie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="58" width="394" height="33"/>
+                                                <rect key="frame" x="0.0" y="182.5" width="394" height="157.5"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bHU-f0-TG7" customClass="JustScoreTrackerComponent" customModule="DayOfDie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="91" width="394" height="20"/>
+                                                <rect key="frame" x="0.0" y="340" width="394" height="0.0"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                         </subviews>
@@ -1321,7 +1321,7 @@
         <!--Teams-->
         <scene sceneID="iV5-RT-42g">
             <objects>
-                <tableViewController id="gC3-Xh-OwU" customClass="TeamTableViewController" customModule="DayOfDie" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="gC3-Xh-OwU" customClass="PlayerTeamsTableViewController" customModule="DayOfDie" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="9Ps-qK-q7U">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

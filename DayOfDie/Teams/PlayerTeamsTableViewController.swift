@@ -8,7 +8,7 @@
 import UIKit
 import Alamofire
 
-class TeamTableViewController: BaseTableViewController<Team> {
+class PlayerTeamsTableViewController: BaseTableViewController<Team> {
     
     var player : Player!
     
