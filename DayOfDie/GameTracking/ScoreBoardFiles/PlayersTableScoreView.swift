@@ -14,7 +14,7 @@ class PlayersTableScoreView: UIView {
     @IBOutlet weak var teamTwoScoreLabel: UILabel!
     @IBOutlet var playerLabels: [UILabel]! = []
     
-    var players : [User] = [] {
+    var players : [Player] = [] {
         didSet{
             for i in 0..<playerLabels.count{
                 playerLabels[i].text = players[i].username

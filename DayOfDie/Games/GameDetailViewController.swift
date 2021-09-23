@@ -7,57 +7,57 @@
 
 import UIKit
 
-class GameDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    @IBOutlet weak var dateTimeLabel: UILabel!
-    @IBOutlet var playerLabels: [UILabel]!
-    @IBOutlet var scoreLabels: [UILabel]!
-    @IBOutlet weak var pointsTableView: UITableView!
+class GameDetailViewController: BasePartialTableViewController<Point> {
     
-    var game : Game?
+    @IBOutlet weak var dateTimeLabel: UILabel!
+    @IBOutlet var scoreLabels: [UILabel]!
+    @IBOutlet var playerButtons: [UIButton]!
+    
+    var game : Game!
+    var selectedPlayer : Player?
 
     override func viewDidLoad() {
+        tableObjectList = game.points
+        cellIdentifier = "PointCell"
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setupView()
+        tableView.refreshControl = nil
+    }
+    
+    func setupView() -> Void {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .long
         dateFormatter.timeStyle = .short
         dateTimeLabel.text = dateFormatter.string(from: game!.timeEnded!)
-        playerLabels[0].text = game!.teamOne.teamCaptain.username
-        playerLabels[1].text = game!.teamOne.teammate.username
-        playerLabels[2].text = game!.teamTwo.teamCaptain.username
-        playerLabels[3].text = game!.teamTwo.teammate.username
+        playerButtons[0].setTitle(game.teamOne.teamCaptain.username, for: .normal)
+        playerButtons[1].setTitle(game.teamOne.teammate.username, for: .normal)
+        playerButtons[2].setTitle(game.teamTwo.teamCaptain.username, for: .normal)
+        playerButtons[3].setTitle(game.teamTwo.teammate.username, for: .normal)
         scoreLabels[0].text = String(game!.teamOneScore)
         scoreLabels[1].text = String(game!.teamTwoScore)
-        
-        pointsTableView.delegate = self
-        pointsTableView.dataSource = self
     }
     
-    // MARK: Table View Functions
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return game!.points.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "PlayerPointsCell"
-            
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? PlayerPointsTableViewCell  else {
-            fatalError("The dequeued cell is not an instance of PlayerPointsCell.")
+    @IBAction func playerButtonPressed(_ sender: UIButton) {
+        switch sender.tag {
+        case 0: selectedPlayer = game.teamOne.teamCaptain
+        case 1: selectedPlayer = game.teamOne.teammate
+        case 2: selectedPlayer = game.teamTwo.teamCaptain
+        case 3: selectedPlayer = game.teamTwo.teammate
+        default: selectedPlayer = game.teamOne.teamCaptain
         }
-        cell.pointLabel.text = game!.points[indexPath.row].getString()
-        
-        return cell
+        performSegue(withIdentifier: "toPlayerDetail", sender: self)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
+    override func fetchObjectData() {}
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {}
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if let identifier = segue.identifier {
+            if identifier == "toPlayerDetail" {
+                guard let viewController = segue.destination as? PlayerViewController else {
+                    fatalError("Unexpected destination: \(segue.destination)")}
+                viewController.player = selectedPlayer
+            }
+        }
     }
-    */
-
 }

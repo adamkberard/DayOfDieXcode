@@ -51,9 +51,9 @@ class SignInViewController:
             if status{
                 // Check if everything is done if so move on
                 let loginPack = returnData as! LoginPack
-                ThisUser.user.username = loginPack.username
-                ThisUser.token = loginPack.token
-                ThisUser.email = email
+                User.player.username = loginPack.username
+                User.token = loginPack.token
+                User.email = email
                 self.performSegue(withIdentifier: "signInSegue", sender: self)
             }
             else{

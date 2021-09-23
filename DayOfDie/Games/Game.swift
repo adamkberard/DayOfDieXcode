@@ -13,8 +13,8 @@ class Game : Decodable, Encodable, Equatable {
     var timeEnded : Date?
     
     var uuid : UUID?
-    var teamOne : Friend
-    var teamTwo : Friend
+    var teamOne : Team
+    var teamTwo : Team
     
     var teamOneScore : Int
     var teamTwoScore : Int
@@ -22,7 +22,7 @@ class Game : Decodable, Encodable, Equatable {
     
     var points : [Point]
     
-    init(teamOne: Friend, teamTwo: Friend, points: [Point]) {
+    init(teamOne: Team, teamTwo: Team, points: [Point]) {
         self.teamOne = teamOne
         self.teamTwo = teamTwo
         self.teamOneScore = 0
@@ -31,9 +31,9 @@ class Game : Decodable, Encodable, Equatable {
         self.points = points
     }
     
-    init(playerOne: User, playerTwo: User, playerThree: User, playerFour: User, points: [Point]){
-        self.teamOne = Friend(teamCaptain: playerOne, teammate: playerTwo)
-        self.teamTwo = Friend(teamCaptain: playerThree, teammate: playerFour)
+    init(playerOne: Player, playerTwo: Player, playerThree: Player, playerFour: Player, points: [Point]){
+        self.teamOne = Team(teamCaptain: playerOne, teammate: playerTwo)
+        self.teamTwo = Team(teamCaptain: playerThree, teammate: playerFour)
         self.teamOneScore = 0
         self.teamTwoScore = 0
         self.confirmed = false
@@ -53,12 +53,37 @@ class Game : Decodable, Encodable, Equatable {
         self.timeEnded = dateFormatter.date(from: timeEndedString)
         
         self.uuid = try container.decode(UUID.self, forKey: .uuid)
-        self.teamOne = try container.decode(Friend.self, forKey: .teamOne)
-        self.teamTwo = try container.decode(Friend.self, forKey: .teamTwo)
+        self.teamOne = try container.decode(Team.self, forKey: .teamOne)
+        self.teamTwo = try container.decode(Team.self, forKey: .teamTwo)
         self.teamOneScore = try container.decode(Int.self, forKey: .teamOneScore)
         self.teamTwoScore = try container.decode(Int.self, forKey: .teamTwoScore)
         self.confirmed = try container.decode(Bool.self, forKey: .confirmed)
         self.points = try container.decode([Point].self, forKey: .points)
+    }
+    
+    static func getRecord(team: Team , games: [Game]) -> (Int, Int) {
+        var wins  = 0
+        var losses = 0
+        
+        for game in games {
+            if game.teamOne == team {
+                if game.teamOneScore > game.teamTwoScore {
+                    wins += 1
+                }
+                else {
+                    losses += 1
+                }
+            }
+            else if game.teamTwo == team {
+                if game.teamOneScore > game.teamTwoScore {
+                    losses += 1
+                }
+                else {
+                    wins += 1
+                }
+            }
+        }
+        return (wins, losses)
     }
     
     enum DecodingKeys : String, CodingKey {

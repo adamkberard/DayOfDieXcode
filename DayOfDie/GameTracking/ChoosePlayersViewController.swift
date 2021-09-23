@@ -15,13 +15,13 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
     @IBOutlet weak var fullStatsSwitch: UISwitch!
     @IBOutlet weak var simpleStatsSwitch: UISwitch!
     @IBOutlet weak var justScoreSwitch: UISwitch!
-    var players : [User] = []
+    var players : [Player] = []
     
-    
-    var possiblePlayers : [User] = []
+    var possiblePlayers : [Player] = []
     
     override func viewWillAppear(_ animated: Bool) {
         setupPickers()
+        setPlayers()
     }
 
     override func viewDidLoad() {
@@ -31,15 +31,12 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
             playerPicker.dataSource = self
             playerPicker.delegate = self
         }
-        
-        setupPickers()
-        setPlayers()
     }
     
     func setupPickers() {
         possiblePlayers = []
-        possiblePlayers.append(ThisUser.user)
-        possiblePlayers.append(contentsOf: Friend.approvedFriends.map({$0.getOtherUser()}))
+        possiblePlayers.append(User.player)
+        possiblePlayers.append(contentsOf: Team.approvedTeams.map({$0.getOtherUser()}))
         for playerPicker in playerPickers {
             playerPicker.reloadComponent(0)
         }
@@ -88,7 +85,6 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
         // First I will make sure none of the people are duplicates
         if pickerSelectionsAreGood() {
             if fullStatsSwitch.isOn {
-                print("HERE AS GOOD")
                 self.performSegue(withIdentifier: "toFullStatsTracking", sender: self)
             }
             if simpleStatsSwitch.isOn {
