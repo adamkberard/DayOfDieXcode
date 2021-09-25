@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TeamDetailViewController: BasePartialTableViewController<Game> {
+class TeamDetailViewController: BaseTableViewController<Game> {
     
     @IBOutlet weak var teamCaptainLabel: UILabel!
     @IBOutlet weak var teammateLabel: UILabel!
@@ -18,15 +18,14 @@ class TeamDetailViewController: BasePartialTableViewController<Game> {
     
     var team : Team?
     
-    override func viewDidLoad() {
-        fetchURLPostfix = "/games/\(team!.teamCaptain.username)/\(team!.teammate.username)/"
-        cellIdentifier = "GameCell"
-        tableSegueIdentifier = "toGameDetail"
-        super.viewDidLoad()
-        setUpView()
-    }
-    
-    func setUpView() {
+    override func setRawObjectList() -> [Game] { return [] }
+    override func setObjectList(rawList: [Game]) -> [Game] { return rawList }
+    override func setCellIdentifiers() -> [String] { return ["GameCell"] }
+    override func setTableSegueIdentifier() -> String { return "toGameDetail" }
+    override func setFetchURLEnding() -> String { return "/games/\(team!.teamCaptain.username)/\(team!.teammate.username)/" }
+    override func setRefreshTitleString() -> String { "Fetching Game Data..." }
+
+    override func setupView() {
         teamCaptainLabel.text = team!.teamCaptain.username
         teammateLabel.text = team!.teammate.username
         teamNameLabel.text = team!.teamName

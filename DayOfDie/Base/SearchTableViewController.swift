@@ -31,11 +31,6 @@ class SearchTableViewController<T: Decodable & Searchable>: BaseTableViewControl
     }
 
     // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         if isFiltering {
@@ -45,7 +40,7 @@ class SearchTableViewController<T: Decodable & Searchable>: BaseTableViewControl
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? BaseTableViewCell<T>  else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifiers[0], for: indexPath) as? BaseTableViewCell<T>  else {
             fatalError("The dequeued cell is not an instance of BaseTableViewCell.")
         }
         

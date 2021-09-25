@@ -30,6 +30,14 @@ class Player : Codable, Equatable, Searchable {
         self.username = username
     }
     
+    static func changeUser(oldUsername: String) {
+        for i in 0...allPlayers.count - 1 {
+            if allPlayers[i].username == oldUsername{
+                allPlayers[i] = User.player
+            }
+        }
+    }
+    
     static func setSelf() -> Void {
         for player in allPlayers{
             if player.username == User.player.username{

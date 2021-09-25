@@ -12,7 +12,11 @@ class PlayersTableScoreView: UIView {
     
     @IBOutlet weak var teamOneScoreLabel: UILabel!
     @IBOutlet weak var teamTwoScoreLabel: UILabel!
-    @IBOutlet var playerLabels: [UILabel]! = []
+    @IBOutlet var playerLabels: [UILabel]! {
+        didSet {
+            playerLabels.sort { $0.tag < $1.tag }
+        }
+    }
     
     var players : [Player] = [] {
         didSet{
@@ -47,6 +51,13 @@ class PlayersTableScoreView: UIView {
             UIView.AutoresizingMask.flexibleHeight
         ]
         addSubview(view)
+        playerLabels[0].textColor = ColorSettings.homeTeamColor
+        playerLabels[1].textColor = ColorSettings.homeTeamColor
+        playerLabels[2].textColor = ColorSettings.awayTeamColor
+        playerLabels[3].textColor = ColorSettings.awayTeamColor
+        
+        teamOneScoreLabel.textColor = ColorSettings.homeTeamColor
+        teamTwoScoreLabel.textColor = ColorSettings.awayTeamColor
     }
     
     // Loads a XIB file into a view and returns this view.

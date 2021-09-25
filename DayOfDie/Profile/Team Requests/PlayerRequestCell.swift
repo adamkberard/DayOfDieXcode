@@ -34,6 +34,10 @@ class PlayerRequestCell: PlayerCell {
             else{
                 let errors : [String] = returnData as! [String]
                 print(errors)
+                // Alert Stuff
+                let alert = UIAlertController(title: "Connection Error", message: errors.first, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Cool", style: .default, handler: nil))
+                self.parentTableView!.present(alert, animated: true)
             }
         }
     }

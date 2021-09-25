@@ -36,9 +36,12 @@ class LoadingViewController: UIViewController {
                 }
             }
             else{
-                //Handle if things go wrong
                 let errors : [String] = returnData as! [String]
                 print(errors)
+                // Alert Stuff
+                let alert = UIAlertController(title: "Connection Error", message: errors.first, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Cool", style: .default, handler: nil))
+                self.present(alert, animated: true)
             }
         }
         
@@ -53,9 +56,12 @@ class LoadingViewController: UIViewController {
                 }
             }
             else{
-                //Handle if things go wrong
                 let errors : [String] = returnData as! [String]
                 print(errors)
+                // Alert Stuff
+                let alert = UIAlertController(title: "Connection Error", message: errors.first, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Cool", style: .default, handler: nil))
+                self.present(alert, animated: true)
             }
         }
         
@@ -70,9 +76,12 @@ class LoadingViewController: UIViewController {
                 }
             }
             else{
-                //Handle if things go wrong
                 let errors : [String] = returnData as! [String]
                 print(errors)
+                // Alert Stuff
+                let alert = UIAlertController(title: "Connection Error", message: errors.first, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Cool", style: .default, handler: nil))
+                self.present(alert, animated: true)
             }
         }
     }
@@ -84,6 +93,7 @@ class LoadingViewController: UIViewController {
 
 class APICalls {
     
+    // MARK: Auth
     static func login(parameters: [String: Any], completion: @escaping (Bool, Any) -> Void) {
         let url = "\(URLInfo.baseUrl)/auth/login/"
         post(url: url, parameters: parameters, returnType: LoginPack.self) {status, returnData in
@@ -94,6 +104,25 @@ class APICalls {
     static func register(parameters: [String: Any], completion: @escaping (Bool, Any) -> Void) {
         let url = "\(URLInfo.baseUrl)/auth/register/"
         post(url: url, parameters: parameters, returnType: LoginPack.self) {status, returnData in
+            completion(status, returnData)
+        }
+    }
+    
+    // MARK: Getters
+    static func getPlayerGames(player: Player, completion: @escaping (Bool, Any) -> Void) {
+        get(url: "\(URLInfo.baseUrl)/games/\(player.username)/", returnType: [Game].self) { status, returnData in
+            completion(status, returnData)
+        }
+    }
+    
+    static func getPlayerTeams(player: Player, completion: @escaping (Bool, Any) -> Void) {
+        get(url: "\(URLInfo.baseUrl)/teams/\(player.username)/", returnType: [Team].self) { status, returnData in
+            completion(status, returnData)
+        }
+    }
+    
+    static func getTeamGames(team: Team, completion: @escaping (Bool, Any) -> Void) {
+        get(url: "\(URLInfo.baseUrl)/games/\(team.teamCaptain.username)/\(team.teammate.username)/", returnType: [Game].self) { status, returnData in
             completion(status, returnData)
         }
     }
@@ -122,6 +151,7 @@ class APICalls {
         }
     }
     
+    // MARK: Creates
     static func sendGame(parameters: [String: Any], completion: @escaping (Bool, Any) -> Void) {
         post(url: "\(URLInfo.baseUrl)/games/", parameters: parameters, returnType: Game.self) { status, returnData in
             completion(status, returnData)
@@ -134,24 +164,15 @@ class APICalls {
         }
     }
     
-    static func getPlayerGames(player: Player, completion: @escaping (Bool, Any) -> Void) {
-        get(url: "\(URLInfo.baseUrl)/games/\(player.username)/", returnType: [Game].self) { status, returnData in
+    // MARK: Editors
+    static func changeUsername(parameters: [String: Any], completion: @escaping (Bool, Any) -> Void) {
+        patch(url: "\(URLInfo.baseUrl)/players/\(User.player.username)/", parameters: parameters, returnType: Player.self) { status, returnData in
             completion(status, returnData)
         }
     }
     
-    static func getPlayerTeams(player: Player, completion: @escaping (Bool, Any) -> Void) {
-        get(url: "\(URLInfo.baseUrl)/teams/\(player.username)/", returnType: [Team].self) { status, returnData in
-            completion(status, returnData)
-        }
-    }
     
-    static func getTeamGames(team: Team, completion: @escaping (Bool, Any) -> Void) {
-        get(url: "\(URLInfo.baseUrl)/games/\(team.teamCaptain.username)/\(team.teammate.username)/", returnType: [Game].self) { status, returnData in
-            completion(status, returnData)
-        }
-    }
-    
+    // MARK: Basic Requests
     static func get<T: Decodable>(url: String, returnType: T.Type, completion: @escaping (Bool, Any) -> Void) {
         AF.request(url, method: .get, headers: getHeaders()).responseDecodable(of: returnType.self) { response in
             guard let returnStatusCode = response.response?.statusCode else {
@@ -182,6 +203,34 @@ class APICalls {
     static func post<T: Decodable>(url: String, parameters: [String: Any], returnType: T.Type, completion: @escaping (Bool, Any) -> Void) {
         AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: getHeaders()).responseDecodable(of: returnType.self) { response in
             guard let returnStatusCode = response.response?.statusCode else {
+                let returnData : [String] = ["No connection."]
+                completion(false, returnData)
+                return
+            }
+            switch returnStatusCode {
+            case 200, 201:
+                let returnData = response.value!
+                completion(true, returnData)
+            case 400:
+                var errorsDict : [String: [String]] = [:]
+                do {
+                    errorsDict = try JSONDecoder().decode(Dictionary<String, [String]>.self, from: response.data!)
+                } catch {
+                    errorsDict["my_side_errors"] = ["Couldn't decode json response."]
+                }
+                let errors : [String] = getErrorsFromParams(params: parameters, errorsDict: errorsDict)
+                completion(false, errors)
+            default:
+                let errors : [String] = ["Error."]
+                completion(false, errors)
+            }
+        }
+    }
+    
+    static func patch<T: Decodable>(url: String, parameters: [String: Any], returnType: T.Type, completion: @escaping (Bool, Any) -> Void) {
+        AF.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: getHeaders()).responseDecodable(of: returnType.self) { response in
+            guard let returnStatusCode = response.response?.statusCode else {
+                print(response)
                 let returnData : [String] = ["No connection."]
                 completion(false, returnData)
                 return

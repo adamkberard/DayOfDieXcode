@@ -93,6 +93,10 @@ class Team : Codable, Equatable, Searchable {
         return tempTeam
     }
     
+    func isOnTeam(player: Player) -> Bool {
+        return player == teamCaptain || player == teammate
+    }
+    
     static func == (lhs: Team, rhs: Team) -> Bool {
         if(lhs.teamCaptain == rhs.teamCaptain && lhs.teammate == rhs.teammate){
             return true

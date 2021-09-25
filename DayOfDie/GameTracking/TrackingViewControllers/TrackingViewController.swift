@@ -10,7 +10,11 @@ import UIKit
 
 class TrackingViewController: UIViewController {
     
-    @IBOutlet var trackerComponents : [TrackerComponent] = []
+    @IBOutlet var trackerComponents : [TrackerComponent] = [] {
+        didSet {
+            trackerComponents.sort { $0.tag < $1.tag }
+        }
+    }
     @IBOutlet weak var scoreboard: PlayersTableScoreView!
     @IBOutlet weak var saveButton: UIButton!
     
@@ -43,7 +47,6 @@ class TrackingViewController: UIViewController {
             trackerComponents[i].mainTrackingViewController = self
             trackerComponents[i].player = players[i]
             trackerComponents[i].playerNumber = i
-            print("HEREE \(i)")
         }
     }
     
@@ -91,8 +94,8 @@ class TrackingViewController: UIViewController {
             "playerTwo": players[1].uuid,
             "playerThree": players[2].uuid,
             "playerFour": players[3].uuid,
-            "team_one_score": scoreboard.teamOneScore,
-            "team_two_score": scoreboard.teamTwoScore,
+            "home_team_score": scoreboard.teamOneScore,
+            "away_team_score": scoreboard.teamTwoScore,
             "confirmed": false,
             "points": getPointsForParameters()
         ]
@@ -121,7 +124,10 @@ class TrackingViewController: UIViewController {
             else{
                 let errors : [String] = returnData as! [String]
                 print(errors)
-                // Handle errors here someday
+                // Alert Stuff
+                let alert = UIAlertController(title: "Connection Error", message: errors.first, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Cool", style: .default, handler: nil))
+                self.present(alert, animated: true)
             }
         }
     }

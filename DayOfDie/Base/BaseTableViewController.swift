@@ -7,32 +7,87 @@
 
 import UIKit
 
-class BaseTableViewController<T: Decodable>: UITableViewController {
+class BaseTableViewController<T: Decodable>: UIViewController, UITableViewDelegate, UITableViewDataSource {
+        
+    let myRefreshControl : UIRefreshControl = UIRefreshControl()
     
-    private let myRefreshControl = UIRefreshControl()
-    var refreshTitleString = "Fetching Data..."
+    var tableView: UITableView!
     
     // Need to be set
-    var objectList : [T] = []
-    var cellIdentifier : String!
+    var rawObjectList: [T]! = []
+    var objectList : [T]!
+    var cellIdentifiers : [String]!
     var tableSegueIdentifier : String!
-    var fetchURLPostfix : String!
+    var fetchURLEnding : String!
+    var refreshTitleString : String!
     
     var selectedObject : T?
     
     //MARK: View Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
-        tableView.refreshControl = myRefreshControl
-        myRefreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
-        myRefreshControl.attributedTitle = NSAttributedString(string: refreshTitleString)
+        
+        // Finding and setting up the table.
+        tableView = getTableView()
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        setupTable()
+        setupView()
+        
+        if rawObjectList.isEmpty {
+            fetchObjectData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        rawObjectList = setRawObjectList()
+        objectList = setObjectList(rawList: rawObjectList)
         tableView.reloadData()
+        setupView()
     }
+    
+    func getTableView() -> UITableView {
+        // First we check if the view is a UITableView
+        if view is UITableView {
+            return view as! UITableView
+        }
+        
+        let arr = view.subviews(ofType: UITableView.self)
+        if arr.count == 1 {
+            return arr.first! as UITableView
+        }
+        else {
+            fatalError("There are this many table views: \(arr.count)")
+        }
+    }
+    
+    func setupTable() {
+        rawObjectList = setRawObjectList()
+        objectList = setObjectList(rawList: rawObjectList)
+        cellIdentifiers = setCellIdentifiers()
+        tableSegueIdentifier = setTableSegueIdentifier()
+        fetchURLEnding = setFetchURLEnding()
+        refreshTitleString = setRefreshTitleString()
+        
+        tableView.refreshControl = myRefreshControl
+        myRefreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        myRefreshControl.attributedTitle = NSAttributedString(string: refreshTitleString)
+        for cellIdentifier in cellIdentifiers {
+            tableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
+        }
+    }
+    
+    func setupView() {}
+    
+    // MARK: Override these functions
+    func setRawObjectList() -> [T] { return [] }
+    func setObjectList(rawList: [T]) -> [T] { return rawList }
+    func setCellIdentifiers() -> [String] { return [] }
+    func setTableSegueIdentifier() -> String { return "" }
+    func setFetchURLEnding() -> String { return "" }
+    func setRefreshTitleString() -> String { "Fetching Data..." }
     
     //MARK: Refresh Functions
     @objc func refresh(_ sender: Any) -> Void {
@@ -40,33 +95,36 @@ class BaseTableViewController<T: Decodable>: UITableViewController {
     }
     
     func fetchObjectData() {
-        let url = URLInfo.baseUrl + fetchURLPostfix
+        let url = URLInfo.baseUrl + fetchURLEnding
         APICalls.get(url: url, returnType: [T].self) { status, returnData in
             if status{
-                self.objectList = returnData as! [T]
+                self.objectList = self.setObjectList(rawList: returnData as! [T])
                 self.tableView.reloadData()
                 self.myRefreshControl.endRefreshing()
             }
             else{
+                self.myRefreshControl.endRefreshing()
                 let errors : [String] = returnData as! [String]
                 print(errors)
+                // Alert Stuff
+                let alert = UIAlertController(title: "Connection Error", message: errors.first, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Cool", style: .default, handler: nil))
+                self.present(alert, animated: true)
             }
         }
     }
 
     // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return objectList.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? BaseTableViewCell<T>  else {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifiers[0], for: indexPath) as? BaseTableViewCell<T>  else {
             fatalError("The dequeued cell is not an instance of BaseTableViewCell.")
         }
         
@@ -75,9 +133,19 @@ class BaseTableViewController<T: Decodable>: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedObject = objectList[indexPath.row]
         self.performSegue(withIdentifier: tableSegueIdentifier, sender: self)
     }
     
+}
+
+extension UIView {
+    func subviews<T:UIView>(ofType WhatType:T.Type) -> [T] {
+        var result = self.subviews.compactMap {$0 as? T}
+        for sub in self.subviews {
+            result.append(contentsOf: sub.subviews(ofType:WhatType))
+        }
+        return result
+    }
 }

@@ -7,34 +7,35 @@
 
 import UIKit
 
-class Game : Decodable, Encodable, Equatable {
+
+class Game : Codable, Equatable {
     static var allGames : [Game] = []
     var timeStarted : Date?
     var timeEnded : Date?
     
     var uuid : UUID?
-    var teamOne : Team
-    var teamTwo : Team
+    var homeTeam : Team
+    var awayTeam : Team
     
-    var teamOneScore : Int
+    var homeTeamScore : Int
     var teamTwoScore : Int
     var confirmed : Bool
     
     var points : [Point]
     
     init(teamOne: Team, teamTwo: Team, points: [Point]) {
-        self.teamOne = teamOne
-        self.teamTwo = teamTwo
-        self.teamOneScore = 0
+        self.homeTeam = teamOne
+        self.awayTeam = teamTwo
+        self.homeTeamScore = 0
         self.teamTwoScore = 0
         self.confirmed = false
         self.points = points
     }
     
     init(playerOne: Player, playerTwo: Player, playerThree: Player, playerFour: Player, points: [Point]){
-        self.teamOne = Team(teamCaptain: playerOne, teammate: playerTwo)
-        self.teamTwo = Team(teamCaptain: playerThree, teammate: playerFour)
-        self.teamOneScore = 0
+        self.homeTeam = Team(teamCaptain: playerOne, teammate: playerTwo)
+        self.awayTeam = Team(teamCaptain: playerThree, teammate: playerFour)
+        self.homeTeamScore = 0
         self.teamTwoScore = 0
         self.confirmed = false
         self.points = points
@@ -42,7 +43,7 @@ class Game : Decodable, Encodable, Equatable {
     
     required init(from decoder: Decoder) throws {
         // Get our container for this subclass' coding keys
-        let container = try decoder.container(keyedBy: DecodingKeys.self)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
         
         let timeStartedString = try container.decode(String.self, forKey: .timeStarted)
         let timeEndedString = try container.decode(String.self, forKey: .timeStarted)
@@ -53,9 +54,9 @@ class Game : Decodable, Encodable, Equatable {
         self.timeEnded = dateFormatter.date(from: timeEndedString)
         
         self.uuid = try container.decode(UUID.self, forKey: .uuid)
-        self.teamOne = try container.decode(Team.self, forKey: .teamOne)
-        self.teamTwo = try container.decode(Team.self, forKey: .teamTwo)
-        self.teamOneScore = try container.decode(Int.self, forKey: .teamOneScore)
+        self.homeTeam = try container.decode(Team.self, forKey: .homeTeam)
+        self.awayTeam = try container.decode(Team.self, forKey: .awayTeam)
+        self.homeTeamScore = try container.decode(Int.self, forKey: .homeTeamScore)
         self.teamTwoScore = try container.decode(Int.self, forKey: .teamTwoScore)
         self.confirmed = try container.decode(Bool.self, forKey: .confirmed)
         self.points = try container.decode([Point].self, forKey: .points)
@@ -66,16 +67,16 @@ class Game : Decodable, Encodable, Equatable {
         var losses = 0
         
         for game in games {
-            if game.teamOne == team {
-                if game.teamOneScore > game.teamTwoScore {
+            if game.homeTeam == team {
+                if game.homeTeamScore > game.teamTwoScore {
                     wins += 1
                 }
                 else {
                     losses += 1
                 }
             }
-            else if game.teamTwo == team {
-                if game.teamOneScore > game.teamTwoScore {
+            else if game.awayTeam == team {
+                if game.homeTeamScore > game.teamTwoScore {
                     losses += 1
                 }
                 else {
@@ -86,28 +87,19 @@ class Game : Decodable, Encodable, Equatable {
         return (wins, losses)
     }
     
-    enum DecodingKeys : String, CodingKey {
-        case timeStarted = "time_started"
-        case timeEnded = "time_ended"
-        case uuid
-        case teamOne = "team_one"
-        case teamTwo = "team_two"
-        
-        case teamOneScore = "team_one_score"
-        case teamTwoScore = "team_two_score"
-        case confirmed
-        case points
+    func isOnHomeTeam(player: Player) -> Bool {
+        return homeTeam.isOnTeam(player: player)
     }
     
-    enum EncodingKeys : String, CodingKey {
+    enum CodingKeys : String, CodingKey {
         case timeStarted = "time_started"
         case timeEnded = "time_ended"
         case uuid
-        case teamOne = "team_one"
-        case teamTwo = "team_two"
+        case homeTeam = "home_team"
+        case awayTeam = "away_team"
         
-        case teamOneScore = "team_one_score"
-        case teamTwoScore = "team_two_score"
+        case homeTeamScore = "home_team_score"
+        case teamTwoScore = "away_team_score"
         case confirmed
         case points
     }

@@ -8,7 +8,7 @@
 import UIKit
 import Alamofire
 
-class PlayerViewController: BasePartialTableViewController<Game> {
+class PlayerViewController: BaseTableViewController<Game> {
     
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var teamStatusLabel: UILabel!
@@ -23,19 +23,15 @@ class PlayerViewController: BasePartialTableViewController<Game> {
     var player : Player?
     var changeTeamStatusOption : TeamStatuses?
     
-    override func viewDidLoad() {
-        cellIdentifier = "GameCell"
-        tableSegueIdentifier = "toGameDetail"
-        refreshTitleString = "Fetching Game Data..."
-        super.viewDidLoad()
-        fetchURLPostfix = "/games/\(player!.username)/"
+    override func setRawObjectList() -> [Game] { return rawObjectList }
+    override func setObjectList(rawList: [Game]) -> [Game] {
+        print("RAW LIST \(rawList.count)")
+        return rawList
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(false)
-        setUpView()
-        fetchPlayerTeamData()
-    }
+    override func setCellIdentifiers() -> [String] { return ["GameCell"] }
+    override func setTableSegueIdentifier() -> String { return "toGameDetail" }
+    override func setFetchURLEnding() -> String { return "/games/\(player!.username)/" }
+    override func setRefreshTitleString() -> String { "Fetching Game Data..." }
     
     func fetchPlayerTeamData() {
         APICalls.getPlayerTeams(player: player!) {status, returnData in
@@ -44,13 +40,19 @@ class PlayerViewController: BasePartialTableViewController<Game> {
                 self.numberTeamsLabel.text = "Num Teams: \(self.playerTeams.count)"
             }
             else{
+                self.myRefreshControl.endRefreshing()
                 let errors : [String] = returnData as! [String]
                 print(errors)
+                // Alert Stuff
+                let alert = UIAlertController(title: "Connection Error", message: errors.first, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Cool", style: .default, handler: nil))
+                self.present(alert, animated: true)
             }
         }
     }
     
-    func setUpView() {
+    override func setupView() {
+        fetchPlayerTeamData()
         usernameLabel.text = player!.username
         totalWinsLabel.text = String(player!.wins)
         totalLossesLabel.text = String(player!.losses)
@@ -72,6 +74,7 @@ class PlayerViewController: BasePartialTableViewController<Game> {
         case .PENDING:
             teamStatusLabel.text = "Pending"
             changeTeamStatusButton.setTitle("Accept", for: .normal)
+            changeTeamStatusOption = .ACCEPTED
         case .NOTHING:
             teamStatusLabel.text  = "Nothing"
             changeTeamStatusButton.setTitle("Send Request", for: .normal)
@@ -95,12 +98,16 @@ class PlayerViewController: BasePartialTableViewController<Game> {
                     Team.allTeams.remove(at: index)
                 }
                 Team.allTeams.append(newTeam)
-                self.player = newTeam.getOtherUser()
-                self.setUpView()
+                self.setupView()
             }
             else{
+                self.myRefreshControl.endRefreshing()
                 let errors : [String] = returnData as! [String]
                 print(errors)
+                // Alert Stuff
+                let alert = UIAlertController(title: "Connection Error", message: errors.first, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Cool", style: .default, handler: nil))
+                self.present(alert, animated: true)
             }
         }
     }
@@ -120,7 +127,7 @@ class PlayerViewController: BasePartialTableViewController<Game> {
                 guard let viewController = segue.destination as? PlayerTeamsTableViewController else {
                     fatalError("Unexpected destination: \(segue.destination)")}
                 viewController.player = player
-                viewController.objectList = playerTeams
+                viewController.rawObjectList = playerTeams
             }
         }
     }

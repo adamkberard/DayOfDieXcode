@@ -11,10 +11,12 @@
 		30CC533BCB0BB66E622973D0 /* Pods_DayOfDie_DayOfDieUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5B5E6DA33B8DA4B869B3A8 /* Pods_DayOfDie_DayOfDieUITests.framework */; };
 		4B0E53D026EDB7D700F3F3E4 /* TrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0E53CF26EDB7D700F3F3E4 /* TrackingViewController.swift */; };
 		4B0E53D226EDB84E00F3F3E4 /* TrackerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0E53D126EDB84E00F3F3E4 /* TrackerComponent.swift */; };
+		4B1EEADB26FD3F1F006A4E21 /* BasicSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1EEADA26FD3F1F006A4E21 /* BasicSettings.swift */; };
 		4B21D3E026FA8E8900DEF3E5 /* PlayerRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B21D3DF26FA8E8900DEF3E5 /* PlayerRequestCell.swift */; };
 		4B27048A26EBFB4000AAD699 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B27048926EBFB4000AAD699 /* Player.swift */; };
 		4B27049226EC11F800AAD699 /* FullStatsTrackerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B27049026EC11F800AAD699 /* FullStatsTrackerComponent.swift */; };
 		4B27049926EC151B00AAD699 /* FullStatsTrackerComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B27049826EC151B00AAD699 /* FullStatsTrackerComponent.xib */; };
+		4B2BD53B26FEEB9C001A4060 /* PlayerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2BD53A26FEEB9C001A4060 /* PlayerDetailViewController.swift */; };
 		4B30DFA026EDE68900FE88E3 /* JustScoreTrackerComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B30DF9F26EDE68900FE88E3 /* JustScoreTrackerComponent.xib */; };
 		4B30DFA226EE767A00FE88E3 /* ScoreNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B30DFA126EE767A00FE88E3 /* ScoreNames.swift */; };
 		4B30DFA926EED64800FE88E3 /* PendingTeammateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B30DFA826EED64800FE88E3 /* PendingTeammateCell.swift */; };
@@ -26,9 +28,9 @@
 		4B4A4D4726EDA00300EE3B3B /* SimpleStatsTrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A4D4626EDA00300EE3B3B /* SimpleStatsTrackingViewController.swift */; };
 		4B4A4D4926EDA09800EE3B3B /* JustScoreTrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A4D4826EDA09800EE3B3B /* JustScoreTrackingViewController.swift */; };
 		4B4D83F926EBD9DF00FEA2E6 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4D83F826EBD9DF00FEA2E6 /* LoadingViewController.swift */; };
+		4B4EEE2F26FE745000CF9D59 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EEE2E26FE745000CF9D59 /* TabBarViewController.swift */; };
 		4B5B272326EFE8D000CE0193 /* TeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5B272226EFE8D000CE0193 /* TeamCell.swift */; };
 		4B5B272526EFFB4E00CE0193 /* TeamCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B5B272426EFFB4E00CE0193 /* TeamCell.xib */; };
-		4B7576BE26FBCDFA00ADD68A /* BasePartialTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7576BD26FBCDFA00ADD68A /* BasePartialTableViewController.swift */; };
 		4B7576C026FBD2B100ADD68A /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7576BF26FBD2B100ADD68A /* BaseTableViewCell.swift */; };
 		4B75A89526ED4B9100FDDE04 /* SimpleStatsTrackingComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B75A89326ED4B9100FDDE04 /* SimpleStatsTrackingComponent.swift */; };
 		4B75A89626ED4B9100FDDE04 /* SimpleStatsTrackingComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B75A89426ED4B9100FDDE04 /* SimpleStatsTrackingComponent.xib */; };
@@ -98,10 +100,12 @@
 		37F14D330D1BC50004B5EE5F /* Pods-DayOfDie-DayOfDieUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DayOfDie-DayOfDieUITests.debug.xcconfig"; path = "Target Support Files/Pods-DayOfDie-DayOfDieUITests/Pods-DayOfDie-DayOfDieUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		4B0E53CF26EDB7D700F3F3E4 /* TrackingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingViewController.swift; sourceTree = "<group>"; };
 		4B0E53D126EDB84E00F3F3E4 /* TrackerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerComponent.swift; sourceTree = "<group>"; };
+		4B1EEADA26FD3F1F006A4E21 /* BasicSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicSettings.swift; sourceTree = "<group>"; };
 		4B21D3DF26FA8E8900DEF3E5 /* PlayerRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerRequestCell.swift; sourceTree = "<group>"; };
 		4B27048926EBFB4000AAD699 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		4B27049026EC11F800AAD699 /* FullStatsTrackerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullStatsTrackerComponent.swift; sourceTree = "<group>"; };
 		4B27049826EC151B00AAD699 /* FullStatsTrackerComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FullStatsTrackerComponent.xib; sourceTree = "<group>"; };
+		4B2BD53A26FEEB9C001A4060 /* PlayerDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailViewController.swift; sourceTree = "<group>"; };
 		4B30DF9F26EDE68900FE88E3 /* JustScoreTrackerComponent.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = JustScoreTrackerComponent.xib; path = ../../../../../../../.Trash/JustScoreTrackerComponent.xib; sourceTree = "<group>"; };
 		4B30DFA126EE767A00FE88E3 /* ScoreNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreNames.swift; sourceTree = "<group>"; };
 		4B30DFA826EED64800FE88E3 /* PendingTeammateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingTeammateCell.swift; sourceTree = "<group>"; };
@@ -113,9 +117,9 @@
 		4B4A4D4626EDA00300EE3B3B /* SimpleStatsTrackingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleStatsTrackingViewController.swift; sourceTree = "<group>"; };
 		4B4A4D4826EDA09800EE3B3B /* JustScoreTrackingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JustScoreTrackingViewController.swift; sourceTree = "<group>"; };
 		4B4D83F826EBD9DF00FEA2E6 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		4B4EEE2E26FE745000CF9D59 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		4B5B272226EFE8D000CE0193 /* TeamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCell.swift; sourceTree = "<group>"; };
 		4B5B272426EFFB4E00CE0193 /* TeamCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamCell.xib; sourceTree = "<group>"; };
-		4B7576BD26FBCDFA00ADD68A /* BasePartialTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePartialTableViewController.swift; sourceTree = "<group>"; };
 		4B7576BF26FBD2B100ADD68A /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		4B75A89326ED4B9100FDDE04 /* SimpleStatsTrackingComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleStatsTrackingComponent.swift; sourceTree = "<group>"; };
 		4B75A89426ED4B9100FDDE04 /* SimpleStatsTrackingComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimpleStatsTrackingComponent.xib; sourceTree = "<group>"; };
@@ -294,9 +298,10 @@
 			children = (
 				4BB0135F26FC10040018C584 /* BaseTableViewController.swift */,
 				4BB0136126FC13570018C584 /* SearchTableViewController.swift */,
-				4B7576BD26FBCDFA00ADD68A /* BasePartialTableViewController.swift */,
 				4B7576BF26FBD2B100ADD68A /* BaseTableViewCell.swift */,
 				4BB0136326FC14670018C584 /* Searchable Protocol.swift */,
+				4B1EEADA26FD3F1F006A4E21 /* BasicSettings.swift */,
+				4B4EEE2E26FE745000CF9D59 /* TabBarViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -319,6 +324,7 @@
 				4B30DFA726EED3D700FE88E3 /* PlayerSearch */,
 				4B27048926EBFB4000AAD699 /* Player.swift */,
 				5A30E3F226BDC8C40043A91C /* PlayerViewController.swift */,
+				4B2BD53A26FEEB9C001A4060 /* PlayerDetailViewController.swift */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -404,9 +410,9 @@
 			children = (
 				5A1A9B7D26C3B10000B903DB /* Team.swift */,
 				5A9813F62617F62800C37E2C /* PlayerTeamsTableViewController.swift */,
-				5AD81E812634BC2A00FBAB73 /* TeamDetailViewController.swift */,
 				4B5B272226EFE8D000CE0193 /* TeamCell.swift */,
 				4B5B272426EFFB4E00CE0193 /* TeamCell.xib */,
+				5AD81E812634BC2A00FBAB73 /* TeamDetailViewController.swift */,
 			);
 			path = Teams;
 			sourceTree = "<group>";
@@ -416,9 +422,9 @@
 			children = (
 				5A741B5F260D99B3004651E7 /* ChoosePlayersViewController.swift */,
 				4B0E53D326EDC94100F3F3E4 /* TrackingViewControllers */,
-				4B0E53D426EDC96500F3F3E4 /* PlayerPoints */,
 				4B27048B26EC0F8200AAD699 /* Single Components */,
 				5AECABA32631251700C4AD7B /* ScoreBoardFiles */,
+				4B0E53D426EDC96500F3F3E4 /* PlayerPoints */,
 			);
 			path = GameTracking;
 			sourceTree = "<group>";
@@ -722,6 +728,7 @@
 				5A582AF62631497E0004E7F0 /* PlayerPointsTableViewController.swift in Sources */,
 				4B75A89526ED4B9100FDDE04 /* SimpleStatsTrackingComponent.swift in Sources */,
 				4BAF525126EB3C3000595302 /* AuthValidators.swift in Sources */,
+				4B2BD53B26FEEB9C001A4060 /* PlayerDetailViewController.swift in Sources */,
 				5A62549025EEF0C500340AE0 /* FullStatsTrackingViewController.swift in Sources */,
 				5A62548C25EEF0C500340AE0 /* AppDelegate.swift in Sources */,
 				4B4A4D4726EDA00300EE3B3B /* SimpleStatsTrackingViewController.swift in Sources */,
@@ -735,11 +742,12 @@
 				5A30E3F326BDC8C40043A91C /* PlayerViewController.swift in Sources */,
 				5A83FAAE260EF19E00831C68 /* Point.swift in Sources */,
 				4B27049226EC11F800AAD699 /* FullStatsTrackerComponent.swift in Sources */,
-				4B7576BE26FBCDFA00ADD68A /* BasePartialTableViewController.swift in Sources */,
+				4B1EEADB26FD3F1F006A4E21 /* BasicSettings.swift in Sources */,
 				4BB0136226FC13570018C584 /* SearchTableViewController.swift in Sources */,
 				4B30DFA226EE767A00FE88E3 /* ScoreNames.swift in Sources */,
 				5A741B46260D7AC2004651E7 /* GameTableViewController.swift in Sources */,
 				4B21D3E026FA8E8900DEF3E5 /* PlayerRequestCell.swift in Sources */,
+				4B4EEE2F26FE745000CF9D59 /* TabBarViewController.swift in Sources */,
 				4B0E53D026EDB7D700F3F3E4 /* TrackingViewController.swift in Sources */,
 				5A976A782620A04000E5B7F6 /* GameDetailViewController.swift in Sources */,
 				5AC3B766263132790079C9FB /* PlayersTableScoreView.swift in Sources */,
