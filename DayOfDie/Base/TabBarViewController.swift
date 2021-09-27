@@ -21,17 +21,6 @@ class TabBarViewController: UITabBarController {
         rootVC.player = User.player
         let _ = rootVC.view
         
-        // Preloads all the views
-//        for viewController in viewControllers ?? [] {
-//            if let navigationVC = viewController as? UINavigationController, let rootVC = navigationVC.viewControllers.first {
-//                print("NAv")
-//                let _ = rootVC.view
-//            } else {
-//                print("not nav")
-//                let _ = viewController.view
-//            }
-//        }
-        
         if freshLaunch == true {
             freshLaunch = false
             selectedIndex = 1 // 5th tab

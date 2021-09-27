@@ -11,6 +11,7 @@ class PlayerSearchViewController: SearchTableViewController<Player> {
     
     override func setRawObjectList() -> [Player] { return Player.allPlayers }
     override func setObjectList(rawList: [Player]) -> [Player] {
+        Player.allPlayers = rawList
         return rawList.filter { (player: Player) -> Bool in
             return player != User.player
         }
@@ -23,7 +24,6 @@ class PlayerSearchViewController: SearchTableViewController<Player> {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
-            print("The identifier is: \(identifier)")
             if identifier == "toPlayerDetail" {
                 guard let viewController = segue.destination as? PlayerViewController else {
                     fatalError("Unexpected destination: \(segue.destination)")}

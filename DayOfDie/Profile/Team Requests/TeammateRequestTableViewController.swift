@@ -7,25 +7,25 @@
 
 import UIKit
 
-class TeamRequestTableViewController: UITableViewController {
+class TeamRequestTableViewController: BaseTableViewController<Team> {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tableView.register(UINib(nibName: "WaitingTeammateCell", bundle: nil), forCellReuseIdentifier: "WaitingTeammateCell")
-        tableView.register(UINib(nibName: "PendingTeammateCell", bundle: nil), forCellReuseIdentifier: "PendingTeammateCell")
+    override func setRawObjectList() -> [Team] { return Team.allTeams }
+    override func setObjectList(rawList: [Team]) -> [Team] {
+        Team.allTeams = rawList
+        return Team.allTeams
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        tableView.reloadData()
-    }
+    override func setCellIdentifiers() -> [String] { return ["WaitingTeammateCell", "PendingTeammateCell"] }
+    override func setTableSegueIdentifier() -> String { return "" }
+    override func setFetchURLEnding() -> String { return "/teams/" }
+    override func setRefreshTitleString() -> String { "Fetching Team Data..." }
     
     // MARK: - Table view data sourcew
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
 
-    // The first section will be the waiting requests
-    // The second section will be the pending requests
+    // The first section will be the pending requests
+    // The second section will be the waiting requests
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return Team.pendingTeammates.count
@@ -54,7 +54,7 @@ class TeamRequestTableViewController: UITableViewController {
         }
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
             return "Pending"
         }

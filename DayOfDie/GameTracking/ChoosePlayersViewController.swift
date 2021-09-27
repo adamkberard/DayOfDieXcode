@@ -37,7 +37,7 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
     func setupPickers() {
         possiblePlayers = []
         possiblePlayers.append(User.player)
-        possiblePlayers.append(contentsOf: Team.approvedTeams.map({$0.getOtherUser()}))
+        possiblePlayers.append(contentsOf: Team.acceptedTeammates)
         for playerPicker in playerPickers {
             playerPicker.reloadComponent(0)
         }
@@ -180,7 +180,6 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
         // Pass the selected object to the new view controller.
         
         if let identifier = segue.identifier {
-            print("The identifier is: \(identifier)")
             if identifier == "toFullStatsTracking" {
                 guard let viewController = segue.destination as? FullStatsTrackingViewController else {
                  fatalError("Unexpected destination: \(segue.destination)")}

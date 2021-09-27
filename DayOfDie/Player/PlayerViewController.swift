@@ -25,7 +25,6 @@ class PlayerViewController: BaseTableViewController<Game> {
     
     override func setRawObjectList() -> [Game] { return rawObjectList }
     override func setObjectList(rawList: [Game]) -> [Game] {
-        print("RAW LIST \(rawList.count)")
         return rawList
     }
     override func setCellIdentifiers() -> [String] { return ["GameCell"] }
@@ -42,7 +41,6 @@ class PlayerViewController: BaseTableViewController<Game> {
             else{
                 self.myRefreshControl.endRefreshing()
                 let errors : [String] = returnData as! [String]
-                print(errors)
                 // Alert Stuff
                 let alert = UIAlertController(title: "Connection Error", message: errors.first, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Cool", style: .default, handler: nil))
@@ -103,7 +101,6 @@ class PlayerViewController: BaseTableViewController<Game> {
             else{
                 self.myRefreshControl.endRefreshing()
                 let errors : [String] = returnData as! [String]
-                print(errors)
                 // Alert Stuff
                 let alert = UIAlertController(title: "Connection Error", message: errors.first, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Cool", style: .default, handler: nil))

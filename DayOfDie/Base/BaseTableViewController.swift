@@ -10,7 +10,8 @@ import UIKit
 class BaseTableViewController<T: Decodable>: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
     let myRefreshControl : UIRefreshControl = UIRefreshControl()
-    
+    var spinner = UIActivityIndicatorView(style: .large)
+    var selectedObject : T?
     var tableView: UITableView!
     
     // Need to be set
@@ -21,8 +22,6 @@ class BaseTableViewController<T: Decodable>: UIViewController, UITableViewDelega
     var fetchURLEnding : String!
     var refreshTitleString : String!
     
-    var selectedObject : T?
-    
     //MARK: View Functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +30,12 @@ class BaseTableViewController<T: Decodable>: UIViewController, UITableViewDelega
         tableView = getTableView()
         tableView.dataSource = self
         tableView.delegate = self
+        
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(spinner)
+
+        spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
         setupTable()
         setupView()
@@ -95,17 +100,18 @@ class BaseTableViewController<T: Decodable>: UIViewController, UITableViewDelega
     }
     
     func fetchObjectData() {
+        spinner.startAnimating()
+        
         let url = URLInfo.baseUrl + fetchURLEnding
         APICalls.get(url: url, returnType: [T].self) { status, returnData in
+            self.myRefreshControl.endRefreshing()
+            self.spinner.stopAnimating()
             if status{
                 self.objectList = self.setObjectList(rawList: returnData as! [T])
                 self.tableView.reloadData()
-                self.myRefreshControl.endRefreshing()
             }
             else{
-                self.myRefreshControl.endRefreshing()
                 let errors : [String] = returnData as! [String]
-                print(errors)
                 // Alert Stuff
                 let alert = UIAlertController(title: "Connection Error", message: errors.first, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Cool", style: .default, handler: nil))

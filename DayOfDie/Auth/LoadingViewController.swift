@@ -17,67 +17,25 @@ struct URLInfo{
 
 
 class LoadingViewController: UIViewController {
-    
-    var successPlayersLoad : Bool = false
-    var successGamesLoad : Bool = false
-    var successTeamsLoad : Bool = false
-    var successUserLoad : Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Loading friends here
-        APICalls.getTeams {status, returnData in
-            if status{
-                Team.allTeams = returnData as! [Team]
-                self.successTeamsLoad = true
-                if self.isAllDataLoaded(){
-                    self.performSegue(withIdentifier: "toMainApp", sender: self)
-                }
-            }
-            else{
-                let errors : [String] = returnData as! [String]
-                print(errors)
-                // Alert Stuff
-                let alert = UIAlertController(title: "Connection Error", message: errors.first, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Cool", style: .default, handler: nil))
-                self.present(alert, animated: true)
-            }
-        }
-        
+        loadAll()
+    }
+    
+    func loadAll() {
+        loadPlayers()
+    }
+    func loadPlayers() {
         // Loading all users here
         APICalls.getUsers {status, returnData in
             if status{
                 // Check if everything is done if so move on
                 Player.allPlayers = returnData as! [Player]
-                self.successPlayersLoad = true
-                if self.isAllDataLoaded(){
-                    self.performSegue(withIdentifier: "toMainApp", sender: self)
-                }
+                self.loadTeams()
             }
             else{
                 let errors : [String] = returnData as! [String]
-                print(errors)
-                // Alert Stuff
-                let alert = UIAlertController(title: "Connection Error", message: errors.first, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Cool", style: .default, handler: nil))
-                self.present(alert, animated: true)
-            }
-        }
-        
-        // Loading all games here
-        APICalls.getGames {status, returnData in
-            if status{
-                // Check if everything is done if so move on
-                Game.allGames = returnData as! [Game]
-                self.successGamesLoad = true
-                if self.isAllDataLoaded(){
-                    self.performSegue(withIdentifier: "toMainApp", sender: self)
-                }
-            }
-            else{
-                let errors : [String] = returnData as! [String]
-                print(errors)
                 // Alert Stuff
                 let alert = UIAlertController(title: "Connection Error", message: errors.first, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Cool", style: .default, handler: nil))
@@ -85,9 +43,38 @@ class LoadingViewController: UIViewController {
             }
         }
     }
-    
-    func isAllDataLoaded() -> Bool {
-        return successPlayersLoad && successGamesLoad && successTeamsLoad
+    func loadTeams() {
+        // Loading friends here
+        APICalls.getTeams {status, returnData in
+            if status{
+                Team.allTeams = returnData as! [Team]
+                self.loadGames()
+            }
+            else{
+                let errors : [String] = returnData as! [String]
+                // Alert Stuff
+                let alert = UIAlertController(title: "Connection Error", message: errors.first, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Cool", style: .default, handler: nil))
+                self.present(alert, animated: true)
+            }
+        }
+    }
+    func loadGames() {
+        // Loading all games here
+        APICalls.getGames {status, returnData in
+            if status{
+                // Check if everything is done if so move on
+                Game.allGames = returnData as! [Game]
+                self.performSegue(withIdentifier: "toMainApp", sender: self)
+            }
+            else{
+                let errors : [String] = returnData as! [String]
+                // Alert Stuff
+                let alert = UIAlertController(title: "Connection Error", message: errors.first, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Cool", style: .default, handler: nil))
+                self.present(alert, animated: true)
+            }
+        }
     }
 }
 
@@ -230,7 +217,6 @@ class APICalls {
     static func patch<T: Decodable>(url: String, parameters: [String: Any], returnType: T.Type, completion: @escaping (Bool, Any) -> Void) {
         AF.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: getHeaders()).responseDecodable(of: returnType.self) { response in
             guard let returnStatusCode = response.response?.statusCode else {
-                print(response)
                 let returnData : [String] = ["No connection."]
                 completion(false, returnData)
                 return

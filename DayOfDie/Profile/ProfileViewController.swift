@@ -59,7 +59,6 @@ class ProfileViewController: PlayerViewController, UITextFieldDelegate {
                 else{
                     self.myRefreshControl.endRefreshing()
                     let errors : [String] = returnData as! [String]
-                    print(errors)
                     // Alert Stuff
                     let alert = UIAlertController(title: "Connection Error", message: errors.first, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Cool", style: .default, handler: nil))
@@ -80,7 +79,6 @@ class ProfileViewController: PlayerViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         usernameTextField.resignFirstResponder()
-        print(usernameTextField.text as Any)
         changeUsernameButtonPressed(self)
         return true
     }

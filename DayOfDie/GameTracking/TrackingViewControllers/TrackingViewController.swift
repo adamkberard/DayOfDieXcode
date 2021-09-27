@@ -100,8 +100,9 @@ class TrackingViewController: UIViewController {
             "points": getPointsForParameters()
         ]
         
-        let df = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd hh:mm:ss"
+//        let df = DateFormatter()
+//        df.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        let df = ISO8601DateFormatter()
         parameters["time_started"] = df.string(from: timeStarted)
         parameters["time_ended"] = df.string(from: Date())
         
@@ -123,7 +124,6 @@ class TrackingViewController: UIViewController {
             }
             else{
                 let errors : [String] = returnData as! [String]
-                print(errors)
                 // Alert Stuff
                 let alert = UIAlertController(title: "Connection Error", message: errors.first, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Cool", style: .default, handler: nil))
@@ -163,7 +163,6 @@ class TrackingViewController: UIViewController {
         // Pass the selected object to the new view controller.
         
         if let identifier = segue.identifier {
-            print("The identifier is: \(identifier)")
             if identifier == "toPlayerPoints" {
                 guard let viewController = segue.destination as? PlayerPointsTableViewController else {
                  fatalError("Unexpected destination: \(segue.destination)")}

@@ -47,12 +47,9 @@ class Game : Codable, Equatable {
         
         let timeStartedString = try container.decode(String.self, forKey: .timeStarted)
         let timeEndedString = try container.decode(String.self, forKey: .timeStarted)
-        print("timeStartedString \(timeStartedString)")
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let dateFormatter = ISO8601DateFormatter()
         self.timeStarted = dateFormatter.date(from: timeStartedString)
         self.timeEnded = dateFormatter.date(from: timeEndedString)
-        
         self.uuid = try container.decode(UUID.self, forKey: .uuid)
         self.homeTeam = try container.decode(Team.self, forKey: .homeTeam)
         self.awayTeam = try container.decode(Team.self, forKey: .awayTeam)

@@ -22,7 +22,6 @@ class PlayerTeamsTableViewController: BaseTableViewController<Team> {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
-            print("The identifier is: \(identifier)")
             if identifier == "toTeamDetail" {
                 guard let viewController = segue.destination as? TeamDetailViewController else {
                     fatalError("Unexpected destination: \(segue.destination)")}

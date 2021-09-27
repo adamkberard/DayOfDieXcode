@@ -43,7 +43,6 @@ class SearchTableViewController<T: Decodable & Searchable>: BaseTableViewControl
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifiers[0], for: indexPath) as? BaseTableViewCell<T>  else {
             fatalError("The dequeued cell is not an instance of BaseTableViewCell.")
         }
-        
         if isFiltering {
             cell.setupCell(object: filteredObjectList[indexPath.row])
         }

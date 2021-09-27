@@ -38,7 +38,8 @@ class GameCell: BaseTableViewCell<Game> {
         self.teamTwoScore.textColor = ColorSettings.awayTeamColor
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "M/d/yy H:mm a"
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .short
         self.dateAndTimeLabel.text = dateFormatter.string(from: object.timeEnded!)
     }
 
