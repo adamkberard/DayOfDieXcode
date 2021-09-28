@@ -16,7 +16,12 @@ enum TeamStatuses : String, Codable{
 }
 
 class Team : Codable, Equatable, Searchable {
-    static var allTeams : [Team] = []
+    static var allTeams : [Team] = [] {
+        didSet {
+            referenceTeams()
+        }
+    }
+    
     static var allTeammates : [Player] {
         get { return allTeams.map { $0.getOtherUser() } }
     }
@@ -59,6 +64,17 @@ class Team : Codable, Equatable, Searchable {
         else { return .NOTHING }
     }
     
+    static func referenceTeams() {
+        for team in allTeams {
+            team.setReferencedPlayers()
+        }
+    }
+    
+    func setReferencedPlayers() {
+        self.teamCaptain = Player.getPlayer(inPlayer: self.teamCaptain)
+        self.teammate = Player.getPlayer(inPlayer: self.teammate)
+    }
+    
     var teamCaptain : Player
     var teammate : Player
     var uuid : UUID?
@@ -81,10 +97,11 @@ class Team : Codable, Equatable, Searchable {
     
     func getOtherUser() -> Player {
         if(User.player == teamCaptain){
-            return Player.getPlayer(inPlayer: teammate)
+            return teammate
         }
         else{
-            return Player.getPlayer(inPlayer: teamCaptain)
+            print("BUT THE OTHER PLAYER IS: \(teammate.username)")
+            return teamCaptain
         }
     }
     
@@ -100,6 +117,10 @@ class Team : Codable, Equatable, Searchable {
             }
         }
         return tempTeam
+    }
+    
+    static func findOrCreateTeam(inTeam: Team) -> Team {
+        return findOrCreateTeam(teamCaptain: inTeam.teamCaptain, teammate: inTeam.teammate)
     }
     
     func isOnTeam(player: Player) -> Bool {

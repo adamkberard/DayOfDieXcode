@@ -11,12 +11,16 @@ class ProfileViewController: PlayerViewController, UITextFieldDelegate {
     @IBOutlet weak var requestsButton: UIButton!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var changeUsernameButton: UIButton!
+    @IBOutlet weak var usernameLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         usernameTextField.delegate = self
-        self.title = User.player.username
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        usernameLabel.text = player!.username
     }
     
     override func setRawObjectList() -> [Game] { return Game.allGames }
@@ -27,7 +31,8 @@ class ProfileViewController: PlayerViewController, UITextFieldDelegate {
     override func setCellIdentifiers() -> [String] { return ["GameCell"] }
     override func setTableSegueIdentifier() -> String { return "toGameDetail" }
     override func setFetchURLEnding() -> String { return "/games/" }
-    override func setRefreshTitleString() -> String { "Fetching Game Data..." }
+    override func setRefreshTitleString() -> String { return "Fetching Game Data..." }
+    override func setTitleString() -> String { return "Profile" }
     
     override func setTeamStatusLabelAndButton() {
         
@@ -48,11 +53,12 @@ class ProfileViewController: PlayerViewController, UITextFieldDelegate {
             let parameters : [String: Any] = ["username": usernameTextField.text as Any]
             APICalls.changeUsername(parameters: parameters) { status, returnData in
                 if status{
-                    User.player = returnData as! Player
-                    self.title = User.player.username
-                    self.player = User.player
+                    self.player = returnData as? Player
+                    User.player = self.player!
+
                     // Have to update every list we have
                     Player.changeUser(oldUsername: beforeUsername)
+                    
                     self.tableView.reloadData()
                     self.myRefreshControl.endRefreshing()
                 }
@@ -73,8 +79,6 @@ class ProfileViewController: PlayerViewController, UITextFieldDelegate {
             usernameTextField.isHidden = true
             changeUsernameButton.isEnabled = true
         }
-        
-        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

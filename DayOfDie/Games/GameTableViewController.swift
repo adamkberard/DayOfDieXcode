@@ -16,7 +16,7 @@ class GameTableViewController: BaseTableViewController<Game> {
     override func setCellIdentifiers() -> [String] { return ["GameCell"] }
     override func setTableSegueIdentifier() -> String { return "toGameDetail" }
     override func setFetchURLEnding() -> String { return "/games/" }
-    override func setRefreshTitleString() -> String { "Fetch Game Data..." }
+    override func setRefreshTitleString() -> String { return "Fetch Game Data..." }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

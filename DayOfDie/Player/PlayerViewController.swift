@@ -10,7 +10,6 @@ import Alamofire
 
 class PlayerViewController: BaseTableViewController<Game> {
     
-    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var teamStatusLabel: UILabel!
     @IBOutlet weak var numberTeamsLabel: UILabel!
     @IBOutlet weak var totalGamesLabel: UILabel!
@@ -30,7 +29,8 @@ class PlayerViewController: BaseTableViewController<Game> {
     override func setCellIdentifiers() -> [String] { return ["GameCell"] }
     override func setTableSegueIdentifier() -> String { return "toGameDetail" }
     override func setFetchURLEnding() -> String { return "/games/\(player!.username)/" }
-    override func setRefreshTitleString() -> String { "Fetching Game Data..." }
+    override func setRefreshTitleString() -> String { return "Fetching Game Data..." }
+    override func setTitleString() -> String { return player!.username }
     
     func fetchPlayerTeamData() {
         APICalls.getPlayerTeams(player: player!) {status, returnData in
@@ -50,8 +50,8 @@ class PlayerViewController: BaseTableViewController<Game> {
     }
     
     override func setupView() {
+        super.setupView()
         fetchPlayerTeamData()
-        usernameLabel.text = player!.username
         totalWinsLabel.text = String(player!.wins)
         totalLossesLabel.text = String(player!.losses)
         totalGamesLabel.text = String(player!.wins + player!.losses)

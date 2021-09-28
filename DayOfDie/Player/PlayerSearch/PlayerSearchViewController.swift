@@ -19,7 +19,7 @@ class PlayerSearchViewController: SearchTableViewController<Player> {
     override func setCellIdentifiers() -> [String] { return ["PlayerCell"] }
     override func setTableSegueIdentifier() -> String { return "toPlayerDetail" }
     override func setFetchURLEnding() -> String { return "/players/" }
-    override func setRefreshTitleString() -> String { "Fetch Player Data..." }
+    override func setRefreshTitleString() -> String { return "Fetch Player Data..." }
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -23,7 +23,8 @@ class TeamDetailViewController: BaseTableViewController<Game> {
     override func setCellIdentifiers() -> [String] { return ["GameCell"] }
     override func setTableSegueIdentifier() -> String { return "toGameDetail" }
     override func setFetchURLEnding() -> String { return "/games/\(team!.teamCaptain.username)/\(team!.teammate.username)/" }
-    override func setRefreshTitleString() -> String { "Fetching Game Data..." }
+    override func setRefreshTitleString() -> String { return "Fetching Game Data..." }
+    override func setTitleString() -> String { return team!.teamName }
 
     override func setupView() {
         teamCaptainLabel.text = team!.teamCaptain.username

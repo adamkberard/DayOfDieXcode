@@ -16,8 +16,6 @@
 		4B27048A26EBFB4000AAD699 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B27048926EBFB4000AAD699 /* Player.swift */; };
 		4B27049226EC11F800AAD699 /* FullStatsTrackerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B27049026EC11F800AAD699 /* FullStatsTrackerComponent.swift */; };
 		4B27049926EC151B00AAD699 /* FullStatsTrackerComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B27049826EC151B00AAD699 /* FullStatsTrackerComponent.xib */; };
-		4B2BD53B26FEEB9C001A4060 /* PlayerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2BD53A26FEEB9C001A4060 /* PlayerDetailViewController.swift */; };
-		4B30DFA026EDE68900FE88E3 /* JustScoreTrackerComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B30DF9F26EDE68900FE88E3 /* JustScoreTrackerComponent.xib */; };
 		4B30DFA226EE767A00FE88E3 /* ScoreNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B30DFA126EE767A00FE88E3 /* ScoreNames.swift */; };
 		4B30DFA926EED64800FE88E3 /* PendingTeammateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B30DFA826EED64800FE88E3 /* PendingTeammateCell.swift */; };
 		4B30DFAB26EED66500FE88E3 /* WaitingTeammateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B30DFAA26EED66500FE88E3 /* WaitingTeammateCell.swift */; };
@@ -42,6 +40,7 @@
 		4BB0136026FC10040018C584 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB0135F26FC10040018C584 /* BaseTableViewController.swift */; };
 		4BB0136226FC13570018C584 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB0136126FC13570018C584 /* SearchTableViewController.swift */; };
 		4BB0136426FC14670018C584 /* Searchable Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB0136326FC14670018C584 /* Searchable Protocol.swift */; };
+		4BC4F1DF2702A32400B91F11 /* JustScoreTrackerComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BC4F1DE2702A32400B91F11 /* JustScoreTrackerComponent.xib */; };
 		4BD0BC0826FC45C4007FC4AC /* PointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD0BC0626FC45C4007FC4AC /* PointCell.swift */; };
 		4BD0BC0926FC45C4007FC4AC /* PointCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BD0BC0726FC45C4007FC4AC /* PointCell.xib */; };
 		4BE81FD326F2A9C4004BA3F5 /* GameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BE81FD226F2A9C4004BA3F5 /* GameCell.xib */; };
@@ -105,8 +104,6 @@
 		4B27048926EBFB4000AAD699 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		4B27049026EC11F800AAD699 /* FullStatsTrackerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullStatsTrackerComponent.swift; sourceTree = "<group>"; };
 		4B27049826EC151B00AAD699 /* FullStatsTrackerComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FullStatsTrackerComponent.xib; sourceTree = "<group>"; };
-		4B2BD53A26FEEB9C001A4060 /* PlayerDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailViewController.swift; sourceTree = "<group>"; };
-		4B30DF9F26EDE68900FE88E3 /* JustScoreTrackerComponent.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = JustScoreTrackerComponent.xib; path = ../../../../../../../.Trash/JustScoreTrackerComponent.xib; sourceTree = "<group>"; };
 		4B30DFA126EE767A00FE88E3 /* ScoreNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreNames.swift; sourceTree = "<group>"; };
 		4B30DFA826EED64800FE88E3 /* PendingTeammateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingTeammateCell.swift; sourceTree = "<group>"; };
 		4B30DFAA26EED66500FE88E3 /* WaitingTeammateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingTeammateCell.swift; sourceTree = "<group>"; };
@@ -131,6 +128,7 @@
 		4BB0135F26FC10040018C584 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		4BB0136126FC13570018C584 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		4BB0136326FC14670018C584 /* Searchable Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Searchable Protocol.swift"; sourceTree = "<group>"; };
+		4BC4F1DE2702A32400B91F11 /* JustScoreTrackerComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JustScoreTrackerComponent.xib; sourceTree = "<group>"; };
 		4BD0BC0626FC45C4007FC4AC /* PointCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointCell.swift; sourceTree = "<group>"; };
 		4BD0BC0726FC45C4007FC4AC /* PointCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PointCell.xib; sourceTree = "<group>"; };
 		4BE81FD226F2A9C4004BA3F5 /* GameCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameCell.xib; sourceTree = "<group>"; };
@@ -269,7 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				4B8D913F26EDDDDC00A2A83F /* JustScoreTrackerComponent.swift */,
-				4B30DF9F26EDE68900FE88E3 /* JustScoreTrackerComponent.xib */,
+				4BC4F1DE2702A32400B91F11 /* JustScoreTrackerComponent.xib */,
 			);
 			path = GameScore;
 			sourceTree = "<group>";
@@ -324,7 +322,6 @@
 				4B30DFA726EED3D700FE88E3 /* PlayerSearch */,
 				4B27048926EBFB4000AAD699 /* Player.swift */,
 				5A30E3F226BDC8C40043A91C /* PlayerViewController.swift */,
-				4B2BD53A26FEEB9C001A4060 /* PlayerDetailViewController.swift */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -573,8 +570,8 @@
 				4B75A89626ED4B9100FDDE04 /* SimpleStatsTrackingComponent.xib in Resources */,
 				4B27049926EC151B00AAD699 /* FullStatsTrackerComponent.xib in Resources */,
 				5A62549825EEF0C600340AE0 /* LaunchScreen.storyboard in Resources */,
-				4B30DFA026EDE68900FE88E3 /* JustScoreTrackerComponent.xib in Resources */,
 				4B30DFB826EEDCE400FE88E3 /* WaitingTeammateCell.xib in Resources */,
+				4BC4F1DF2702A32400B91F11 /* JustScoreTrackerComponent.xib in Resources */,
 				4B30DFB626EEDBEB00FE88E3 /* PendingTeammateCell.xib in Resources */,
 				5A62549525EEF0C600340AE0 /* Assets.xcassets in Resources */,
 				4B5B272526EFFB4E00CE0193 /* TeamCell.xib in Resources */,
@@ -728,7 +725,6 @@
 				5A582AF62631497E0004E7F0 /* PlayerPointsTableViewController.swift in Sources */,
 				4B75A89526ED4B9100FDDE04 /* SimpleStatsTrackingComponent.swift in Sources */,
 				4BAF525126EB3C3000595302 /* AuthValidators.swift in Sources */,
-				4B2BD53B26FEEB9C001A4060 /* PlayerDetailViewController.swift in Sources */,
 				5A62549025EEF0C500340AE0 /* FullStatsTrackingViewController.swift in Sources */,
 				5A62548C25EEF0C500340AE0 /* AppDelegate.swift in Sources */,
 				4B4A4D4726EDA00300EE3B3B /* SimpleStatsTrackingViewController.swift in Sources */,

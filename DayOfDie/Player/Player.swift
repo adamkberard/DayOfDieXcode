@@ -33,7 +33,7 @@ class Player : Codable, Equatable, Searchable {
     static func changeUser(oldUsername: String) {
         for i in 0...allPlayers.count - 1 {
             if allPlayers[i].username == oldUsername{
-                allPlayers[i] = User.player
+                allPlayers[i].username = User.player.username
             }
         }
     }
@@ -48,12 +48,11 @@ class Player : Codable, Equatable, Searchable {
     }
     
     static func getPlayer(inPlayer : Player) -> Player {
-        for player in self.allPlayers{
-            if player == inPlayer {
-                return player
-            }
+        let player : [Player] = allPlayers.filter { return $0 == inPlayer }
+        if player.count == 0 {
+            fatalError("Couldn't find \(inPlayer).")
         }
-        return Player(username: "default")
+        return player[0]
     }
     
     static func == (lhs: Player, rhs: Player) -> Bool {

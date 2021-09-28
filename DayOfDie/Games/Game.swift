@@ -9,7 +9,11 @@ import UIKit
 
 
 class Game : Codable, Equatable {
-    static var allGames : [Game] = []
+    static var allGames : [Game] = [] {
+        didSet {
+            referenceGames()
+        }
+    }
     var timeStarted : Date?
     var timeEnded : Date?
     
@@ -22,6 +26,24 @@ class Game : Codable, Equatable {
     var confirmed : Bool
     
     var points : [Point]
+    
+    static func referenceGames() {
+        for game in allGames {
+            game.setReferencedTeams()
+            game.setReferencedPlayerForPoints()
+        }
+    }
+    
+    func setReferencedTeams() {
+        self.homeTeam = Team.findOrCreateTeam(inTeam: self.homeTeam)
+        self.awayTeam = Team.findOrCreateTeam(inTeam: self.awayTeam)
+    }
+    
+    func setReferencedPlayerForPoints() {
+        for point in points {
+            point.scorer = Player.getPlayer(inPlayer: point.scorer)
+        }
+    }
     
     init(teamOne: Team, teamTwo: Team, points: [Point]) {
         self.homeTeam = teamOne

@@ -38,6 +38,9 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
         possiblePlayers = []
         possiblePlayers.append(User.player)
         possiblePlayers.append(contentsOf: Team.acceptedTeammates)
+        for player in possiblePlayers {
+            print("Possible Players: \(player.username)")
+        }
         for playerPicker in playerPickers {
             playerPicker.reloadComponent(0)
         }

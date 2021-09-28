@@ -17,7 +17,7 @@ class TeamRequestTableViewController: BaseTableViewController<Team> {
     override func setCellIdentifiers() -> [String] { return ["WaitingTeammateCell", "PendingTeammateCell"] }
     override func setTableSegueIdentifier() -> String { return "" }
     override func setFetchURLEnding() -> String { return "/teams/" }
-    override func setRefreshTitleString() -> String { "Fetching Team Data..." }
+    override func setRefreshTitleString() -> String { return "Fetching Team Data..." }
     
     // MARK: - Table view data sourcew
     override func numberOfSections(in tableView: UITableView) -> Int {

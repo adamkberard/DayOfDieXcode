@@ -18,7 +18,7 @@ class PlayerTeamsTableViewController: BaseTableViewController<Team> {
     override func setCellIdentifiers() -> [String] { return ["TeamCell"] }
     override func setTableSegueIdentifier() -> String { return "toTeamDetail" }
     override func setFetchURLEnding() -> String { return "/teams/\(player.username)/" }
-    override func setRefreshTitleString() -> String { "Fetching Team Data..." }
+    override func setRefreshTitleString() -> String { return "Fetching Team Data..." }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {

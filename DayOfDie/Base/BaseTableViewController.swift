@@ -84,7 +84,11 @@ class BaseTableViewController<T: Decodable>: UIViewController, UITableViewDelega
         }
     }
     
-    func setupView() {}
+    func setupView() {
+        if setTitleString() != "" {
+            self.title = setTitleString()
+        }
+    }
     
     // MARK: Override these functions
     func setRawObjectList() -> [T] { return [] }
@@ -92,7 +96,8 @@ class BaseTableViewController<T: Decodable>: UIViewController, UITableViewDelega
     func setCellIdentifiers() -> [String] { return [] }
     func setTableSegueIdentifier() -> String { return "" }
     func setFetchURLEnding() -> String { return "" }
-    func setRefreshTitleString() -> String { "Fetching Data..." }
+    func setRefreshTitleString() -> String { return "Fetching Data..." }
+    func setTitleString() -> String { return "" }
     
     //MARK: Refresh Functions
     @objc func refresh(_ sender: Any) -> Void {
