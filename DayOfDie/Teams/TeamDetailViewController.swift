@@ -11,7 +11,6 @@ class TeamDetailViewController: BaseTableViewController<Game> {
     
     @IBOutlet weak var teamCaptainLabel: UILabel!
     @IBOutlet weak var teammateLabel: UILabel!
-    @IBOutlet weak var teamNameLabel: UILabel!
     @IBOutlet weak var winsLabel: UILabel!
     @IBOutlet weak var lossesLabel: UILabel!
     @IBOutlet weak var totalGamesLabel: UILabel!
@@ -27,9 +26,10 @@ class TeamDetailViewController: BaseTableViewController<Game> {
     override func setTitleString() -> String { return team!.teamName }
 
     override func setupView() {
+        super.setupView()
         teamCaptainLabel.text = team!.teamCaptain.username
         teammateLabel.text = team!.teammate.username
-        teamNameLabel.text = team!.teamName
+        
         winsLabel.text = String(team!.wins)
         lossesLabel.text = String(team!.losses)
         totalGamesLabel.text = String(team!.wins + team!.losses)

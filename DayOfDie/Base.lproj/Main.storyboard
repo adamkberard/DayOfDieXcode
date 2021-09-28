@@ -591,7 +591,7 @@
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cYU-sL-KGl" customClass="JustScoreTrackerComponent" customModule="DayOfDie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="170" width="394" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="170" width="394" height="20"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mhj-qt-ZUC" customClass="JustScoreTrackerComponent" customModule="DayOfDie" customModuleProvider="target">
@@ -599,7 +599,7 @@
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bHU-f0-TG7" customClass="JustScoreTrackerComponent" customModule="DayOfDie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="340" width="394" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="340" width="394" height="20"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                         </subviews>
@@ -1334,14 +1334,8 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="32" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HBA-hJ-hY7">
                                 <rect key="frame" x="10" y="98" width="394" height="705"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MfP-pq-utE">
-                                        <rect key="frame" x="0.0" y="0.0" width="394" height="31.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="KJQ-Vi-BHP">
-                                        <rect key="frame" x="0.0" y="41" width="394" height="123"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="123"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="epw-fh-F8t">
                                                 <rect key="frame" x="0.0" y="0.0" width="394" height="20.5"/>
@@ -1448,7 +1442,7 @@
                                         </subviews>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xNK-Hg-g7Z">
-                                        <rect key="frame" x="0.0" y="191.5" width="394" height="513.5"/>
+                                        <rect key="frame" x="0.0" y="150.5" width="394" height="554.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </tableView>
                                 </subviews>
@@ -1456,7 +1450,6 @@
                                     <constraint firstAttribute="trailing" secondItem="xNK-Hg-g7Z" secondAttribute="trailing" id="FBB-m8-UOK"/>
                                     <constraint firstItem="xNK-Hg-g7Z" firstAttribute="leading" secondItem="HBA-hJ-hY7" secondAttribute="leading" id="HbA-EF-0Np"/>
                                     <constraint firstItem="KJQ-Vi-BHP" firstAttribute="leading" secondItem="HBA-hJ-hY7" secondAttribute="leading" id="Sb1-bh-27f"/>
-                                    <constraint firstItem="MfP-pq-utE" firstAttribute="centerX" secondItem="HBA-hJ-hY7" secondAttribute="centerX" id="hAq-7Z-zMg"/>
                                     <constraint firstAttribute="trailing" secondItem="KJQ-Vi-BHP" secondAttribute="trailing" id="z7X-tK-1b1"/>
                                 </constraints>
                             </stackView>
@@ -1474,7 +1467,6 @@
                     <connections>
                         <outlet property="lossesLabel" destination="Vt8-qs-k6o" id="fuC-oY-uus"/>
                         <outlet property="teamCaptainLabel" destination="VNH-T5-dXw" id="7YM-ue-66d"/>
-                        <outlet property="teamNameLabel" destination="b3x-pa-p8H" id="wld-pw-IX0"/>
                         <outlet property="teammateLabel" destination="Hi6-3n-EJV" id="u2n-jv-JDZ"/>
                         <outlet property="totalGamesLabel" destination="Z0P-hz-Afo" id="HjC-46-wYu"/>
                         <outlet property="winsLabel" destination="ahh-cL-l5l" id="K09-50-emS"/>
@@ -1744,7 +1736,7 @@
         <segue reference="JNQ-wC-QpK"/>
         <segue reference="foH-ip-zGC"/>
         <segue reference="9gJ-hn-MTh"/>
-        <segue reference="8j8-mn-808"/>
+        <segue reference="g6a-TF-aRs"/>
         <segue reference="YoO-Sm-1oa"/>
         <segue reference="T4T-kE-m8g"/>
     </inferredMetricsTieBreakers>

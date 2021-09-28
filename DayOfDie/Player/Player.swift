@@ -17,6 +17,8 @@ class Player : Codable, Equatable, Searchable {
     static var allPlayers : [Player] = [] {
         didSet {
             setSelf()
+            Team.referenceTeams()
+            Game.referenceGames()
         }
     }
     
@@ -50,7 +52,7 @@ class Player : Codable, Equatable, Searchable {
     static func getPlayer(inPlayer : Player) -> Player {
         let player : [Player] = allPlayers.filter { return $0 == inPlayer }
         if player.count == 0 {
-            fatalError("Couldn't find \(inPlayer).")
+            return inPlayer
         }
         return player[0]
     }

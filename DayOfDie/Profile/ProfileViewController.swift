@@ -13,6 +13,12 @@ class ProfileViewController: PlayerViewController, UITextFieldDelegate {
     @IBOutlet weak var changeUsernameButton: UIButton!
     @IBOutlet weak var usernameLabel: UILabel!
     
+    override var playerTeams: [Team] {
+        didSet {
+            Team.allTeams = playerTeams
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         usernameTextField.delegate = self

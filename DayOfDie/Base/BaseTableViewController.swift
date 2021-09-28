@@ -51,6 +51,7 @@ class BaseTableViewController<T: Decodable>: UIViewController, UITableViewDelega
         objectList = setObjectList(rawList: rawObjectList)
         tableView.reloadData()
         setupView()
+        fetchObjectData()
     }
     
     func getTableView() -> UITableView {
@@ -101,12 +102,11 @@ class BaseTableViewController<T: Decodable>: UIViewController, UITableViewDelega
     
     //MARK: Refresh Functions
     @objc func refresh(_ sender: Any) -> Void {
+        spinner.startAnimating()
         fetchObjectData()
     }
     
     func fetchObjectData() {
-        spinner.startAnimating()
-        
         let url = URLInfo.baseUrl + fetchURLEnding
         APICalls.get(url: url, returnType: [T].self) { status, returnData in
             self.myRefreshControl.endRefreshing()
