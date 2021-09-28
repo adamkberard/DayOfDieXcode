@@ -23,7 +23,6 @@ class FullStatsTrackerComponent: TrackerComponent {
     
     override func commonSetup() {
         super.commonSetup()
-        playerLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2 * 3)
     }
     
     private func viewFromNibForClass() -> UIView {

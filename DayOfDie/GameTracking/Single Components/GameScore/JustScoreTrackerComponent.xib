@@ -9,51 +9,51 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SimpleStatsTrackingComponent" customModule="DayOfDie" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JustScoreTrackerComponent" customModule="DayOfDie" customModuleProvider="target">
             <connections>
-                <outlet property="minusPointButton" destination="CoC-d6-8Ym" id="i3j-v0-B08"/>
-                <outlet property="playerLabel" destination="Pb5-ca-UIX" id="FFM-g2-hiD"/>
-                <outlet property="plusPointButton" destination="Yi5-Cf-Q2Y" id="dmf-UN-PWf"/>
-                <outlet property="pointsLabel" destination="RFD-NY-01m" id="aYh-YT-7rd"/>
+                <outlet property="minusPointButton" destination="jau-wp-MRp" id="ZLr-vd-ZNM"/>
+                <outlet property="playerLabel" destination="RKL-0R-Mb9" id="Uvm-tR-zGs"/>
+                <outlet property="plusPointButton" destination="0Ep-ok-BrO" id="sT7-Yr-Mqf"/>
+                <outlet property="pointsLabel" destination="2Ao-iO-fno" id="r2U-FK-jb6"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="2LZ-5L-ugM">
             <rect key="frame" x="0.0" y="0.0" width="394" height="100"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="77S-nS-ylW">
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="Sfv-oj-glc">
                     <rect key="frame" x="10" y="10" width="374" height="80"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pb5-ca-UIX">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team One" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RKL-0R-Mb9">
                             <rect key="frame" x="0.0" y="0.0" width="174" height="80"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="ulI-yg-tc3">
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="Kp4-Cu-TmJ">
                             <rect key="frame" x="200" y="0.0" width="174" height="80"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CoC-d6-8Ym">
+                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jau-wp-MRp">
                                     <rect key="frame" x="0.0" y="0.0" width="40.5" height="80"/>
                                     <state key="normal" title="Button" image="minus.circle" catalog="system">
                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                                     </state>
                                     <connections>
-                                        <action selector="minusPointButtonPressed:" destination="-1" eventType="touchUpInside" id="SJ8-xM-U1Y"/>
+                                        <action selector="minusPointButtonPressed:" destination="-1" eventType="touchUpInside" id="hiI-Hh-IMg"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFD-NY-01m">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ao-iO-fno">
                                     <rect key="frame" x="66.5" y="0.0" width="41" height="80"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yi5-Cf-Q2Y">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ep-ok-BrO">
                                     <rect key="frame" x="133.5" y="0.0" width="40.5" height="80"/>
                                     <state key="normal" title="Button" image="plus.circle" catalog="system"/>
                                     <connections>
-                                        <action selector="plusPointButtonPressed:" destination="-1" eventType="touchUpInside" id="5VV-ug-f0w"/>
+                                        <action selector="plusPointButtonPressed:" destination="-1" eventType="touchUpInside" id="yqv-oB-xYw"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -61,13 +61,13 @@
                     </subviews>
                 </stackView>
             </subviews>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <viewLayoutGuide key="safeArea" id="X2k-Mm-JhR"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="77S-nS-ylW" secondAttribute="bottom" constant="10" id="856-MA-moa"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="77S-nS-ylW" secondAttribute="trailing" constant="10" id="8Wi-fw-x0x"/>
-                <constraint firstItem="77S-nS-ylW" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="ZbO-8I-xWq"/>
-                <constraint firstItem="77S-nS-ylW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="vBC-09-bP0"/>
+                <constraint firstItem="Sfv-oj-glc" firstAttribute="top" secondItem="2LZ-5L-ugM" secondAttribute="top" constant="10" id="Eoj-ZT-yuR"/>
+                <constraint firstItem="X2k-Mm-JhR" firstAttribute="trailing" secondItem="Sfv-oj-glc" secondAttribute="trailing" constant="10" id="MbH-GL-sFx"/>
+                <constraint firstItem="X2k-Mm-JhR" firstAttribute="bottom" secondItem="Sfv-oj-glc" secondAttribute="bottom" constant="10" id="Xqx-Mz-Wvl"/>
+                <constraint firstItem="Sfv-oj-glc" firstAttribute="leading" secondItem="X2k-Mm-JhR" secondAttribute="leading" constant="10" id="hHL-Tf-CWb"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>

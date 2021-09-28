@@ -7,6 +7,7 @@
 
 import UIKit
 
+@IBDesignable
 class TeamCell: BaseTableViewCell<Team> {
     
     @IBOutlet weak var playerOneLabel: UILabel!

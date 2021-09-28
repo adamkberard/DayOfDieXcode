@@ -76,7 +76,6 @@ class RegisterViewController:
             else{
                 //Handle if things go wrong
                 let errors : [String] = returnData as! [String]
-                print(returnData)
                 self.statusLabel.text = errors[0]
                 self.statusLabel.isHidden = false
             }

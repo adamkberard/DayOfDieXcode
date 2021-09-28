@@ -17,6 +17,8 @@ class Player : Codable, Equatable, Searchable {
     static var allPlayers : [Player] = [] {
         didSet {
             setSelf()
+            Team.referenceTeams()
+            Game.referenceGames()
         }
     }
     
@@ -30,6 +32,14 @@ class Player : Codable, Equatable, Searchable {
         self.username = username
     }
     
+    static func changeUser(oldUsername: String) {
+        for i in 0...allPlayers.count - 1 {
+            if allPlayers[i].username == oldUsername{
+                allPlayers[i].username = User.player.username
+            }
+        }
+    }
+    
     static func setSelf() -> Void {
         for player in allPlayers{
             if player.username == User.player.username{
@@ -39,13 +49,12 @@ class Player : Codable, Equatable, Searchable {
         }
     }
     
-    static func getPlayer(inPlayer : Player) -> Player? {
-        for player in self.allPlayers{
-            if player == inPlayer {
-                return player
-            }
+    static func getPlayer(inPlayer : Player) -> Player {
+        let player : [Player] = allPlayers.filter { return $0 == inPlayer }
+        if player.count == 0 {
+            return inPlayer
         }
-        return nil
+        return player[0]
     }
     
     static func == (lhs: Player, rhs: Player) -> Bool {

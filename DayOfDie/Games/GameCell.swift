@@ -22,15 +22,23 @@ class GameCell: BaseTableViewCell<Game> {
     override func setupCell(object: Game) {
         self.game = object
         
-        self.playerOneLabel.text = object.teamOne.teamCaptain.username
-        self.playerTwoLabel.text = object.teamOne.teammate.username
-        self.playerThreeLabel.text = object.teamTwo.teamCaptain.username
-        self.playerFourLabel.text = object.teamTwo.teammate.username
-        self.teamOneScore.text = String(object.teamOneScore)
+        self.playerOneLabel.textColor = ColorSettings.homeTeamColor
+        self.playerTwoLabel.textColor = ColorSettings.homeTeamColor
+        self.playerThreeLabel.textColor = ColorSettings.awayTeamColor
+        self.playerFourLabel.textColor = ColorSettings.awayTeamColor
+        
+        self.playerOneLabel.text = object.homeTeam.teamCaptain.username
+        self.playerTwoLabel.text = object.homeTeam.teammate.username
+        self.playerThreeLabel.text = object.awayTeam.teamCaptain.username
+        self.playerFourLabel.text = object.awayTeam.teammate.username
+        
+        self.teamOneScore.text = String(object.homeTeamScore)
+        self.teamOneScore.textColor = ColorSettings.homeTeamColor
         self.teamTwoScore.text = String(object.teamTwoScore)
+        self.teamTwoScore.textColor = ColorSettings.awayTeamColor
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .long
+        dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .short
         self.dateAndTimeLabel.text = dateFormatter.string(from: object.timeEnded!)
     }

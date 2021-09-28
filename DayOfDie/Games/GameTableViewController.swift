@@ -11,16 +11,12 @@ import Alamofire
 class GameTableViewController: BaseTableViewController<Game> {
     
     var needToGoToLastGame : Bool = false
-
-    //MARK: View Functions
-    override func viewDidLoad() {
-        cellIdentifier = "GameCell"
-        tableSegueIdentifier = "toGameDetail"
-        fetchURLPostfix = "/games/"
-        refreshTitleString = "Fetching Game Data..."
-        objectList = Game.allGames
-        super.viewDidLoad()
-    }
+    
+    override func setRawObjectList() -> [Game] { return Game.allGames }
+    override func setCellIdentifiers() -> [String] { return ["GameCell"] }
+    override func setTableSegueIdentifier() -> String { return "toGameDetail" }
+    override func setFetchURLEnding() -> String { return "/games/" }
+    override func setRefreshTitleString() -> String { return "Fetch Game Data..." }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

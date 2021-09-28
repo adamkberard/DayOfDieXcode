@@ -9,9 +9,9 @@ import UIKit
 
 class PlayerRequestCell: PlayerCell {
     
-    var parentTableView : UITableViewController?
+    var parentTableView : BaseTableViewController<Team>?
     
-    func setupCell(player: Player, parentTableView: UITableViewController) {
+    func setupCell(player: Player, parentTableView: BaseTableViewController<Team>) {
         super.setupCell(object: player)
         self.parentTableView = parentTableView
     }
@@ -33,7 +33,10 @@ class PlayerRequestCell: PlayerCell {
             }
             else{
                 let errors : [String] = returnData as! [String]
-                print(errors)
+                // Alert Stuff
+                let alert = UIAlertController(title: "Connection Error", message: errors.first, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Cool", style: .default, handler: nil))
+                self.parentTableView!.present(alert, animated: true)
             }
         }
     }

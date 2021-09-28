@@ -13,8 +13,12 @@ class TrackerComponent: UIView {
     @IBOutlet weak var pointsLabel: UILabel!
     var mainTrackingViewController : TrackingViewController?
     var playerNumber : Int = 0 {
-        didSet {
-            print("JUST SRERT AT \(playerNumber)")
+        didSet{
+            if playerNumber <= 1 {
+                playerLabel.textColor = ColorSettings.homeTeamColor
+            } else {
+                playerLabel.textColor = ColorSettings.awayTeamColor
+            }
         }
     }
     

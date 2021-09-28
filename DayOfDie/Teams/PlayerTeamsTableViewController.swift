@@ -8,21 +8,20 @@
 import UIKit
 import Alamofire
 
+@IBDesignable
 class PlayerTeamsTableViewController: BaseTableViewController<Team> {
     
     var player : Player!
     
-    override func viewDidLoad() {
-        cellIdentifier = "TeamCell"
-        tableSegueIdentifier = "toTeamDetail"
-        fetchURLPostfix = "/teams/\(player.username)/"
-        refreshTitleString = "Fetching Team Data..."
-        super.viewDidLoad()
-    }
+    override func setRawObjectList() -> [Team] { return rawObjectList }
+    override func setObjectList(rawList: [Team]) -> [Team] { return rawList }
+    override func setCellIdentifiers() -> [String] { return ["TeamCell"] }
+    override func setTableSegueIdentifier() -> String { return "toTeamDetail" }
+    override func setFetchURLEnding() -> String { return "/teams/\(player.username)/" }
+    override func setRefreshTitleString() -> String { return "Fetching Team Data..." }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
-            print("The identifier is: \(identifier)")
             if identifier == "toTeamDetail" {
                 guard let viewController = segue.destination as? TeamDetailViewController else {
                     fatalError("Unexpected destination: \(segue.destination)")}

@@ -17,37 +17,62 @@ enum TeamStatuses : String, Codable{
 
 class Team : Codable, Equatable, Searchable {
     static var allTeams : [Team] = [] {
-        didSet{
-            self.parseTeams()
+        didSet {
+            referenceTeams()
         }
     }
-    static var approvedTeams : [Team] = []
-    static var approvedTeammates : [Player] = []
-    static var pendingTeams : [Team] = []
-    static var pendingTeammates : [Player] = []
-    static var waitingTeams : [Team] = []
-    static var waitingTeammates : [Player] = []
-    static var nothingTeams : [Team] = []
-    static var nothingTeammates : [Player] = []
-    static var blockedTeams : [Team] = []
-    static var blockedTeammates : [Player] = []
+    
+    static var allTeammates : [Player] {
+        get { return allTeams.map { $0.getOtherUser() } }
+    }
+    static var acceptedTeams : [Team] {
+        get { return allTeams.filter { return $0.status == .ACCEPTED }}
+    }
+    static var acceptedTeammates : [Player] {
+        get { return acceptedTeams.map { $0.getOtherUser() }}
+    }
+    static var pendingTeams : [Team] {
+        get { return allTeams.filter { return $0.status == .PENDING && $0.loggedInUserIsTeamCaptain() }}
+    }
+    static var pendingTeammates : [Player] {
+        get { return pendingTeams.map { $0.getOtherUser() }}
+    }
+    static var waitingTeams : [Team] {
+        get { return allTeams.filter { return $0.status == .PENDING &&  !$0.loggedInUserIsTeamCaptain() }}
+    }
+    static var waitingTeammates : [Player] {
+        get { return waitingTeams.map { $0.getOtherUser() }}
+    }
+    static var nothingTeams : [Team] {
+        get { return allTeams.filter { return $0.status == .NOTHING }}
+    }
+    static var nothingTeammates : [Player] {
+        get { return nothingTeams.map { $0.getOtherUser() }}
+    }
+    static var blockedTeams : [Team] {
+        get { return allTeams.filter { return $0.status == .BLOCKED }}
+    }
+    static var blockedTeammates : [Player] {
+        get { return blockedTeams.map { $0.getOtherUser() }}
+    }
     
     static func getTeamStatus(player: Player) -> TeamStatuses {
-        if approvedTeammates.contains(player) {
-            return .ACCEPTED
+        if acceptedTeammates.contains(player) { return .ACCEPTED }
+        else if pendingTeammates.contains(player) { return .PENDING }
+        else if waitingTeammates.contains(player) { return .WAITING }
+        else if blockedTeammates.contains(player) { return .BLOCKED }
+        else { return .NOTHING }
+    }
+    
+    static func referenceTeams() {
+        for team in allTeams {
+            team.setReferencedPlayers()
         }
-        else if pendingTeammates.contains(player) {
-            return .PENDING
-        }
-        else if waitingTeammates.contains(player) {
-            return .WAITING
-        }
-        else if blockedTeammates.contains(player) {
-            return .BLOCKED
-        }
-        else {
-            return .NOTHING
-        }
+    }
+    
+    func setReferencedPlayers() {
+        self.teamCaptain = Player.getPlayer(inPlayer: self.teamCaptain)
+        self.teammate = Player.getPlayer(inPlayer: self.teammate)
     }
     
     var teamCaptain : Player
@@ -72,10 +97,11 @@ class Team : Codable, Equatable, Searchable {
     
     func getOtherUser() -> Player {
         if(User.player == teamCaptain){
-            return Player.getPlayer(inPlayer: teammate)!
+            return teammate
         }
         else{
-            return Player.getPlayer(inPlayer: teamCaptain)!
+            print("BUT THE OTHER PLAYER IS: \(teammate.username)")
+            return teamCaptain
         }
     }
     
@@ -93,49 +119,19 @@ class Team : Codable, Equatable, Searchable {
         return tempTeam
     }
     
+    static func findOrCreateTeam(inTeam: Team) -> Team {
+        return findOrCreateTeam(teamCaptain: inTeam.teamCaptain, teammate: inTeam.teammate)
+    }
+    
+    func isOnTeam(player: Player) -> Bool {
+        return player == teamCaptain || player == teammate
+    }
+    
     static func == (lhs: Team, rhs: Team) -> Bool {
         if(lhs.teamCaptain == rhs.teamCaptain && lhs.teammate == rhs.teammate){
             return true
         }
         return lhs.teamCaptain == rhs.teammate && lhs.teammate == rhs.teamCaptain
-    }
-    
-    static func parseTeams() {
-        self.pendingTeams = []
-        self.pendingTeammates = []
-        self.waitingTeams = []
-        self.waitingTeammates = []
-        self.nothingTeams = []
-        self.nothingTeammates = []
-        self.approvedTeams = []
-        self.approvedTeammates = []
-        self.blockedTeams = []
-        self.blockedTeammates = []
-        
-        for team in self.allTeams{
-            switch team.status {
-            case .ACCEPTED:
-                approvedTeams.append(team)
-                approvedTeammates.append(team.getOtherUser())
-            case .PENDING:
-                if team.loggedInUserIsTeamCaptain(){
-                    waitingTeams.append(team)
-                    waitingTeammates.append(team.getOtherUser())
-                }
-                else{
-                    pendingTeams.append(team)
-                    pendingTeammates.append(team.getOtherUser())
-                }
-            case .NOTHING:
-                nothingTeams.append(team)
-                nothingTeammates.append(team.getOtherUser())
-            case .BLOCKED:
-                blockedTeams.append(team)
-                blockedTeammates.append(team.getOtherUser())
-            default:
-                print("Team has invalid status.")
-            }
-        }
     }
     
     enum CodingKeys : String, CodingKey {

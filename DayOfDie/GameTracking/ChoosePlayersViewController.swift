@@ -27,20 +27,23 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
     override func viewDidLoad() {
         super.viewDidLoad()
  
-        for playerPicker in playerPickers{
-            playerPicker.dataSource = self
-            playerPicker.delegate = self
+        for i in 0...3{
+            playerPickers[i].dataSource = self
+            playerPickers[i].delegate = self
+            playerPickers[i].tag = i
         }
     }
     
     func setupPickers() {
         possiblePlayers = []
         possiblePlayers.append(User.player)
-        possiblePlayers.append(contentsOf: Team.approvedTeams.map({$0.getOtherUser()}))
+        possiblePlayers.append(contentsOf: Team.acceptedTeammates)
+        for player in possiblePlayers {
+            print("Possible Players: \(player.username)")
+        }
         for playerPicker in playerPickers {
             playerPicker.reloadComponent(0)
         }
-        print("Current possible players: \(possiblePlayers.count)")
         
         if(possiblePlayers.count < 4){
             for playerPicker in playerPickers{
@@ -103,20 +106,19 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         // Taking away three from the other three pickers
-        if possiblePlayers.count < 4 {
-            return 1
-        }
         return possiblePlayers.count
     }
     
-    // Telling the picker's what to display
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        // We start with a list of our friends, but only allow ones that are verified? At least for now...
-        if possiblePlayers.count < 4 {
-            return ""
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        let playerName = possiblePlayers[row].username
+        let color : UIColor!
+        if pickerView.tag <= 1 {
+            color = ColorSettings.homeTeamColor
         }
-        
-        return possiblePlayers[row].username
+        else {
+            color = ColorSettings.awayTeamColor
+        }
+        return NSAttributedString(string: playerName, attributes: [NSAttributedString.Key.foregroundColor: color!])
     }
     
     // When any of the pickers are selected
@@ -181,7 +183,6 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
         // Pass the selected object to the new view controller.
         
         if let identifier = segue.identifier {
-            print("The identifier is: \(identifier)")
             if identifier == "toFullStatsTracking" {
                 guard let viewController = segue.destination as? FullStatsTrackingViewController else {
                  fatalError("Unexpected destination: \(segue.destination)")}
@@ -195,7 +196,6 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
             else if identifier == "toJustScoreTracking" {
                 guard let viewController = segue.destination as? JustScoreTrackingViewController else {
                  fatalError("Unexpected destination: \(segue.destination)")}
-                print("HERE DUH")
                 viewController.players = players
             }
         }

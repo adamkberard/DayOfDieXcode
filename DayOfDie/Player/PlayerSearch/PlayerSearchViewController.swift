@@ -9,32 +9,21 @@ import UIKit
 
 class PlayerSearchViewController: SearchTableViewController<Player> {
     
-    override func viewDidLoad() {
-        setObjectList(inList: Player.allPlayers)
-        cellIdentifier = "PlayerCell"
-        tableSegueIdentifier = "toPlayerDetail"
-        fetchURLPostfix = "/players/"
-        searchPlaceholderString = "Search Players..."
-        refreshTitleString = "Fetch Player Data..."
-        super.viewDidLoad()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setObjectList(inList: Player.allPlayers)
-        tableView.reloadData()
-    }
-    
-    func setObjectList(inList: [Player]) -> Void {
-        objectList = inList.filter { (player: Player) -> Bool in
+    override func setRawObjectList() -> [Player] { return Player.allPlayers }
+    override func setObjectList(rawList: [Player]) -> [Player] {
+        Player.allPlayers = rawList
+        return rawList.filter { (player: Player) -> Bool in
             return player != User.player
         }
     }
+    override func setCellIdentifiers() -> [String] { return ["PlayerCell"] }
+    override func setTableSegueIdentifier() -> String { return "toPlayerDetail" }
+    override func setFetchURLEnding() -> String { return "/players/" }
+    override func setRefreshTitleString() -> String { return "Fetch Player Data..." }
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
-            print("The identifier is: \(identifier)")
             if identifier == "toPlayerDetail" {
                 guard let viewController = segue.destination as? PlayerViewController else {
                     fatalError("Unexpected destination: \(segue.destination)")}

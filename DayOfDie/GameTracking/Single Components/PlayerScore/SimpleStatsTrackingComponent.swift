@@ -17,13 +17,24 @@ class SimpleStatsTrackingComponent: TrackerComponent {
     // Mark: Outlet Functions
     @IBAction func plusPointButtonPressed(_ sender: Any) {
         points.append(Point(typeOfPoint: .UNTRACKED, scorer: player!))
+        
+        if !points.isEmpty {
+            minusPointButton.isEnabled = true
+        }
     }
     
     // Mark: Outlet Functions
     @IBAction func minusPointButtonPressed(_ sender: Any) {
+        // This should never be called
         if points.isEmpty {
+            minusPointButton.isEnabled = false
             return
         }
+        
         points.removeLast()
+        
+        if points.isEmpty {
+            minusPointButton.isEnabled = false
+        }
     }
 }
