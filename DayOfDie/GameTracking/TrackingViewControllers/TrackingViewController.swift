@@ -36,7 +36,7 @@ class TrackingViewController: UIViewController {
     }
     
     var timeStarted : Date = Date()
-    var returnedGame : Game?
+//    var returnedGame : Game?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,10 +114,11 @@ class TrackingViewController: UIViewController {
         
         APICalls.sendGame(parameters: parameters) { status, returnData in
             if status{
-                self.returnedGame = returnData as? Game
-                Game.allGames.append(self.returnedGame!)
+                let tempGame = returnData as? Game
+                GameSet.updateAllGames(gameList: [tempGame!])
+                let referencedGame = GameSet.getGame(inGame: tempGame!)
+                self.updatePlayerAndTeamStats(game: referencedGame)
                 
-                self.updatePlayerAndTeamStats()
                 self.resetEverything()
                 
                 self.performSegue(withIdentifier: "toGameAfterSave", sender: self)
@@ -132,22 +133,22 @@ class TrackingViewController: UIViewController {
         }
     }
     
-    func updatePlayerAndTeamStats() {
+    func updatePlayerAndTeamStats(game: Game) {
         if self.scoreboard.teamOneScore > self.scoreboard.teamTwoScore{
-            Team.findOrCreateTeam(teamCaptain: self.players[0], teammate: self.players[1]).wins += 1
-            Team.findOrCreateTeam(teamCaptain: self.players[2], teammate: self.players[3]).losses += 1
-            players[0].wins += 1
-            players[1].wins += 1
-            players[2].losses += 1
-            players[3].losses += 1
+            game.homeTeam.wins += 1
+            game.awayTeam.losses += 1
+            game.homeTeam.teamCaptain.wins += 1
+            game.homeTeam.teammate.wins += 1
+            game.awayTeam.teamCaptain.losses += 1
+            game.awayTeam.teammate.losses += 1
         }
         else{
-            Team.findOrCreateTeam(teamCaptain: self.players[0], teammate: self.players[1]).losses += 1
-            Team.findOrCreateTeam(teamCaptain: self.players[2], teammate: self.players[3]).wins += 1
-            players[0].losses += 1
-            players[1].losses += 1
-            players[1].wins += 1
-            players[1].wins += 1
+            game.homeTeam.losses += 1
+            game.awayTeam.wins += 1
+            game.homeTeam.teamCaptain.losses += 1
+            game.homeTeam.teammate.losses += 1
+            game.awayTeam.teamCaptain.wins += 1
+            game.awayTeam.teammate.wins += 1
         }
     }
     

@@ -12,17 +12,17 @@ class GameTableViewController: BaseTableViewController<Game> {
     
     var needToGoToLastGame : Bool = false
     
-    override func setRawObjectList() -> [Game] { return Game.allGames }
+    override func setRawObjectList() -> [Game] { return GameSet.getAllGames() }
     override func setCellIdentifiers() -> [String] { return ["GameCell"] }
     override func setTableSegueIdentifier() -> String { return "toGameDetail" }
-    override func setFetchURLEnding() -> String { return "/games/" }
+    override func setFetchURLEnding() -> String { return "/game/" }
     override func setRefreshTitleString() -> String { return "Fetch Game Data..." }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if needToGoToLastGame {
-            tableView.selectRow(at: IndexPath(row: Game.allGames.count - 1, section: 0), animated: true, scrollPosition: .bottom)
-            selectedObject = Game.allGames.last
+            tableView.selectRow(at: IndexPath(row: GameSet.getAllGames().count - 1, section: 0), animated: true, scrollPosition: .bottom)
+            selectedObject = GameSet.getAllGames().last
             self.performSegue(withIdentifier: "toGameDetail", sender: self)
             needToGoToLastGame = false
         }

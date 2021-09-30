@@ -24,11 +24,15 @@ class PlayerViewController: BaseTableViewController<Game> {
     
     override func setRawObjectList() -> [Game] { return rawObjectList }
     override func setObjectList(rawList: [Game]) -> [Game] {
+        for game in rawList {
+            GameSet.setReferencedTeams(game: game)
+            GameSet.setReferencedPlayerForPoints(game: game)
+        }
         return rawList
     }
     override func setCellIdentifiers() -> [String] { return ["GameCell"] }
     override func setTableSegueIdentifier() -> String { return "toGameDetail" }
-    override func setFetchURLEnding() -> String { return "/games/\(player!.username)/" }
+    override func setFetchURLEnding() -> String { return "/player/\(player!.uuid)/games/" }
     override func setRefreshTitleString() -> String { return "Fetching Game Data..." }
     override func setTitleString() -> String { return player!.username }
     
@@ -60,7 +64,7 @@ class PlayerViewController: BaseTableViewController<Game> {
     }
     
     func setTeamStatusLabelAndButton() {
-        switch Team.getTeamStatus(player: player!) {
+        switch TeamSet.getTeamStatus(player: player!) {
         case .ACCEPTED:
             teamStatusLabel.text = "Friends"
             changeTeamStatusButton.setTitle("Unfriend", for: .normal)
@@ -92,10 +96,7 @@ class PlayerViewController: BaseTableViewController<Game> {
         APICalls.sendFriend(parameters: parameters) { status, returnData in
             if status{
                 let newTeam = (returnData as! Team)
-                if let index = Team.allTeams.firstIndex(of: newTeam){
-                    Team.allTeams.remove(at: index)
-                }
-                Team.allTeams.append(newTeam)
+                TeamSet.updateAllTeams(teamList: [newTeam])
                 self.setupView()
             }
             else{

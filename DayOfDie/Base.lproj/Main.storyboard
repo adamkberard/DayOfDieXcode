@@ -1467,6 +1467,7 @@
                     <connections>
                         <outlet property="lossesLabel" destination="Vt8-qs-k6o" id="fuC-oY-uus"/>
                         <outlet property="teamCaptainLabel" destination="VNH-T5-dXw" id="7YM-ue-66d"/>
+                        <outlet property="teamNameLabel" destination="b3x-pa-p8H" id="Nof-5k-bVz"/>
                         <outlet property="teammateLabel" destination="Hi6-3n-EJV" id="u2n-jv-JDZ"/>
                         <outlet property="totalGamesLabel" destination="Z0P-hz-Afo" id="HjC-46-wYu"/>
                         <outlet property="winsLabel" destination="ahh-cL-l5l" id="K09-50-emS"/>

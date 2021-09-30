@@ -51,9 +51,8 @@ class SignInViewController:
             if status{
                 // Check if everything is done if so move on
                 let loginPack = returnData as! LoginPack
-                User.player.username = loginPack.username
                 User.token = loginPack.token
-                User.email = email
+                User.player = PlayerSet.getPlayer(inPlayer: loginPack.player!)
                 self.performSegue(withIdentifier: "signInSegue", sender: self)
             }
             else{
@@ -67,6 +66,6 @@ class SignInViewController:
 }
 
 class LoginPack: Decodable {
-    var username : String = ""
     var token : String = ""
+    var player : Player?
 }

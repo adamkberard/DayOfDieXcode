@@ -36,11 +36,8 @@ class ChoosePlayersViewController: UIViewController, UIPickerViewDataSource, UIP
     
     func setupPickers() {
         possiblePlayers = []
-        possiblePlayers.append(User.player)
-        possiblePlayers.append(contentsOf: Team.acceptedTeammates)
-        for player in possiblePlayers {
-            print("Possible Players: \(player.username)")
-        }
+        possiblePlayers.append(User.player!)
+        possiblePlayers.append(contentsOf: TeamSet.acceptedTeammates)
         for playerPicker in playerPickers {
             playerPicker.reloadComponent(0)
         }

@@ -22,7 +22,7 @@ class TeamCell: BaseTableViewCell<Team> {
         self.team = object
         playerOneLabel.text = team.teamCaptain.username
         playerTwoLabel.text = team.teammate.username
-        teamNameLabel.text = team.teamName
+        teamNameLabel.text = team.getTeamName()
         winsLabel.text = String(team.wins)
         lossesLabel.text = String(team.losses)
     }

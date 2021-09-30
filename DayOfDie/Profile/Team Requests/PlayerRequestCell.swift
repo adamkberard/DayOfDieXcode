@@ -25,10 +25,7 @@ class PlayerRequestCell: PlayerCell {
         APICalls.sendFriend(parameters: parameters) { status, returnData in
             if status{
                 let newTeam = (returnData as! Team)
-                if let index = Team.allTeams.firstIndex(of: newTeam){
-                    Team.allTeams.remove(at: index)
-                }
-                Team.allTeams.append(newTeam)
+                TeamSet.updateAllTeams(teamList: [newTeam])
                 self.parentTableView?.tableView.reloadData()
             }
             else{

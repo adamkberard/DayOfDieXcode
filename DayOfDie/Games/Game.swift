@@ -7,13 +7,47 @@
 
 import UIKit
 
-
-class Game : Codable, Equatable {
-    static var allGames : [Game] = [] {
-        didSet {
-            referenceGames()
+class GameSet {
+    private static var allGames : [Game] = []
+    
+    static func getAllGames() -> [Game] {
+        return allGames
+    }
+    
+    static func updateAllGames(gameList: [Game]) {
+        for inGame in gameList {
+            if !allGames.contains(where: { return $0 == inGame }) {
+                // Make references work
+                setReferencedTeams(game: inGame)
+                setReferencedPlayerForPoints(game: inGame)
+                allGames.append(inGame)
+            }
         }
     }
+    
+    static func setReferencedTeams(game: Game) {
+        game.homeTeam = TeamSet.getTeam(inTeam: game.homeTeam)
+        game.awayTeam = TeamSet.getTeam(inTeam: game.awayTeam)
+    }
+    
+    static func setReferencedPlayerForPoints(game: Game) {
+        for point in game.points {
+            point.scorer = PlayerSet.getPlayer(inPlayer: point.scorer)
+        }
+    }
+    
+    static func getGame(inGame: Game) -> Game {
+        for game in allGames {
+            if game == inGame {
+                return game
+            }
+        }
+        updateAllGames(gameList: [inGame])
+        return getGame(inGame: inGame)
+    }
+}
+
+class Game : Codable, Equatable {
     var timeStarted : Date?
     var timeEnded : Date?
     
@@ -27,32 +61,14 @@ class Game : Codable, Equatable {
     
     var points : [Point]
     
-    static func referenceGames() {
-        for game in allGames {
-            game.setReferencedTeams()
-            game.setReferencedPlayerForPoints()
-        }
-    }
-    
-    func setReferencedTeams() {
-        self.homeTeam = Team.findOrCreateTeam(inTeam: self.homeTeam)
-        self.awayTeam = Team.findOrCreateTeam(inTeam: self.awayTeam)
-    }
-    
-    func setReferencedPlayerForPoints() {
-        for point in points {
-            point.scorer = Player.getPlayer(inPlayer: point.scorer)
-        }
-    }
-    
-    init(teamOne: Team, teamTwo: Team, points: [Point]) {
-        self.homeTeam = teamOne
-        self.awayTeam = teamTwo
-        self.homeTeamScore = 0
-        self.teamTwoScore = 0
-        self.confirmed = false
-        self.points = points
-    }
+//    init(teamOne: Team, teamTwo: Team, points: [Point]) {
+//        self.homeTeam = teamOne
+//        self.awayTeam = teamTwo
+//        self.homeTeamScore = 0
+//        self.teamTwoScore = 0
+//        self.confirmed = false
+//        self.points = points
+//    }
     
     init(playerOne: Player, playerTwo: Player, playerThree: Player, playerFour: Player, points: [Point]){
         self.homeTeam = Team(teamCaptain: playerOne, teammate: playerTwo)

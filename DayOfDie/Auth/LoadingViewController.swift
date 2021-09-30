@@ -31,7 +31,7 @@ class LoadingViewController: UIViewController {
         APICalls.getUsers {status, returnData in
             if status{
                 // Check if everything is done if so move on
-                Player.allPlayers = returnData as! [Player]
+                PlayerSet.updateAllPlayers(playerList: returnData as! [Player])
                 self.loadTeams()
             }
             else{
@@ -47,7 +47,7 @@ class LoadingViewController: UIViewController {
         // Loading friends here
         APICalls.getTeams {status, returnData in
             if status{
-                Team.allTeams = returnData as! [Team]
+                TeamSet.updateAllTeams(teamList: returnData as! [Team])
                 self.loadGames()
             }
             else{
@@ -64,7 +64,7 @@ class LoadingViewController: UIViewController {
         APICalls.getGames {status, returnData in
             if status{
                 // Check if everything is done if so move on
-                Game.allGames = returnData as! [Game]
+                GameSet.updateAllGames(gameList: returnData as! [Game])
                 self.performSegue(withIdentifier: "toMainApp", sender: self)
             }
             else{
@@ -97,63 +97,63 @@ class APICalls {
     
     // MARK: Getters
     static func getPlayerGames(player: Player, completion: @escaping (Bool, Any) -> Void) {
-        get(url: "\(URLInfo.baseUrl)/games/\(player.username)/", returnType: [Game].self) { status, returnData in
+        get(url: "\(URLInfo.baseUrl)/player/\(player.uuid)/games/", returnType: [Game].self) { status, returnData in
             completion(status, returnData)
         }
     }
     
     static func getPlayerTeams(player: Player, completion: @escaping (Bool, Any) -> Void) {
-        get(url: "\(URLInfo.baseUrl)/teams/\(player.username)/", returnType: [Team].self) { status, returnData in
+        get(url: "\(URLInfo.baseUrl)/player/\(player.uuid)/teams/", returnType: [Team].self) { status, returnData in
             completion(status, returnData)
         }
     }
     
     static func getTeamGames(team: Team, completion: @escaping (Bool, Any) -> Void) {
-        get(url: "\(URLInfo.baseUrl)/games/\(team.teamCaptain.username)/\(team.teammate.username)/", returnType: [Game].self) { status, returnData in
+        get(url: "\(URLInfo.baseUrl)/team/\(team.uuid!.uuidString.lowercased())/games/", returnType: [Game].self) { status, returnData in
             completion(status, returnData)
         }
     }
     
-    static func getUser(username: String, completion: @escaping (Bool, Any) -> Void) {
-        get(url: "\(URLInfo.baseUrl)/users/\(username)/", returnType: Player.self) {status, returnDict in
+    static func getUser(player: Player, completion: @escaping (Bool, Any) -> Void) {
+        get(url: "\(URLInfo.baseUrl)/player/\(player.uuid)/", returnType: Player.self) {status, returnDict in
             completion(status, returnDict)
         }
     }
     
     static func getTeams(completion: @escaping (Bool, Any) -> Void) {
-        get(url: "\(URLInfo.baseUrl)/teams/", returnType: [Team].self) {status, returnDict in
+        get(url: "\(URLInfo.baseUrl)/team/", returnType: [Team].self) {status, returnDict in
             completion(status, returnDict)
         }
     }
     
     static func getUsers(completion: @escaping (Bool, Any) -> Void) {
-        get(url: "\(URLInfo.baseUrl)/players/", returnType: [Player].self) {status, returnDict in
+        get(url: "\(URLInfo.baseUrl)/player/", returnType: [Player].self) {status, returnDict in
             completion(status, returnDict)
         }
     }
     
     static func getGames(completion: @escaping (Bool, Any) -> Void) {
-        get(url: "\(URLInfo.baseUrl)/games/", returnType: [Game].self) {status, returnDict in
+        get(url: "\(URLInfo.baseUrl)/game/", returnType: [Game].self) {status, returnDict in
             completion(status, returnDict)
         }
     }
     
     // MARK: Creates
     static func sendGame(parameters: [String: Any], completion: @escaping (Bool, Any) -> Void) {
-        post(url: "\(URLInfo.baseUrl)/games/", parameters: parameters, returnType: Game.self) { status, returnData in
+        post(url: "\(URLInfo.baseUrl)/game/", parameters: parameters, returnType: Game.self) { status, returnData in
             completion(status, returnData)
         }
     }
     
     static func sendFriend(parameters: [String: Any], completion: @escaping (Bool, Any) -> Void) {
-        post(url: "\(URLInfo.baseUrl)/teams/", parameters: parameters, returnType: Team.self) { status, returnData in
+        post(url: "\(URLInfo.baseUrl)/team/", parameters: parameters, returnType: Team.self) { status, returnData in
             completion(status, returnData)
         }
     }
     
     // MARK: Editors
     static func changeUsername(parameters: [String: Any], completion: @escaping (Bool, Any) -> Void) {
-        patch(url: "\(URLInfo.baseUrl)/players/\(User.player.username)/", parameters: parameters, returnType: Player.self) { status, returnData in
+        patch(url: "\(URLInfo.baseUrl)/player/\(User.player!.uuid)/", parameters: parameters, returnType: Player.self) { status, returnData in
             completion(status, returnData)
         }
     }

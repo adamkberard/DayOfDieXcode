@@ -15,7 +15,7 @@ class ProfileViewController: PlayerViewController, UITextFieldDelegate {
     
     override var playerTeams: [Team] {
         didSet {
-            Team.allTeams = playerTeams
+            TeamSet.updateAllTeams(teamList: playerTeams)
         }
     }
     
@@ -29,14 +29,17 @@ class ProfileViewController: PlayerViewController, UITextFieldDelegate {
         usernameLabel.text = player!.username
     }
     
-    override func setRawObjectList() -> [Game] { return Game.allGames }
+    override func setRawObjectList() -> [Game] { return GameSet.getAllGames() }
     override func setObjectList(rawList: [Game]) -> [Game] {
-        Game.allGames = rawList
+        for game in rawList {
+            GameSet.setReferencedTeams(game: game)
+            GameSet.setReferencedPlayerForPoints(game: game)
+        }
         return rawList
     }
     override func setCellIdentifiers() -> [String] { return ["GameCell"] }
     override func setTableSegueIdentifier() -> String { return "toGameDetail" }
-    override func setFetchURLEnding() -> String { return "/games/" }
+    override func setFetchURLEnding() -> String { return "/game/" }
     override func setRefreshTitleString() -> String { return "Fetching Game Data..." }
     override func setTitleString() -> String { return "Profile" }
     
@@ -55,15 +58,12 @@ class ProfileViewController: PlayerViewController, UITextFieldDelegate {
             usernameTextField.becomeFirstResponder()
         } else {
             usernameTextField.resignFirstResponder()
-            let beforeUsername : String = User.player.username
+            let beforeUsername : String = User.player!.username
             let parameters : [String: Any] = ["username": usernameTextField.text as Any]
             APICalls.changeUsername(parameters: parameters) { status, returnData in
                 if status{
-                    self.player = returnData as? Player
-                    User.player = self.player!
-
-                    // Have to update every list we have
-                    Player.changeUser(oldUsername: beforeUsername)
+                    let tempPlayer = returnData as? Player
+                    PlayerSet.updateAllPlayers(playerList: [tempPlayer!])
                     
                     self.tableView.reloadData()
                     self.myRefreshControl.endRefreshing()
@@ -83,6 +83,7 @@ class ProfileViewController: PlayerViewController, UITextFieldDelegate {
             usernameLabel.text = usernameTextField.text
             usernameLabel.isHidden = false
             usernameTextField.isHidden = true
+            usernameTextField.text = ""
             changeUsernameButton.isEnabled = true
         }
     }

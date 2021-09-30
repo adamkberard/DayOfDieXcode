@@ -11,6 +11,7 @@ class TeamDetailViewController: BaseTableViewController<Game> {
     
     @IBOutlet weak var teamCaptainLabel: UILabel!
     @IBOutlet weak var teammateLabel: UILabel!
+    @IBOutlet weak var teamNameLabel: UILabel!
     @IBOutlet weak var winsLabel: UILabel!
     @IBOutlet weak var lossesLabel: UILabel!
     @IBOutlet weak var totalGamesLabel: UILabel!
@@ -18,12 +19,19 @@ class TeamDetailViewController: BaseTableViewController<Game> {
     var team : Team?
     
     override func setRawObjectList() -> [Game] { return [] }
-    override func setObjectList(rawList: [Game]) -> [Game] { return rawList }
+    override func setObjectList(rawList: [Game]) -> [Game] {
+        for game in rawList {
+            GameSet.setReferencedTeams(game: game)
+            GameSet.setReferencedPlayerForPoints(game: game)
+        }
+        return rawList
+        
+    }
     override func setCellIdentifiers() -> [String] { return ["GameCell"] }
     override func setTableSegueIdentifier() -> String { return "toGameDetail" }
-    override func setFetchURLEnding() -> String { return "/games/\(team!.teamCaptain.username)/\(team!.teammate.username)/" }
+    override func setFetchURLEnding() -> String { return "/team/\(team!.uuid!.uuidString.lowercased())/games/" }
     override func setRefreshTitleString() -> String { return "Fetching Game Data..." }
-    override func setTitleString() -> String { return team!.teamName }
+    override func setTitleString() -> String { return team!.getTeamName() }
 
     override func setupView() {
         super.setupView()
