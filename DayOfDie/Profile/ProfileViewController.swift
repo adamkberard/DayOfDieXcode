@@ -84,7 +84,6 @@ class ProfileViewController: PlayerViewController, UITextFieldDelegate {
             usernameLabel.isHidden = false
             usernameTextField.isHidden = true
             usernameTextField.text = ""
-            changeUsernameButton.isEnabled = true
         }
     }
     

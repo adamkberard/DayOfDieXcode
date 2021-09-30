@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TeamDetailViewController: BaseTableViewController<Game> {
+class TeamDetailViewController: BaseTableViewController<Game>, UITextFieldDelegate {
     
     @IBOutlet weak var teamCaptainLabel: UILabel!
     @IBOutlet weak var teammateLabel: UILabel!
@@ -15,6 +15,8 @@ class TeamDetailViewController: BaseTableViewController<Game> {
     @IBOutlet weak var winsLabel: UILabel!
     @IBOutlet weak var lossesLabel: UILabel!
     @IBOutlet weak var totalGamesLabel: UILabel!
+    @IBOutlet weak var changeTeamNameButton: UIButton!
+    @IBOutlet weak var changeTeamTextField: UITextField!
     
     var team : Team?
     
@@ -25,7 +27,6 @@ class TeamDetailViewController: BaseTableViewController<Game> {
             GameSet.setReferencedPlayerForPoints(game: game)
         }
         return rawList
-        
     }
     override func setCellIdentifiers() -> [String] { return ["GameCell"] }
     override func setTableSegueIdentifier() -> String { return "toGameDetail" }
@@ -37,14 +38,62 @@ class TeamDetailViewController: BaseTableViewController<Game> {
         super.setupView()
         teamCaptainLabel.text = team!.teamCaptain.username
         teammateLabel.text = team!.teammate.username
-        
+        teamNameLabel.text = team!.getTeamName()
         winsLabel.text = String(team!.wins)
         lossesLabel.text = String(team!.losses)
         totalGamesLabel.text = String(team!.wins + team!.losses)
+        
+        if team?.teamCaptain == User.player || team?.teammate == User.player {
+            changeTeamNameButton.isHidden = false
+        } else {
+            changeTeamNameButton.isHidden = true
+        }
     }
     
     @IBAction func seeTeamsButtonPressed(_ sender: Any) {
         self.performSegue(withIdentifier: "toTeamList", sender: self)
+    }
+    
+    @IBAction func changeTeamNameButtonPressed(_ sender: Any) {
+        if changeTeamTextField.isHidden {
+            teamNameLabel.isHidden = true
+            changeTeamTextField.isHidden = false
+            changeTeamTextField.becomeFirstResponder()
+        } else {
+            changeTeamTextField.resignFirstResponder()
+            let beforeTeamName : String = team!.getTeamName()
+            let parameters : [String: Any] = ["team_name": changeTeamTextField.text as Any]
+            APICalls.changeTeamName(parameters: parameters, team: team!) { status, returnData in
+                if status{
+                    let tempTeam = returnData as? Team
+                    TeamSet.updateAllTeams(teamList: [tempTeam!])
+                    self.team = TeamSet.getTeam(inTeam: tempTeam!)
+                    
+                    self.setupView()
+                    self.tableView.reloadData()
+                    self.myRefreshControl.endRefreshing()
+                }
+                else{
+                    self.myRefreshControl.endRefreshing()
+                    let errors : [String] = returnData as! [String]
+                    // Alert Stuff
+                    let alert = UIAlertController(title: "Connection Error", message: errors.first, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Cool", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                    
+                    // Change username back to before
+                    self.teamNameLabel.text = beforeTeamName
+                }
+            }
+            teamNameLabel.text = changeTeamTextField.text
+            teamNameLabel.isHidden = false
+            changeTeamTextField.isHidden = true
+            changeTeamTextField.text = ""
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

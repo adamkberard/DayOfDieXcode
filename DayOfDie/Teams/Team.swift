@@ -35,9 +35,15 @@ class TeamSet {
     
     static func updateAllTeams(teamList: [Team]) {
         for inTeam in teamList {
-            if !allTeams.contains(where: { return $0 == inTeam }) {
+            let index = allTeams.firstIndex(of: inTeam)
+            if index == nil {
                 setReferencedPlayers(team: inTeam)
                 allTeams.append(inTeam)
+            } else {
+                allTeams[index!].wins = inTeam.wins
+                allTeams[index!].losses = inTeam.losses
+                allTeams[index!].status = inTeam.status
+                allTeams[index!].teamName = inTeam.teamName
             }
         }
     }

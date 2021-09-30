@@ -1386,6 +1386,11 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4gD-vR-U5W">
+                                                        <rect key="frame" x="394" y="0.0" width="0.0" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="7SM-7a-WlP">
@@ -1439,6 +1444,14 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h9H-Cx-VY8">
+                                                <rect key="frame" x="0.0" y="123" width="394" height="0.0"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Change Team Name"/>
+                                                <connections>
+                                                    <action selector="changeTeamNameButtonPressed:" destination="Arq-l3-hrX" eventType="touchUpInside" id="MO0-zE-qjo"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xNK-Hg-g7Z">
@@ -1465,6 +1478,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Team" id="15r-JO-MpU"/>
                     <connections>
+                        <outlet property="changeTeamNameButton" destination="h9H-Cx-VY8" id="h4w-Df-zvS"/>
+                        <outlet property="changeTeamTextField" destination="4gD-vR-U5W" id="WXt-i5-qoy"/>
                         <outlet property="lossesLabel" destination="Vt8-qs-k6o" id="fuC-oY-uus"/>
                         <outlet property="teamCaptainLabel" destination="VNH-T5-dXw" id="7YM-ue-66d"/>
                         <outlet property="teamNameLabel" destination="b3x-pa-p8H" id="Nof-5k-bVz"/>

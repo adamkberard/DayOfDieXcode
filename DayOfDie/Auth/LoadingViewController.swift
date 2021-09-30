@@ -158,6 +158,12 @@ class APICalls {
         }
     }
     
+    static func changeTeamName(parameters: [String: Any], team: Team, completion: @escaping (Bool, Any) -> Void) {
+        patch(url: "\(URLInfo.baseUrl)/team/\(team.uuid!.uuidString.lowercased())/", parameters: parameters, returnType: Team.self) { status, returnData in
+            completion(status, returnData)
+        }
+    }
+    
     
     // MARK: Basic Requests
     static func get<T: Decodable>(url: String, returnType: T.Type, completion: @escaping (Bool, Any) -> Void) {
