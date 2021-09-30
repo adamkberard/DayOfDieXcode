@@ -9,9 +9,10 @@ import UIKit
 
 class TeamRequestTableViewController: BaseTableViewController<Team> {
     
-    override func setRawObjectList() -> [Team] { return TeamSet.getAllTeams() }
+    override func setRawObjectList() -> [Team] { return TeamSet.allMyTeams }
     override func setObjectList(rawList: [Team]) -> [Team] {
-        return rawList
+        TeamSet.updateAllTeams(teamList: rawList)
+        return TeamSet.allMyTeams
     }
     override func setCellIdentifiers() -> [String] { return ["WaitingTeammateCell", "PendingTeammateCell"] }
     override func setTableSegueIdentifier() -> String { return "" }

@@ -15,12 +15,12 @@ class PlayerViewController: BaseTableViewController<Game> {
     @IBOutlet weak var totalGamesLabel: UILabel!
     @IBOutlet weak var totalWinsLabel: UILabel!
     @IBOutlet weak var totalLossesLabel: UILabel!
-    @IBOutlet weak var changeTeamStatusButton: UIButton!
+    @IBOutlet weak var acceptTeamStatusButton: UIButton!
+    @IBOutlet weak var denyTeamStatusButton: UIButton!
     
     var playerTeams : [Team] = []
     
     var player : Player?
-    var changeTeamStatusOption : TeamStatuses?
     
     override func setRawObjectList() -> [Game] { return rawObjectList }
     override func setObjectList(rawList: [Game]) -> [Game] {
@@ -64,33 +64,48 @@ class PlayerViewController: BaseTableViewController<Game> {
     }
     
     func setTeamStatusLabelAndButton() {
+        denyTeamStatusButton.isHidden = true
+        acceptTeamStatusButton.isHidden = true
         switch TeamSet.getTeamStatus(player: player!) {
         case .ACCEPTED:
             teamStatusLabel.text = "Friends"
-            changeTeamStatusButton.setTitle("Unfriend", for: .normal)
-            changeTeamStatusOption = .NOTHING
+            denyTeamStatusButton.isHidden = false
+            denyTeamStatusButton.setTitle("Unfriend", for: .normal)
         case .WAITING:
             teamStatusLabel.text = "Waiting"
-            changeTeamStatusButton.setTitle("Cancel Request", for: .normal)
-            changeTeamStatusOption = .NOTHING
+            denyTeamStatusButton.isHidden = false
+            denyTeamStatusButton.setTitle("Cancel Request", for: .normal)
         case .PENDING:
             teamStatusLabel.text = "Pending"
-            changeTeamStatusButton.setTitle("Accept", for: .normal)
-            changeTeamStatusOption = .ACCEPTED
+            denyTeamStatusButton.isHidden = false
+            acceptTeamStatusButton.isHidden = false
+            acceptTeamStatusButton.setTitle("Accept", for: .normal)
+            denyTeamStatusButton.setTitle("Deny", for: .normal)
         case .NOTHING:
-            teamStatusLabel.text  = "Nothing"
-            changeTeamStatusButton.setTitle("Send Request", for: .normal)
-            changeTeamStatusOption = .ACCEPTED
+            teamStatusLabel.text  = "Not a Team"
+            acceptTeamStatusButton.isHidden = false
+            acceptTeamStatusButton.setTitle("Send Request", for: .normal)
         default:
             teamStatusLabel.text = "Default"
-            changeTeamStatusOption = .NOTHING
         }
     }
 
-    @IBAction func changeTeamStatusButtonPressed(_ sender: Any) {
+    @IBAction func acceptTeamStatusButtonPressed(_ sender: Any) {
+        sendFriendRequest(teamStatus: .ACCEPTED)
+    }
+    
+    @IBAction func denyTeamStatusButtonPressed(_ sender: Any) {
+        sendFriendRequest(teamStatus: .NOTHING)
+    }
+    
+    @IBAction func seeTeamsButtonPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "toTeamList", sender: self)
+    }
+    
+    func sendFriendRequest(teamStatus: TeamStatuses) {
         let parameters: [String: Any] = [
             "teammate": player!.username,
-            "status": changeTeamStatusOption!.rawValue
+            "status": teamStatus.rawValue
         ]
         
         APICalls.sendFriend(parameters: parameters) { status, returnData in
@@ -108,10 +123,6 @@ class PlayerViewController: BaseTableViewController<Game> {
                 self.present(alert, animated: true)
             }
         }
-    }
-    
-    @IBAction func seeTeamsButtonPressed(_ sender: Any) {
-        self.performSegue(withIdentifier: "toTeamList", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

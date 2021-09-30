@@ -1070,7 +1070,16 @@
                                                 <rect key="frame" x="197" y="0.0" width="197" height="31.5"/>
                                                 <state key="normal" title="Change Team Status"/>
                                                 <connections>
-                                                    <action selector="changeTeamStatusButtonPressed:" destination="aMY-Aj-k0x" eventType="touchUpInside" id="57V-c7-UHu"/>
+                                                    <action selector="acceptTeamStatusButtonPressed:" destination="aMY-Aj-k0x" eventType="touchUpInside" id="Gtv-at-XrL"/>
+                                                </connections>
+                                            </button>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQE-YB-5VX">
+                                                <rect key="frame" x="394" y="0.0" width="0.0" height="31.5"/>
+                                                <color key="tintColor" systemColor="systemRedColor"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Deny"/>
+                                                <connections>
+                                                    <action selector="denyTeamStatusButtonPressed:" destination="aMY-Aj-k0x" eventType="touchUpInside" id="vab-uV-8tf"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1167,7 +1176,8 @@
                     <tabBarItem key="tabBarItem" title="User" id="pep-3b-vRx"/>
                     <navigationItem key="navigationItem" title="Username" id="J0i-N8-cTj"/>
                     <connections>
-                        <outlet property="changeTeamStatusButton" destination="9sU-pg-yso" id="Ptw-1z-aSn"/>
+                        <outlet property="acceptTeamStatusButton" destination="9sU-pg-yso" id="Ptw-1z-aSn"/>
+                        <outlet property="denyTeamStatusButton" destination="OQE-YB-5VX" id="meD-vv-x8n"/>
                         <outlet property="numberTeamsLabel" destination="Pmi-Yp-in0" id="Dhx-Ci-32n"/>
                         <outlet property="teamStatusLabel" destination="Xeg-d9-IXH" id="rlb-A8-auc"/>
                         <outlet property="totalGamesLabel" destination="RPf-AZ-IW5" id="tgU-sj-ueE"/>
@@ -1752,7 +1762,7 @@
         <segue reference="JNQ-wC-QpK"/>
         <segue reference="foH-ip-zGC"/>
         <segue reference="9gJ-hn-MTh"/>
-        <segue reference="g6a-TF-aRs"/>
+        <segue reference="8j8-mn-808"/>
         <segue reference="YoO-Sm-1oa"/>
         <segue reference="T4T-kE-m8g"/>
     </inferredMetricsTieBreakers>

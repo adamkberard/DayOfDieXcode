@@ -17,16 +17,17 @@ enum TeamStatuses : String, Codable{
 
 class TeamSet {
     private static var allTeams : [Team] = []
-    static var allTeammates : [Player] { get { return allTeams.map { $0.getOtherUser()}}}
-    static var acceptedTeams : [Team] { get { return allTeams.filter { return $0.status == .ACCEPTED}}}
-    static var acceptedTeammates : [Player] { get { return acceptedTeams.map { $0.getOtherUser()}}}
-    static var pendingTeams : [Team] { get { return allTeams.filter { return $0.status == .PENDING && $0.loggedInUserIsTeamCaptain()}}}
+    static var allMyTeams : [Team] { get { return allTeams.filter{ return $0.isOnTeam(player: User.player!)}}}
+    static var allTeammates : [Player] { get { return allMyTeams.map { $0.getOtherUser()}}}
+    static var acceptedTeams : [Team] { get { return allMyTeams.filter { return $0.status == .ACCEPTED}}}
+    static var acceptedTeammates : [Player] { get { return acceptedTeams.map { return $0.getOtherUser()}}}
+    static var pendingTeams : [Team] { get { return allMyTeams.filter { return $0.status == .PENDING && !$0.loggedInUserIsTeamCaptain()}}}
     static var pendingTeammates : [Player] { get { return pendingTeams.map { $0.getOtherUser()}}}
-    static var waitingTeams : [Team] { get { return allTeams.filter { return $0.status == .PENDING &&  !$0.loggedInUserIsTeamCaptain()}}}
+    static var waitingTeams : [Team] { get { return allMyTeams.filter { return $0.status == .PENDING &&  $0.loggedInUserIsTeamCaptain()}}}
     static var waitingTeammates : [Player] { get { return waitingTeams.map { $0.getOtherUser()}}}
-    static var nothingTeams : [Team] { get { return allTeams.filter { return $0.status == .NOTHING}}}
+    static var nothingTeams : [Team] { get { return allMyTeams.filter { return $0.status == .NOTHING}}}
     static var nothingTeammates : [Player] { get { return nothingTeams.map { $0.getOtherUser()}}}
-    static var blockedTeams : [Team] { get { return allTeams.filter { return $0.status == .BLOCKED}}}
+    static var blockedTeams : [Team] { get { return allMyTeams.filter { return $0.status == .BLOCKED}}}
     static var blockedTeammates : [Player] { get { return blockedTeams.map { $0.getOtherUser()}}}
     
     static func getAllTeams() -> [Team] {
@@ -38,12 +39,15 @@ class TeamSet {
             let index = allTeams.firstIndex(of: inTeam)
             if index == nil {
                 setReferencedPlayers(team: inTeam)
+                print("\(inTeam.getTeamName()) with status: \(inTeam.status?.rawValue)")
                 allTeams.append(inTeam)
             } else {
+                print("Replacing the other team.")
                 allTeams[index!].wins = inTeam.wins
                 allTeams[index!].losses = inTeam.losses
                 allTeams[index!].status = inTeam.status
                 allTeams[index!].teamName = inTeam.teamName
+                print("New status for \(allTeams[index!].getTeamName()): \(allTeams[index!].status?.rawValue)")
             }
         }
     }
@@ -53,7 +57,7 @@ class TeamSet {
         else if pendingTeammates.contains(player) { return .PENDING }
         else if waitingTeammates.contains(player) { return .WAITING }
         else if blockedTeammates.contains(player) { return .BLOCKED }
-        else { return .NOTHING }
+        else { print("FOUND IT"); return .NOTHING }
     }
     
     static func setReferencedPlayers(team: Team) {
