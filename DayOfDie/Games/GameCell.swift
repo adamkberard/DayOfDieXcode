@@ -14,7 +14,7 @@ class GameCell: BaseTableViewCell<Game> {
     @IBOutlet weak var playerThreeLabel: UILabel!
     @IBOutlet weak var playerFourLabel: UILabel!
     @IBOutlet weak var teamOneScore: UILabel!
-    @IBOutlet weak var teamTwoScore: UILabel!
+    @IBOutlet weak var awayTeamScore: UILabel!
     @IBOutlet weak var dateAndTimeLabel: UILabel!
     
     var game : Game!
@@ -34,8 +34,8 @@ class GameCell: BaseTableViewCell<Game> {
         
         self.teamOneScore.text = String(object.homeTeamScore)
         self.teamOneScore.textColor = ColorSettings.homeTeamColor
-        self.teamTwoScore.text = String(object.teamTwoScore)
-        self.teamTwoScore.textColor = ColorSettings.awayTeamColor
+        self.awayTeamScore.text = String(object.awayTeamScore)
+        self.awayTeamScore.textColor = ColorSettings.awayTeamColor
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short

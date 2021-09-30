@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -106,13 +104,13 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="awayTeamScore" destination="N3c-ZA-acg" id="6IO-t6-tys"/>
                 <outlet property="dateAndTimeLabel" destination="qMo-i9-z8J" id="x4l-BQ-FXN"/>
                 <outlet property="playerFourLabel" destination="Sdd-rw-sRH" id="I7b-1R-TJE"/>
                 <outlet property="playerOneLabel" destination="kkM-wd-lVm" id="Imf-ge-HzJ"/>
                 <outlet property="playerThreeLabel" destination="KKg-wx-efW" id="6Rd-Jf-E90"/>
                 <outlet property="playerTwoLabel" destination="u59-eT-44o" id="iLL-9y-vxu"/>
                 <outlet property="teamOneScore" destination="4fD-Q5-T6E" id="rbQ-vi-gnL"/>
-                <outlet property="teamTwoScore" destination="N3c-ZA-acg" id="6IO-t6-tys"/>
             </connections>
             <point key="canvasLocation" x="805.79710144927537" y="88.392857142857139"/>
         </tableViewCell>

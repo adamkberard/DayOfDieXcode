@@ -28,9 +28,9 @@ class TrackingViewController: UIViewController {
             checkGameOver()
         }
     }
-    var teamTwoScore : Int = 0 {
+    var awayTeamScore : Int = 0 {
         didSet {
-            scoreboard.teamTwoScore = teamTwoScore
+            scoreboard.awayTeamScore = awayTeamScore
             checkGameOver()
         }
     }
@@ -54,7 +54,7 @@ class TrackingViewController: UIViewController {
     func pointsDidChange() {
         // Just gotta update the player score labels and the team score labels
         teamOneScore = trackerComponents[0].numPoints + trackerComponents[1].numPoints
-        teamTwoScore = trackerComponents[2].numPoints + trackerComponents[3].numPoints
+        awayTeamScore = trackerComponents[2].numPoints + trackerComponents[3].numPoints
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,10 +66,10 @@ class TrackingViewController: UIViewController {
         let playToScore : Int = 11
         let winBy : Int = 2
         
-        if abs(scoreboard.teamOneScore - scoreboard.teamTwoScore) < winBy {
+        if abs(scoreboard.teamOneScore - scoreboard.awayTeamScore) < winBy {
             saveButton.isEnabled = false
         }
-        else if max(scoreboard.teamOneScore, scoreboard.teamTwoScore) < playToScore {
+        else if max(scoreboard.teamOneScore, scoreboard.awayTeamScore) < playToScore {
             saveButton.isEnabled = false
         }
         else{
@@ -95,7 +95,7 @@ class TrackingViewController: UIViewController {
             "playerThree": players[2].uuid,
             "playerFour": players[3].uuid,
             "home_team_score": scoreboard.teamOneScore,
-            "away_team_score": scoreboard.teamTwoScore,
+            "away_team_score": scoreboard.awayTeamScore,
             "confirmed": false,
             "points": getPointsForParameters()
         ]
@@ -134,7 +134,7 @@ class TrackingViewController: UIViewController {
     }
     
     func updatePlayerAndTeamStats(game: Game) {
-        if self.scoreboard.teamOneScore > self.scoreboard.teamTwoScore{
+        if self.scoreboard.teamOneScore > self.scoreboard.awayTeamScore{
             game.homeTeam.wins += 1
             game.awayTeam.losses += 1
             game.homeTeam.teamCaptain.wins += 1

@@ -45,6 +45,14 @@ class GameSet {
         updateAllGames(gameList: [inGame])
         return getGame(inGame: inGame)
     }
+    
+    static func getTotalPoints() -> [Point] {
+        var myTotalPoints : [Point] = []
+        for game in getAllGames() {
+            myTotalPoints.append(contentsOf: game.points.filter { return $0.scorer == User.player })
+        }
+        return myTotalPoints
+    }
 }
 
 class Game : Codable, Equatable {
@@ -56,7 +64,7 @@ class Game : Codable, Equatable {
     var awayTeam : Team
     
     var homeTeamScore : Int
-    var teamTwoScore : Int
+    var awayTeamScore : Int
     var confirmed : Bool
     
     var points : [Point]
@@ -65,7 +73,7 @@ class Game : Codable, Equatable {
 //        self.homeTeam = teamOne
 //        self.awayTeam = teamTwo
 //        self.homeTeamScore = 0
-//        self.teamTwoScore = 0
+//        self.awayTeamScore = 0
 //        self.confirmed = false
 //        self.points = points
 //    }
@@ -74,7 +82,7 @@ class Game : Codable, Equatable {
         self.homeTeam = Team(teamCaptain: playerOne, teammate: playerTwo)
         self.awayTeam = Team(teamCaptain: playerThree, teammate: playerFour)
         self.homeTeamScore = 0
-        self.teamTwoScore = 0
+        self.awayTeamScore = 0
         self.confirmed = false
         self.points = points
     }
@@ -92,7 +100,7 @@ class Game : Codable, Equatable {
         self.homeTeam = try container.decode(Team.self, forKey: .homeTeam)
         self.awayTeam = try container.decode(Team.self, forKey: .awayTeam)
         self.homeTeamScore = try container.decode(Int.self, forKey: .homeTeamScore)
-        self.teamTwoScore = try container.decode(Int.self, forKey: .teamTwoScore)
+        self.awayTeamScore = try container.decode(Int.self, forKey: .awayTeamScore)
         self.confirmed = try container.decode(Bool.self, forKey: .confirmed)
         self.points = try container.decode([Point].self, forKey: .points)
     }
@@ -103,7 +111,7 @@ class Game : Codable, Equatable {
         
         for game in games {
             if game.homeTeam == team {
-                if game.homeTeamScore > game.teamTwoScore {
+                if game.homeTeamScore > game.awayTeamScore {
                     wins += 1
                 }
                 else {
@@ -111,7 +119,7 @@ class Game : Codable, Equatable {
                 }
             }
             else if game.awayTeam == team {
-                if game.homeTeamScore > game.teamTwoScore {
+                if game.homeTeamScore > game.awayTeamScore {
                     losses += 1
                 }
                 else {
@@ -126,6 +134,14 @@ class Game : Codable, Equatable {
         return homeTeam.isOnTeam(player: player)
     }
     
+    func didPlayerWin(player: Player) -> Bool {
+        if isOnHomeTeam(player: player) {
+            return homeTeamScore > awayTeamScore
+        } else {
+            return awayTeamScore > homeTeamScore
+        }
+    }
+    
     enum CodingKeys : String, CodingKey {
         case timeStarted = "time_started"
         case timeEnded = "time_ended"
@@ -134,7 +150,7 @@ class Game : Codable, Equatable {
         case awayTeam = "away_team"
         
         case homeTeamScore = "home_team_score"
-        case teamTwoScore = "away_team_score"
+        case awayTeamScore = "away_team_score"
         case confirmed
         case points
     }

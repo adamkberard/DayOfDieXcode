@@ -35,7 +35,7 @@ class GameDetailViewController: BaseTableViewController<Point> {
         playerButtons[2].setTitle(game.awayTeam.teamCaptain.username, for: .normal)
         playerButtons[3].setTitle(game.awayTeam.teammate.username, for: .normal)
         scoreLabels[0].text = String(game!.homeTeamScore)
-        scoreLabels[1].text = String(game!.teamTwoScore)
+        scoreLabels[1].text = String(game!.awayTeamScore)
     }
     
     @IBAction func playerButtonPressed(_ sender: UIButton) {

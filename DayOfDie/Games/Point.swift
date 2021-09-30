@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum PointTypes : String, Codable {
+enum PointTypes : String, Codable, CustomStringConvertible {
     case REGULAR = "sg"
     case TINK = "tk"
     case SINK = "sk"
@@ -18,6 +18,21 @@ enum PointTypes : String, Codable {
     case FIELD_GOAL = "fg"
     case FIVE = "fv"
     case UNTRACKED = "ut"
+    
+    var description: String {
+        switch self {
+        case .REGULAR: return "Regular Point"
+        case .TINK: return "Tink"
+        case .SINK: return "Sink"
+        case .BOUNCE_SINK: return "Bounce Sink"
+        case .PARTNER_SINK: return "Partner Sink"
+        case .SELF_SINK: return "Self Sink"
+        case .FIFA: return "Fifa"
+        case .FIELD_GOAL: return "Field Goal"
+        case .FIVE: return "Five"
+        case .UNTRACKED: return "Untracked'"
+        }
+    }
 }
 
 
@@ -35,30 +50,34 @@ class Point : Codable {
     static func getScore(points: [Point]) -> Int {
         var score : Int = 0
         for point in points{
-            switch point.typeOfPoint {
-            case .REGULAR:
-                score += 1
-            case .TINK:
-                score += 2
-            case .SINK:
-                score += 3
-            case .BOUNCE_SINK:
-                score += 2
-            case .PARTNER_SINK:
-                score += 0
-            case .SELF_SINK:
-                score -= 0
-            case .FIFA:
-                score += 1
-            case .FIELD_GOAL:
-                score += 1
-            case .FIVE:
-                score += 0
-            case .UNTRACKED:
-                score += 1
-            }
+            score += point.getPointValue()
         }
         return score
+    }
+    
+    func getPointValue() -> Int {
+        switch typeOfPoint {
+        case .REGULAR:
+            return 1
+        case .TINK:
+            return 2
+        case .SINK:
+            return 3
+        case .BOUNCE_SINK:
+            return 2
+        case .PARTNER_SINK:
+            return 0
+        case .SELF_SINK:
+            return 0
+        case .FIFA:
+            return 1
+        case .FIELD_GOAL:
+            return 1
+        case .FIVE:
+            return 0
+        case .UNTRACKED:
+            return 1
+        }
     }
     
     func getString() -> String {

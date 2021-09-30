@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -11,8 +9,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlayersTableScoreView" customModule="DayOfDie" customModuleProvider="target">
             <connections>
+                <outlet property="awayTeamScoreLabel" destination="nXT-tK-go4" id="meL-lu-vM4"/>
                 <outlet property="teamOneScoreLabel" destination="OEC-pQ-s3d" id="tIh-u3-s9N"/>
-                <outlet property="teamTwoScoreLabel" destination="nXT-tK-go4" id="meL-lu-vM4"/>
                 <outletCollection property="playerLabels" destination="3VP-ln-XAV" collectionClass="NSMutableArray" id="X40-8n-6Jm"/>
                 <outletCollection property="playerLabels" destination="4I6-JS-eOQ" collectionClass="NSMutableArray" id="EL1-wc-xJs"/>
                 <outletCollection property="playerLabels" destination="G9p-CO-ZsM" collectionClass="NSMutableArray" id="olK-Me-GyF"/>
