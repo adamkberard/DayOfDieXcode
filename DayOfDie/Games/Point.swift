@@ -30,7 +30,7 @@ enum PointTypes : String, Codable, CustomStringConvertible {
         case .FIFA: return "Fifa"
         case .FIELD_GOAL: return "Field Goal"
         case .FIVE: return "Five"
-        case .UNTRACKED: return "Untracked'"
+        case .UNTRACKED: return "Untracked"
         }
     }
 }

@@ -11,6 +11,10 @@ class StatDetailViewController: UIViewController {
     
     var stat : Stat?
     
+    @IBOutlet weak var totalGamesLabel: UILabel!
+    @IBOutlet weak var totalWinsLabel: UILabel!
+    @IBOutlet weak var totalLossesLabel: UILabel!
+    
     @IBOutlet weak var totalTimesHitLabel: UILabel!
     @IBOutlet weak var totalTimesHitWinLabel: UILabel!
     @IBOutlet weak var totalTimesHitLossLabel: UILabel!
@@ -35,6 +39,10 @@ class StatDetailViewController: UIViewController {
     func setupView() {
         title = stat?.name
         
+        totalGamesLabel.text = String(stat!.totalGames)
+        totalWinsLabel.text = String(stat!.totalWins)
+        totalLossesLabel.text = String(stat!.totalLosses)
+        
         totalTimesHitLabel.text = String(stat!.totalHits)
         totalTimesHitWinLabel.text = String(stat!.totalWinHits)
         totalTimesHitLossLabel.text = String(stat!.totalLossHits)
@@ -44,17 +52,24 @@ class StatDetailViewController: UIViewController {
         totalPointScoredLossLabel.text = String(stat!.totalLossPoints)
         
         if stat!.averageHits.isNaN { averageTimesHitLabel.text = "NA"}
-        else { averageTimesHitLabel.text = String(stat!.averageHits)}
+        else { averageTimesHitLabel.text = String(stat!.averageHits.rounded(toPlaces: 2))}
         if stat!.averageWinHits.isNaN { averageTimesHitWinLabel.text = "NA"}
-        else { averageTimesHitWinLabel.text = String(stat!.averageWinHits)}
+        else { averageTimesHitWinLabel.text = String(stat!.averageWinHits.rounded(toPlaces: 2))}
         if stat!.averageLossHits.isNaN { averageTimesHitLossLabel.text = "NA"}
-        else { averageTimesHitLossLabel.text = String(stat!.averageLossHits)}
+        else { averageTimesHitLossLabel.text = String(stat!.averageLossHits.rounded(toPlaces: 2))}
         
         if stat!.averagePoints.isNaN { averagePointsScoredLabel.text = "NA"}
-        else { averagePointsScoredLabel.text = String(stat!.averagePoints)}
+        else { averagePointsScoredLabel.text = String(stat!.averagePoints.rounded(toPlaces: 2))}
         if stat!.averageWinPoints.isNaN { averagePointsScoredWinLabel.text = "NA"}
-        else { averagePointsScoredWinLabel.text = String(stat!.averageWinPoints)}
+        else { averagePointsScoredWinLabel.text = String(stat!.averageWinPoints.rounded(toPlaces: 2))}
         if stat!.averageLossPoints.isNaN { averagePointsScoredLossLabel.text = "NA"}
-        else { averagePointsScoredLossLabel.text = String(stat!.averageLossPoints)}
+        else { averagePointsScoredLossLabel.text = String(stat!.averageLossPoints.rounded(toPlaces: 2))}
+    }
+}
+
+extension Double {
+    func rounded(toPlaces places:Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
     }
 }

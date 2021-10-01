@@ -7,6 +7,12 @@
 
 import UIKit
 
+enum GameTrackingType {
+    case PointScore
+    case PlayerScore
+    case GameScore
+}
+
 class GameSet {
     private static var allGames : [Game] = []
     
@@ -157,5 +163,15 @@ class Game : Codable, Equatable {
     
     static func == (lhs: Game, rhs: Game) -> Bool {
         return lhs.uuid == rhs.uuid
+    }
+    
+    func getGameTrackingType() -> GameTrackingType {
+        if points.isEmpty {
+            return GameTrackingType.GameScore
+        } else if points.contains(where: { $0.typeOfPoint == PointTypes.UNTRACKED }) {
+            return GameTrackingType.PlayerScore
+        } else {
+            return GameTrackingType.PointScore
+        }
     }
 }

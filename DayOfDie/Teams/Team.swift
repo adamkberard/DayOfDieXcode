@@ -39,15 +39,12 @@ class TeamSet {
             let index = allTeams.firstIndex(of: inTeam)
             if index == nil {
                 setReferencedPlayers(team: inTeam)
-                print("\(inTeam.getTeamName()) with status: \(inTeam.status?.rawValue)")
                 allTeams.append(inTeam)
             } else {
-                print("Replacing the other team.")
                 allTeams[index!].wins = inTeam.wins
                 allTeams[index!].losses = inTeam.losses
                 allTeams[index!].status = inTeam.status
                 allTeams[index!].teamName = inTeam.teamName
-                print("New status for \(allTeams[index!].getTeamName()): \(allTeams[index!].status?.rawValue)")
             }
         }
     }
@@ -57,7 +54,7 @@ class TeamSet {
         else if pendingTeammates.contains(player) { return .PENDING }
         else if waitingTeammates.contains(player) { return .WAITING }
         else if blockedTeammates.contains(player) { return .BLOCKED }
-        else { print("FOUND IT"); return .NOTHING }
+        else { return .NOTHING }
     }
     
     static func setReferencedPlayers(team: Team) {

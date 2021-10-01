@@ -141,7 +141,6 @@ class BaseTableViewController<T: Decodable>: UIViewController, UITableViewDelega
         
         let cellObject = objectList[indexPath.row]
         cell.setupCell(object: cellObject)
-        print("REFRESHING A CELL")
         return cell
     }
     

@@ -20,7 +20,7 @@ class StatSet {
         myStats.append(getCertainPoint(pointType: .FIFA))
         myStats.append(getCertainPoint(pointType: .FIELD_GOAL))
         myStats.append(getCertainPoint(pointType: .FIVE))
-        myStats.append(getCertainPoint(pointType: .UNTRACKED))
+        myStats.append(getUntrackedPoints())
         return myStats
     }
     
@@ -33,16 +33,18 @@ class StatSet {
         var totalLosses : Int = 0
         
         for game in GameSet.getAllGames() {
-            let scoredPoints = game.points.filter { $0.scorer == User.player }
-            let totalPointsScored : Int = scoredPoints.reduce(0,  { $0 + $1.getPointValue() })
-            if game.didPlayerWin(player: User.player!) {
-                totalWinPoints += totalPointsScored
-                totalWinHits += scoredPoints.count
-                totalWins += 1
-            } else {
-                totalLossPoints += totalPointsScored
-                totalLossHits += scoredPoints.count
-                totalLosses += 1
+            if game.getGameTrackingType() != .GameScore {
+                let scoredPoints = game.points.filter { $0.scorer == User.player }
+                let totalPointsScored : Int = scoredPoints.reduce(0,  { $0 + $1.getPointValue() })
+                if game.didPlayerWin(player: User.player!) {
+                    totalWinPoints += totalPointsScored
+                    totalWinHits += scoredPoints.count
+                    totalWins += 1
+                } else {
+                    totalLossPoints += totalPointsScored
+                    totalLossHits += scoredPoints.count
+                    totalLosses += 1
+                }
             }
         }
         return Stat(name: "All Points", totalWinHits: totalWinHits, totalWinPoints: totalWinPoints, totalLossHits: totalLossHits, totalLossPoints: totalLossPoints, totalWinGames: totalWins, totalLossGames: totalLosses)
@@ -57,24 +59,57 @@ class StatSet {
         var totalLosses : Int = 0
         
         for game in GameSet.getAllGames() {
-            let scoredPoints = game.points.filter { $0.scorer == User.player && $0.typeOfPoint ==  pointType}
-            let totalPointsScored : Int = scoredPoints.reduce(0,  { $0 + $1.getPointValue() })
-            if game.didPlayerWin(player: User.player!) {
-                totalWinPoints += totalPointsScored
-                totalWinHits += scoredPoints.count
-                totalWins += 1
-            } else {
-                totalLossPoints += totalPointsScored
-                totalLossHits += scoredPoints.count
-                totalLosses += 1
+            if game.getGameTrackingType() == .PointScore {
+                let scoredPoints = game.points.filter { $0.scorer == User.player && $0.typeOfPoint ==  pointType}
+                let totalPointsScored : Int = scoredPoints.reduce(0,  { $0 + $1.getPointValue() })
+                if game.didPlayerWin(player: User.player!) {
+                    totalWinPoints += totalPointsScored
+                    totalWinHits += scoredPoints.count
+                    totalWins += 1
+                } else {
+                    totalLossPoints += totalPointsScored
+                    totalLossHits += scoredPoints.count
+                    totalLosses += 1
+                }
             }
         }
         return Stat(name: "\(pointType)", totalWinHits: totalWinHits, totalWinPoints: totalWinPoints, totalLossHits: totalLossHits, totalLossPoints: totalLossPoints, totalWinGames: totalWins, totalLossGames: totalLosses)
+    }
+    
+    static func getUntrackedPoints() -> Stat {
+        var totalWinHits : Int = 0
+        var totalLossHits : Int = 0
+        var totalWinPoints : Int = 0
+        var totalLossPoints : Int = 0
+        var totalWins : Int = 0
+        var totalLosses : Int = 0
+        
+        for game in GameSet.getAllGames() {
+            if game.getGameTrackingType() == .PlayerScore {
+                let scoredPoints = game.points.filter { $0.scorer == User.player }
+                let totalPointsScored : Int = scoredPoints.count
+                if game.didPlayerWin(player: User.player!) {
+                    totalWinPoints += totalPointsScored
+                    totalWinHits += scoredPoints.count
+                    totalWins += 1
+                } else {
+                    totalLossPoints += totalPointsScored
+                    totalLossHits += scoredPoints.count
+                    totalLosses += 1
+                }
+            }
+        }
+        return Stat(name: "\(PointTypes.UNTRACKED)", totalWinHits: totalWinHits, totalWinPoints: totalWinPoints, totalLossHits: totalLossHits, totalLossPoints: totalLossPoints, totalWinGames: totalWins, totalLossGames: totalLosses)
     }
 }
 
 class Stat : Codable, Searchable {
     var name : String
+    
+    var totalGames : Int { get { return totalWins + totalLosses}}
+    var totalWins : Int
+    var totalLosses : Int
+    
     var totalHits : Int { get { return totalWinHits + totalLossHits}}
     var totalWinHits : Int
     var totalLossHits : Int
@@ -91,19 +126,15 @@ class Stat : Codable, Searchable {
     var averageWinPoints : Double { get { return Double(totalWinPoints) / Double(totalWins)}}
     var averageLossPoints : Double { get { return Double(totalLossPoints) / Double(totalLosses)}}
     
-    var totalGames : Int { get { return totalWins + totalLosses}}
-    var totalWins : Int
-    var totalLosses : Int
-    
     
     internal init(name: String, totalWinHits: Int, totalWinPoints: Int, totalLossHits: Int, totalLossPoints: Int, totalWinGames: Int, totalLossGames: Int) {
         self.name = name
+        self.totalWins = totalWinGames
+        self.totalLosses = totalLossGames
         self.totalWinHits = totalWinHits
         self.totalWinPoints = totalWinPoints
         self.totalLossHits = totalLossHits
         self.totalLossPoints = totalLossPoints
-        self.totalWins = totalWinGames
-        self.totalLosses = totalLossGames
     }
     
     func getSearchString() -> String {

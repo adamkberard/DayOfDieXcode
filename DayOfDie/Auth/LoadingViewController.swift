@@ -10,8 +10,8 @@ import Alamofire
 
 
 struct URLInfo{
-    //static var baseUrl = "https://dayofdie-test.herokuapp.com"
-    static var baseUrl = "http://127.0.0.1:8000"
+    static var baseUrl = "https://dayofdie-test.herokuapp.com"
+    //static var baseUrl = "http://127.0.0.1:8000"
     //static var baseUrl = "https://dayofdie.herokuapp.com"
 }
 
